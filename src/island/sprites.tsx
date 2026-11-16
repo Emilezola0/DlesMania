@@ -14,6 +14,10 @@ const hi = (op = 0.4) => `fill="#fff" opacity="${op}"`;
 /** A shadow on the ground under a thing. */
 const shadow = (w = 11) => `<ellipse cx="16" cy="31" rx="${w}" ry="1.6" fill="#000" opacity=".18"/>`;
 
+/** A sword, point up and to the right: its blade's colour, its grip's. */
+const SWORD_BLADE = (blade: string, grip: string) =>
+  `<path d="M28 2l2 2-15 15-3-3z" ${o(blade, 1.1)}/><path d="M27 4L15 16" ${l(0.8, '#fff')} opacity=".75"/><path d="M8 16l8 8" ${o(grip, 1)} stroke-width="3.2" stroke="${K}"/><path d="M8 16l8 8" fill="none" stroke="${grip}" stroke-width="2"/><path d="M12 22l-7 7" ${l(3.4)}/><path d="M12 22l-7 7" ${l(2, grip)}/><circle cx="4.5" cy="29.5" r="2" ${o('#facc15', 1)}/>`;
+
 const lantern = (body: string, rib: string, y = 6) =>
   `<path d="M16 ${y - 4}v3" ${l(1.2)}/><rect x="12" y="${y - 1}" width="8" height="2" rx=".5" ${o('#3f3f46', 1)}/>` +
   `<ellipse cx="16" cy="${y + 7}" rx="7" ry="7.5" ${o(body)}/>` +
@@ -209,6 +213,21 @@ const ART: Record<string, string> = {
   lava: `<rect x="0" y="0" width="32" height="32" fill="#7c2d12"/><path d="M0 4q4-3 8 0t8 0 8 0 8 0V32H0z" fill="#f97316"/><path d="M0 9q4-2 8 0t8 0 8 0 8 0" ${l(1.6, '#fde047')} opacity=".9"/><g fill="#fde047"><circle cx="7" cy="16" r="1.6"/><circle cx="22" cy="20" r="2"/><circle cx="14" cy="26" r="1.2"/></g>`,
   'fire-jet': `<rect x="7" y="25" width="18" height="7" rx="1" ${o('#44403c', 1.1)}/><rect x="10" y="22" width="12" height="4" rx="1" ${o('#57534e', 1)}/><ellipse cx="16" cy="22.5" rx="3.5" ry="1.2" fill="#1c1917"/><path d="M11 29h10" ${l(0.8, '#a8a29e')}/>`,
   'jungle-vine': `<path d="M16 0c-4 5 4 9 0 14s4 9 0 18" ${l(2.4, '#3f6212')}/><g ${o('#65a30d', 0.8)}><path d="M16 5c-4-1-6 1-7 3 3 1 5 0 7-3z"/><path d="M16 12c4-1 6 1 7 3-3 1-5 0-7-3z"/><path d="M16 20c-4-1-6 1-7 3 3 1 5 0 7-3z"/><path d="M16 27c4-1 6 1 7 3-3 1-5 0-7-3z"/></g>`,
+  // The dungeon's fights (src/island/combat.ts): the sword in the stone, the swords, the mobs.
+  'sword-stone': `${shadow(13)}<path d="M3 31q0-9 6-11 3-5 8-4 7 0 9 6 4 2 3 9z" ${o('#78716c', 1.3)}/><path d="M9 21q3 2 6 0M18 18q3 3 7 2" ${l(0.9, '#57534e')}/><path d="M15 2h3v15h-3z" ${o('#e5e7eb', 1)}/><path d="M16.5 3v12" ${l(0.7, '#fff')}/><rect x="11" y="13" width="11" height="2.5" rx="1" ${o('#facc15', 1)}/><circle cx="16.5" cy="2" r="1.6" ${o('#facc15', 0.9)}/>`,
+  'stone-sword': SWORD_BLADE('#a8a29e', '#57534e'),
+  'iron-sword': SWORD_BLADE('#e5e7eb', '#78350f'),
+  'gold-sword': SWORD_BLADE('#fcd34d', '#78350f'),
+  'crystal-sword': SWORD_BLADE('#a5f3fc', '#7c3aed'),
+  'legend-sword-common': SWORD_BLADE('#e5e7eb', '#9ca3af'),
+  'legend-sword-rare': SWORD_BLADE('#bfdbfe', '#2563eb'),
+  'legend-sword-epic': SWORD_BLADE('#e9d5ff', '#9333ea'),
+  'legend-sword-legendary': SWORD_BLADE('#fde68a', '#d97706'),
+  'legend-sword-mythic': SWORD_BLADE('#fbcfe8', '#db2777'),
+  'mob-crypt': `<ellipse cx="16" cy="12" rx="9" ry="9" ${o('#f5f5f4', 1.3)}/><path d="M11 20h10v4H11z" ${o('#e7e5e4', 1.1)}/><ellipse cx="12.5" cy="12" rx="2.6" ry="3" fill="#1c1917"/><ellipse cx="19.5" cy="12" rx="2.6" ry="3" fill="#1c1917"/><path d="M16 15l-1.2 2.6h2.4z" fill="#1c1917"/><path d="M13 21v3M16 21v3M19 21v3" ${l(0.9)}/><path d="M10 26l-3 5M22 26l3 5M13 25v6M19 25v6" ${l(1.6, '#e7e5e4')}/><circle cx="12.5" cy="12" r=".9" fill="#f87171"/><circle cx="19.5" cy="12" r=".9" fill="#f87171"/>`,
+  'mob-ice': `<path d="M4 30q-1-14 12-18 13 4 12 18z" ${o('#7dd3fc', 1.3)}/><path d="M8 26q0-8 6-11" ${l(1.4, '#e0f2fe')} opacity=".8"/><ellipse cx="12.5" cy="22" rx="2" ry="2.6" fill="#0c4a6e"/><ellipse cx="19.5" cy="22" rx="2" ry="2.6" fill="#0c4a6e"/><circle cx="13" cy="21" r=".7" fill="#fff"/><circle cx="20" cy="21" r=".7" fill="#fff"/><path d="M13 27q3 1.5 6 0" ${l(1, '#0c4a6e')}/><path d="M16 12l-2-5 2 1 2-1z" ${o('#e0f2fe', 0.9)}/>`,
+  'mob-jungle': `<g ${l(1.6, '#1c1917')}><path d="M10 18l-7-5-1 8M10 21l-8 1-1 7M22 18l7-5 1 8M22 21l8 1 1 7"/></g><ellipse cx="16" cy="21" rx="8" ry="6.5" ${o('#3f3f46', 1.3)}/><ellipse cx="16" cy="13" rx="5" ry="4.5" ${o('#52525b', 1.2)}/><g fill="#ef4444"><circle cx="14" cy="12" r="1.2"/><circle cx="18" cy="12" r="1.2"/><circle cx="12.5" cy="14.5" r=".8"/><circle cx="19.5" cy="14.5" r=".8"/></g><path d="M12 22q4 3 8 0" ${l(1, '#a3e635')}/>`,
+  'mob-magma': `<path d="M8 8l2 6M24 8l-2 6" ${l(2, '#7f1d1d')}/><circle cx="16" cy="17" r="9" ${o('#dc2626', 1.3)}/><path d="M11 9l-3-5 5 3M21 9l3-5-5 3" ${o('#7f1d1d', 1)}/><ellipse cx="12.5" cy="16" rx="2" ry="2.4" fill="#fde047"/><ellipse cx="19.5" cy="16" rx="2" ry="2.4" fill="#fde047"/><path d="M11 21q5 4 10 0" ${l(1.3, '#450a0a')}/><path d="M9 25q-3 3 0 6M23 25q3 3 0 6" ${l(1.4, '#f97316')}/><path d="M12 26q4 6 8 0" fill="#f97316" opacity=".8"/>`,
   'rope-ladder': `<path d="M8 0v32M24 0v32" ${l(2.2, '#c8a46a')}/><path d="M8 0v32M24 0v32" ${l(0.6)}/><g ${o('#a86a33', 1)}><rect x="7" y="4" width="18" height="3" rx="1"/><rect x="7" y="12" width="18" height="3" rx="1"/><rect x="7" y="20" width="18" height="3" rx="1"/><rect x="7" y="28" width="18" height="3" rx="1"/></g>`,
   'wood-platform': `<rect x="0.5" y="1" width="31" height="6" rx="1" ${o('#c27c3e')}/><path d="M2 3.5h28" ${l(1, '#e0a364')}/><path d="M11 1v6M21 1v6" ${l(0.8)}/><path d="M4 7l4 6M28 7l-4 6" ${l(1.6, '#8a5428')}/>`,
   trampoline: `${shadow(13)}<path d="M5 31l3-12M27 31l-3-12M12 31l1-12M20 31l-1-12" ${l(1.8, '#475569')}/><ellipse cx="16" cy="18" rx="14" ry="4" ${o('#2563eb')}/><ellipse cx="16" cy="17.6" rx="11" ry="2.6" ${o('#111827', 1)}/><path d="M9 17q7-2 14 0" ${l(1, '#475569')}/><path d="M13 9l3-4 3 4M14 12l2-2.5 2 2.5" ${l(1.2, '#60a5fa')}/>`,

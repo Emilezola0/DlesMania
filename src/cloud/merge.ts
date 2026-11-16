@@ -35,6 +35,8 @@ export const SYNCED = [
   'islandItems',
   'dungeon',
   'crafted',
+  'weaponWear',
+  'swordStone',
   'econ',
   'bossWeek',
   'packsOpened',
@@ -328,6 +330,9 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     // The week's dungeon (chests opened, ore mined): the latest save's; a recipe made on either side stays known.
     dungeon: latest.dungeon ?? local.dungeon,
     crafted: [...new Set([...(local.crafted ?? []), ...(cloud.crafted ?? [])])],
+    // A weapon's wear goes with the bag (the latest save's); the sword in the stone drawn on either side stays drawn (the later day).
+    weaponWear: latest.weaponWear ?? local.weaponWear,
+    swordStone: [local.swordStone, cloud.swordStone].filter(Boolean).sort().at(-1),
     grades: latest.grades ?? {},
     // A grade paid on either side stays paid (never twice).
     gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),

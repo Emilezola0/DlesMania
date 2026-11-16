@@ -15,6 +15,7 @@ import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEve
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
 import { biomeAt, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
+import { bestWeapon, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
 import { weekOf } from '../gacha/economy';
 import { discFits, DISC_PLAYERS, HEAR, islandBand, type Source } from './music';
 import { ShowBar, VolumeSlider, YouTubeShow, YT, ytId, ytOf } from './YouTube';
@@ -135,6 +136,19 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const home = useMemo(() => upgradeIsland(island ?? newIsland()), [island]);
   /** Down in the week's dungeon (through the gate in the valley): its own world, mined but never built on. */
   const [inDungeon, setInDungeon] = useState(false);
+  // The dungeon's fights (src/island/combat.ts): its mobs (each player fights their own), your hearts, a hurt's push.
+  const mobs = useRef<{ id: string; kind: string; x: number; y: number; x0: number; x1: number; hp: number; max: number; dir: 1 | -1; dead: boolean; hitAt: number; lift: number }[]>([]);
+  const mobEls = useRef(new Map<string, HTMLDivElement>());
+  const [mobList, setMobList] = useState<{ id: string; kind: string }[]>([]);
+  const [hearts, setHearts] = useState(HEARTS);
+  const heartsRef = useRef(HEARTS);
+  const safeUntil = useRef(0);
+  const knock = useRef(0);
+  const lastSwing = useRef(0);
+  const weaponWear = useProgress((s) => s.weaponWear);
+  const wearWeapon = useProgress((s) => s.wearWeapon);
+  const drawSword = useProgress((s) => s.drawSword);
+  const mobLoot = useProgress((s) => s.mobLoot);
   const week = weekOf(todayKey());
   const dungeonSave = useProgress((s) => s.dungeon);
   const dungeonFg = dungeonSave?.week === week ? dungeonSave.fg : undefined;
@@ -355,6 +369,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       // On ice (the frozen caves): you slide, slow to start and to stop.
       const under = fgAt(isl, idx(Math.floor(p.x + PW / 2), Math.floor(p.y + PH + 0.05)));
       v.x = isl.world && under === 'dungeon-ice' && ground.current ? v.x + (want - v.x) * Math.min(1, dt * 2.2) : want;
+      // Knocked back by a mob: pushed away, the push fading.
+      if (knock.current) {
+        v.x += knock.current;
+        knock.current *= Math.exp(-dt * 7);
+        if (Math.abs(knock.current) < 0.3) knock.current = 0;
+      }
       // On a ladder (or standing right on top of one, so you can stop there and step off sideways).
       const ladder = touching(p.x, p.y, 'ladder', 0.15) >= 0;
       const down = k.has('down');
@@ -535,6 +555,37 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         me.current.dataset.pose = pose.current?.kind ?? ride.current?.kind ?? '';
         if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
       }
+      // The dungeon's mobs: patrolling their room's floor, coming at you when you're near, hurting on touch.
+      if (deepRef.current)
+        for (const m of mobs.current) {
+          if (m.dead) continue;
+          const kind = MOBS[m.kind];
+          const px = p.x + PW / 2;
+          const py = p.y + PH / 2;
+          const near = Math.abs(px - (m.x + 0.5)) < 5 && Math.abs(py - (m.y + 0.5)) < 1.8;
+          if (near) m.dir = px < m.x + 0.5 ? -1 : 1;
+          else if (m.x <= m.x0) m.dir = 1;
+          else if (m.x >= m.x1) m.dir = -1;
+          if (now - m.hitAt > 350) m.x = Math.max(m.x0, Math.min(m.x1, m.x + m.dir * kind.speed * (near ? 1 : 0.5) * dt));
+          // A flyer bobs in the air.
+          const lift = kind.flies ? 0.35 + Math.sin(now / 320 + m.lift) * 0.25 : 0;
+          if (Math.abs(px - (m.x + 0.5)) < PW / 2 + 0.38 && Math.abs(py - (m.y + 0.5 - lift)) < PH / 2 + 0.38 && now > safeUntil.current) {
+            safeUntil.current = now + SAFE_AFTER_HURT;
+            heartsRef.current -= 1;
+            setHearts(heartsRef.current);
+            knock.current = (px < m.x + 0.5 ? -1 : 1) * 10;
+            v.y = -7;
+            sfx.hurt();
+            if (heartsRef.current <= 0) goRef.current(true, 'mob');
+          }
+          const el = mobEls.current.get(m.id);
+          if (el) {
+            el.style.transform = `translate(${m.x * t}px, ${(m.y - lift + 0.08) * t}px)`;
+            el.dataset.left = m.dir < 0 ? '1' : '';
+            el.dataset.hit = now - m.hitAt < 200 ? '1' : '';
+          }
+        }
+      if (me.current) me.current.dataset.safe = now < safeUntil.current ? '1' : '';
       // The others glide to where they last said they were.
       const all: { x: number; y: number }[] = [p];
       for (const peer of peersRef.current) {
@@ -686,6 +737,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (key === ' ') return e.preventDefault(), e.repeat ? undefined : fishAct();
         if (keyOf(key) === 'left' || keyOf(key) === 'right') setFishing(null), say(tr('🎣 Line reeled in.', '🎣 Ligne remontée.'));
       }
+      if ((e.code === 'KeyX' || e.code === 'KeyJ') && inDungeon) return e.preventDefault(), e.repeat ? undefined : swing();
       if (key === 'e') return e.preventDefault(), chooseTool(tools[(tools.findIndex((t) => t.id === tool) + 1) % tools.length].id);
       // The digit keys by where they are (AZERTY types & é " ' ( there without Shift), or the number pad.
       const n = /^(?:Digit|Numpad)([1-5])$/.exec(e.code)?.[1];
@@ -760,6 +812,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (!isl.world && isSea(xy(cell).x, xy(cell).y)) return cast(cell);
       if (front && kindOf(front) === 'gate') return go(!inDungeon);
       if (front && kindOf(front) === 'craft') return setCrafting(front as Station);
+      if (front === 'sword-stone') {
+        const got = drawSword();
+        if (!got) return say(tr('🗡️ The sword won’t budge today. Come back tomorrow.', '🗡️ L’épée ne bouge pas aujourd’hui. Reviens demain.'));
+        sfx.victory();
+        const w = WEAPONS[got];
+        return say(
+          <>
+            🗡️ {tr('You draw', 'Tu tires')}{' '}
+            <b style={{ color: w.rarity ? RARITY_COLOR[w.rarity] : undefined }}>{itemName(got)}</b> · {w.damage} {tr('damage', 'dégâts')} · {w.durability} {tr('hits', 'coups')}
+          </>,
+        );
+      }
       if (front === 'dungeon-chest-open') return say(tr('🧰 Empty: you opened it already.', '🧰 Vide : tu l’as déjà ouvert.'));
       if (front === 'dungeon-chest') {
         const loot = openChest(cell);
@@ -884,6 +948,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     setFishing(null);
     setTv(null);
     setInDungeon(down);
+    // Down from the island: the week's mobs, fresh; knocked out: back at the gate, the mobs as they were. Full hearts.
+    heartsRef.current = HEARTS;
+    setHearts(HEARTS);
+    safeUntil.current = 0;
+    knock.current = 0;
+    if (!down) {
+      mobs.current = [];
+      setMobList([]);
+    } else if (!hurt) {
+      mobs.current = dungeonOf(week).mobs.map((m, k) => ({ ...m, hp: MOBS[m.kind].hp, max: MOBS[m.kind].hp, dir: k % 2 ? 1 : -1, dead: false, hitAt: 0, lift: k }));
+      setMobList(mobs.current.map((m) => ({ id: m.id, kind: m.kind })));
+    }
     if (!TOOLS.some((t) => t.id === tool && (!down || t.id === 'walk' || t.id === 'dig'))) setTool('walk');
     if (hurt) {
       sfx.wrong();
@@ -892,6 +968,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         thorns: ['🌵 Thorns! Back to the gate.', '🌵 Des ronces ! Retour à la porte.'],
         lava: ['🌋 Lava! Back to the gate.', '🌋 De la lave ! Retour à la porte.'],
         'fire-jet': ['🔥 Burnt by a fire jet! Back to the gate.', '🔥 Brûlé par un jet de feu ! Retour à la porte.'],
+        mob: ['💔 Knocked out! Back to the gate, hearts full again.', '💔 K.-O. ! Retour à la porte, cœurs remplis.'],
       };
       const [en, fr] = ouch[hurt] ?? ['🔺 Ouch, spikes! Back to the gate.', '🔺 Aïe, des pics ! Retour à la porte.'];
       return say(tr(en, fr));
@@ -1034,6 +1111,45 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     run((i) => setTune(i, key, t), '', 'build');
   };
 
+  /** A swing (X, or a click on a mob): the nearest mob in front of you takes your best weapon's damage (or your fists'). */
+  const swing = () => {
+    const now = performance.now();
+    if (!inDungeon || now - lastSwing.current < SWING.rest) return;
+    lastSwing.current = now;
+    const m0 = me.current;
+    if (m0) {
+      m0.dataset.swing = '';
+      void m0.offsetWidth;
+      m0.dataset.swing = '1';
+    }
+    const p = pos.current;
+    const dir = facing.current ? -1 : 1;
+    const px = p.x + PW / 2;
+    const py = p.y + PH / 2;
+    const target = mobs.current
+      .filter((m) => !m.dead)
+      .map((m) => ({ m, d: (m.x + 0.5 - px) * dir }))
+      .filter((o) => o.d > -0.4 && o.d < SWING.reach + 0.5 && Math.abs(o.m.y + 0.5 - py) < 1.4)
+      .sort((a, b) => a.d - b.d)[0]?.m;
+    if (!target) return sfx.whoosh();
+    const weapon = bestWeapon(useProgress.getState().islandItems ?? {});
+    target.hp -= weapon ? WEAPONS[weapon].damage : FISTS.damage;
+    target.hitAt = now;
+    target.x = Math.max(target.x0, Math.min(target.x1, target.x + dir * 0.7));
+    sfx.hit();
+    const bar = mobEls.current.get(target.id)?.querySelector<HTMLElement>('.island-mob-hp > i');
+    if (bar) bar.style.width = `${Math.max(0, (target.hp / target.max) * 100)}%`;
+    if (weapon && wearWeapon(weapon).broke) say(`💥 ${itemName(weapon)}: ${tr('broken!', 'cassée !')}`);
+    if (target.hp > 0) return;
+    target.dead = true;
+    const el = mobEls.current.get(target.id);
+    if (el) el.style.display = 'none';
+    const kind = MOBS[target.kind];
+    const drop = Math.random() < 0.5 ? [kind.drops[Math.floor(Math.random() * kind.drops.length)]] : [];
+    mobLoot(drop);
+    say(`⚔️ ${tr(kind.name, kind.fr)} ${tr('defeated', 'vaincu')}${drop.length ? ` · +1 ${itemIcon(drop[0])} ${itemName(drop[0])}` : ''}`);
+  };
+
   /** Several settings at once (one change on the island, not one each). */
   const tuneMany = (pairs: [string, string | null][]) => {
     if (mode === 'visit') {
@@ -1078,7 +1194,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
 
   const avatarCard = avatar ? CARD_BY_ID.get(avatar) : undefined;
   const allBag = Object.entries(items).filter(([, n]) => n > 0);
-  const bagItems = allBag.filter(([id]) => kindOf(id) !== 'disc');
+  // Records and CDs go in a player, weapons fight in the dungeon: neither is built.
+  const bagItems = allBag.filter(([id]) => kindOf(id) !== 'disc' && kindOf(id) !== 'weapon');
   const discs = allBag.filter(([id]) => kindOf(id) === 'disc');
   /** Whether a thing from the bag can go in the chosen layer (a wallpaper always goes behind). */
   const fitsLayer = (id: string) => kindOf(id) === 'wall' || canLayer(id, layer);
@@ -1174,6 +1291,29 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               </div>
             );
           })}
+          {mobList.map((m) => (
+            <div
+              key={m.id}
+              ref={(el) => {
+                if (el) mobEls.current.set(m.id, el);
+                else mobEls.current.delete(m.id);
+              }}
+              className="island-mob absolute left-0 top-0"
+              style={{ width: T * 0.92, height: T * 0.92 }}
+              title={tr(MOBS[m.kind].name, MOBS[m.kind].fr)}
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                const mob = mobs.current.find((x) => x.id === m.id);
+                if (mob) facing.current = mob.x + 0.5 < pos.current.x + PW / 2;
+                swing();
+              }}
+            >
+              <ItemArt id={`mob-${m.kind}`} className="size-full" />
+              <span className="island-mob-hp">
+                <i />
+              </span>
+            </div>
+          ))}
           <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
@@ -1231,6 +1371,27 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             <div className="island-stars absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
           </div>
         )}
+        {inDungeon && (
+          <div className="island-hud pointer-events-none absolute left-2 top-2 flex items-center gap-2 rounded-md bg-black/55 px-2 py-1 text-sm text-white">
+            <span aria-label={tr(`${hearts} hearts`, `${hearts} cœurs`)}>
+              {Array.from({ length: HEARTS }, (_, i) => (
+                <span key={i} className={i < hearts ? '' : 'opacity-25 grayscale'}>
+                  ❤️
+                </span>
+              ))}
+            </span>
+            {(() => {
+              const w = bestWeapon(items);
+              if (!w) return <span className="text-xs opacity-80">👊 {tr('Fists · X to hit', 'Poings · X pour frapper')}</span>;
+              const def = WEAPONS[w];
+              return (
+                <span className="text-xs" style={{ color: def.rarity ? RARITY_COLOR[def.rarity] : undefined }}>
+                  {itemIcon(w)} {itemName(w)} · {weaponWear?.[w] ?? def.durability}/{def.durability} · X
+                </span>
+              );
+            })()}
+          </div>
+        )}
         {/* Asleep at night: the screen goes dark, then morning. */}
         <div className="pointer-events-none absolute inset-0 bg-black transition-opacity duration-[2000ms]" style={{ opacity: poseNow === 'sleep' && sky === 'auto' && clockDark >= 0.3 && Date.now() >= restUntil ? 0.85 : 0 }} />
         {fishing?.phase === 'reel' && (
@@ -1286,6 +1447,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             {k === 'left' ? '◀' : k === 'right' ? '▶' : k === 'up' ? '⤒' : '⤓'}
           </button>
         ))}
+        {inDungeon && (
+          <button type="button" className="touch-none rounded-md border border-rule bg-card px-5 py-2 text-lg font-bold" onPointerDown={swing} aria-label={tr('Hit', 'Frapper')}>
+            ⚔️
+          </button>
+        )}
       </div>
 
       {/* The tools. */}

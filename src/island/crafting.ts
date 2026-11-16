@@ -27,6 +27,11 @@ export const RECIPES: Recipe[] = [
   { out: 'crystal-lamp', at: 'workbench', needs: { 'crystal-block': 1, 'iron-block': 1 } },
   { out: 'crystal-chandelier', at: 'workbench', needs: { 'crystal-block': 2, 'gold-block': 1 } },
   { out: 'gold-throne', at: 'workbench', needs: { 'gold-block': 3 } },
+  // Weapons for the dungeon (src/island/combat.ts), each wearing out as it hits.
+  { out: 'stone-sword', at: 'workbench', needs: { 'polished-stone': 2, 'coal-ore': 1 } },
+  { out: 'iron-sword', at: 'workbench', needs: { 'iron-block': 2, 'coal-ore': 1 } },
+  { out: 'gold-sword', at: 'workbench', needs: { 'gold-block': 2, 'iron-block': 1 } },
+  { out: 'crystal-sword', at: 'workbench', needs: { 'crystal-block': 2, 'gold-block': 1 } },
 ];
 export const RECIPE_BY_OUT = new Map(RECIPES.map((r) => [r.out, r]));
 

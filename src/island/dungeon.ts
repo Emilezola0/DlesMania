@@ -38,10 +38,21 @@ function rng(word: string) {
   };
 }
 
+/** A mob as the week's dungeon puts it: its biome's kind, where it starts, the floor it patrols (x0..x1, row y). */
+export interface MobSpawn {
+  id: string;
+  kind: BiomeId;
+  x: number;
+  y: number;
+  x0: number;
+  x1: number;
+}
 interface Built {
   ground: (string | undefined)[];
   /** The gate's cell (where you come in and go out). */
   entry: number;
+  /** The mobs, two a room (the gate's room left alone). */
+  mobs: MobSpawn[];
 }
 const built = new Map<string, Built>();
 
@@ -184,9 +195,24 @@ export function dungeonOf(week: string): Built {
       const r = rnd();
       set(x, y, r < 0.25 ? 'coal-ore' : r < 0.55 ? 'iron-ore' : r < 0.8 ? 'gold-ore' : 'crystal-ore');
     }
+  // The sword in the stone: in a room of the crypt away from the gate, on its floor.
+  const crypt = others.filter((o) => o.gy === 0 && Math.abs(o.gx - startX) >= 2);
+  for (const { r } of crypt.length ? crypt : others) {
+    const spots = floorSpots(r).filter((x) => [x - 1, x, x + 1].every((xx) => free(xx, r.floor - 1)));
+    if (!spots.length) continue;
+    set(spots[pick(spots.length)], r.floor - 1, 'sword-stone');
+    break;
+  }
+  // The mobs: two a room, each patrolling its room's floor (the floor between its walls, lava or not: some fly).
+  const mobs: MobSpawn[] = [];
+  for (const { r, gx, gy } of others)
+    for (let k = 0; k < 2; k++) {
+      const x = r.x0 + 1 + pick(Math.max(1, r.x1 - r.x0 - 1));
+      mobs.push({ id: `${gx}-${gy}-${k}`, kind: BIOMES[gy].id, x, y: r.floor - 1, x0: r.x0, x1: r.x1 });
+    }
   // Each biome's own walls.
   for (let c = 0; c < w * h; c++) if (g[c] === 'dungeon-brick') g[c] = biomeAt(Math.floor(c / w)).wall;
-  const out = { ground: g, entry };
+  const out = { ground: g, entry, mobs };
   built.set(week, out);
   return out;
 }

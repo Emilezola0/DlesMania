@@ -84,9 +84,9 @@ export const layerKey = (layer: Layer, cell: number) => (layer === 'back' ? `b${
  * what shows a card (frames, screens, readers). Anything else may also go behind or in front, as decoration only: a
  * block or a fence there is never solid, you walk past it.
  */
-const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate']);
+const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate', 'stone', 'weapon']);
 /** Things that belong to the world itself (the dungeon's gate, its chests and spikes): never picked up. */
-const FIXED = new Set(['chest', 'spikes', 'gate']);
+const FIXED = new Set(['chest', 'spikes', 'gate', 'stone']);
 export const canLayer = (id: string, layer: Layer) => {
   const k = kindOf(id);
   if (!k || k === 'natural' || k === 'disc') return layer === 'mid' && k === 'natural';
@@ -333,6 +333,7 @@ export function place(isl: Island, items: Bag, cell: number, id: string, who?: W
   }
   if (!item) throw new Error('Unknown item.');
   if (item.kind === 'disc') throw new Error('Records and CDs go in a player: click a turntable, a CD player or a jukebox.');
+  if (item.kind === 'weapon') throw new Error('A weapon is for the dungeon: it fights with the best one in your bag.');
   if (item.kind !== 'wall' && layer !== 'mid') {
     if (!canLayer(id, layer)) throw new Error(layer === 'back' ? 'That can’t go behind.' : 'That can’t go in front.');
     const key = layerKey(layer, cell);

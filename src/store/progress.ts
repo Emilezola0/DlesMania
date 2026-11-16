@@ -10,6 +10,7 @@ import { fgAt, newIsland, upgradeIsland, type Bag, type Change, type Island } fr
 import type { Catch } from '../island/fishing';
 import { canCraft, RECIPE_BY_OUT } from '../island/crafting';
 import { dungeonIsland, rollLoot, type Loot } from '../island/dungeon';
+import { drawStoneSword, WEAPONS } from '../island/combat';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -162,6 +163,16 @@ interface ProgressState {
   openChest: (cell: number) => Loot | null;
   /** Makes a recipe (src/island/crafting.ts) from the bag: false if something's missing. */
   craft: (out: string) => boolean;
+  /** The weapons' wear (src/island/combat.ts): hits left in the one of each kind being used (none: a fresh one). */
+  weaponWear?: Record<string, number>;
+  /** A hit landed with a weapon: one less use; at none, it breaks (one fewer in the bag). Whether it broke, and the uses left. */
+  wearWeapon: (id: string) => { broke: boolean; left: number };
+  /** The day the sword in the stone was last drawn (once a day). */
+  swordStone?: string;
+  /** Draws the sword in the stone: the sword it gives (its rarity at random), or null if drawn today already. */
+  drawSword: () => string | null;
+  /** What a mob dropped, into the bag. */
+  mobLoot: (items: string[]) => void;
   /** Recipes made at least once (the Seed Book shows the others hidden). */
   crafted?: string[];
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
@@ -676,6 +687,37 @@ export const useProgress = create<ProgressState>()(
         bag[out] = (bag[out] ?? 0) + (r.n ?? 1);
         set({ islandItems: bag, crafted: [...new Set([...(s.crafted ?? []), out])] });
         return true;
+      },
+      wearWeapon: (id) => {
+        const s = get();
+        const w = WEAPONS[id];
+        const bag = { ...(s.islandItems ?? {}) };
+        if (!w || !bag[id]) return { broke: false, left: 0 };
+        const left = (s.weaponWear?.[id] ?? w.durability) - 1;
+        const wear = { ...(s.weaponWear ?? {}) };
+        if (left > 0) {
+          wear[id] = left;
+          set({ weaponWear: wear });
+          return { broke: false, left };
+        }
+        delete wear[id];
+        bag[id] -= 1;
+        if (!bag[id]) delete bag[id];
+        set({ weaponWear: wear, islandItems: bag });
+        return { broke: true, left: 0 };
+      },
+      drawSword: () => {
+        const s = get();
+        if (s.swordStone === todayKey()) return null;
+        const id = drawStoneSword();
+        set({ swordStone: todayKey(), islandItems: { ...(s.islandItems ?? {}), [id]: (s.islandItems?.[id] ?? 0) + 1 } });
+        return id;
+      },
+      mobLoot: (items) => {
+        if (!items.length) return;
+        const bag = { ...(get().islandItems ?? {}) };
+        for (const id of items) bag[id] = (bag[id] ?? 0) + 1;
+        set({ islandItems: bag });
       },
       fishReward: (c) => {
         const s = get();
