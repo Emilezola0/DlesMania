@@ -10,14 +10,17 @@ import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
 import { UpdateBanner } from './UpdateBanner';
-import { GradeBackPay } from './GradeBackPay';
-import { RetiredCards } from './RetiredCards';
-import { AlbumNews } from './AlbumNews';
-import { SeedDrops } from '../island/SeedBook';
-import { BirthdayReward } from './BirthdayReward';
 import { todayKey } from '../lib/date';
 import { AvatarFrame, useWornFrame } from '../casino/Frame';
 import { useFr, useT } from '../lib/i18n';
+
+// What shows over every page now and then (a grade paid back, cards retired, an album completed, the birthday, seeds
+// dropped): each loaded after the page, so the card list and the island's art aren't part of the first download.
+const GradeBackPay = lazy(() => import('./GradeBackPay').then((m) => ({ default: m.GradeBackPay })));
+const RetiredCards = lazy(() => import('./RetiredCards').then((m) => ({ default: m.RetiredCards })));
+const AlbumNews = lazy(() => import('./AlbumNews').then((m) => ({ default: m.AlbumNews })));
+const BirthdayReward = lazy(() => import('./BirthdayReward').then((m) => ({ default: m.BirthdayReward })));
+const SeedDrops = lazy(() => import('../island/SeedBook').then((m) => ({ default: m.SeedDrops })));
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
 export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
@@ -514,11 +517,13 @@ export function Layout() {
       </nav>
       <RulesModal />
       <UpdateBanner />
-      <GradeBackPay />
-      <RetiredCards />
-      <AlbumNews />
-      <BirthdayReward />
-      <SeedDrops />
+      <Suspense fallback={null}>
+        <GradeBackPay />
+        <RetiredCards />
+        <AlbumNews />
+        <BirthdayReward />
+        <SeedDrops />
+      </Suspense>
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />

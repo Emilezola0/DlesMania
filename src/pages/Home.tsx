@@ -6,7 +6,7 @@ import { DOMAINS, WORKS } from '../data';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { dayNumber, formatLong, todayKey } from '../lib/date';
 import { computeStreak, summarizeDay, useProgress } from '../store/progress';
-import { DailyCards, SpecialistCard } from './Daily';
+import { DailyCards, SpecialistCard } from './DailyCards';
 import { useT } from '../lib/i18n';
 
 export default function Home() {
