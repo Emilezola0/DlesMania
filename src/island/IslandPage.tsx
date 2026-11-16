@@ -6,6 +6,7 @@ import { tr } from '../lib/i18n';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
 import type { IslandDoc } from '../cloud/islands';
+import type { TeamDoc } from '../cloud/teams';
 import { idx, newIsland, OLD, surfaceAt, type Island, type Who } from './island';
 import { IslandView, type Act, type IslandMode, type Move } from './IslandView';
 import { SeedBook } from './SeedBook';
@@ -15,9 +16,10 @@ export interface IslandFriend {
   name: string;
   face: ReactNode;
 }
-type View = 'island' | 'visit' | 'book';
+type View = 'island' | 'visit' | 'team' | 'book';
 const BUILDERS = 10;
 const cloud = () => import('../cloud/islands');
+const teams = () => import('../cloud/teams');
 
 const WHAT: Record<string, [string, string]> = {
   water: ['watered a plant', 'a arrosé une plante'],
@@ -78,6 +80,7 @@ export function IslandPage({ me, friends = [], demo = false }: { me?: { uid: str
           [
             ['island', '🏝️', tr('My island', 'Mon île')],
             ...(me ? ([['visit', '🧭', tr('Visit friends', 'Visiter des amis')]] as const) : []),
+            ...(me && !demo ? ([['team', '🛡️', tr('Team', 'Team')]] as const) : []),
             ['book', '📖', tr('Seed Book', 'Herbier')],
           ] as [View, string, string][]
         ).map(([id, icon, name]) => (
@@ -93,6 +96,8 @@ export function IslandPage({ me, friends = [], demo = false }: { me?: { uid: str
       </div>
       {view === 'book' ? (
         <SeedBook />
+      ) : view === 'team' && me && online ? (
+        <TeamIsland me={me} />
       ) : view === 'visit' && me ? (
         <Visit me={me} friends={friends} demo={demo} />
       ) : online && me ? (
@@ -282,6 +287,176 @@ function FriendIsland({ me, friend, friends }: { me: { uid: string; name: string
         <span className="text-xs font-semibold text-ink-soft">{mode === 'build' ? tr('· you’re one of its builders', '· tu es l’un de ses bâtisseurs') : tr('· visiting', '· en visite')}</span>
       </p>
       <IslandView key={friend.uid} shared={d.island} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={names} live={{ owner: friend.uid, uid: me.uid, name: me.name }} />
+    </div>
+  );
+}
+
+/** A move on a team's island: like a friend's (onlineAct), on teams/<code>. */
+function teamAct(code: string, myName: string): Act {
+  return async (move: Move, what?: string) => {
+    let change: ReturnType<Move> | null = null;
+    try {
+      const { teamMove } = await teams();
+      await teamMove(
+        code,
+        (island) => {
+          const st = useProgress.getState();
+          change = move(island, st.islandItems ?? {}, st.seeds ?? {});
+          return change.island;
+        },
+        what ? { name: myName, what, day: todayKey() } : undefined,
+      );
+      if (change) useProgress.getState().islandBags(change);
+      return null;
+    } catch (e) {
+      const why = (e as { code?: string })?.code;
+      return why === 'permission-denied' ? tr('Not allowed on this island.', 'Pas permis sur cette île.') : e instanceof Error ? e.message : tr('That didn’t work.', 'Ça n’a pas marché.');
+    }
+  };
+}
+
+/** Your island as it is: online if it's there, else what you built here. */
+function myIslandNow(uid: string): Promise<Island> {
+  return new Promise((res) => {
+    let done = false;
+    void cloud().then(({ watchIsland }) => {
+      const stop = watchIsland(uid, (x) => {
+        if (done) return;
+        done = true;
+        res(x?.island ?? useProgress.getState().island ?? newIsland());
+        window.setTimeout(() => stop(), 0);
+      });
+    });
+  });
+}
+
+/**
+ * Your team's island (like a guild's): shared by its members, all of the same rank (each builds, digs, picks up and
+ * harvests anything there). Not in one yet: make one from your island (a copy: yours stays yours), or join one by its code.
+ */
+function TeamIsland({ me }: { me: { uid: string; name: string } }) {
+  const [code, setCode] = useState<string | null | undefined>(undefined);
+  const [d, setD] = useState<TeamDoc | null | undefined>(undefined);
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [name, setName] = useState('');
+  const [join, setJoin] = useState('');
+  useEffect(() => {
+    let gone = false;
+    void teams()
+      .then((t) => t.myTeam())
+      .then((c) => {
+        if (!gone) setCode(c);
+      })
+      .catch((e) => {
+        if (gone) return;
+        setCode(null);
+        setErr(e instanceof Error ? e.message : String(e));
+      });
+    return () => {
+      gone = true;
+    };
+  }, []);
+  useEffect(() => {
+    if (!code) {
+      setD(code === null ? null : undefined);
+      return;
+    }
+    let stop = () => {};
+    let gone = false;
+    void teams().then((t) => {
+      if (!gone) stop = t.watchTeam(code, setD);
+    });
+    return () => {
+      gone = true;
+      stop();
+    };
+  }, [code]);
+  const act = useMemo(() => (code ? teamAct(code, me.name) : null), [code, me.name]);
+  if (code === undefined) return <p className="text-sm text-ink-soft">{tr('Looking for your team…', 'On cherche ta Team…')}</p>;
+  if (!code || d === null)
+    return (
+      <Frame
+        title={`🛡️ ${tr('Team', 'Team')}`}
+        blurb={tr(
+          'A team shares one island, like a guild: every member builds, digs and harvests there, all of the same rank. Make one from your island (a copy of it: yours stays yours), or join one with its code.',
+          'Une Team partage une île, comme une guilde : chaque membre y construit, creuse et récolte, tous au même rang. Crée-la à partir de ton île (une copie : la tienne reste à toi), ou rejoins-en une avec son code.',
+        )}
+      >
+        {err && <p className="text-sm text-coral">⚠️ {err}</p>}
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="space-y-2 rounded-md border border-rule p-3">
+            <p className="font-display font-bold">{tr('Make a team', 'Créer une Team')}</p>
+            <input value={name} onChange={(e) => setName(e.target.value)} maxLength={40} placeholder={tr('Its name', 'Son nom')} className="w-full rounded-md border border-rule bg-card px-3 py-1.5 text-sm" />
+            <button
+              type="button"
+              disabled={busy || !name.trim()}
+              onClick={async () => {
+                setBusy(true);
+                setErr(null);
+                try {
+                  const island = await myIslandNow(me.uid);
+                  setCode(await (await teams()).createTeam(name.trim(), me.name, island));
+                } catch (e) {
+                  setErr(e instanceof Error ? e.message : String(e));
+                }
+                setBusy(false);
+              }}
+              className="btn-accent w-full rounded-md px-3 py-1.5 text-sm font-semibold disabled:opacity-40"
+            >
+              {tr('Make it from my island', 'La créer à partir de mon île')}
+            </button>
+          </div>
+          <div className="space-y-2 rounded-md border border-rule p-3">
+            <p className="font-display font-bold">{tr('Join a team', 'Rejoindre une Team')}</p>
+            <input value={join} onChange={(e) => setJoin(e.target.value.toUpperCase())} maxLength={12} placeholder={tr('Its code', 'Son code')} className="w-full rounded-md border border-rule bg-card px-3 py-1.5 font-mono text-sm tracking-widest" />
+            <button
+              type="button"
+              disabled={busy || join.replace(/[^A-Z0-9]/gi, '').length < 8}
+              onClick={async () => {
+                setBusy(true);
+                setErr(null);
+                const t = await teams();
+                const c = t.cleanCode(join);
+                const why = await t.joinTeam(c, me.name);
+                if (why) setErr(why);
+                else setCode(c);
+                setBusy(false);
+              }}
+              className="btn-paper w-full rounded-md px-3 py-1.5 text-sm font-semibold disabled:opacity-40"
+            >
+              {tr('Join', 'Rejoindre')}
+            </button>
+          </div>
+        </div>
+      </Frame>
+    );
+  if (!d || !act) return <p className="text-sm text-ink-soft">{tr('Sailing over…', 'En route…')}</p>;
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="font-display text-lg font-bold">🛡️ {d.name}</p>
+        <span className="text-xs text-ink-soft">
+          {tr('Code', 'Code')}{' '}
+          <button type="button" onClick={() => void navigator.clipboard?.writeText(d.code)} className="rounded border border-rule bg-card px-1.5 font-mono font-bold tracking-widest" title={tr('Copy', 'Copier')}>
+            {d.code}
+          </button>
+        </span>
+        <span className="text-xs text-ink-soft">· {d.members.map((m) => d.names[m] ?? '?').join(', ')}</span>
+        <button
+          type="button"
+          onClick={async () => {
+            if (!window.confirm(tr('Leave this team? (The last one out takes it down.)', 'Quitter cette Team ? (Le dernier qui part la supprime.)'))) return;
+            await (await teams()).leaveTeam(d.code);
+            setCode(null);
+          }}
+          className="ml-auto text-xs text-ink-soft underline hover:text-coral"
+        >
+          {tr('Leave the team', 'Quitter la Team')}
+        </button>
+      </div>
+      {/* Every member acts as its owner here: the same rank. */}
+      <IslandView key={d.code} shared={d.island} mode="build" act={act} who={{ uid: me.uid, owner: me.uid }} names={d.names} live={{ owner: `team:${d.code}`, uid: me.uid, name: me.name }} />
     </div>
   );
 }
