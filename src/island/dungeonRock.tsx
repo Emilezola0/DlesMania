@@ -89,86 +89,103 @@ function stamp(im: HTMLImageElement, P: number, fs: F[], dx: number, dy: number)
   return cv;
 }
 
+/** The tinted stamps made so far (by size, biome and shift): made once a visit, not at every change. */
+const STAMPS = new Map<string, HTMLCanvasElement>();
 /** How many columns each canvas holds (a few canvases, not one huge one). */
 const STRIP = 40;
 
 export const DungeonRock = memo(function DungeonRock({ isl, T }: { isl: Island; T: number }) {
   const boxes = useRef<(HTMLCanvasElement | null)[]>([]);
+  /** What the canvases show now (to draw again only the cells that changed: a block mined, a door opened). */
+  const drawn = useRef<{ isl: Island; P: number } | null>(null);
   useEffect(() => {
     let gone = false;
     void stoneImage().then((im) => {
       if (gone) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const P = Math.max(1, Math.round(T * dpr));
-      // The stamps: each biome's wall in its 16 shifts, and its back wall.
-      const stamps = new Map<string, HTMLCanvasElement>();
       const get = (wall: string, cave: boolean, h: number) => {
         const t = TINT[wall] ?? TINT['dungeon-brick'];
-        const key = cave ? `${wall}:c` : `${wall}:${h % 4}:${(h >> 3) % 4}`;
-        let s = stamps.get(key);
+        const key = cave ? `${P}:${wall}:c` : `${P}:${wall}:${h % 4}:${(h >> 3) % 4}`;
+        let s = STAMPS.get(key);
         if (!s) {
           s = cave ? stamp(im, P, t.cave, 0, 0) : stamp(im, P, t.wall, h % 4, (h >> 3) % 4);
-          stamps.set(key, s);
+          STAMPS.set(key, s);
         }
         return s;
       };
       const ground = (x: number, y: number) => x >= 0 && x < ISLAND.w && (y >= ISLAND.h || (y >= 0 && isSolid(fgAt(isl, idx(x, y)))));
       const r = P * 0.3;
-      for (let s = 0; s * STRIP < ISLAND.w; s++) {
-        const cv = boxes.current[s];
-        if (!cv) continue;
-        const x0 = s * STRIP;
-        const cols = Math.min(STRIP, ISLAND.w - x0);
-        cv.width = cols * P;
-        cv.height = ISLAND.h * P;
-        const ctx = cv.getContext('2d')!;
-        for (let y = 0; y < ISLAND.h; y++)
-          for (let x = x0; x < x0 + cols; x++) {
-            const id = fgAt(isl, idx(x, y));
-            const px = (x - x0) * P;
-            const py = y * P;
-            const nat = id && kindOf(id) === 'natural';
-            // Open (or something that isn't rock stands there): the room's back wall.
-            if (!nat) {
-              ctx.drawImage(get(biomeAt(y).wall, true, 0), px, py);
-              continue;
-            }
-            if (!id.startsWith('dungeon-')) continue; // an ore: drawn as a tile, as ever
-            const tile = get(id, false, cellHash(x, y));
-            const up = !ground(x, y - 1);
-            if (up && (!ground(x - 1, y) || !ground(x + 1, y))) {
-              // Its top corners rounded where it stands free, over the back wall.
-              ctx.drawImage(get(biomeAt(y).wall, true, 0), px, py);
-              ctx.save();
-              ctx.beginPath();
-              const rl = ground(x - 1, y) ? 0 : r;
-              const rr = ground(x + 1, y) ? 0 : r;
-              ctx.moveTo(px, py + P);
-              ctx.lineTo(px, py + rl);
-              ctx.arcTo(px, py, px + rl, py, rl);
-              ctx.lineTo(px + P - rr, py);
-              ctx.arcTo(px + P, py, px + P, py + rr, rr);
-              ctx.lineTo(px + P, py + P);
-              ctx.closePath();
-              ctx.clip();
-              ctx.drawImage(tile, px, py);
-              ctx.restore();
-            } else ctx.drawImage(tile, px, py);
-            // Its open sides shaded.
-            if (!ground(x - 1, y)) {
-              ctx.fillStyle = '#0002';
-              ctx.fillRect(px, py, P * 0.12, P);
-            }
-            if (!ground(x + 1, y)) {
-              ctx.fillStyle = '#0003';
-              ctx.fillRect(px + P - P * 0.12, py, P * 0.12, P);
-            }
-            if (!ground(x, y + 1)) {
-              ctx.fillStyle = '#0003';
-              ctx.fillRect(px, py + P - P * 0.1, P, P * 0.1);
-            }
-          }
-      }
+      const cell = (ctx: CanvasRenderingContext2D, x: number, y: number, x0: number) => {
+        const id = fgAt(isl, idx(x, y));
+        const px = (x - x0) * P;
+        const py = y * P;
+        // The room's back wall under everything (open, an ore drawn as a tile over it, a free-standing top).
+        ctx.drawImage(get(biomeAt(y).wall, true, 0), px, py);
+        if (!id || kindOf(id) !== 'natural' || !id.startsWith('dungeon-')) return;
+        const tile = get(id, false, cellHash(x, y));
+        const up = !ground(x, y - 1);
+        if (up && (!ground(x - 1, y) || !ground(x + 1, y))) {
+          // Its top corners rounded where it stands free.
+          ctx.save();
+          ctx.beginPath();
+          const rl = ground(x - 1, y) ? 0 : r;
+          const rr = ground(x + 1, y) ? 0 : r;
+          ctx.moveTo(px, py + P);
+          ctx.lineTo(px, py + rl);
+          ctx.arcTo(px, py, px + rl, py, rl);
+          ctx.lineTo(px + P - rr, py);
+          ctx.arcTo(px + P, py, px + P, py + rr, rr);
+          ctx.lineTo(px + P, py + P);
+          ctx.closePath();
+          ctx.clip();
+          ctx.drawImage(tile, px, py);
+          ctx.restore();
+        } else ctx.drawImage(tile, px, py);
+        // Its open sides shaded.
+        if (!ground(x - 1, y)) {
+          ctx.fillStyle = '#0002';
+          ctx.fillRect(px, py, P * 0.12, P);
+        }
+        if (!ground(x + 1, y)) {
+          ctx.fillStyle = '#0003';
+          ctx.fillRect(px + P - P * 0.12, py, P * 0.12, P);
+        }
+        if (!ground(x, y + 1)) {
+          ctx.fillStyle = '#0003';
+          ctx.fillRect(px, py + P - P * 0.1, P, P * 0.1);
+        }
+      };
+      const before = drawn.current;
+      if (before && before.P === P && before.isl.world === isl.world && boxes.current.every((cv, s) => !cv || cv.width === Math.min(STRIP, ISLAND.w - s * STRIP) * P)) {
+        // Only what changed, and the cells around it (their edges and corners depend on it).
+        const keys = new Set([...Object.keys(before.isl.fg), ...Object.keys(isl.fg)]);
+        const todo = new Set<number>();
+        for (const k of keys) {
+          const c = Number(k);
+          if (fgAt(before.isl, c) === fgAt(isl, c)) continue;
+          const { x, y } = { x: c % ISLAND.w, y: Math.floor(c / ISLAND.w) };
+          for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) if (x + dx >= 0 && x + dx < ISLAND.w && y + dy >= 0 && y + dy < ISLAND.h) todo.add(idx(x + dx, y + dy));
+        }
+        for (const c of todo) {
+          const x = c % ISLAND.w;
+          const y = Math.floor(c / ISLAND.w);
+          const s = Math.floor(x / STRIP);
+          const ctx = boxes.current[s]?.getContext('2d');
+          if (ctx) cell(ctx, x, y, s * STRIP);
+        }
+      } else
+        for (let s = 0; s * STRIP < ISLAND.w; s++) {
+          const cv = boxes.current[s];
+          if (!cv) continue;
+          const x0 = s * STRIP;
+          const cols = Math.min(STRIP, ISLAND.w - x0);
+          cv.width = cols * P;
+          cv.height = ISLAND.h * P;
+          const ctx = cv.getContext('2d')!;
+          for (let y = 0; y < ISLAND.h; y++) for (let x = x0; x < x0 + cols; x++) cell(ctx, x, y, x0);
+        }
+      drawn.current = { isl, P };
     });
     return () => {
       gone = true;

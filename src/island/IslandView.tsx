@@ -133,6 +133,19 @@ const PH = 0.78;
 /** Where the drawing sits around the box. */
 const OX = (VW - PW) / 2;
 const OY = VH - PH;
+/**
+ * What hurts the player (traps, mobs, what they throw): a circle at the middle of the player as drawn (their round
+ * face), a little inside it. (The walls still stop the box PW × PH, its feet on the ground.)
+ */
+const HURT_R = 0.31;
+/** The hurt circle's middle, from where the player's box stands. */
+const hurtAt = (p: { x: number; y: number }) => ({ x: p.x + PW / 2, y: p.y - OY + VH / 2 });
+/** Whether a circle (cx, cy, r) meets a box. */
+const circleHits = (cx: number, cy: number, r: number, x: number, y: number, w: number, h: number) => {
+  const nx = Math.max(x, Math.min(cx, x + w));
+  const ny = Math.max(y, Math.min(cy, y + h));
+  return (cx - nx) ** 2 + (cy - ny) ** 2 < r * r;
+};
 const SPEED = 6;
 const GRAVITY = 32;
 /** A jump's push: up 2.5 blocks (the owner's call), whatever the gravity. */
@@ -536,11 +549,26 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         p.y = y - PH - 0.01;
         v.y = 0;
       }
-      // The traps (in the dungeon): spikes, icicles, thorns, lava, a fire jet while it flares: back to the gate.
+      // A hurt (a trap, a mob, what it throws): a heart lost, pushed away, safe a moment; none left, back to the gate.
+      const hurtMe = (from: number, why: string) => {
+        if (quizRef.current || now < safeUntil.current || now < dash.current.until + 120) return;
+        safeUntil.current = now + SAFE_AFTER_HURT;
+        heartsRef.current -= 1;
+        setHearts(heartsRef.current);
+        knock.current = (p.x + PW / 2 < from ? -1 : 1) * 10;
+        v.y = -7;
+        sfx.hurt();
+        shake(box.current);
+        if (heartsRef.current <= 0) goRef.current(true, why);
+      };
+      const me0 = hurtAt(p);
+      const touches = (x: number, y: number, w: number, h: number) => circleHits(me0.x, me0.y, HURT_R, x, y, w, h);
+      // The traps (in the dungeon): spikes, icicles, thorns, lava, a fire jet while it flares: a heart each time.
       if (isl.world) {
         // A fire jet's base doesn't hurt: only its flame, while it flares (FIRE_JET.flame: the column of fire drawn
         // over it, in cells from the base's cell).
         let hurt: string | null = null;
+        let hurtAt0 = 0;
         for (let cy = Math.floor(p.y) - 1; cy <= Math.floor(p.y + PH + 2) && !hurt; cy++)
           for (let cx = Math.floor(p.x) - 1; cx <= Math.floor(p.x + PW) + 1 && !hurt; cx++) {
             if (cx < 0 || cy < 0 || cx >= ISLAND.w || cy >= ISLAND.h) continue;
@@ -548,10 +576,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             if (kindOf(id) !== 'spikes') continue;
             if (id === 'fire-jet') {
               const f = FIRE_JET.flame;
-              if (fireJetOn() && p.x < cx + f.x1 && p.x + PW > cx + f.x0 && p.y < cy + f.bottom && p.y + PH > cy + f.top) hurt = id;
-            } else if (p.x < cx + 1 && p.x + PW > cx && p.y < cy + 1 && p.y + PH > cy) hurt = id ?? 'spikes';
+              if (fireJetOn() && touches(cx + f.x0, cy + f.top, f.x1 - f.x0, f.bottom - f.top)) hurt = id;
+            } else if (touches(cx, cy, 1, 1)) hurt = id ?? 'spikes';
+            if (hurt) hurtAt0 = cx + 0.5;
           }
-        if (hurt) goRef.current(true, hurt);
+        if (hurt) hurtMe(hurtAt0, hurt);
       }
       // Sitting or asleep: held there, until a move gets them up.
       const seat = pose.current;
@@ -636,18 +665,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         const vx1 = (cam.current + view) / t + 3;
         const vy0 = camY.current / t - 4;
         const vy1 = (camY.current + viewH) / t + 4;
-        const touches = (x: number, y: number, w: number, h: number) => p.x < x + w && p.x + PW > x && p.y < y + h && p.y + PH > y;
-        const hurt = (from: number) => {
-          if (quizRef.current || now < safeUntil.current || now < dash.current.until + 120) return;
-          safeUntil.current = now + SAFE_AFTER_HURT;
-          heartsRef.current -= 1;
-          setHearts(heartsRef.current);
-          knock.current = (p.x + PW / 2 < from ? -1 : 1) * 10;
-          v.y = -7;
-          sfx.hurt();
-          shake(box.current);
-          if (heartsRef.current <= 0) goRef.current(true, 'mob');
-        };
+        const hurt = (from: number) => hurtMe(from, 'mob');
         for (const m of mobs.current) {
           const life = lifeOf(m, lives[m.id], sNow);
           const el = mobEls.current.get(m.id);
