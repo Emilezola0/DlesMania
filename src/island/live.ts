@@ -186,7 +186,7 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
       const cx = Math.max(0, Math.min(ISLAND.w - 1, Math.floor(x + 0.4)));
       const hop = Math.max(0, Math.sin(t * 2.2)) > 0.92 ? 0.8 : 0;
       const wave = Math.floor(t / 12);
-      setPeers([{ uid: 'demo', name: demo, face: null, x, y: surfaceAt(cx) - 0.85 - hop, left: Math.cos(t / 4) < 0, tool: 'dig', emote: wave > 0 ? { e: EMOTES[wave % EMOTES.length], at: t0 + wave * 12_000 } : null }]);
+      setPeers([{ uid: 'demo', name: demo, face: null, x, y: surfaceAt(cx) - 0.79 - hop, left: Math.cos(t / 4) < 0, tool: 'dig', emote: wave > 0 ? { e: EMOTES[wave % EMOTES.length], at: t0 + wave * 12_000 } : null }]);
     }, SEND);
     return () => window.clearInterval(timer);
   }, [demo]);

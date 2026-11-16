@@ -126,8 +126,8 @@ type Ride = { kind: 'cart'; dir: number; x: number; row: number; y: number } | {
  */
 const VW = 0.78;
 const VH = 0.92;
-const PW = 0.62;
-const PH = 0.84;
+const PW = 0.54;
+const PH = 0.78;
 /** Where the drawing sits around the box. */
 const OX = (VW - PW) / 2;
 const OY = VH - PH;
