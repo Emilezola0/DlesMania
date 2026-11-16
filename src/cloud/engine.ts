@@ -28,7 +28,14 @@ import { SIGNED_IN_FLAG, useCloud } from './state';
 const EMAIL_KEY = 'omnidle:cloud:email';
 const LINKED_KEY = 'omnidle:cloud:linked';
 const CHANGED_KEY = 'omnidle:cloud:changedAt';
-const PUSH_AFTER_MS = 2000;
+/**
+ * The save is written this long after the last change (a burst of changes, say a dungeon's ore mined block after
+ * block, makes one write, not one each), and at most this long after the first one while changes keep coming; always
+ * when the page is left. (Every write counts against Firestore's free daily quota: it was 2 s, and an island session
+ * wrote every few seconds.)
+ */
+const PUSH_AFTER_MS = 12_000;
+const PUSH_AT_MOST_MS = 60_000;
 const PULL_EVERY_MS = 30_000;
 
 
@@ -187,18 +194,24 @@ let stopWatching: (() => void) | null = null;
 function watch(uid: string) {
   stopWatching?.();
   let timer = 0;
+  let firstChange = 0;
   let lastPull = Date.now();
   const flush = () => {
     window.clearTimeout(timer);
     timer = 0;
+    firstChange = 0;
     push(uid).catch(fail);
   };
   const unsub = useProgress.subscribe((s, prev) => {
     if (applying || SYNCED.every((k) => s[k] === prev[k])) return;
-    store.set(CHANGED_KEY, String(Date.now()));
+    const now = Date.now();
+    store.set(CHANGED_KEY, String(now));
+    firstChange ||= now;
     window.clearTimeout(timer);
-    timer = window.setTimeout(flush, PUSH_AFTER_MS);
+    timer = window.setTimeout(flush, Math.max(0, Math.min(PUSH_AFTER_MS, firstChange + PUSH_AT_MOST_MS - now)));
   });
+  // The tab closed or the page left: what's waiting is written now.
+  const onLeave = () => timer && flush();
   // Leaving the page: write now. Coming back: see what the other devices did.
   const onVisible = () => {
     if (document.visibilityState === 'hidden') return timer && flush();
@@ -207,9 +220,11 @@ function watch(uid: string) {
   const onOnline = () => pull(uid).catch(fail);
   document.addEventListener('visibilitychange', onVisible);
   window.addEventListener('online', onOnline);
+  window.addEventListener('pagehide', onLeave);
   stopWatching = () => {
     unsub();
     window.clearTimeout(timer);
+    window.removeEventListener('pagehide', onLeave);
     document.removeEventListener('visibilitychange', onVisible);
     window.removeEventListener('online', onOnline);
     stopWatching = null;
