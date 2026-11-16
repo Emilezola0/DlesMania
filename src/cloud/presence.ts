@@ -2,8 +2,8 @@
 // few times a second while they move. Firestore counted every one of those writes, and every read of them by each
 // player there, against its free daily quota; the Realtime Database counts only the bytes sent (10 GB a month free),
 // and removes a player by itself when their tab closes (onDisconnect). The island itself, its book and the saves stay
-// on Firestore. The rules: database.rules.json (published in the Firebase console). Used by src/island/live.ts, which
-// falls back on Firestore (src/cloud/islands.ts) while the database doesn't answer (not made yet, rules not published).
+// on Firestore. The rules: database.rules.json (published in the Firebase console). Used by src/island/live.ts (if the
+// database doesn't answer, nobody is seen walking: presence never goes to Firestore).
 import { getDatabase, onDisconnect, onValue, ref, remove, serverTimestamp, set, type Database } from 'firebase/database';
 import { DATABASE_URL } from './config';
 import { app, auth } from './firebase';

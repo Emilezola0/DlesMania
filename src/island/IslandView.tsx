@@ -16,7 +16,8 @@ import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
 import { DungeonRock } from './dungeonRock';
 import { biomeAt, dungeonFgOf, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
-import { bestWeapon, BOSS, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
+import { bestWeapon, BOSS, DASH, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
+import { lifeOf, localBoard, mobAt, type Hazard, type Mob, type MobBoard, type MobPose, type MobState } from './mobs';
 import { dleQuestion, type Question } from './quiz';
 import { weekOf } from '../gacha/economy';
 import { discFits, DISC_PLAYERS, HEAR, islandBand, type Source } from './music';
@@ -147,8 +148,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const home = useMemo(() => upgradeIsland(island ?? newIsland()), [island]);
   /** Down in the week's dungeon (through the gate in the valley): its own world, mined but never built on. */
   const [inDungeon, setInDungeon] = useState(false);
-  // The dungeon's fights (src/island/combat.ts): its mobs (each player fights their own), your hearts, a hurt's push.
-  const mobs = useRef<{ id: string; kind: string; x: number; y: number; x0: number; x1: number; hp: number; max: number; dir: 1 | -1; dead: boolean; hitAt: number; lift: number; asked?: boolean }[]>([]);
+  // The dungeon's fights (src/island/combat.ts, src/island/mobs.ts): its mobs, the same for everyone on the island
+  // (their patterns on a shared clock, their lives on the Realtime Database); your hearts, a hurt's push; your combo,
+  // your dash, the short freeze when a blow lands.
+  const mobs = useRef<Mob[]>([]);
+  const poses = useRef(new Map<string, MobPose>());
+  const board = useRef<MobBoard | null>(null);
+  const mobHit = useRef(new Map<string, number>());
+  const combo = useRef({ n: 0, at: 0 });
+  const dash = useRef({ until: 0, ready: 0, dir: 1 });
+  const freeze = useRef(0);
+  const hazBox = useRef<HTMLDivElement>(null);
+  const fxBox = useRef<HTMLDivElement>(null);
   /** A Dle question on screen: a puzzle door's (its cells) or the fallen boss's. */
   const [quiz, setQuiz] = useState<{ q: Question; door?: number[] } | null>(null);
   const quizRef = useRef(false);
@@ -172,6 +183,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const dungeonFg = dungeonSave?.week === week ? dungeonFgOf(dungeonSave, week) : undefined;
   const isl = useMemo(() => (inDungeon ? dungeonIsland(week, dungeonFg) : home), [inDungeon, week, dungeonFg, home]);
   const dungeonAct = useProgress((s) => s.dungeonAct);
+  const liveOwner = live && 'owner' in live ? live.owner : null;
+  const myUid = (live && 'owner' in live ? live.uid : who?.uid) ?? 'me';
+  const myUidRef = useRef(myUid);
+  myUidRef.current = myUid;
   const openChest = useProgress((s) => s.openChest);
   const craft = useProgress((s) => s.craft);
   /** A furnace or a workbench whose recipes are open. */
@@ -391,6 +406,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       return doors;
     };
     const step = (now: number) => {
+      // A blow landing: everything holds still a few hundredths of a second (it reads as a hit).
+      if (now < freeze.current) {
+        last = now;
+        raf = requestAnimationFrame(step);
+        return;
+      }
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const k = keys.current;
@@ -406,6 +427,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         v.x += knock.current;
         knock.current *= Math.exp(-dt * 7);
         if (Math.abs(knock.current) < 0.3) knock.current = 0;
+      }
+      // A dash (Shift, in the dungeon): a burst ahead, hanging in the air, through attacks (nothing hurts while it lasts).
+      const dashing = now < dash.current.until;
+      if (dashing) {
+        v.x = dash.current.dir * DASH.speed;
+        v.y = 0;
       }
       // On a ladder (or standing right on top of one, so you can stop there and step off sideways).
       const ladder = touching(p.x, p.y, 'ladder', 0.15) >= 0;
@@ -598,51 +625,60 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         put(me.current, 'pose', pose.current?.kind ?? ride.current?.kind ?? '');
         if (v.x) put(me.current, 'left', v.x < 0 ? '1' : '');
       }
-      // The dungeon's mobs: patrolling their room's floor, coming at you when you're near, hurting on touch.
-      if (deepRef.current)
+      // The dungeon's mobs (src/island/mobs.ts): where their patterns put them on the shared clock, what they throw.
+      // Touching one hurts, and so does what it throws; a dash goes through it all.
+      const b = board.current;
+      const hzs: Hazard[] = [];
+      if (deepRef.current && b) {
+        const sNow = b.now();
+        const lives = b.states();
+        const vx0 = cam.current / t - 3;
+        const vx1 = (cam.current + view) / t + 3;
+        const vy0 = camY.current / t - 4;
+        const vy1 = (camY.current + viewH) / t + 4;
+        const touches = (x: number, y: number, w: number, h: number) => p.x < x + w && p.x + PW > x && p.y < y + h && p.y + PH > y;
+        const hurt = (from: number) => {
+          if (quizRef.current || now < safeUntil.current || now < dash.current.until + 120) return;
+          safeUntil.current = now + SAFE_AFTER_HURT;
+          heartsRef.current -= 1;
+          setHearts(heartsRef.current);
+          knock.current = (p.x + PW / 2 < from ? -1 : 1) * 10;
+          v.y = -7;
+          sfx.hurt();
+          shake(box.current);
+          if (heartsRef.current <= 0) goRef.current(true, 'mob');
+        };
         for (const m of mobs.current) {
-          if (m.dead) continue;
-          const kind = MOBS[m.kind];
-          const size = m.kind === 'boss' ? BOSS.size : 0.92;
-          // The boss fallen: it lies there, and asks its question (once a fall).
-          if (m.kind === 'boss' && m.hp <= 0) {
-            if (!m.asked) {
-              m.asked = true;
-              setQuiz({ q: dleQuestion() });
-            }
-            const el = mobEls.current.get(m.id);
-            if (el) put(el, 'fallen', '1');
+          const life = lifeOf(m, lives[m.id], sNow);
+          const el = mobEls.current.get(m.id);
+          if (life.dead) {
+            put(el, 'dead', '1');
+            poses.current.delete(m.id);
             continue;
           }
-          const px = p.x + PW / 2;
-          const py = p.y + PH / 2;
-          const near = Math.abs(px - (m.x + 0.5)) < 5 && Math.abs(py - (m.y + 0.5)) < 1.8;
-          if (near) m.dir = px < m.x + 0.5 ? -1 : 1;
-          else if (m.x <= m.x0) m.dir = 1;
-          else if (m.x >= m.x1) m.dir = -1;
-          if (now - m.hitAt > 350) m.x = Math.max(m.x0, Math.min(m.x1, m.x + m.dir * kind.speed * (near ? 1 : 0.5) * dt));
-          // A flyer bobs in the air.
-          const lift = kind.flies ? 0.35 + Math.sin(now / 320 + m.lift) * 0.25 : 0;
-          if (!quizRef.current && Math.abs(px - (m.x + 0.5)) < PW / 2 + size * 0.42 && Math.abs(py - (m.y + 1 - size / 2 - lift)) < PH / 2 + size * 0.42 && now > safeUntil.current) {
-            safeUntil.current = now + SAFE_AFTER_HURT;
-            heartsRef.current -= 1;
-            setHearts(heartsRef.current);
-            knock.current = (px < m.x + 0.5 ? -1 : 1) * 10;
-            v.y = -7;
-            sfx.hurt();
-            if (heartsRef.current <= 0) goRef.current(true, 'mob');
-          }
-          const el = mobEls.current.get(m.id);
+          const pose = mobAt(m, sNow, life.hp / MOBS[m.kind].hp, life);
+          poses.current.set(m.id, pose);
           // Out of sight: not drawn at all (each mob on screen is a layer the browser puts together every frame).
-          const off = m.x < cam.current / t - 3 || m.x > (cam.current + view) / t + 3 || m.y < camY.current / t - 4 || m.y > (camY.current + viewH) / t + 4;
-          if (el) put(el, 'far', off ? '1' : '');
-          if (el && !off) {
-            el.style.transform = `translate(${(m.x + 0.5 - size / 2) * t}px, ${(m.y + 1 - size - lift + 0.08) * t}px)`;
-            put(el, 'fallen', '');
-            put(el, 'left', m.dir < 0 ? '1' : '');
-            put(el, 'hit', now - m.hitAt < 200 ? '1' : '');
+          const off = pose.x < vx0 || pose.x > vx1 || pose.y < vy0 || pose.y > vy1;
+          put(el, 'dead', '');
+          put(el, 'far', off ? '1' : '');
+          if (off) continue;
+          if (el) {
+            el.style.transform = `translate(${pose.x * t}px, ${pose.y * t}px)`;
+            put(el, 'phase', pose.phase);
+            put(el, 'left', pose.dir < 0 ? '1' : '');
+            put(el, 'hit', now - (mobHit.current.get(m.id) ?? -1e9) < 160 ? '1' : '');
           }
+          for (const h of pose.hazards) hzs.push(h);
+          // Its body (a little inside its box); the fallen boss doesn't hurt.
+          const sz = pose.size;
+          const inset = sz * 0.14;
+          if (pose.phase !== 'fallen' && touches(pose.x + inset, pose.y + inset, sz - 2 * inset, sz - inset)) hurt(pose.x + sz / 2);
         }
+        for (const h of hzs) if (h.hurts && touches(h.x + 0.06, h.y + 0.06, h.w - 0.12, h.h - 0.12)) hurt(h.x + h.w / 2);
+      }
+      drawHazards(hazBox.current, hzs, t);
+      if (me.current) put(me.current, 'dash', dashing ? '1' : '');
       if (me.current) put(me.current, 'safe', now < safeUntil.current ? '1' : '');
       // The others glide to where they last said they were.
       const all: { x: number; y: number }[] = [p];
@@ -796,6 +832,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (keyOf(key) === 'left' || keyOf(key) === 'right') setFishing(null), say(tr('🎣 Line reeled in.', '🎣 Ligne remontée.'));
       }
       if ((e.code === 'KeyX' || e.code === 'KeyJ') && inDungeon) return e.preventDefault(), e.repeat ? undefined : swing();
+      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight' || e.code === 'KeyC') && inDungeon) return e.preventDefault(), e.repeat ? undefined : dashNow();
       if (key === 'e') return e.preventDefault(), chooseTool(tools[(tools.findIndex((t) => t.id === tool) + 1) % tools.length].id);
       // The digit keys by where they are (AZERTY types & é " ' ( there without Shift), or the number pad.
       const n = /^(?:Digit|Numpad)([1-5])$/.exec(e.code)?.[1];
@@ -1021,12 +1058,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     knock.current = 0;
     if (!down) {
       mobs.current = [];
+      poses.current.clear();
       setMobList([]);
     } else if (!hurt) {
+      // The week's mobs, from its plan (the same for everyone; their lives: the board's).
       const d = dungeonOf(week);
-      const save = useProgress.getState().dungeon;
-      const bossDone = save?.week === week && !!save.boss;
-      mobs.current = [...d.mobs, ...(bossDone ? [] : [{ ...d.boss, kind: 'boss' }])].map((m, k) => ({ ...m, hp: MOBS[m.kind].hp, max: MOBS[m.kind].hp, dir: (k % 2 ? 1 : -1) as 1 | -1, dead: false, hitAt: 0, lift: k }));
+      mobs.current = [...d.mobs, { ...d.boss, kind: 'boss' }].map((m) => ({ id: m.id, kind: m.kind, x0: m.x0, x1: m.x1, y: m.y, top: m.top }));
       setMobList(mobs.current.map((m) => ({ id: m.id, kind: m.kind })));
     }
     if (!TOOLS.some((t) => t.id === tool && (!down || t.id === 'walk' || t.id === 'dig'))) setTool('walk');
@@ -1046,8 +1083,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     say(
       down
         ? tr(
-            '🕯️ This week’s dungeon. Open the chests (Dle Coins, a seed, ore), mine the ore in the walls. Deeper down: the frozen caves (ice you slide on, icicles), the overgrown ruins (thorns, vines to climb), the magma depths (lava, fire jets). The gate takes you back up; next week, a new dungeon.',
-            '🕯️ Le donjon de la semaine. Ouvre les coffres (Dle Coins, une graine, du minerai), mine le minerai des murs. Plus bas : les grottes gelées (de la glace qui glisse, des stalactites), les ruines envahies (des ronces, des lianes à grimper), les profondeurs de magma (de la lave, des jets de feu). La porte te ramène en haut ; la semaine prochaine, un nouveau donjon.',
+            '🕯️ This week’s dungeon, the same for everyone on this island. Each mob shows its move before it strikes: dodge (Space, or Shift to dash through), then hit it while it’s dizzy 💫 (double damage; X three times: a combo). Open the chests (Dle Coins, a seed, ore), mine the ore in the walls. Deeper down: the frozen caves (ice you slide on, icicles), the overgrown ruins (thorns, vines to climb), the magma depths (lava, fire jets). The gate takes you back up; next week, a new dungeon.',
+            '🕯️ Le donjon de la semaine, le même pour tous sur cette île. Chaque mob montre son attaque avant de frapper : esquive (Espace, ou Maj pour passer à travers), puis frappe-le quand il est sonné 💫 (dégâts doublés ; X trois fois : un combo). Ouvre les coffres (Dle Coins, une graine, du minerai), mine le minerai des murs. Plus bas : les grottes gelées (de la glace qui glisse, des stalactites), les ruines envahies (des ronces, des lianes à grimper), les profondeurs de magma (de la lave, des jets de feu). La porte te ramène en haut ; la semaine prochaine, un nouveau donjon.',
           )
         : tr('🏝️ Back on the island.', '🏝️ De retour sur l’île.'),
     );
@@ -1181,46 +1218,127 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     run((i) => setTune(i, key, t), '', 'build');
   };
 
-  /** A swing (X, or a click on a mob): the nearest mob in front of you takes your best weapon's damage (or your fists'). */
+  /**
+   * A swing (X, or a click on a mob): the nearest mob in front of you takes your best weapon's damage (or your fists').
+   * Three swings close together make a combo, its third a heavy blow (half as much again, a little further); a mob
+   * struck while it's dizzy after its move (💫) takes double. The blow lands for everyone (the board's).
+   */
   const swing = () => {
     const now = performance.now();
     if (!inDungeon || now - lastSwing.current < SWING.rest) return;
     lastSwing.current = now;
+    const c = combo.current;
+    c.n = now - c.at < SWING.combo ? (c.n % 3) + 1 : 1;
+    c.at = now;
+    const heavy = c.n === 3;
     const m0 = me.current;
     if (m0) {
       m0.dataset.swing = '';
       void m0.offsetWidth;
       m0.dataset.swing = '1';
+      m0.dataset.heavy = heavy ? '1' : '';
     }
+    const b = board.current;
     const p = pos.current;
     const dir = facing.current ? -1 : 1;
     const px = p.x + PW / 2;
     const py = p.y + PH / 2;
-    const target = mobs.current
-      .filter((m) => !m.dead && m.hp > 0)
-      .map((m) => ({ m, d: (m.x + 0.5 - px) * dir }))
-      .filter((o) => o.d > -0.4 && o.d < SWING.reach + 0.5 && Math.abs(o.m.y + 0.5 - py) < 1.4)
-      .sort((a, b) => a.d - b.d)[0]?.m;
-    if (!target) return sfx.whoosh();
+    const reach = SWING.reach + (heavy ? 0.5 : 0);
+    let target: { m: Mob; pose: MobPose; d: number } | null = null;
+    for (const m of mobs.current) {
+      const pose = poses.current.get(m.id);
+      if (!pose || pose.phase === 'fallen') continue;
+      const half = pose.size / 2;
+      const d = (pose.x + half - px) * dir;
+      if (d > -0.4 - half * 0.5 && d < reach + half && Math.abs(pose.y + half - py) < 0.9 + half && (!target || d < target.d)) target = { m, pose, d };
+    }
+    if (!target || !b) return sfx.whoosh();
     const weapon = bestWeapon(useProgress.getState().islandItems ?? {});
-    target.hp -= weapon ? WEAPONS[weapon].damage : FISTS.damage;
-    target.hitAt = now;
-    target.x = Math.max(target.x0, Math.min(target.x1, target.x + dir * 0.7));
+    const crit = target.pose.phase === 'open';
+    const dmg = Math.ceil((weapon ? WEAPONS[weapon].damage : FISTS.damage) * (heavy ? 1.5 : 1) * (crit ? 2 : 1));
+    mobHit.current.set(target.m.id, now);
+    freeze.current = now + (heavy || crit ? 90 : 50);
+    if (heavy || crit) shake(box.current);
+    popDamage(fxBox.current, target.pose, dmg, crit, T);
     sfx.hit();
-    const bar = mobEls.current.get(target.id)?.querySelector<HTMLElement>('.island-mob-hp > i');
-    if (bar) bar.style.width = `${Math.max(0, (target.hp / target.max) * 100)}%`;
     if (weapon && wearWeapon(weapon).broke) say(`💥 ${itemName(weapon)}: ${tr('broken!', 'cassée !')}`);
-    if (target.hp > 0) return;
-    // The boss falls: its question comes (the frame loop asks it).
-    if (target.kind === 'boss') return sfx.near();
-    target.dead = true;
-    const el = mobEls.current.get(target.id);
-    if (el) el.style.display = 'none';
-    const kind = MOBS[target.kind];
-    const drop = Math.random() < 0.5 ? [kind.drops[Math.floor(Math.random() * kind.drops.length)]] : [];
-    mobLoot(drop);
-    say(`⚔️ ${tr(kind.name, kind.fr)} ${tr('defeated', 'vaincu')}${drop.length ? ` · +1 ${itemIcon(drop[0])} ${itemName(drop[0])}` : ''}`);
+    const { m } = target;
+    void b.hit(m, dmg, myUid).then((r) => {
+      if (!r) return;
+      // The boss falls: its question, for the one who felled it.
+      if (r.fell) {
+        sfx.near();
+        return setQuiz({ q: dleQuestion() });
+      }
+      if (!r.slain) return;
+      const kind = MOBS[m.kind];
+      const drop = Math.random() < 0.5 ? [kind.drops[Math.floor(Math.random() * kind.drops.length)]] : [];
+      mobLoot(drop);
+      say(`⚔️ ${tr(kind.name, kind.fr)} ${tr('defeated', 'vaincu')}${drop.length ? ` · +1 ${itemIcon(drop[0])} ${itemName(drop[0])}` : ''}`);
+    });
   };
+  /** A dash (Shift or C, or its button): a burst the way you face, nothing hurts while it lasts. */
+  const dashNow = () => {
+    const now = performance.now();
+    if (!inDungeon || now < dash.current.ready || pose.current || ride.current) return;
+    dash.current = { until: now + DASH.time, ready: now + DASH.rest, dir: facing.current ? -1 : 1 };
+    sfx.whoosh();
+  };
+
+  // The board the mobs' lives are on, while down there: the island's (shared, on the Realtime Database) when online,
+  // this tab's own otherwise (or if the database doesn't answer). What changes on it: the life bars, and the boss.
+  useEffect(() => {
+    if (!inDungeon) return;
+    let gone = false;
+    let seen: Record<string, MobState> | null = null;
+    const onLives = (nb: MobBoard) => {
+      if (board.current !== nb) return;
+      const lives = nb.states();
+      const now = nb.now();
+      const was = seen;
+      seen = {};
+      for (const m of mobs.current) {
+        const st = lifeOf(m, lives[m.id], now);
+        seen[m.id] = st;
+        const bar = mobEls.current.get(m.id)?.querySelector<HTMLElement>('.island-mob-hp > i');
+        if (bar) bar.style.width = `${Math.max(0, (st.hp / MOBS[m.kind].hp) * 100)}%`;
+        if (m.kind !== 'boss' || !was) continue;
+        const before = was[m.id];
+        if (st.fallen && !before?.fallen) say(tr('👹 The Magma Lord falls! Its question is being answered…', '👹 Le Seigneur du magma tombe ! On répond à sa question…'));
+        else if (before?.fallen && !st.fallen && !st.dead) say(tr('👹 The Magma Lord gets back up!', '👹 Le Seigneur du magma se relève !'));
+        if (st.dead && !before?.dead) {
+          // Beaten: everyone who struck it in this fight is paid (once a week).
+          if (!st.hitters?.[myUidRef.current]) {
+            say(tr('🏆 The Magma Lord is beaten (by others: strike it next time to share the reward).', '🏆 Le Seigneur du magma est vaincu (par d’autres : frappe-le la prochaine fois pour partager la récompense).'));
+            continue;
+          }
+          const paid = beatBoss();
+          sfx.victory();
+          say(paid ? `🏆 ${tr('The Magma Lord is beaten!', 'Le Seigneur du magma est vaincu !')} +${paid.coins} Dle Coins · ${paid.items.map((id) => itemIcon(id)).join('')}` : `🏆 ${tr('The Magma Lord is beaten (already this week: no reward).', 'Le Seigneur du magma est vaincu (déjà cette semaine : pas de récompense).')}`);
+        }
+      }
+    };
+    const attach = (nb: MobBoard) => {
+      board.current?.stop();
+      board.current = nb;
+      // Dev only, for the browser checks: the board and the mobs.
+      if (import.meta.env.DEV) (window as unknown as { __mobs?: unknown }).__mobs = { board: nb, mobs: mobs.current };
+      seen = null;
+      nb.listen(() => onLives(nb));
+      onLives(nb);
+    };
+    if (liveOwner)
+      void import('../cloud/dmobs').then(({ rtBoard }) => {
+        if (!gone) attach(rtBoard(liveOwner, week, BOSS.back, () => !gone && attach(localBoard(BOSS.back))));
+      });
+    else attach(localBoard(BOSS.back));
+    return () => {
+      gone = true;
+      board.current?.stop();
+      board.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inDungeon, liveOwner, week]);
 
   /** Several settings at once (one change on the island, not one each). */
   const tuneMany = (pairs: [string, string | null][]) => {
@@ -1370,13 +1488,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                 if (el) mobEls.current.set(m.id, el);
                 else mobEls.current.delete(m.id);
               }}
+              data-kind={m.kind}
               className={`island-mob absolute left-0 top-0 ${m.kind === 'boss' ? 'island-boss' : ''}`}
               style={{ width: T * (m.kind === 'boss' ? BOSS.size : 0.92), height: T * (m.kind === 'boss' ? BOSS.size : 0.92) }}
               title={tr(MOBS[m.kind].name, MOBS[m.kind].fr)}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                const mob = mobs.current.find((x) => x.id === m.id);
-                if (mob) facing.current = mob.x + 0.5 < pos.current.x + PW / 2;
+                const at = poses.current.get(m.id);
+                if (at) facing.current = at.x + at.size / 2 < pos.current.x + PW / 2;
                 swing();
               }}
             >
@@ -1386,6 +1505,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               </span>
             </div>
           ))}
+          <div ref={hazBox} className="pointer-events-none absolute left-0 top-0" />
+          <div ref={fxBox} className="pointer-events-none absolute left-0 top-0" />
           <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: VW * T, height: VH * T }}>
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
@@ -1454,11 +1575,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             </span>
             {(() => {
               const w = bestWeapon(items);
-              if (!w) return <span className="text-xs opacity-80">👊 {tr('Fists · X to hit', 'Poings · X pour frapper')}</span>;
+              if (!w) return <span className="text-xs opacity-80">👊 {tr('Fists · X to hit · Shift to dash', 'Poings · X pour frapper · Maj pour esquiver')}</span>;
               const def = WEAPONS[w];
               return (
                 <span className="text-xs" style={{ color: def.rarity ? RARITY_COLOR[def.rarity] : undefined }}>
-                  {itemIcon(w)} {itemName(w)} · {weaponWear?.[w] ?? def.durability}/{def.durability} · X
+                  {itemIcon(w)} {itemName(w)} · {weaponWear?.[w] ?? def.durability}/{def.durability} · X · {tr('Shift', 'Maj')}
                 </span>
               );
             })()}
@@ -1520,9 +1641,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           </button>
         ))}
         {inDungeon && (
-          <button type="button" className="touch-none rounded-md border border-rule bg-card px-5 py-2 text-lg font-bold" onPointerDown={swing} aria-label={tr('Hit', 'Frapper')}>
-            ⚔️
-          </button>
+          <>
+            <button type="button" className="touch-none rounded-md border border-rule bg-card px-5 py-2 text-lg font-bold" onPointerDown={swing} aria-label={tr('Hit', 'Frapper')}>
+              ⚔️
+            </button>
+            <button type="button" className="touch-none rounded-md border border-rule bg-card px-5 py-2 text-lg font-bold" onPointerDown={dashNow} aria-label={tr('Dash', 'Esquive')}>
+              💨
+            </button>
+          </>
         )}
       </div>
 
@@ -1719,23 +1845,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               dungeonAct((i) => ({ island: { ...i, fg: { ...i.fg, ...Object.fromEntries(cells.map((c) => [c, 'puzzle-door-open'])) } } }));
               return say(tr('✅ Right! The door opens.', '✅ Juste ! La porte s’ouvre.'));
             }
-            const boss = mobs.current.find((m) => m.kind === 'boss' && !m.dead);
-            if (!boss) return;
-            if (!right) {
-              boss.hp = Math.ceil(boss.max * BOSS.back);
-              boss.asked = false;
-              boss.hitAt = performance.now();
-              const bar = mobEls.current.get(boss.id)?.querySelector<HTMLElement>('.island-mob-hp > i');
-              if (bar) bar.style.width = `${BOSS.back * 100}%`;
-              sfx.wrong();
-              return say(`❌ ${tr('Wrong, it was', 'Faux, c’était')} « ${was} ». ${tr('The Magma Lord gets back up!', 'Le Seigneur du magma se relève !')}`);
-            }
-            boss.dead = true;
-            const el = mobEls.current.get(boss.id);
-            if (el) el.style.display = 'none';
-            const paid = beatBoss();
-            sfx.victory();
-            say(paid ? `🏆 ${tr('The Magma Lord is beaten!', 'Le Seigneur du magma est vaincu !')} +${paid.coins} Dle Coins · ${paid.items.map((id) => itemIcon(id)).join('')}` : `🏆 ${tr('The Magma Lord is beaten (already this week: no reward).', 'Le Seigneur du magma est vaincu (déjà cette semaine : pas de récompense).')}`);
+            const boss = mobs.current.find((m) => m.kind === 'boss');
+            if (!boss || !board.current) return;
+            void board.current.answer(boss, right);
+            if (right) return sfx.correct();
+            sfx.wrong();
+            say(`❌ ${tr('Wrong, it was', 'Faux, c’était')} « ${was} ».`);
           }}
         />
       )}
@@ -1796,6 +1911,54 @@ function Panel({ title, children }: { title: string; children: ReactNode }) {
       {children}
     </div>
   );
+}
+
+/** What the mobs throw and make (src/island/mobs.ts), drawn each frame in a few reused elements. */
+function drawHazards(boxEl: HTMLDivElement | null, hzs: Hazard[], t: number) {
+  if (!boxEl) return;
+  const kids = boxEl.children;
+  for (let i = 0; i < hzs.length; i++) {
+    let el = kids[i] as HTMLElement | undefined;
+    if (!el) {
+      el = document.createElement('i');
+      boxEl.appendChild(el);
+    }
+    const h = hzs[i];
+    const cls = `island-hz island-hz-${h.kind}`;
+    if (el.className !== cls) el.className = cls;
+    if (el.style.display) el.style.display = '';
+    // (Its size only when it changes: setting it every frame has the browser lay the page out again.)
+    const size = `${Math.round(h.w * t)}px ${Math.round(h.h * t)}px`;
+    if (el.dataset.size !== size) {
+      el.dataset.size = size;
+      el.style.width = `${Math.round(h.w * t)}px`;
+      el.style.height = `${Math.round(h.h * t)}px`;
+    }
+    el.style.transform = `translate(${h.x * t}px, ${h.y * t}px)${h.rot ? ` rotate(${Math.round(h.rot)}deg)` : ''}`;
+  }
+  for (let i = hzs.length; i < kids.length; i++) {
+    const el = kids[i] as HTMLElement;
+    if (el.style.display !== 'none') el.style.display = 'none';
+  }
+}
+/** A blow's damage, popping over the mob (gold and bigger when it's double). */
+function popDamage(boxEl: HTMLDivElement | null, pose: MobPose, dmg: number, crit: boolean, T: number) {
+  if (!boxEl) return;
+  const el = document.createElement('span');
+  el.className = `island-dmg${crit ? ' island-dmg-crit' : ''}`;
+  el.textContent = crit ? `${dmg}!` : String(dmg);
+  el.style.left = `${(pose.x + pose.size / 2) * T}px`;
+  el.style.top = `${pose.y * T}px`;
+  el.style.fontSize = `${T * (crit ? 0.66 : 0.5)}px`;
+  boxEl.appendChild(el);
+  window.setTimeout(() => el.remove(), 800);
+}
+/** The view shaking a moment (a heavy blow, a hurt). */
+function shake(el: HTMLElement | null) {
+  if (!el || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+  el.dataset.shake = '';
+  void el.offsetWidth;
+  el.dataset.shake = '1';
 }
 
 /** The island itself: drawn again only when it changes (the player moves on top of it). */

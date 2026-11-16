@@ -51,12 +51,14 @@ export interface MobSpawn {
   y: number;
   x0: number;
   x1: number;
+  /** Its room's ceiling row (the spiders wait there). */
+  top: number;
 }
 interface Built {
   ground: (string | undefined)[];
   /** The gate's cell (where you come in and go out). */
   entry: number;
-  /** The mobs, two a room (the gate's room left alone). */
+  /** The mobs, one a room (the gate's room and the boss's left alone). */
   mobs: MobSpawn[];
   /** The boss, in the magma depths' room farthest from the gate. */
   boss: MobSpawn;
@@ -215,12 +217,14 @@ export function dungeonOf(week: string): Built {
     set(spots[pick(spots.length)], r.floor - 1, 'sword-stone');
     break;
   }
-  // The mobs: two a room, each patrolling its room's floor (the floor between its walls, lava or not: some fly).
+  // The mobs: one a room (fewer, each with a move of its own: src/island/mobs.ts), patrolling its room's floor (the
+  // floor between its walls, lava or not: some fly). (Two are drawn a room, as before, so the rest of the dungeon
+  // comes out as it did; the second is left out.)
   const mobs: MobSpawn[] = [];
   for (const { r, gx, gy } of others)
     for (let k = 0; k < 2; k++) {
       const x = r.x0 + 1 + pick(Math.max(1, r.x1 - r.x0 - 1));
-      mobs.push({ id: `${gx}-${gy}-${k}`, kind: BIOMES[gy].id, x, y: r.floor - 1, x0: r.x0, x1: r.x1 });
+      if (k === 0) mobs.push({ id: `${gx}-${gy}-${k}`, kind: BIOMES[gy].id, x, y: r.floor - 1, x0: r.x0, x1: r.x1, top: r.y0 });
     }
   // The puzzle doors: some corridors closed, top to floor (never by the gate's room). Each door's three cells open
   // together.
@@ -232,7 +236,7 @@ export function dungeonOf(week: string): Built {
   let bx = 0;
   for (let gx = 0; gx < DUNGEON.cols; gx++) if (Math.abs(gx - startX) > Math.abs(bx - startX)) bx = gx;
   const lair = rooms[bx][deepest];
-  const boss: MobSpawn = { id: 'boss', kind: 'magma', x: Math.floor((lair.x0 + lair.x1) / 2), y: lair.floor - 1, x0: lair.x0, x1: lair.x1 };
+  const boss: MobSpawn = { id: 'boss', kind: 'magma', x: Math.floor((lair.x0 + lair.x1) / 2), y: lair.floor - 1, x0: lair.x0, x1: lair.x1, top: lair.y0 };
   const fighters = mobs.filter((m) => m.id !== `${bx}-${deepest}-0` && m.id !== `${bx}-${deepest}-1`);
   // Each biome's own walls.
   for (let c = 0; c < w * h; c++) if (g[c] === 'dungeon-brick') g[c] = biomeAt(Math.floor(c / w)).wall;
