@@ -1,0 +1,47 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "here": {
+      "$owner": {
+        ".read": "auth != null",
+        "$uid": {
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.hasChildren(['name', 'x', 'y', 'left', 'at'])",
+          "name": { ".validate": "newData.isString() && newData.val().length <= 40" },
+          "face": { ".validate": "newData.isString() && newData.val().length <= 80" },
+          "x": { ".validate": "newData.isNumber() && newData.val() >= -10 && newData.val() <= 200" },
+          "y": { ".validate": "newData.isNumber() && newData.val() >= -10 && newData.val() <= 200" },
+          "left": { ".validate": "newData.isBoolean()" },
+          "at": { ".validate": "newData.isNumber() && newData.val() <= now + 60000" },
+          "tool": { ".validate": "newData.isString() && newData.val().length <= 10" },
+          "pose": { ".validate": "newData.isString() && newData.val().matches(/^(sit|sleep|cart|zip)$/)" },
+          "world": { ".validate": "newData.isString() && newData.val().length <= 24" },
+          "tv": {
+            ".validate": "newData.hasChildren(['cell', 'at', 'on'])",
+            "cell": { ".validate": "newData.isNumber()" },
+            "card": { ".validate": "newData.isString() && newData.val().length <= 80" },
+            "clip": { ".validate": "newData.isString() && newData.val().length <= 200" },
+            "at": { ".validate": "newData.isNumber()" },
+            "on": { ".validate": "newData.isBoolean()" },
+            "$other": { ".validate": false }
+          },
+          "tune": {
+            ".validate": "newData.hasChildren(['key', 'at'])",
+            "key": { ".validate": "newData.isString() && newData.val().length <= 40" },
+            "value": { ".validate": "newData.isString() && newData.val().length <= 60" },
+            "at": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          },
+          "emote": {
+            ".validate": "newData.hasChildren(['e', 'at'])",
+            "e": { ".validate": "newData.isString() && newData.val().length <= 8" },
+            "at": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          },
+          "$other": { ".validate": false }
+        }
+      }
+    }
+  }
+}

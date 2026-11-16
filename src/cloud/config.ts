@@ -8,3 +8,10 @@ export const FIREBASE_CONFIG = {
   messagingSenderId: '911865346579',
   appId: '1:911865346579:web:e0b35398933d3854ac1de6',
 };
+
+/**
+ * The Realtime Database (who's on an island right now, live: src/cloud/presence.ts), in Belgium (europe-west1). Its
+ * address is the one the Firebase console shows (Realtime Database → Data, at the top) once the database is made; if it
+ * was made in another region, put that address here. Until it exists, the island's presence stays on Firestore.
+ */
+export const DATABASE_URL = 'https://omnidle-f2d71-default-rtdb.europe-west1.firebasedatabase.app';

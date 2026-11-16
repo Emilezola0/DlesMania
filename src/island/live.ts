@@ -1,5 +1,6 @@
 // Island players seen live (src/island/IslandView.tsx): on a shared island, everyone there sees the others walk.
-// Each player writes where they stand (src/cloud/islands.ts, islands/<owner>/here/<uid>) about every SEND ms while
+// Each player writes where they stand (on the Realtime Database, src/cloud/presence.ts, here/<owner>/<uid>; on
+// Firestore, src/cloud/islands.ts, islands/<owner>/here/<uid>, while that doesn't answer) about every SEND ms while
 // they move, and every BEAT ms while they stand still; the others glide smoothly between those points. Gone after
 // STALE ms without news (a closed tab), and removed when they leave. The demo makes up a friend walking about.
 // They also say which tool they hold (drawn in their hand), and their last switch of a TV or a music maker, so a TV
@@ -77,6 +78,8 @@ const BEAT = 10_000;
 const STALE = 30_000;
 /** The database's rules don't take `world` yet (refused once): written without it from then on. */
 let worldRefused = false;
+/** Where the island's presence goes this session: the Realtime Database, or Firestore (it didn't answer); null: trying. */
+let backend: 'rt' | 'fs' | null = null;
 
 export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
   const [peers, setPeers] = useState<Peer[]>([]);
@@ -87,26 +90,44 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
   const name = cfg && 'owner' in cfg ? cfg.name : null;
   const demo = cfg && 'demo' in cfg ? cfg.demo : null;
 
-  // Online: follow who's here, and say where you are.
+  // Online: follow who's here, and say where you are. On the Realtime Database (src/cloud/presence.ts); on Firestore
+  // if it doesn't answer (not made yet, its rules not published), for the rest of the visit.
   useEffect(() => {
     if (!owner || !uid || !name) return;
     let gone = false;
     let stop = () => {};
     let timer = 0;
-    const leave = () => void import('../cloud/islands').then((c) => c.leaveHere(owner));
-    void import('../cloud/islands').then((c) => {
+    let leave = () => {};
+    void Promise.all([import('../cloud/islands'), import('../cloud/presence')]).then(([fs, rt]) => {
       if (gone) return;
-      stop = c.watchHere(owner, (list) => {
+      const show = (list: { uid: string; name: string; face: string | null; x: number; y: number; left: boolean; tool?: string; tv?: TvEvent | null; tune?: TuneEvent | null; pose?: Pose | null; emote?: EmoteEvent | null; world?: string; at: number | null }[]) => {
         const now = Date.now();
         setPeers(
           list
-            .filter((h) => h.uid !== uid && (!h.at || now - h.at.toMillis() < STALE))
-            .map((h) => ({ uid: h.uid, name: h.name, face: h.face, x: h.x, y: h.y, left: h.left, tool: h.tool, tv: h.tv ?? null, tune: h.tune ?? null, pose: h.pose ?? null, emote: h.emote ?? null, world: h.world ?? 'island' })),
+            .filter((h) => h.uid !== uid && (!h.at || now - h.at < STALE))
+            .map((h) => ({ uid: h.uid, name: h.name, face: h.face ?? null, x: h.x, y: h.y, left: h.left, tool: h.tool, tv: h.tv ?? null, tune: h.tune ?? null, pose: h.pose ?? null, emote: h.emote ?? null, world: h.world ?? 'island' })),
         );
-      });
+      };
+      const onFirestore = () => {
+        backend = 'fs';
+        stop();
+        stop = fs.watchHere(owner, (list) => show(list.map((h) => ({ ...h, at: h.at ? h.at.toMillis() : null }))));
+      };
+      if (backend === 'fs') onFirestore();
+      else
+        stop = rt.watchHereRt(
+          owner,
+          (list) => {
+            backend = 'rt';
+            show(list);
+          },
+          onFirestore,
+        );
+      leave = () => void (backend === 'rt' ? rt.leaveHereRt(owner) : fs.leaveHere(owner));
       let last = { x: -99, y: -99, left: false, t: 0, rest: '' };
       timer = window.setInterval(() => {
-        if (document.hidden) return;
+        // Not yet known where to write (the Realtime Database is being tried): wait.
+        if (document.hidden || !backend) return;
         const p = whereRef.current();
         const now = Date.now();
         const rest = JSON.stringify([p.tool, p.tv, p.tune, p.pose, p.emote, p.world]);
@@ -116,7 +137,7 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
         const say = (withWorld: boolean) => {
           // Away from the island and the world can't be told: standing at its gate, as before.
           const at = withWorld || p.world === 'island' ? p : p.away;
-          return c.sayHere(owner, {
+          const h = {
             name,
             face: useProgress.getState().avatar ?? null,
             x: Math.round(at.x * 100) / 100,
@@ -128,21 +149,29 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
             pose: p.pose,
             emote: p.emote,
             ...(withWorld ? { world: p.world } : {}),
-          });
+          };
+          return backend === 'rt' ? rt.sayHereRt(owner, h) : fs.sayHere(owner, h);
         };
-        say(!worldRefused).catch((e: { code?: string }) => {
+        // The Realtime Database's rules take `world`; Firestore's maybe not yet (refused once: written without it).
+        say(backend === 'rt' || !worldRefused).catch((e: { code?: string }) => {
+          if (backend === 'rt') {
+            // Refused there (its rules not published): on Firestore from now on.
+            if (/permission/i.test(String(e?.code ?? e))) onFirestore();
+            return;
+          }
           if (worldRefused || e?.code !== 'permission-denied') return;
           worldRefused = true;
           say(false).catch(() => {});
         });
       }, SEND);
     });
-    window.addEventListener('pagehide', leave);
+    const bye = () => leave();
+    window.addEventListener('pagehide', bye);
     return () => {
       gone = true;
       stop();
       window.clearInterval(timer);
-      window.removeEventListener('pagehide', leave);
+      window.removeEventListener('pagehide', bye);
       leave();
     };
   }, [owner, uid, name]);
