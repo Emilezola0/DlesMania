@@ -13,6 +13,7 @@ const GuessYear = lazy(() => import('./pages/GuessYear'));
 const HigherLower = lazy(() => import('./pages/HigherLower'));
 const Jlpt = lazy(() => import('./pages/Jlpt'));
 const JlptBook = lazy(() => import('./pages/JlptBook'));
+const JlptAllGrammar = lazy(() => import('./pages/JlptAllGrammar'));
 const NameThemAll = lazy(() => import('./pages/NameThemAll'));
 const RailRush = lazy(() => import('./pages/RailRush'));
 const StickFight = lazy(() => import('./pages/StickFight'));
@@ -78,6 +79,7 @@ export default function App() {
         <Route path="jlpt/:deck" element={<Jlpt />} />
         <Route path="jlpt/list/:level" element={<Jlpt />} />
         <Route path="jlpt/books/:id" element={<JlptBook />} />
+        <Route path="jlpt/grammar" element={<JlptAllGrammar />} />
         <Route path="name-them-all" element={<NameThemAll />} />
         <Route path="name-them-all/:list" element={<NameThemAll />} />
         <Route path="guess-the-year" element={<GuessYear />} />

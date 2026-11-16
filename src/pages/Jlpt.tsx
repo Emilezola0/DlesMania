@@ -1265,6 +1265,12 @@ export default function Jlpt() {
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">The list, level by level</h2>
         <ul className="flex flex-wrap gap-2">
+          <li>
+            <Link to="/jlpt/grammar" className="btn-accent inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
+              📚 All the grammar
+              <span className="text-xs font-normal opacity-80">the list + your books</span>
+            </Link>
+          </li>
           {JLPT_LEVELS.map((l) => (
             <li key={l.level}>
               <Link to={`/jlpt/list/${l.level.toLowerCase()}`} className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
