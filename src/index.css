@@ -4664,6 +4664,75 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .island-dungeon.island-cave {
   filter: hue-rotate(230deg) saturate(0.45) brightness(0.3);
 }
+/* The dungeon's other biomes (src/island/dungeon.ts, BIOMES): the frozen caves, the overgrown ruins, the magma depths. */
+.island-dungeon.dungeon-ice {
+  filter: sepia(0.7) hue-rotate(160deg) saturate(2.4) brightness(1.15);
+}
+.island-dungeon.dungeon-ice.island-cave {
+  filter: sepia(0.7) hue-rotate(165deg) saturate(1.8) brightness(0.45);
+}
+.island-dungeon.dungeon-moss {
+  filter: sepia(0.8) hue-rotate(45deg) saturate(1.9) brightness(0.7);
+}
+.island-dungeon.dungeon-moss.island-cave {
+  filter: sepia(0.8) hue-rotate(45deg) saturate(1.4) brightness(0.3);
+}
+.island-dungeon.dungeon-basalt {
+  filter: sepia(0.9) hue-rotate(-25deg) saturate(2.6) brightness(0.48);
+}
+.island-dungeon.dungeon-basalt.island-cave {
+  filter: sepia(0.9) hue-rotate(-25deg) saturate(2.2) brightness(0.26);
+}
+/* Lava glowing; a fire jet's flame flaring a second in three (FIRE_JET: in step with when it burns). */
+.island-lava {
+  filter: drop-shadow(0 0 6px #f97316);
+  animation: island-lava 1.6s ease-in-out infinite alternate;
+}
+@keyframes island-lava {
+  to {
+    filter: drop-shadow(0 0 12px #fb923c) brightness(1.15);
+  }
+}
+.island-fire-jet {
+  position: absolute;
+  animation: island-fire-jet 3s linear infinite;
+}
+.island-fire-jet::after {
+  content: '';
+  position: absolute;
+  left: 25%;
+  bottom: 30%;
+  width: 50%;
+  height: 230%;
+  border-radius: 50% 50% 40% 40%;
+  background: radial-gradient(ellipse at 50% 90%, #fef08a, #fb923c 40%, #dc2626 70%, transparent 72%);
+  filter: drop-shadow(0 0 8px #f97316);
+  transform-origin: 50% 100%;
+  opacity: var(--jet, 0);
+  transform: scaleY(var(--jet, 0));
+}
+@property --jet {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@keyframes island-fire-jet {
+  0% {
+    --jet: 1;
+  }
+  33.2% {
+    --jet: 1;
+  }
+  33.4%,
+  100% {
+    --jet: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .island-lava {
+    animation: none;
+  }
+}
 .island-deep {
   background: #120f18;
 }

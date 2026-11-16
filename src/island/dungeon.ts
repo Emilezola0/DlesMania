@@ -10,6 +10,24 @@ import { SEEDS } from './seeds';
 /** Rooms: a grid of DUNGEON.cols × DUNGEON.rows, each in a ROOM × ROOM block. */
 export const DUNGEON = { cols: 8, rows: 4, room: 12, chests: 10 };
 
+/**
+ * The dungeon's biomes, one a row of rooms, deeper and deeper: the crypt (spikes), the frozen caves (ice floors you
+ * slide on, icicles under the ceilings), the overgrown ruins (thorns, vines to climb), the magma depths (lava pools to
+ * jump over, fire jets that flare now and then). Each its own walls; all of them unbreakable, their ore excepted.
+ */
+export const BIOMES = [
+  { id: 'crypt', wall: 'dungeon-brick', name: 'The crypt', fr: 'La crypte' },
+  { id: 'ice', wall: 'dungeon-ice', name: 'The frozen caves', fr: 'Les grottes gelées' },
+  { id: 'jungle', wall: 'dungeon-moss', name: 'The overgrown ruins', fr: 'Les ruines envahies' },
+  { id: 'magma', wall: 'dungeon-basalt', name: 'The magma depths', fr: 'Les profondeurs de magma' },
+] as const;
+export type BiomeId = (typeof BIOMES)[number]['id'];
+/** The biome at a row of cells. */
+export const biomeAt = (y: number) => BIOMES[Math.max(0, Math.min(BIOMES.length - 1, Math.floor(y / DUNGEON.room)))];
+/** A fire jet flares a second in three (all at once, the same for everyone). */
+export const FIRE_JET = { period: 3000, on: 1000 };
+export const fireJetOn = (now = Date.now()) => now % FIRE_JET.period < FIRE_JET.on;
+
 /** A little random generator from a word (the week). */
 function rng(word: string) {
   let s = 2166136261;
@@ -122,6 +140,41 @@ export function dungeonOf(week: string): Built {
     const spots = floorSpots(r).filter((x) => [x - 1, x, x + 1].every((xx) => !g[idx(xx, r.floor - 1)] && !ladders.includes(idx(xx, r.floor - 1))));
     if (spots.length) set(spots[pick(spots.length)], r.floor - 1, 'spikes');
   }
+  // Each biome's traps, in its rooms (the gate's room left alone; never next to a chest, a ladder or the gate).
+  const free = (x: number, y: number) => !g[idx(x, y)] && !ladders.includes(idx(x, y));
+  for (let gx = 0; gx < DUNGEON.cols; gx++)
+    for (let gy = 0; gy < DUNGEON.rows; gy++) {
+      if (gx === startX && gy === 0) continue;
+      const r = rooms[gx][gy];
+      const biome = BIOMES[gy].id;
+      const spots = floorSpots(r).filter((x) => [x - 1, x, x + 1].every((xx) => free(xx, r.floor - 1)));
+      const some = (n: number) => spots.sort(() => rnd() - 0.5).slice(0, n);
+      if (biome === 'ice') {
+        // Icicles under the ceiling (they hurt whoever jumps into them).
+        for (let k = 0; k < 2; k++) {
+          const x = r.x0 + 1 + pick(Math.max(1, r.x1 - r.x0 - 1));
+          if (free(x, r.y0) && g[idx(x, r.y0 - 1)] === 'dungeon-brick') set(x, r.y0, 'icicles');
+        }
+      } else if (biome === 'jungle') {
+        for (const x of some(1 + pick(2))) set(x, r.floor - 1, 'thorns');
+        // A vine down a wall, to climb.
+        // (A column in from the wall: the torches hang on the wall's own.)
+        if (rnd() < 0.7) {
+          const x = rnd() < 0.5 ? r.x0 + 1 : r.x1 - 1;
+          if ([...Array(r.floor - r.y0).keys()].every((k) => free(x, r.y0 + k))) for (let y = r.y0; y < r.floor; y++) set(x, y, 'jungle-vine');
+        }
+      } else if (biome === 'magma') {
+        // A lava pool sunk into the floor (two cells: a jump clears it), and a fire jet.
+        const pool = spots.filter((x) => spots.includes(x + 1) && x + 1 < r.x1);
+        if (pool.length) {
+          const x = pool[pick(pool.length)];
+          set(x, r.floor, 'lava');
+          set(x + 1, r.floor, 'lava');
+        }
+        const jet = spots.filter((x) => g[idx(x, r.floor)] === 'dungeon-brick' && free(x, r.floor - 1));
+        if (jet.length) set(jet[pick(jet.length)], r.floor - 1, 'fire-jet');
+      }
+    }
   // Ore in the walls next to the rooms: iron, gold, crystal (richer than on the island), some coal.
   for (let y = 1; y < h - 1; y++)
     for (let x = 1; x < w - 1; x++) {
@@ -131,6 +184,8 @@ export function dungeonOf(week: string): Built {
       const r = rnd();
       set(x, y, r < 0.25 ? 'coal-ore' : r < 0.55 ? 'iron-ore' : r < 0.8 ? 'gold-ore' : 'crystal-ore');
     }
+  // Each biome's own walls.
+  for (let c = 0; c < w * h; c++) if (g[c] === 'dungeon-brick') g[c] = biomeAt(Math.floor(c / w)).wall;
   const out = { ground: g, entry };
   built.set(week, out);
   return out;

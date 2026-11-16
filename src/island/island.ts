@@ -32,9 +32,13 @@ export const NATURAL: Record<string, { name: string; fr: string; color: string }
   bedrock: { name: 'Bedrock', fr: 'Roche mère', color: '#1f1d24' },
   /** The dungeon's walls (src/island/dungeon.ts): can't be dug either. */
   'dungeon-brick': { name: 'Dungeon brick', fr: 'Brique de donjon', color: '#3b3346' },
+  /** The other biomes' walls (src/island/dungeon.ts, BIOMES). */
+  'dungeon-ice': { name: 'Frozen wall', fr: 'Mur gelé', color: '#9ad8f0' },
+  'dungeon-moss': { name: 'Mossy ruin', fr: 'Ruine moussue', color: '#4d6b3a' },
+  'dungeon-basalt': { name: 'Basalt', fr: 'Basalte', color: '#2a1d1d' },
 };
 /** Ground no pickaxe breaks. */
-const UNBREAKABLE = new Set(['bedrock', 'dungeon-brick']);
+const UNBREAKABLE = new Set(['bedrock', 'dungeon-brick', 'dungeon-ice', 'dungeon-moss', 'dungeon-basalt']);
 
 export interface Plot {
   a: string;

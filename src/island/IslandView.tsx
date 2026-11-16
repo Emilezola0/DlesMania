@@ -14,7 +14,7 @@ import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, ISLAND_GAT
 import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEvent, type TvEvent } from './live';
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
-import { dungeonIsland, dungeonOf } from './dungeon';
+import { biomeAt, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
 import { weekOf } from '../gacha/economy';
 import { discFits, DISC_PLAYERS, HEAR, islandBand, type Source } from './music';
 import { ShowBar, VolumeSlider, YouTubeShow, YT, ytId, ytOf } from './YouTube';
@@ -351,7 +351,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       const p = pos.current;
       const v = vel.current;
       const isl = islRef.current;
-      v.x = (k.has('right') ? SPEED : 0) - (k.has('left') ? SPEED : 0);
+      const want = (k.has('right') ? SPEED : 0) - (k.has('left') ? SPEED : 0);
+      // On ice (the frozen caves): you slide, slow to start and to stop.
+      const under = fgAt(isl, idx(Math.floor(p.x + PW / 2), Math.floor(p.y + PH + 0.05)));
+      v.x = isl.world && under === 'dungeon-ice' && ground.current ? v.x + (want - v.x) * Math.min(1, dt * 2.2) : want;
       // On a ladder (or standing right on top of one, so you can stop there and step off sideways).
       const ladder = touching(p.x, p.y, 'ladder', 0.15) >= 0;
       const down = k.has('down');
@@ -454,8 +457,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         p.y = y - PH - 0.01;
         v.y = 0;
       }
-      // Spikes (in the dungeon): back to the gate.
-      if (isl.world && touching(p.x, p.y, 'spikes') >= 0) goRef.current(true, true);
+      // The traps (in the dungeon): spikes, icicles, thorns, lava, a fire jet while it flares: back to the gate.
+      const trap = isl.world ? touching(p.x, p.y, 'spikes') : -1;
+      if (trap >= 0) {
+        const what = fgAt(isl, trap);
+        if (what !== 'fire-jet' || fireJetOn()) goRef.current(true, what ?? 'spikes');
+      }
       // Sitting or asleep: held there, until a move gets them up.
       const seat = pose.current;
       if (seat) {
@@ -863,7 +870,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   };
 
   /** Through the gate: down to the week's dungeon, or back up to the island (or hurt by spikes: back to the dungeon's gate). */
-  const go = (down: boolean, hurt = false) => {
+  const go = (down: boolean, hurt: string | false = false) => {
     const cell = down ? dungeonOf(week).entry : ISLAND_GATE;
     const { x, y } = xy(cell);
     // The new place at once (the next frame mustn't run into the old one's walls).
@@ -880,14 +887,21 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     if (!TOOLS.some((t) => t.id === tool && (!down || t.id === 'walk' || t.id === 'dig'))) setTool('walk');
     if (hurt) {
       sfx.wrong();
-      return say(tr('🔺 Ouch, spikes! Back to the gate.', '🔺 Aïe, des pics ! Retour à la porte.'));
+      const ouch: Record<string, [string, string]> = {
+        icicles: ['🧊 An icicle! Back to the gate.', '🧊 Une stalactite de glace ! Retour à la porte.'],
+        thorns: ['🌵 Thorns! Back to the gate.', '🌵 Des ronces ! Retour à la porte.'],
+        lava: ['🌋 Lava! Back to the gate.', '🌋 De la lave ! Retour à la porte.'],
+        'fire-jet': ['🔥 Burnt by a fire jet! Back to the gate.', '🔥 Brûlé par un jet de feu ! Retour à la porte.'],
+      };
+      const [en, fr] = ouch[hurt] ?? ['🔺 Ouch, spikes! Back to the gate.', '🔺 Aïe, des pics ! Retour à la porte.'];
+      return say(tr(en, fr));
     }
     sfx.whoosh();
     say(
       down
         ? tr(
-            '🕯️ This week’s dungeon. Open the chests (Dle Coins, a seed, ore), mine the ore in the walls, mind the spikes. The gate takes you back up; next week, a new dungeon.',
-            '🕯️ Le donjon de la semaine. Ouvre les coffres (Dle Coins, une graine, du minerai), mine le minerai des murs, attention aux pics. La porte te ramène en haut ; la semaine prochaine, un nouveau donjon.',
+            '🕯️ This week’s dungeon. Open the chests (Dle Coins, a seed, ore), mine the ore in the walls. Deeper down: the frozen caves (ice you slide on, icicles), the overgrown ruins (thorns, vines to climb), the magma depths (lava, fire jets). The gate takes you back up; next week, a new dungeon.',
+            '🕯️ Le donjon de la semaine. Ouvre les coffres (Dle Coins, une graine, du minerai), mine le minerai des murs. Plus bas : les grottes gelées (de la glace qui glisse, des stalactites), les ruines envahies (des ronces, des lianes à grimper), les profondeurs de magma (de la lave, des jets de feu). La porte te ramène en haut ; la semaine prochaine, un nouveau donjon.',
           )
         : tr('🏝️ Back on the island.', '🏝️ De retour sur l’île.'),
     );
@@ -1515,7 +1529,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
     const { x, y } = xy(cell);
     if (isl.world ? fgAt(isl, cell) && kindOf(fgAt(isl, cell)) === 'natural' : x < 4 || x >= ISLAND.w - 4 || y <= surfaceAt(x) || fgAt(isl, cell)) continue;
     if (isl.world) {
-      out.push(<div key={`c${cell}`} className="island-cave island-stone island-dungeon absolute" style={{ left: x * T, top: y * T, width: T, height: T }} />);
+      out.push(<div key={`c${cell}`} className={`island-cave island-stone island-dungeon ${biomeAt(y).wall} absolute`} style={{ left: x * T, top: y * T, width: T, height: T }} />);
       continue;
     }
     out.push(<div key={`c${cell}`} className={`island-cave absolute ${y < surfaceAt(x) + 3 ? 'island-dirt' : 'island-stone'}`} style={{ left: x * T, top: y * T, width: T, height: T, backgroundColor: y < surfaceAt(x) + 3 ? dirtColor(y) : undefined }} />);
@@ -1549,7 +1563,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
       out.push(
         <div
           key={k}
-          className={`absolute ${id !== 'dirt' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'} ${id === 'bedrock' ? 'island-bedrock' : id === 'dungeon-brick' ? 'island-dungeon' : ''}`}
+          className={`absolute ${id !== 'dirt' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'} ${id === 'bedrock' ? 'island-bedrock' : id.startsWith('dungeon-') ? `island-dungeon ${id}` : ''}`}
           style={{ ...style, ...(!ground(x, y - 1) ? { borderTopLeftRadius: ground(x - 1, y) ? 0 : T * 0.3, borderTopRightRadius: ground(x + 1, y) ? 0 : T * 0.3 } : {}), backgroundColor: id === 'dirt' && !sand ? dirtColor(y) : undefined, backgroundPosition: `${(h % 4) * 8}px ${((h >> 3) % 4) * 8}px`, boxShadow: edges || undefined }}
         >
           {NATURAL[id] && id.endsWith('-ore') && <span className="island-ore" style={{ '--ore': NATURAL[id].color } as React.CSSProperties} />}
@@ -1624,7 +1638,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
       );
     } else {
       out.push(
-        <div key={k} className={`absolute ${kind === 'light' ? 'island-light' : ''} ${kind === 'music' && tunes[k] !== 'off' ? 'island-music' : ''} ${kind === 'warp' ? 'island-warp' : ''}`} style={{ ...style, fontSize: T * 0.8, lineHeight: 1 }} title={ITEM_BY_ID.get(id)?.name}>
+        <div key={k} className={`absolute ${kind === 'light' ? 'island-light' : ''} ${kind === 'music' && tunes[k] !== 'off' ? 'island-music' : ''} ${kind === 'warp' ? 'island-warp' : ''} ${id === 'fire-jet' ? 'island-fire-jet' : id === 'lava' ? 'island-lava' : ''}`} style={{ ...style, fontSize: T * 0.8, lineHeight: 1, ...(id === 'fire-jet' ? { animationDelay: `-${Date.now() % FIRE_JET.period}ms` } : {}) }} title={ITEM_BY_ID.get(id)?.name}>
           <ItemArt id={id} className="size-full" />
         </div>,
       );
