@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { allGrammarExamples, grammarExplanation, grammarMeaning, type SourceExample } from '../arcade/jlptGrammar';
 import { audioUrl, pieces, tatoebaUrl, type JlptSentence } from '../arcade/jlptSentences';
-import { bookPointsFor, bookShort, type Book, type BookPoint } from '../arcade/jlptBooks';
+import { bookPointsFor, bookShort, unitName, type Book, type BookPoint } from '../arcade/jlptBooks';
 import { useProgress } from '../store/progress';
 import { GrammarKeepButton } from './JlptKeep';
 
@@ -204,7 +204,7 @@ export function BookPointNote({ book, point, lang, head = true }: { book: Book; 
     <div className="space-y-1.5 rounded-md border border-accent/40 bg-accent/5 px-3 py-2 text-sm">
       {head && (
         <p className="text-[11px] font-semibold text-ink-soft">
-          📕 {bookShort(book)} · n° {point.n} · Unit {String(point.unit).padStart(2, '0')} (p. {point.page})
+          📕 <span lang="ja">{bookShort(book)}</span> · n° {point.l ?? point.n} · <span lang="ja">{unitName(book, point.unit)}</span> (p. {point.page})
         </p>
       )}
       <p>

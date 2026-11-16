@@ -32,7 +32,32 @@ const BOOKS = [
       { unit: 9, from: 99, to: 110, page: 98 },
     ],
   },
+  {
+    id: 'chukyu',
+    files: ['chukyu-a', 'chukyu-b'],
+    title: '中級へ行こう 日本語の文型と表現55',
+    edition: '第2版',
+    authors: '平井悦子・三輪さち子',
+    publisher: 'スリーエーネットワーク (3A Network)',
+    level: 'N3',
+    /** Its units are lessons (課), each on a topic. */
+    lessons: true,
+    units: [
+      { unit: 1, from: 1, to: 4, page: 1, title: 'ファストフード' },
+      { unit: 2, from: 5, to: 9, page: 13, title: '地震' },
+      { unit: 3, from: 10, to: 15, page: 25, title: '最近の子ども' },
+      { unit: 4, from: 16, to: 20, page: 39, title: '日本のイメージ' },
+      { unit: 5, from: 21, to: 26, page: 53, title: '睡眠' },
+      { unit: 6, from: 27, to: 30, page: 67, title: '日本人の発明' },
+      { unit: 7, from: 31, to: 37, page: 79, title: 'リサイクルとフリーマーケット' },
+      { unit: 8, from: 38, to: 43, page: 95, title: 'あいづち' },
+      { unit: 9, from: 44, to: 49, page: 109, title: '男の仕事・女の仕事' },
+      { unit: 10, from: 50, to: 55, page: 125, title: 'ことばの使い方' },
+    ],
+  },
 ];
+/** Coto's levels a book's points aren't matched with (too easy to be the same point). */
+const SKIP = { 'mimi-n2': ['N5', 'N4'], chukyu: ['N5'] };
 
 // ── Readings ──────────────────────────────────────────────────────────────────────────────────────────────
 const KANJI = /[㐀-鿿々〆ヶ]/;
@@ -121,6 +146,7 @@ const coto = jlpt.levels.flatMap((l) => l.grammar.map((g) => ({ level: l.level.s
 /** Points matched by hand (the book's number → Coto's level and pattern), where the forms differ; null: not the same point. */
 const SAME = {
   'mimi-n2': { 42: ['N3', 'すぎない（過ぎない）'], 73: ['N3', 'まい'], 75: ['N2', '～は～に限る'], 82: ['N2', 'かねる'], 83: ['N2', 'かねない'], 92: ['N2', 'かけては'], 105: ['N2', '～に越したことはない'], 107: ['N1', '～をふまえて'], 12: ['N2', '～た上で'], 37: ['N1', '～っぱなし'], 60: ['N1', '～たところで'], 59: ['N1', '～ところを'], 95: ['N1', 'ただ～のみ'], 52: null },
+  chukyu: { 2: ['N4', 'Number+も'], 11: ['N3', 'N+ばかり'], 12: ['N4', '～たがる'], 13: ['N4', '～てしまう'], 15: ['N4', '～のように'], 18: ['N3', '～のような'], 31: ['N3', '～たものだ'], 33: ['N2', '～と言っても～'], 38: ['N4', '～ているあいだに,～'], 42: ['N3', '～によって'], 47: ['N4', '～させられる'], 55: ['N3', '～ず'] },
 };
 
 const out = [];
@@ -140,10 +166,11 @@ for (const b of BOOKS) {
       const hand = SAME[b.id]?.[p.n];
       const none = hand === null;
       const want = forms(p.p);
-      const m = none ? undefined : hand ? coto.find((c) => c.level === hand[0] && c.pattern === hand[1]) : coto.find((c) => c.level !== 'N5' && c.level !== 'N4' && [...c.forms].some((x) => want.has(x)));
+      const m = none ? undefined : hand ? coto.find((c) => c.level === hand[0] && c.pattern === hand[1]) : coto.find((c) => !SKIP[b.id].includes(c.level) && [...c.forms].some((x) => want.has(x)));
       if (hand && !m) throw new Error(`${b.id} ${p.n}: no ${hand.join(' ')} in the list`);
       points.push({
         n: p.n,
+        ...(p.l ? { l: p.l } : {}),
         p: p.p,
         unit: unit.unit,
         page: unit.page,

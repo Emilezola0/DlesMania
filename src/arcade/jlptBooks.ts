@@ -13,8 +13,10 @@ export interface BookExample {
   fr: string;
 }
 export interface BookPoint {
-  /** Its number in the book. */
+  /** Its number in the book (in order). */
   n: number;
+  /** Its number as the book writes it, when not a plain count ("1-3": lesson 1, item 3). */
+  l?: string;
   /** Its form, as the book lists it. */
   p: string;
   unit: number;
@@ -34,7 +36,9 @@ export interface Book {
   authors: string;
   publisher: string;
   level: string;
-  units: { unit: number; from: number; to: number; page: number }[];
+  /** Its units are lessons (課), each with a topic. */
+  lessons?: boolean;
+  units: { unit: number; from: number; to: number; page: number; title?: string }[];
   points: BookPoint[];
 }
 
@@ -49,4 +53,9 @@ export async function bookPointsFor(level: string, pattern: string): Promise<{ b
 }
 
 /** A book's short name, for the notes. */
-export const bookShort = (b: Book) => (b.id === 'mimi-n2' ? '耳から覚える 文法 N2' : b.title);
+export const bookShort = (b: Book) => (b.id === 'mimi-n2' ? '耳から覚える 文法 N2' : b.id === 'chukyu' ? '中級へ行こう' : b.title);
+/** A unit's name: "Unit 01", or "第1課 ファストフード" for a book in lessons. */
+export const unitName = (b: Book, unit: number) => {
+  const u = b.units.find((x) => x.unit === unit);
+  return b.lessons ? `第${unit}課${u?.title ? ` ${u.title}` : ''}` : `Unit ${String(unit).padStart(2, '0')}`;
+};

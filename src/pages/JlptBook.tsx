@@ -3,7 +3,7 @@
 // (Claude), never taken from the book. A point also in Coto's list links to it there.
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { loadBooks, type Book } from '../arcade/jlptBooks';
+import { loadBooks, unitName, type Book } from '../arcade/jlptBooks';
 import { BookPointNote } from '../components/JlptGrammarNote';
 import { useProgress } from '../store/progress';
 
@@ -43,8 +43,8 @@ export default function JlptBook() {
       </header>
       {book.units.map((u) => (
         <section key={u.unit} className="space-y-2">
-          <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">
-            Unit {String(u.unit).padStart(2, '0')} · {u.from}–{u.to} · p. {u.page}
+          <h2 lang="ja" className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">
+            {unitName(book, u.unit)} · {book.lessons ? `${u.to - u.from + 1} ${fr ? 'règles' : 'points'}` : `${u.from}–${u.to}`} · p. {u.page}
           </h2>
           <ul className="space-y-1.5">
             {book.points
@@ -52,7 +52,7 @@ export default function JlptBook() {
               .map((p) => (
                 <li key={p.n} className="rounded-md border border-rule bg-card/60">
                   <button type="button" onClick={() => setOpen(open === p.n ? null : p.n)} className="flex w-full items-baseline gap-3 px-3 py-2 text-left hover:bg-tile/60" aria-expanded={open === p.n}>
-                    <span className="w-8 shrink-0 font-display text-sm font-bold text-accent tabular-nums">{p.n}</span>
+                    <span className="w-10 shrink-0 font-display text-sm font-bold text-accent tabular-nums">{p.l ?? p.n}</span>
                     <span lang="ja" className="shrink-0 font-serif text-lg">
                       {p.p}
                     </span>
