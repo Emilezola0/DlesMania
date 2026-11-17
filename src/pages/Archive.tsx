@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FlameIcon } from '../components/Layout';
 import { Glyph } from '../components/Glyph';
-import { DOMAINS } from '../data';
+import { DOMAINS } from '../data/domains';
 import { EPOCH, LAUNCH, dateLocale, dayNumber, fromKey, isBirthday, toKey, todayKey } from '../lib/date';
 import { isDomain } from '../lib/rounds';
 import { BIRTHDAY_COINS, REWARD_DATES, REWARD_WINDOW_DAYS, rewardsOn } from '../lib/rewards';

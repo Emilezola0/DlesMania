@@ -1,6 +1,5 @@
 // The Specialist universes, light: their names, blurbs, rounds and banners, without the data their rounds are made
 // of (src/specialist/rounds.ts brings that in). The home page and the Daily's Specialist card need only these.
-import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 
 export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote' | 'skin';
 
@@ -51,8 +50,9 @@ export const UNIVERSES = [
     label: 'For Honor',
     ready: true,
     blurb: 'Classic by faction, class, gender and health, pictures, windows, the spotlight, weapons and executions in silhouette — all 39 heroes of the five factions.',
-    // Executions join once there are videos (scripts/build-forhonor-executions.mjs); added last, so earlier days keep their rounds.
-    types: ['picture', 'clue', 'windows', 'spotlight', ...(FH_EXECUTIONS.length ? ['execution'] : []), 'classic'] as SpType[],
+    // Executions joined once there were videos (scripts/build-forhonor-executions.mjs, 494 of them). Listed here without
+    // loading that list, which the home page would otherwise download with the universes.
+    types: ['picture', 'clue', 'windows', 'spotlight', 'execution', 'classic'] as SpType[],
   },
   {
     id: 'overwatch',

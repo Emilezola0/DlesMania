@@ -1,5 +1,5 @@
 // Finding cards by name: the Album's search, shared (the Album, the Black Market).
-import { DOMAINS } from '../data';
+import { DOMAINS } from '../data/domains';
 import { frenchOf } from '../lib/french';
 import { CARDS, SETS, type Card } from './cards';
 

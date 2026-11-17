@@ -12,7 +12,7 @@ import { AnswerBook, AnswerBookButton } from '../boss/AnswerBook';
 import { DleCoin } from '../components/DleCoin';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
-import { domainInfo } from '../data';
+import { domainInfo } from '../data/domains';
 import { bossIn as inLang, getBoss } from '../data/bosses';
 import { BossContext, bossTextIn, useT } from '../boss/lang';
 import {

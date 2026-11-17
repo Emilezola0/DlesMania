@@ -1,4 +1,4 @@
-import { domainInfo } from '../data';
+import { domainInfo } from '../data/domains';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import { GAME_META } from '../games/meta';
 import { MAX_DAILY_SCORE } from './scoring';

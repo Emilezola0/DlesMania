@@ -3,7 +3,7 @@ import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { Glyph } from '../components/Glyph';
-import { domainInfo } from '../data';
+import { domainInfo } from '../data/domains';
 import { Customise, useCustomPicks } from '../components/Customise';
 import { ALL_PREFIX, SILHOUETTES, deckFor, silhouetteDomains, type SilhouetteEntry, type SilhouetteSeries } from '../data/silhouettes';
 import { withFrench, shownName } from '../lib/french';

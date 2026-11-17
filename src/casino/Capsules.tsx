@@ -224,7 +224,7 @@ function Opening({ got, shell, onOpen }: { got: Got; shell: string; onOpen: () =
   }, [taps, need, rank]);
 
   return createPortal(
-    <div ref={stage} className="capsule-stage fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ ['--glow' as string]: leak }}>
+    <div ref={stage} className="capsule-stage fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 backdrop-blur-sm pointer-coarse:backdrop-blur-none" style={{ ['--glow' as string]: leak }}>
       {/* Light behind it, growing with every crack. */}
       <div className="capsule-stage-rays pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.15 + (taps / need) * 0.6 }} aria-hidden />
       <div className="pointer-events-none absolute left-1/2 top-1/2 size-[60vmin] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: `radial-gradient(circle, ${leak}${taps ? '55' : '22'}, transparent 65%)`, transition: 'background 0.4s' }} aria-hidden />
@@ -293,7 +293,7 @@ function Revealed({ got, again }: { got: Got; again?: () => void }) {
   }, [got]);
   if (close) return null;
   return createPortal(
-    <div className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: color }}>
+    <div className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm pointer-coarse:backdrop-blur-none" style={{ ['--glow' as string]: color }}>
       <div className="capsule-stage-rays pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.7 }} aria-hidden />
       <div className="relative flex flex-col items-center text-center text-white">
         <div className="capsule-frame-in relative grid size-44 place-items-center">
@@ -390,7 +390,7 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
   const ups = got.filter((g) => g.up).length;
   const back = got.reduce((t, g) => t + g.coins, 0);
   return createPortal(
-    <div ref={stage} className="fixed inset-0 z-50 flex overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
+    <div ref={stage} className="fixed inset-0 z-50 flex overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm pointer-coarse:backdrop-blur-none" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
       {done && <div className="capsule-stage-rays pointer-events-none fixed left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.45 }} aria-hidden />}
       <div className={`relative m-auto flex w-full flex-col items-center text-center text-white ${big ? 'max-w-3xl' : 'max-w-md'}`}>
         <p className="font-display text-sm font-bold tracking-[0.3em] text-white/90">{done ? 'YOUR HAUL' : `${opened.filter(Boolean).length} / ${got.length} OPEN`}</p>

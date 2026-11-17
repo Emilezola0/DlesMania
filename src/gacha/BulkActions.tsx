@@ -19,7 +19,7 @@ function Dialog({ title, intro, onClose, children }: { title: string; intro: Rea
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm pointer-coarse:backdrop-blur-none" onClick={onClose}>
       <div className="page my-auto w-full max-w-2xl space-y-4 rounded-md p-5" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-start justify-between gap-3">
           <div>

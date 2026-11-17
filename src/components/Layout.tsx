@@ -220,6 +220,42 @@ function useMomentOn(): boolean {
 const AvatarIcon = lazy(() => cardLayers().then((m) => ({ default: m.AvatarIcon })));
 // The name (in its Boutique style) and title beside the icon: lazy, as titles need the cards.
 const ProfileTag = lazy(() => import('../casino/ProfileTag').then((m) => ({ default: m.ProfileTag })));
+/** Where the profile tag shows (its classes below): phones from 380px wide, and wide screens. */
+const PROFILE_TAG_MEDIA = '(min-width: 380px) and (max-width: 639.98px), (min-width: 1280px)';
+
+/** Whether a media query matches, following it as the window changes. */
+function useMedia(query: string): boolean {
+  const [on, setOn] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const m = window.matchMedia(query);
+    const change = () => setOn(m.matches);
+    change();
+    m.addEventListener('change', change);
+    return () => m.removeEventListener('change', change);
+  }, [query]);
+  return on;
+}
+
+/**
+ * True once the page has shown and the browser has a moment: for what can wait (the notices over every page, which
+ * load the card list), so a phone's first seconds go to the page itself.
+ */
+function useIdle(): boolean {
+  const [idle, setIdle] = useState(false);
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (f: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    let idleId = 0;
+    const t = window.setTimeout(() => {
+      if (w.requestIdleCallback) idleId = w.requestIdleCallback(() => setIdle(true), { timeout: 2000 });
+      else setIdle(true);
+    }, 1500);
+    return () => {
+      window.clearTimeout(t);
+      if (idleId) w.cancelIdleCallback?.(idleId);
+    };
+  }, []);
+  return idle;
+}
 
 /** While a page's code arrives: a quiet spinner where the page will be. */
 function PageLoading() {
@@ -413,6 +449,8 @@ export function Layout() {
   // A win's video still playing keeps the card layers there, though the last card was just taken off: only a refresh
   // stops one (html.moment-on, set by CardReactions while it lasts).
   const momentOn = useMomentOn();
+  const profileTagShown = useMedia(PROFILE_TAG_MEDIA);
+  const idle = useIdle();
   const fr = useFr();
   const t = useT();
 
@@ -423,7 +461,9 @@ export function Layout() {
           <CardLayers />
         </Suspense>
       )}
-      <header data-site-header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
+      {/* On touch screens (phones, tablets) the bars are nearly opaque instead of blurred: the blur under them is redone at
+          every frame of a scroll, which slows a phone down for a difference hardly seen. */}
+      <header data-site-header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform pointer-coarse:bg-paper/95 pointer-coarse:backdrop-blur-none duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
@@ -488,9 +528,12 @@ export function Layout() {
           </span>
           <CoinChip />
           <AccountButton />
-          <Suspense fallback={null}>
-            <ProfileTag className="hidden max-w-[5.5rem] min-[380px]:max-sm:flex xl:flex xl:max-w-[8.5rem]" />
-          </Suspense>
+          {/* Only where it shows: it loads the card list (for the titles), which a tablet hiding it shouldn't download. */}
+          {profileTagShown && (
+            <Suspense fallback={null}>
+              <ProfileTag className="hidden max-w-[5.5rem] min-[380px]:max-sm:flex xl:flex xl:max-w-[8.5rem]" />
+            </Suspense>
+          )}
         </div>
       </header>
 
@@ -500,7 +543,7 @@ export function Layout() {
         </Suspense>
       </main>
       {/* Phones: the menu along the bottom, within reach of a thumb. */}
-      <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden" aria-label={t('Main menu', 'Menu principal')}>
+      <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur pointer-coarse:bg-paper pointer-coarse:backdrop-blur-none sm:hidden" aria-label={t('Main menu', 'Menu principal')}>
         {NAV.map((n) => (
           <NavLink
             key={n.to}
@@ -517,13 +560,15 @@ export function Layout() {
       </nav>
       <RulesModal />
       <UpdateBanner />
-      <Suspense fallback={null}>
-        <GradeBackPay />
-        <RetiredCards />
-        <AlbumNews />
-        <BirthdayReward />
-        <SeedDrops />
-      </Suspense>
+      {idle && (
+        <Suspense fallback={null}>
+          <GradeBackPay />
+          <RetiredCards />
+          <AlbumNews />
+          <BirthdayReward />
+          <SeedDrops />
+        </Suspense>
+      )}
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />

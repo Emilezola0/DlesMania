@@ -132,3 +132,6 @@ export function msUntilTomorrow(): number {
   const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   return next.getTime() - now.getTime();
 }
+
+/** Rounds in a category's daily (here, not in rounds.ts, so the save doesn't load the works lists to know it). */
+export const ROUNDS_PER_DAY = 10;

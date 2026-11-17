@@ -1,5 +1,5 @@
 import type { CustomOption } from '../components/Customise';
-import { DOMAINS } from '../data';
+import { DOMAINS } from '../data/domains';
 import { BOSSES } from '../data/bosses';
 
 /** The Boss Battle franchises among `ids` as Customise options, grouped like Boss Battle's tabs. */

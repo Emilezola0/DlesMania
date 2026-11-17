@@ -5,7 +5,8 @@ import type { Domain, GameType, RoundSpec, Work } from '../types';
 import { EPOCH, addDays } from './date';
 import { hashString, mulberry32, pick, shuffle } from './rng';
 
-export const ROUNDS_PER_DAY = 10;
+export { ROUNDS_PER_DAY } from './date';
+import { ROUNDS_PER_DAY } from './date';
 
 /** Works with real media are more fun in these rounds, so they're drawn more often. */
 const MEDIA_WEIGHT: Partial<Record<GameType, (w: Work) => boolean>> = {

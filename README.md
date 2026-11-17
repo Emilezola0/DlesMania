@@ -236,6 +236,24 @@ node scripts/firefox-check.mjs --card=Steve --give=minecraft:omni-steve --steps=
 
 What it found so far, in Firefox: no depth sorting of crossing 3D planes (the Omni rings up close are cut in halves, `OmniRingsAround`); nothing lifted (translateZ) drawn inside a size container (the card face, for its cqw sizes) nor past the edges of a hidden-back layer, so the face up close stays flat and its crown and embers stand beside it (`CardLifts`); a `repeating-conic-gradient` of wide rays and thin slivers drew only the slivers (the Celestial rays are written out); and pausing the page's animations during a video only froze what was fading in (removed: in a real window they cost the video no frames). Count a video's frames drawn (`requestVideoFrameCallback`), not its "dropped frames".
 
+### Phones and tablets
+
+Two scripts open the site in the installed Chrome as a touch device, in a throwaway profile:
+
+```bash
+node scripts/mobile-check.mjs                     # every page at 375x812 and 768x1024: anything wider than the screen (dev server)
+npm run build && npm run preview -- --port 4173   # then, against the production build:
+node scripts/phone-perf.mjs                       # per page: KB downloaded, first paint, main content, time too busy for a tap, fps
+node scripts/phone-perf.mjs --save=save.json --scroll --paths=/album   # from a given save (cards owned, an Omni equipped), scrolling
+```
+
+`phone-perf` slows the processor 4x and the connection to fast 4G, like a mid-range phone. What keeps the site quick there:
+
+- **The first download stays small.** The works lists, the cards, the bosses and the Japanese words weigh megabytes; only the pages that use them load them. Anything every page imports (`Layout`, `Home`, the save in `src/store/progress.ts`, the rules window) must not import `src/data/index.ts`, `src/gacha/cards.ts` or `src/data/bosses.ts`: light modules sit apart for them (`src/data/domains.ts`, `src/lib/bossRules.ts`, `ROUNDS_PER_DAY` in `src/lib/date.ts`). A hub that only counts things (the Games page, the home page's works line) loads its lists after it shows. Check with a build: the `index-*.js` entry should stay near 400 kB.
+- **The notices over every page** (grades paid back, album news, birthday, seeds) load once the page has shown; the header's profile tag only where it's visible.
+- **Animate with transform and opacity.** A moving background (`background-position`) over a large area has the whole screen redrawn every frame: the Omni aurora is two layers slid with a transform. Shimmering text sits on its own layer (`will-change`, end of `index.css`).
+- **No blur under the bars on touch screens** (`pointer-coarse:`): the header and the bottom bar are nearly opaque instead, as are the dark full-screen overlays.
+
 ### Media notice
 
 Cover art and many item images are hot-linked from Wikipedia/Wikimedia and are often non-free (used there under fair use). Game clips (Soundtrack, Voice Line…) are third-party YouTube uploads played through the official embed; card videos are short moments cut from third-party uploads and hosted with the site (`public/clips/`). That's fine for a personal fan project; for a public or commercial release, replace them with licensed assets (`image` accepts any URL) and verify each clip.

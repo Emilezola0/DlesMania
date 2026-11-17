@@ -14,8 +14,7 @@ import { BOSS, drawStoneSword, WEAPONS } from '../island/combat';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
-import { addDays, now as realNow, todayKey } from '../lib/date';
-import { ROUNDS_PER_DAY } from '../lib/rounds';
+import { addDays, now as realNow, ROUNDS_PER_DAY, todayKey } from '../lib/date';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
   clampGolden,

@@ -1,14 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HL_DECKS } from '../arcade/higherLower';
-import { JLPT_DECKS } from '../arcade/jlpt';
-import { NAME_LISTS } from '../arcade/lists';
 import { DleCoin } from '../components/DleCoin';
-import { COLLECTIBLE } from '../gacha/cards';
 import { HOT_BONUS, HOT_PLAYS, hotNow } from '../gacha/economy';
 import { Quests } from '../gacha/Quests';
 import { todayKey } from '../lib/date';
-import { RANK_DATA, RANK_ROUNDS } from '../rank/data';
-import { UNIVERSES } from '../specialist/rounds';
 import { useProgress } from '../store/progress';
 import { useT } from '../lib/i18n';
 
@@ -36,19 +31,35 @@ function Card({ game, hot }: { game: GameCard; hot?: string }) {
   );
 }
 
+type HubData = typeof import('./gamesHubData');
+
+/** The counts' lists, once loaded (see gamesHubData.ts): null until then. */
+function useHubData(): HubData | null {
+  const [data, setData] = useState<HubData | null>(null);
+  useEffect(() => {
+    let live = true;
+    void import('./gamesHubData').then((m) => live && setData(m));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return data;
+}
+
 /** /games: every game beyond the daily challenge, Free Play and the bosses. */
 export default function GamesHub() {
   const { special, whosThat, bests, rogueRun, coins, cards, hotGame } = useProgress();
   const hot = hotNow(hotGame, todayKey());
-  const collected = COLLECTIBLE.filter((c) => cards[c.id]).length;
+  const d = useHubData();
+  const collected = d ? d.COLLECTIBLE.filter((c) => cards[c.id]).length : 0;
   const today = todayKey();
   const doneToday = (key: string, rounds: number) => Object.values(special[`${key}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
-  const universesDone = UNIVERSES.filter((u) => doneToday(u.id, u.types.length)).length;
-  const rankDone = RANK_DATA.games.filter((g) => doneToday(`rank-${g.id}`, RANK_ROUNDS)).length;
+  const universesDone = d ? d.UNIVERSES.filter((u) => doneToday(u.id, u.types.length)).length : 0;
+  const rankDone = d ? d.RANK_DATA.games.filter((g) => doneToday(`rank-${g.id}`, d.RANK_ROUNDS)).length : 0;
   const best = (prefix: string) => Math.max(0, ...Object.entries(bests).filter(([k]) => k.startsWith(prefix)).map(([, v]) => v));
   const whoBest = Math.max(0, ...Object.values(whosThat));
-  const listsDone = NAME_LISTS.filter((l) => (bests[`ntl:${l.id}`] ?? 0) >= l.answers.length).length;
-  const listsTried = NAME_LISTS.filter((l) => bests[`ntl:${l.id}`]).length;
+  const listsDone = d ? d.NAME_LISTS.filter((l) => (bests[`ntl:${l.id}`] ?? 0) >= l.answers.length).length : 0;
+  const listsTried = d ? d.NAME_LISTS.filter((l) => bests[`ntl:${l.id}`]).length : 0;
   const t = useT();
 
   const dailies: GameCard[] = [
@@ -57,14 +68,14 @@ export default function GamesHub() {
       icon: '🎯',
       title: t('Specialist', 'Spécialiste'),
       blurb: t('One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch, Japanese and more, each with its own rounds.', 'Un univers, sous tous les angles : One Piece, League, Marvel, Genshin, Warcraft, Overwatch, le japonais et plus encore, chacun avec ses propres manches.'),
-      stat: universesDone ? t(`Today: ${universesDone}/${UNIVERSES.length} universes done`, `Aujourd’hui : ${universesDone}/${UNIVERSES.length} univers faits`) : undefined,
+      stat: universesDone ? t(`Today: ${universesDone}/${d?.UNIVERSES.length} universes done`, `Aujourd’hui : ${universesDone}/${d?.UNIVERSES.length} univers faits`) : undefined,
     },
     {
       to: '/rank',
       icon: '🏅',
       title: t('Guess the Rank', 'Devine le rang'),
       blurb: t('Watch a ranked game and say what rank the player is: League, Valorant, Rocket League and CS2.', 'Regarde une partie classée et devine le rang du joueur : League, Valorant, Rocket League et CS2.'),
-      stat: rankDone ? t(`Today: ${rankDone}/${RANK_DATA.games.length} games done`, `Aujourd’hui : ${rankDone}/${RANK_DATA.games.length} jeux faits`) : undefined,
+      stat: rankDone ? t(`Today: ${rankDone}/${d?.RANK_DATA.games.length} games done`, `Aujourd’hui : ${rankDone}/${d?.RANK_DATA.games.length} jeux faits`) : undefined,
     },
   ];
   const arcade: GameCard[] = [
@@ -86,14 +97,14 @@ export default function GamesHub() {
       to: '/higher-lower',
       icon: '↕️',
       title: t('Higher or Lower', 'Plus ou moins'),
-      blurb: t(`Bounties, box office, release years… is the next one higher or lower? ${HL_DECKS.length} decks.`, `Primes, box-office, années de sortie… le suivant est-il plus haut ou plus bas ? ${HL_DECKS.length} paquets.`),
+      blurb: t(`Bounties, box office, release years… is the next one higher or lower?${d ? ` ${d.HL_DECKS.length} decks.` : ''}`, `Primes, box-office, années de sortie… le suivant est-il plus haut ou plus bas ?${d ? ` ${d.HL_DECKS.length} paquets.` : ''}`),
       stat: best('hl:') ? t(`Best streak: ${best('hl:')}`, `Meilleure série : ${best('hl:')}`) : undefined,
     },
     {
       to: '/name-them-all',
       icon: '📝',
       title: t('Name Them All', 'Nomme-les tous'),
-      blurb: t(`Every Straw Hat, every Dragon Aspect, every champion — against the clock. ${NAME_LISTS.length} lists.`, `Chaque Chapeau de paille, chaque Aspect dragon, chaque champion — contre la montre. ${NAME_LISTS.length} listes.`),
+      blurb: t(`Every Straw Hat, every Dragon Aspect, every champion — against the clock.${d ? ` ${d.NAME_LISTS.length} lists.` : ''}`, `Chaque Chapeau de paille, chaque Aspect dragon, chaque champion — contre la montre.${d ? ` ${d.NAME_LISTS.length} listes.` : ''}`),
       stat: listsTried ? t(`${listsTried} lists tried · ${listsDone} completed`, `${listsTried} listes tentées · ${listsDone} terminées`) : undefined,
     },
     {
@@ -175,7 +186,7 @@ export default function GamesHub() {
       to: '/jlpt',
       icon: '🇯🇵',
       title: t('Japanese', 'Japonais'),
-      blurb: t(`Japanese from N5 to N1, by level or by theme (animals, food, the body…): the meaning or the reading of a word or a kanji, with a review list of the ones that give you trouble. ${JLPT_DECKS.length} decks.`, `Le japonais du N5 au N1, par niveau ou par thème (animaux, nourriture, le corps…) : le sens ou la lecture d’un mot ou d’un kanji, avec une liste de révision de ceux qui te posent problème. ${JLPT_DECKS.length} paquets.`),
+      blurb: t(`Japanese from N5 to N1, by level or by theme (animals, food, the body…): the meaning or the reading of a word or a kanji, with a review list of the ones that give you trouble.${d ? ` ${d.JLPT_DECKS.length} decks.` : ''}`, `Le japonais du N5 au N1, par niveau ou par thème (animaux, nourriture, le corps…) : le sens ou la lecture d’un mot ou d’un kanji, avec une liste de révision de ceux qui te posent problème.${d ? ` ${d.JLPT_DECKS.length} paquets.` : ''}`),
       stat: best('jlpt:') ? t(`Best streak: ${best('jlpt:')}`, `Meilleure série : ${best('jlpt:')}`) : undefined,
     },
     {
@@ -264,7 +275,7 @@ export default function GamesHub() {
               <span className="block text-sm text-ink-soft">{t('Every card you have pulled, sorted your way — and how many times.', 'Toutes les cartes que tu as tirées, triées à ta façon — et combien de fois.')}</span>
             </span>
             <span className="text-xs font-bold text-ink-faint">
-              {collected}/{COLLECTIBLE.length}
+              {d && `${collected}/${d.COLLECTIBLE.length}`}
             </span>
           </Link>
         </div>

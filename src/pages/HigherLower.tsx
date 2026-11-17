@@ -8,7 +8,7 @@ import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { Customise, useCustomPicks } from '../components/Customise';
-import { DOMAINS } from '../data';
+import { DOMAINS } from '../data/domains';
 
 /** Kinds of work, for the decks that mix them (Customise). */
 const HL_OPTIONS = DOMAINS.map((d) => ({ key: d.id, label: `${d.icon} ${d.label}` }));

@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import { RulesButton } from '../components/RulesModal';
 import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
 import { FlameIcon } from '../components/Layout';
-import { DOMAINS, WORKS } from '../data';
+import { useEffect, useRef, useState } from 'react';
+import { DOMAINS } from '../data/domains';
+import type { Work } from '../types';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { dayNumber, formatLong, todayKey } from '../lib/date';
 import { computeStreak, summarizeDay, useProgress } from '../store/progress';
@@ -97,9 +99,7 @@ export default function Home() {
         </div>
       </section>
 
-      <p className="text-center font-serif text-base italic text-ink-faint">
-        {WORKS.length} {t('works catalogued', 'œuvres répertoriées')} — {DOMAINS.map((d) => `${WORKS.filter((w) => w.domain === d.id).length} ${d.label.toLowerCase()}`).join(', ')}.
-      </p>
+      <WorksCount />
     </div>
   );
 }
@@ -113,5 +113,40 @@ function ChapterHeading({ numeral, title, link }: { numeral: string; title: stri
         {link.label}
       </Link>
     </div>
+  );
+}
+
+/**
+ * How many works the dailies draw from. The works lists weigh about a megabyte: they're only loaded once this line, at
+ * the bottom of the page, comes into view (phones would otherwise download them before anything else).
+ */
+function WorksCount() {
+  const t = useT();
+  const [works, setWorks] = useState<Work[] | null>(null);
+  const line = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    let live = true;
+    const seen = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        seen.disconnect();
+        void import('../data').then((m) => live && setWorks(m.WORKS));
+      },
+      { rootMargin: '200px' },
+    );
+    if (line.current) seen.observe(line.current);
+    return () => {
+      live = false;
+      seen.disconnect();
+    };
+  }, []);
+  return (
+    <p ref={line} className="min-h-[1.5em] text-center font-serif text-base italic text-ink-faint">
+      {works && (
+        <>
+          {works.length} {t('works catalogued', 'œuvres répertoriées')} — {DOMAINS.map((d) => `${works.filter((w) => w.domain === d.id).length} ${d.label.toLowerCase()}`).join(', ')}.
+        </>
+      )}
+    </p>
   );
 }

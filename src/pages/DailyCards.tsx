@@ -1,7 +1,7 @@
 // The four categories' cards with today's progress, and the Specialist's card: on the home page and on /daily. Kept
 // apart from the Daily page (src/pages/Daily.tsx) so the home page doesn't load every game and every Specialist round.
 import { Link } from 'react-router-dom';
-import { DOMAINS } from '../data';
+import { DOMAINS } from '../data/domains';
 import { FlameIcon } from '../components/Layout';
 import { GlyphSeal } from '../components/Glyph';
 import { todayKey } from '../lib/date';

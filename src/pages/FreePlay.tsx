@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Glyph } from '../components/Glyph';
 import { Pill } from '../components/Pill';
-import { DOMAINS, domainInfo } from '../data';
+import { DOMAINS, domainInfo } from '../data/domains';
 import { GameHost } from '../games/GameHost';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { pick } from '../lib/rng';

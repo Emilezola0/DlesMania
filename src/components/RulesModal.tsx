@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { GAME_META, GAME_TYPES } from '../games/meta';
-import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, difficultyIn, phaseIn, totalRounds } from '../lib/boss';
+import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, difficultyIn, phaseIn, totalRounds } from '../lib/bossRules';
 import { useT } from '../boss/lang';
 import { useProgress } from '../store/progress';
 import { useUi, type RulesTab } from '../store/ui';

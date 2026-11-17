@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FIREBASE_CONFIG } from '../cloud/config';
 import { useCloud } from '../cloud/state';
-import { COLLECTIBLE } from '../gacha/cards';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
@@ -10,6 +9,8 @@ const ANNOUNCED_KEY = 'omnidle-album-announced';
 const ME_KEY = 'omnidle-album-me';
 /** The newest completion this player has seen (ms); a first visit is told of the last week's. */
 const SEEN_KEY = 'omnidle-album-news-seen';
+/** The album's size when last counted: below it, the album can't be complete, and the card list needn't be loaded to know. */
+const SIZE_KEY = 'omnidle-album-size';
 const FIRST_VISIT_MS = 7 * 24 * 3600 * 1000;
 
 const read = (k: string) => {
@@ -62,15 +63,30 @@ export function AlbumNews() {
   const status = useCloud((s) => s.status);
   const [news, setNews] = useState<Completion[]>([]);
 
-  // This player's album complete, signed in, not told yet for this album: everyone is told.
-  const complete = useMemo(() => COLLECTIBLE.every((c) => (owned[c.id] ?? 0) > 0), [owned]);
+  // This player's album complete (the size of the album it covers), or 0. The card list (most of a megabyte) is only
+  // loaded when the player owns at least as many cards as the album last held: a phone opening the site doesn't wait on it.
+  const [complete, setComplete] = useState(0);
   useEffect(() => {
-    if (!complete || (status !== 'synced' && status !== 'syncing') || read(ANNOUNCED_KEY) === String(COLLECTIBLE.length)) return;
+    const have = Object.values(owned ?? {}).filter((n) => n > 0).length;
+    if (!have || have < Number(read(SIZE_KEY) ?? 0)) return setComplete(0);
+    let live = true;
+    void import('../gacha/cards').then(({ COLLECTIBLE }) => {
+      write(SIZE_KEY, String(COLLECTIBLE.length));
+      if (live) setComplete(COLLECTIBLE.every((c) => (owned[c.id] ?? 0) > 0) ? COLLECTIBLE.length : 0);
+    });
+    return () => {
+      live = false;
+    };
+  }, [owned]);
+
+  // Signed in, and not told yet for this album: everyone is told.
+  useEffect(() => {
+    if (!complete || (status !== 'synced' && status !== 'syncing') || read(ANNOUNCED_KEY) === String(complete)) return;
     void import('../cloud/albums')
-      .then((m) => m.announceAlbum(COLLECTIBLE.length))
+      .then((m) => m.announceAlbum(complete))
       .then((uid) => {
         if (!uid) return;
-        write(ANNOUNCED_KEY, String(COLLECTIBLE.length));
+        write(ANNOUNCED_KEY, String(complete));
         write(ME_KEY, uid);
       })
       .catch(() => {

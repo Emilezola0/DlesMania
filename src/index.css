@@ -1476,10 +1476,16 @@ main { transition: background-color 0.5s; }
 .moment-on main:not(:has(.page)) { background-color: color-mix(in srgb, var(--color-card) 72%, transparent); border-radius: 0.375rem; }
 
 /* ── The Omni aura (src/gacha/OmniAura.tsx): the whole site, while an Omni card is on show. ── */
-@keyframes omni-aurora {
-  0% { background-position: 0% 50%, 100% 50%; }
-  50% { background-position: 100% 50%, 0% 50%; }
-  100% { background-position: 0% 50%, 100% 50%; }
+/* Two glows drifting across in opposite directions over a still wash. Each glow is a layer twice the screen's size slid
+   with a transform (not its background moved), so the phone's graphics chip moves it without redrawing the screen every
+   frame. The same picture and motion as a 200% background going from 0% to 100% and back. */
+@keyframes omni-aurora-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-100vw, 0, 0); }
+}
+@keyframes omni-aurora-b {
+  0%, 100% { transform: translate3d(-100vw, 0, 0); }
+  50% { transform: translate3d(0, 0, 0); }
 }
 .omni-aura body::before {
   content: '';
@@ -1487,13 +1493,20 @@ main { transition: background-color 0.5s; }
   inset: 0;
   z-index: -20;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255, 59, 78, 0.16), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 70% 80%, rgba(255, 122, 24, 0.13), transparent 70%),
-    linear-gradient(120deg, rgba(255, 59, 78, 0.05), rgba(10, 5, 8, 0.1), rgba(255, 122, 24, 0.05));
-  background-size: 200% 200%, 200% 200%, 100% 100%;
-  animation: omni-aurora 18s ease-in-out infinite;
+  background: linear-gradient(120deg, rgba(255, 59, 78, 0.05), rgba(10, 5, 8, 0.1), rgba(255, 122, 24, 0.05));
 }
+.omni-aurora {
+  position: fixed;
+  left: 0;
+  top: -50vh;
+  width: 200vw;
+  height: 200vh;
+  z-index: -20;
+  pointer-events: none;
+  will-change: transform;
+}
+.omni-aurora-a { background: radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255, 59, 78, 0.16), transparent 70%); animation: omni-aurora-a 18s ease-in-out infinite; }
+.omni-aurora-b { background: radial-gradient(ellipse 60% 40% at 70% 80%, rgba(255, 122, 24, 0.13), transparent 70%); animation: omni-aurora-b 18s ease-in-out infinite; }
 .omni-aura [data-site-header]::after {
   content: '';
   position: absolute;
@@ -1525,7 +1538,7 @@ main { transition: background-color 0.5s; }
   animation: omni-spark 0.8s ease-out forwards;
 }
 @media (prefers-reduced-motion: reduce) {
-  .omni-aura body::before, .omni-aura [data-site-header]::after, .omni-aura [data-logo] { animation: none; }
+  .omni-aurora, .omni-aura [data-site-header]::after, .omni-aura [data-logo] { animation: none; }
 }
 
 /* ── Card grades II–VII (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
@@ -2112,7 +2125,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 }
 html.pack-open [data-site-header], html.pack-open footer { visibility: hidden; }
 .pack-scene, .pack-scene * { mix-blend-mode: normal !important; }
-html.pack-open body::before, html.pack-open body::after { animation-play-state: paused; }
+html.pack-open body::before, html.pack-open body::after, html.pack-open .omni-aurora { animation-play-state: paused; }
 .pack-hole-lens, .pack-hole-disc, .pack-hole-core { position: absolute; left: 0; top: 0; border-radius: 9999px; translate: -50% -50%; }
 /* The light bent around it: a soft ring of light round the dark. (Drawn, not a live blur of what's behind:
    a backdrop filter inside the shaking, scaling stage flickered and tore.) */
@@ -5186,4 +5199,14 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .island-tv-static {
     animation: none;
   }
+}
+
+/* ── Phones and tablets: shimmering text on its own layer. ──
+   A gradient sliding through text (gold names, titles, the Omni header line) is a background moved every frame. In the
+   page's own layer, that had the browser redraw the whole page at every frame, for a few letters: a phone's processor
+   and battery went to it. On a layer of its own (will-change: transform), only those letters are redrawn. */
+.golden-fill, .golden-text, .golden-banner, .card-gold-name, .card-mythic-name, .card-omni-name,
+[class*='name-style-'], [class*='title-style-'], .boutique-ascended-badge,
+.omni-aura [data-site-header]::after, .omni-aura [data-logo] {
+  will-change: transform;
 }

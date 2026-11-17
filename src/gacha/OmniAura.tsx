@@ -47,5 +47,13 @@ export function OmniAura() {
     return () => window.removeEventListener('pointermove', move);
   }, [on]);
 
-  return on ? <div ref={layer} className="pointer-events-none fixed inset-0 z-[60] overflow-hidden" aria-hidden /> : null;
+  if (!on) return null;
+  return (
+    <>
+      {/* The aurora behind every page (index.css, .omni-aurora). */}
+      <div className="omni-aurora omni-aurora-a" aria-hidden />
+      <div className="omni-aurora omni-aurora-b" aria-hidden />
+      <div ref={layer} className="pointer-events-none fixed inset-0 z-[60] overflow-hidden" aria-hidden />
+    </>
+  );
 }

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
-import { domainInfo } from '../data';
+import { domainInfo } from '../data/domains';
 import { BOSS_TABS, BOSSES, inTab, type BossTab } from '../data/bosses';
 import { formatTime } from '../lib/boss';
 import { bestSearchScore } from '../utils/textMatcher';
