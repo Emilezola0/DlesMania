@@ -21,22 +21,34 @@ interface Props {
   onError?: () => void;
 }
 
-/** A scene that starts as a tight crop and pulls back with every miss. */
+/** The tallest the frame gets (px): a tall character stays on screen. */
+const MAX_HEIGHT = 440;
+
+/**
+ * A scene that starts as a tight crop and pulls back with every miss. The frame takes the picture's own shape (a
+ * standing character tall, a scene wide), so nothing of it is cut off, and once revealed it shows whole.
+ */
 export function ZoomImage({ src, alt, step, revealed, focus = [50, 50], label = 'Zooms out with each miss', onError }: Props) {
   const [loaded, setLoaded] = useState(false);
+  /** Width ÷ height of the picture, kept between a tall portrait and a wide screenshot. */
+  const [ratio, setRatio] = useState(16 / 10);
   const [scale, blur] = revealed ? [1, 0] : STEPS[Math.min(step, STEPS.length - 1)];
 
   return (
-    <div className="relative mx-auto aspect-[16/10] w-full max-w-xl overflow-hidden rounded-md border border-rule bg-tile">
+    <div className="relative mx-auto w-full max-w-xl overflow-hidden rounded-md border border-rule bg-tile" style={{ aspectRatio: String(ratio), maxWidth: `min(36rem, ${Math.round(MAX_HEIGHT * ratio)}px)` }}>
       {!loaded && <div className="absolute inset-0 animate-pulse bg-tile" />}
       <img
         src={src}
         alt={revealed ? alt : 'Mystery scene'}
         draggable={false}
-        onLoad={() => setLoaded(true)}
+        onLoad={(e) => {
+          const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+          if (w && h) setRatio(Math.min(1.8, Math.max(0.6, w / h)));
+          setLoaded(true);
+        }}
         onError={onError}
         onContextMenu={(e) => !revealed && e.preventDefault()}
-        className="size-full select-none object-cover transition-[transform,filter] duration-700 ease-out"
+        className={`size-full select-none ${revealed ? 'object-contain' : 'object-cover'} transition-[transform,filter] duration-700 ease-out`}
         style={{ transform: `scale(${scale})`, transformOrigin: `${focus[0]}% ${focus[1]}%`, filter: `blur(${blur}px)` }}
       />
       {!revealed && (

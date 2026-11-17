@@ -26,7 +26,8 @@ export const pictureRoundFor = (u: SimpleUniverse['id']) =>
     const c = simpleCharacter(u, round.targetId)!;
     const [focus] = useState<[number, number]>(() => {
       const rand = mulberry32(round.seed);
-      return [35 + Math.round(rand() * 30), 25 + Math.round(rand() * 30)];
+      // Across the middle, and on the upper part (a standing character's head and chest, not their legs).
+      return [35 + Math.round(rand() * 30), 15 + Math.round(rand() * 25)];
     });
     return (
       <SpGuessRound
