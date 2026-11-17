@@ -118,9 +118,12 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   // anime and games, so those categories rotate one game out each day).
   const types = shuffle(GAME_TYPES.filter((t) => isAvailable(t, domain)), rand).slice(0, ROUNDS_PER_DAY);
   while (types.length < ROUNDS_PER_DAY) types.push('classic');
-  const only = domain === 'music' && dateKey >= MUSIC_GAMES_ANIME_FROM ? gameOrAnimeSong : undefined;
+  const musicOnly = domain === 'music' && dateKey >= MUSIC_GAMES_ANIME_FROM ? gameOrAnimeSong : undefined;
+  // Works added later (`from`) stay out of the days before they came, so those days keep their rounds.
+  const live = (w: Work) => !w.from || w.from <= dateKey;
+  const only = (w: Work) => live(w) && (!musicOnly || musicOnly(w));
   const specs = types.map((type) => {
-    const spec = buildRound(type, domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed)!;
+    const spec = buildRound(type, domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, live)!;
     if (spec.targetId) used.add(spec.targetId);
     return spec;
   });

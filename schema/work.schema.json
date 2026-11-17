@@ -86,6 +86,7 @@
     "emoji": { "$ref": "#/definitions/nonEmpty" },
     "item": { "$ref": "#/definitions/clue" },
     "location": { "$ref": "#/definitions/clue" },
+    "from": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "description": "First day the dailies may draw it (works added later); Free Play has it at once." },
     "visual": {
       "type": "object",
       "additionalProperties": false,

@@ -44,6 +44,11 @@ export interface Work {
   nameFr?: string;
   /** Disambiguation shown in autocomplete (artist for albums, etc.). */
   subtitle?: string;
+  /**
+   * The first day (YYYY-MM-DD) the dailies may draw it: a work added later stays out of the days before, so they keep
+   * the rounds they had (each day depends on all those before it). Free Play has it at once.
+   */
+  from?: string;
   aliases?: string[];
   domain: Domain;
   year: number;

@@ -12374,5 +12374,4898 @@
         "#ea580c"
       ]
     }
+  },
+  {
+    "id": "g-destiny2",
+    "name": "Destiny 2",
+    "aliases": [
+      "destiny"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "studio": "Bungie",
+    "creator": "Luke Smith",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Guardian",
+      "Ghost",
+      "Commander Zavala",
+      "Ikora Rey",
+      "Cayde-6",
+      "Savathûn"
+    ],
+    "themes": [
+      "Light and Darkness",
+      "Space opera"
+    ],
+    "credits": [
+      "Developer: Bungie",
+      "Composers: Michael Salvatori, Skye Lewin & others"
+    ],
+    "fandom": "destinypedia",
+    "cover": {
+      "wiki": "Destiny 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Destiny_2_%28artwork%29.jpg"
+    },
+    "audio": {
+      "clue": "A choir rising over strings in the last safe city.",
+      "query": "Destiny 2 soundtrack The Tower",
+      "youtubeId": "WQqKJHvpYxo"
+    },
+    "emoji": "🔫🌌🤖🌕🛡️",
+    "item": {
+      "name": "Gjallarhorn",
+      "description": "A legendary rocket launcher shaped like a golden wolf’s head, firing seeking wolfpack rounds."
+    },
+    "location": {
+      "name": "The Tower",
+      "description": "The walled hub of the Last City, where Guardians gather beneath a giant white sphere."
+    },
+    "visual": {
+      "icon": "🌌",
+      "colors": [
+        "#0f172a",
+        "#e2e8f0"
+      ]
+    },
+    "from": "2026-11-18"
+  },
+  {
+    "id": "g-starbound",
+    "name": "Starbound",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Sandbox",
+      "Survival"
+    ],
+    "studio": "Chucklefish",
+    "creator": "Finn Brice",
+    "origin": "United Kingdom",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Esther Bright",
+      "The Protector",
+      "Asra Nox",
+      "Koichi"
+    ],
+    "themes": [
+      "Space exploration",
+      "Lost homeworld"
+    ],
+    "credits": [
+      "Developer and publisher: Chucklefish",
+      "Composer: Curtis Schweitzer"
+    ],
+    "fandom": "starbounder",
+    "cover": {
+      "wiki": "Starbound",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/06/Starbound_Logo.png"
+    },
+    "audio": {
+      "clue": "Gentle ambient synths drifting between stars.",
+      "query": "Starbound soundtrack Atlas",
+      "youtubeId": "7nhgTG74UUA"
+    },
+    "emoji": "🚀🪐⛏️👽🌱",
+    "item": {
+      "name": "The Matter Manipulator",
+      "description": "A handheld tool that mines blocks and places them back, the first thing every explorer carries."
+    },
+    "location": {
+      "name": "The Outpost",
+      "description": "A trading post near an ancient gate, where lost spacefarers find work."
+    },
+    "visual": {
+      "icon": "🪐",
+      "colors": [
+        "#1e1b4b",
+        "#facc15"
+      ]
+    },
+    "from": "2026-11-27"
+  },
+  {
+    "id": "g-trove",
+    "name": "Trove",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "MMORPG",
+      "Sandbox"
+    ],
+    "studio": "Trion Worlds",
+    "creator": "Trion Worlds",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Qubesly",
+      "The Knight",
+      "The Candy Barbarian",
+      "Shadow Hunter"
+    ],
+    "themes": [
+      "Voxel worlds",
+      "Loot"
+    ],
+    "credits": [
+      "Developer: Trion Worlds",
+      "Publisher: Gamigo"
+    ],
+    "fandom": "trove",
+    "cover": {
+      "wiki": "Trove (video game)"
+    },
+    "audio": {
+      "clue": "Cheerful orchestral adventure music for a blocky hub.",
+      "query": "Trove soundtrack Hub"
+    },
+    "emoji": "🧊⚔️🐉🏰🎒",
+    "location": {
+      "name": "The Hub",
+      "description": "A floating voxel town of portals that lead to worlds of every difficulty.",
+      "image": "https://static.wikia.nocookie.net/trove/images/c/c5/Winter_Hub_2017.png/revision/latest/scale-to-width-down/640?cb=20171219151749"
+    },
+    "visual": {
+      "icon": "🧊",
+      "colors": [
+        "#0e7490",
+        "#fde047"
+      ]
+    },
+    "from": "2026-12-14"
+  },
+  {
+    "id": "g-rainworld",
+    "name": "Rain World",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Survival",
+      "Platformer"
+    ],
+    "studio": "Videocult",
+    "creator": "Joar Jakobsson",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Survivor",
+      "The Monk",
+      "The Hunter",
+      "Looks to the Moon",
+      "Five Pebbles"
+    ],
+    "themes": [
+      "Food chain",
+      "Ancient machines"
+    ],
+    "credits": [
+      "Creators: Joar Jakobsson & James Primate",
+      "Publisher: Adult Swim Games"
+    ],
+    "fandom": "rainworld",
+    "cover": {
+      "wiki": "Rain World",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/78/Rain_World_logo_%E2%80%93_Steam_616.png"
+    },
+    "audio": {
+      "clue": "Dripping electronic ambience in a ruined industrial world.",
+      "query": "Rain World soundtrack"
+    },
+    "emoji": "🐱🌧️🦎🏭🍉",
+    "item": {
+      "name": "Spear",
+      "description": "A rusty spear the slugcat pulls from the walls, its only weapon against predators."
+    },
+    "location": {
+      "name": "Five Pebbles",
+      "description": "The vast superstructure of an ancient computer, still thinking above the rain."
+    },
+    "visual": {
+      "icon": "🌧️",
+      "colors": [
+        "#111827",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-11-25"
+  },
+  {
+    "id": "g-wakfu",
+    "name": "Wakfu",
+    "aliases": [
+      "wakfu mmo"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "MMORPG",
+      "Turn-based"
+    ],
+    "studio": "Ankama",
+    "creator": "Anthony Roux",
+    "origin": "France",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Yugo",
+      "Amalia",
+      "Tristepin Percedal",
+      "Ruel Stroud",
+      "Evangelyne"
+    ],
+    "themes": [
+      "Ecology",
+      "Twelve gods"
+    ],
+    "credits": [
+      "Developer: Ankama Games",
+      "Game director: Anthony Roux"
+    ],
+    "fandom": "wakfu",
+    "cover": {
+      "wiki": "Wakfu (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d0/Wakfu_%28video_game%29_boxart.jpg"
+    },
+    "audio": {
+      "clue": "Bright orchestral music on a sunny island of the World of Twelve.",
+      "query": "Wakfu soundtrack Astrub",
+      "youtubeId": "Lt7_PtmICQk"
+    },
+    "emoji": "🎩🌀🌿⚔️🏝️",
+    "item": {
+      "name": "Dofus",
+      "description": "A legendary dragon egg, a treasure of immense power in the World of Twelve.",
+      "image": "https://static.wikia.nocookie.net/wakfu/images/8/8a/Crimson_Dofus.png/revision/latest?cb=20170911152211"
+    },
+    "location": {
+      "name": "Astrub",
+      "description": "The beginners’ town of the World of Twelve, at the foot of the Incarnam heights.",
+      "image": "https://static.wikia.nocookie.net/wakfu/images/2/22/Map_Astrub-April2014.PNG/revision/latest/scale-to-width-down/640?cb=20140426120925"
+    },
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#065f46",
+        "#7dd3fc"
+      ]
+    },
+    "from": "2026-12-08"
+  },
+  {
+    "id": "g-stickfight",
+    "name": "Stick Fight: The Game",
+    "aliases": [
+      "stick fight"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Party",
+      "Fighting"
+    ],
+    "studio": "Landfall",
+    "creator": "Landfall",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Yellow Stickman",
+      "The Blue Stickman",
+      "The Red Stickman",
+      "The Green Stickman"
+    ],
+    "themes": [
+      "Physics",
+      "Couch brawls"
+    ],
+    "credits": [
+      "Developer: Landfall",
+      "Publisher: Landfall"
+    ],
+    "cover": {
+      "wiki": "Stick Fight: The Game",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c0/Stick_Fight_the_Game.jpg"
+    },
+    "audio": {
+      "clue": "Frantic electronic music over a physics brawl.",
+      "query": "Stick Fight The Game soundtrack"
+    },
+    "emoji": "🧍🔫🥊💥🐍",
+    "item": {
+      "name": "The Snake Launcher",
+      "description": "A weapon that fires live snakes onto the battlefield."
+    },
+    "visual": {
+      "icon": "🧍",
+      "colors": [
+        "#f8fafc",
+        "#ef4444"
+      ]
+    },
+    "from": "2026-12-01"
+  },
+  {
+    "id": "g-corekeeper",
+    "name": "Core Keeper",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Sandbox",
+      "Survival"
+    ],
+    "studio": "Pugstorm",
+    "creator": "Pugstorm",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Explorer",
+      "Glurch the Abominouse Mass",
+      "Ghorm the Devourer",
+      "Hive Mother"
+    ],
+    "themes": [
+      "Underground",
+      "Ancient core"
+    ],
+    "credits": [
+      "Developer: Pugstorm",
+      "Publisher: Fireshine Games"
+    ],
+    "fandom": "core-keeper",
+    "cover": {
+      "wiki": "Core Keeper",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Core_Keeper.jpg"
+    },
+    "audio": {
+      "clue": "Mysterious ambient music in glowing caverns.",
+      "query": "Core Keeper soundtrack"
+    },
+    "emoji": "⛏️💎🕳️🍄🔦",
+    "location": {
+      "name": "The Core",
+      "description": "A great glowing machine at the heart of the caverns, waiting to be woken by three relics.",
+      "image": "https://static.wikia.nocookie.net/core-keeper/images/f/f3/The_Core.png/revision/latest?cb=20241022111306"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#1c1917",
+        "#22d3ee"
+      ]
+    },
+    "from": "2026-12-06"
+  },
+  {
+    "id": "g-thefinals",
+    "name": "The Finals",
+    "aliases": [
+      "finals"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "studio": "Embark Studios",
+    "creator": "Patrick Söderlund",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Scotty",
+      "June",
+      "The Light build",
+      "The Heavy build"
+    ],
+    "themes": [
+      "Game show",
+      "Destruction"
+    ],
+    "credits": [
+      "Developer: Embark Studios",
+      "Publisher: Embark Studios"
+    ],
+    "cover": {
+      "wiki": "The Finals",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/The_Finals_logo_stacked.svg/960px-The_Finals_logo_stacked.svg.png"
+    },
+    "audio": {
+      "clue": "Pumping electronic music for a televised arena fight.",
+      "query": "The Finals soundtrack"
+    },
+    "emoji": "📺💥🏙️💰🔫",
+    "item": {
+      "name": "The Cashbox",
+      "description": "A box of money teams steal from a vault and carry to a cashout station."
+    },
+    "location": {
+      "name": "Monaco",
+      "description": "A seaside arena of yachts and casinos that can be blown apart floor by floor."
+    },
+    "visual": {
+      "icon": "📺",
+      "colors": [
+        "#18181b",
+        "#f43f5e"
+      ]
+    },
+    "from": "2026-12-02"
+  },
+  {
+    "id": "g-payday2",
+    "name": "Payday 2",
+    "aliases": [
+      "payday"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "FPS",
+      "Co-op"
+    ],
+    "studio": "Overkill Software",
+    "creator": "Ulf Andersson",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Dallas",
+      "Hoxton",
+      "Wolf",
+      "Chains",
+      "Bain"
+    ],
+    "themes": [
+      "Heists",
+      "Crime"
+    ],
+    "credits": [
+      "Developer: Overkill Software",
+      "Composer: Simon Viklund"
+    ],
+    "fandom": "payday",
+    "cover": {
+      "wiki": "Payday 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Payday2cover.jpg"
+    },
+    "audio": {
+      "clue": "Driving electronic rock for a bank robbery gone loud.",
+      "query": "Payday 2 soundtrack Razormind",
+      "youtubeId": "_Fl_LJBixfg"
+    },
+    "emoji": "🤡💰🏦🚔🔫",
+    "item": {
+      "name": "The Clown Masks",
+      "description": "The painted masks the crew puts on before every robbery.",
+      "image": "https://static.wikia.nocookie.net/payday/images/4/45/Clowns_Dallas.png/revision/latest?cb=20130111172402"
+    },
+    "visual": {
+      "icon": "🤡",
+      "colors": [
+        "#0c0a09",
+        "#f59e0b"
+      ]
+    },
+    "from": "2026-11-21"
+  },
+  {
+    "id": "g-nioh2",
+    "name": "Nioh 2",
+    "aliases": [
+      "nioh"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "Team Ninja",
+    "creator": "Fumihiko Yasuda",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Hide",
+      "Tokichiro",
+      "Oda Nobunaga",
+      "Mumyo"
+    ],
+    "themes": [
+      "Yokai",
+      "Sengoku period"
+    ],
+    "credits": [
+      "Director: Fumihiko Yasuda",
+      "Developer: Team Ninja",
+      "Publisher: Koei Tecmo"
+    ],
+    "fandom": "nioh",
+    "cover": {
+      "wiki": "Nioh 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/91/Nioh_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Taiko drums and shakuhachi over a war-torn Japan.",
+      "query": "Nioh 2 soundtrack",
+      "youtubeId": "aUkZulTKRog"
+    },
+    "emoji": "👹⚔️🏯🌸🔥",
+    "item": {
+      "name": "Spirit Stones",
+      "description": "Glowing stones of amrita that half-yokai warriors feed on.",
+      "image": "https://static.wikia.nocookie.net/nioh/images/1/18/Spirit_Stone_Arm.png/revision/latest?cb=20251029203019"
+    },
+    "visual": {
+      "icon": "👹",
+      "colors": [
+        "#450a0a",
+        "#f87171"
+      ]
+    },
+    "from": "2026-12-09"
+  },
+  {
+    "id": "g-satisfactory",
+    "name": "Satisfactory",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Simulation",
+      "Sandbox"
+    ],
+    "studio": "Coffee Stain Studios",
+    "creator": "Coffee Stain Studios",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Pioneer",
+      "ADA",
+      "Lizard Doggo"
+    ],
+    "themes": [
+      "Factories",
+      "Corporate satire"
+    ],
+    "credits": [
+      "Developer and publisher: Coffee Stain Studios",
+      "Early access from 2019"
+    ],
+    "fandom": "satisfactory",
+    "cover": {
+      "wiki": "Satisfactory (video game)"
+    },
+    "audio": {
+      "clue": "Calm electronic music over a planet covered in conveyor belts.",
+      "query": "Satisfactory soundtrack"
+    },
+    "emoji": "🏭⚙️🚂🦎📦",
+    "item": {
+      "name": "The Space Elevator",
+      "description": "A colossal tower that lifts project parts off-planet, for the company.",
+      "image": "https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/a/a4/Space_Elevator.png/revision/latest?cb=20240915213943"
+    },
+    "visual": {
+      "icon": "⚙️",
+      "colors": [
+        "#1f2937",
+        "#f97316"
+      ]
+    },
+    "from": "2026-11-24"
+  },
+  {
+    "id": "g-garrysmod",
+    "name": "Garry's Mod",
+    "aliases": [
+      "gmod",
+      "garrys mod"
+    ],
+    "domain": "games",
+    "year": 2006,
+    "genres": [
+      "Sandbox"
+    ],
+    "studio": "Facepunch Studios",
+    "creator": "Garry Newman",
+    "origin": "United Kingdom",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Dr. Kleiner",
+      "The Gman",
+      "Alyx Vance"
+    ],
+    "themes": [
+      "Physics",
+      "Mods"
+    ],
+    "credits": [
+      "Creator: Garry Newman",
+      "Developer: Facepunch Studios",
+      "Publisher: Valve"
+    ],
+    "fandom": "garrysmod",
+    "cover": {
+      "wiki": "Garry's Mod",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Garry%27s_Mod_logo.svg/960px-Garry%27s_Mod_logo.svg.png"
+    },
+    "audio": {
+      "clue": "No music of its own: the hum of an empty grassy test map.",
+      "query": "Garry's Mod gm_construct ambience"
+    },
+    "emoji": "🔧🧪🧍📦🤪",
+    "item": {
+      "name": "The Physics Gun",
+      "description": "A glowing blue gun that picks up, moves and freezes any prop.",
+      "image": "https://static.wikia.nocookie.net/garrys-mod-2/images/a/a3/Physgun.png/revision/latest/scale-to-width-down/640?cb=20250415165647"
+    },
+    "location": {
+      "name": "gm_construct",
+      "description": "A concrete test map with a grassy field and a white room, where most people start."
+    },
+    "visual": {
+      "icon": "🔧",
+      "colors": [
+        "#334155",
+        "#38bdf8"
+      ]
+    },
+    "from": "2026-11-20"
+  },
+  {
+    "id": "g-astroneer",
+    "name": "Astroneer",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Sandbox",
+      "Survival"
+    ],
+    "studio": "System Era Softworks",
+    "creator": "Adam Bromell",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Astroneer"
+    ],
+    "themes": [
+      "Space exploration",
+      "Terraforming"
+    ],
+    "credits": [
+      "Developer: System Era Softworks",
+      "Early access from 2016"
+    ],
+    "fandom": "astroneer",
+    "cover": {
+      "wiki": "Astroneer",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Astroneer_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Dreamy synths on a pastel alien planet.",
+      "query": "Astroneer soundtrack"
+    },
+    "emoji": "👨‍🚀🪐🧪🌋🎒",
+    "item": {
+      "name": "The Terrain Tool",
+      "description": "A handheld device that digs, flattens and builds up the ground of any planet.",
+      "image": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/a/a9/Icon_Terrain_Tool.png/revision/latest?cb=20191116124748"
+    },
+    "location": {
+      "name": "Sylva",
+      "description": "A green starting planet with forests and caves.",
+      "image": "https://static.wikia.nocookie.net/astroneer_gamepedia/images/4/4c/Planet_Card_Sylva.jpg/revision/latest/scale-to-width-down/640?cb=20190212065106"
+    },
+    "visual": {
+      "icon": "👨‍🚀",
+      "colors": [
+        "#1e3a8a",
+        "#f472b6"
+      ]
+    },
+    "from": "2026-11-28"
+  },
+  {
+    "id": "g-divinity2",
+    "name": "Divinity: Original Sin 2",
+    "aliases": [
+      "divinity",
+      "dos2",
+      "divinity original sin"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "RPG",
+      "Turn-based"
+    ],
+    "studio": "Larian Studios",
+    "creator": "Swen Vincke",
+    "origin": "Belgium",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Lohse",
+      "Fane",
+      "The Red Prince",
+      "Sebille",
+      "Ifan ben-Mezd",
+      "Beast"
+    ],
+    "themes": [
+      "Source magic",
+      "Godhood"
+    ],
+    "credits": [
+      "Director: Swen Vincke",
+      "Composer: Borislav Slavov",
+      "Developer: Larian Studios"
+    ],
+    "fandom": "divinity",
+    "cover": {
+      "wiki": "Divinity: Original Sin II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Divinity_Original_Sin_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A folk theme of strings and lute, played by a chosen instrument.",
+      "query": "Divinity Original Sin 2 main theme",
+      "youtubeId": "-UD4pBjqPlk"
+    },
+    "emoji": "🔮⛓️🦎💀🔥",
+    "item": {
+      "name": "Source Collar",
+      "description": "A collar that keeps Sourcerers from using their magic."
+    },
+    "location": {
+      "name": "Fort Joy",
+      "description": "An island prison where the Magisters send everyone who wields Source.",
+      "image": "https://static.wikia.nocookie.net/divinity2/images/b/bd/Fort_Joy_Artwork.jpg/revision/latest/scale-to-width-down/640?cb=20230224143135"
+    },
+    "visual": {
+      "icon": "🔮",
+      "colors": [
+        "#3b0764",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-11-23"
+  },
+  {
+    "id": "g-elitedangerous",
+    "name": "Elite Dangerous",
+    "aliases": [
+      "elite"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Simulation",
+      "Multiplayer"
+    ],
+    "studio": "Frontier Developments",
+    "creator": "David Braben",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Commander",
+      "Salvation",
+      "The Thargoids"
+    ],
+    "themes": [
+      "Space trading",
+      "Milky Way"
+    ],
+    "credits": [
+      "Creator: David Braben",
+      "Composer: Erasmus Talbot",
+      "Developer: Frontier Developments"
+    ],
+    "fandom": "elite-dangerous",
+    "cover": {
+      "wiki": "Elite Dangerous",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Elite_Dangerous.png"
+    },
+    "audio": {
+      "clue": "A grand orchestral waltz for docking at a spinning station.",
+      "query": "Elite Dangerous soundtrack docking",
+      "youtubeId": "TAwLcloeuqY"
+    },
+    "emoji": "🚀🌌⭐🛰️💱",
+    "location": {
+      "name": "Sol",
+      "description": "Humanity’s home system, among 400 billion stars to fly to.",
+      "image": "https://static.wikia.nocookie.net/elite-dangerous/images/0/01/Sol.png/revision/latest/scale-to-width-down/640?cb=20191216040151"
+    },
+    "visual": {
+      "icon": "🛰️",
+      "colors": [
+        "#09090b",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-02"
+  },
+  {
+    "id": "g-moonlighter",
+    "name": "Moonlighter",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Roguelike",
+      "Action RPG"
+    ],
+    "studio": "Digital Sun",
+    "creator": "Javier Giménez",
+    "origin": "Spain",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Will",
+      "Zenon",
+      "Eris",
+      "Tomo"
+    ],
+    "themes": [
+      "Shopkeeping",
+      "Dungeons"
+    ],
+    "credits": [
+      "Developer: Digital Sun",
+      "Publisher: 11 bit studios"
+    ],
+    "fandom": "moonlighter",
+    "cover": {
+      "wiki": "Moonlighter (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/98/Moonlighter.jpg"
+    },
+    "audio": {
+      "clue": "A cosy village tune with plucked strings.",
+      "query": "Moonlighter soundtrack Rynoka",
+      "youtubeId": "53oWT6opXQk"
+    },
+    "emoji": "🏪🌙🗝️⚔️💰",
+    "item": {
+      "name": "The Merchant’s Pendant",
+      "description": "A pendant that pulls its wearer out of a dungeon, with what they found."
+    },
+    "location": {
+      "name": "Rynoka",
+      "description": "A merchant village built around five gates to other worlds."
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#1e293b",
+        "#fcd34d"
+      ]
+    },
+    "from": "2026-12-13"
+  },
+  {
+    "id": "g-theforest",
+    "name": "The Forest",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Survival",
+      "Horror"
+    ],
+    "studio": "Endnight Games",
+    "creator": "Ben Falcone",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Eric LeBlanc",
+      "Timmy LeBlanc",
+      "Matthew Cross",
+      "Virginia"
+    ],
+    "themes": [
+      "Plane crash",
+      "Cannibals"
+    ],
+    "credits": [
+      "Developer: Endnight Games",
+      "Early access from 2014"
+    ],
+    "fandom": "theforestgame",
+    "cover": {
+      "wiki": "The Forest (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/46/TheForest_Game.jpg"
+    },
+    "audio": {
+      "clue": "Uneasy ambient drones in a forest at night.",
+      "query": "The Forest soundtrack",
+      "youtubeId": "3aU5u4H1vvg"
+    },
+    "emoji": "✈️🌲🪓👹🏕️",
+    "item": {
+      "name": "The Survival Book",
+      "description": "A notebook of building plans and notes that every crash survivor carries."
+    },
+    "visual": {
+      "icon": "🪓",
+      "colors": [
+        "#14532d",
+        "#991b1b"
+      ]
+    },
+    "from": "2026-11-25"
+  },
+  {
+    "id": "g-watchdogs2",
+    "name": "Watch Dogs 2",
+    "aliases": [
+      "watch dogs",
+      "watch_dogs 2"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Ubisoft Montreal",
+    "creator": "Jonathan Morin",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Marcus Holloway",
+      "Wrench",
+      "Sitara",
+      "Josh",
+      "Horatio"
+    ],
+    "themes": [
+      "Hacking",
+      "Surveillance"
+    ],
+    "credits": [
+      "Creative director: Jonathan Morin",
+      "Developer: Ubisoft Montreal",
+      "Composer: Hudson Mohawke"
+    ],
+    "fandom": "watchdogs",
+    "cover": {
+      "wiki": "Watch Dogs 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b0/Watch_Dogs_2.jpg"
+    },
+    "audio": {
+      "clue": "Bouncy electronic hip-hop beats in the Bay Area.",
+      "query": "Watch Dogs 2 soundtrack Hudson Mohawke",
+      "youtubeId": "sNHUtbb-yQ0"
+    },
+    "emoji": "💻📱🌉🎭🤖",
+    "item": {
+      "name": "The Thunderball",
+      "description": "A billiard ball on a bungee cord, a hacker’s melee weapon.",
+      "image": "https://static.wikia.nocookie.net/watchdogscombined/images/1/1d/Marcus_Swinging_the_Thunderball_on_an_Innocent.gif/revision/latest?cb=20240829171903"
+    },
+    "location": {
+      "name": "San Francisco",
+      "description": "The Bay Area, wired from end to end by a city-wide operating system.",
+      "image": "https://static.wikia.nocookie.net/watchdogscombined/images/0/0a/San_Francisco_Collage.png/revision/latest/scale-to-width-down/569?cb=20200719124718"
+    },
+    "visual": {
+      "icon": "💻",
+      "colors": [
+        "#0f172a",
+        "#22d3ee"
+      ]
+    },
+    "from": "2026-11-24"
+  },
+  {
+    "id": "g-peak",
+    "name": "Peak",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Co-op",
+      "Adventure"
+    ],
+    "studio": "Aggro Crab & Landfall",
+    "creator": "Aggro Crab & Landfall",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Scout"
+    ],
+    "themes": [
+      "Climbing",
+      "Stamina"
+    ],
+    "credits": [
+      "Developers: Aggro Crab and Landfall"
+    ],
+    "cover": {
+      "wiki": "Peak (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0f/PEAK_cover_image.jpg"
+    },
+    "audio": {
+      "clue": "Easy-going acoustic music for a climb up a mountain.",
+      "query": "PEAK game soundtrack",
+      "youtubeId": "fH97hs8HExI"
+    },
+    "emoji": "🧗🏔️🎒🏕️🍄",
+    "location": {
+      "name": "The Island",
+      "description": "A strange island whose mountain changes every day, climbed by lost scouts."
+    },
+    "visual": {
+      "icon": "🏔️",
+      "colors": [
+        "#0c4a6e",
+        "#fef3c7"
+      ]
+    },
+    "from": "2026-12-04"
+  },
+  {
+    "id": "g-ravenswatch",
+    "name": "Ravenswatch",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Passtech Games",
+    "creator": "Passtech Games",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Scarlet",
+      "The Pied Piper",
+      "Beowulf",
+      "Aladdin",
+      "Melusine",
+      "The Snow Queen"
+    ],
+    "themes": [
+      "Fairy tales",
+      "Nightmares"
+    ],
+    "credits": [
+      "Developer: Passtech Games",
+      "Publisher: Nacon"
+    ],
+    "cover": {
+      "wiki": "Ravenswatch"
+    },
+    "audio": {
+      "clue": "Dark fairy-tale strings under a full moon.",
+      "query": "Ravenswatch soundtrack",
+      "youtubeId": "l-x1-BwlCkA"
+    },
+    "emoji": "🐺📖🌙⚔️🪈",
+    "location": {
+      "name": "Reverie",
+      "description": "A land of tales swallowed by nightmares, its legends turned into heroes."
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#1e1b4b",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-07"
+  },
+  {
+    "id": "g-civ6",
+    "name": "Sid Meier's Civilization VI",
+    "aliases": [
+      "civilization vi",
+      "civilization 6",
+      "civ 6",
+      "civ vi",
+      "civilization"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Strategy",
+      "Turn-based"
+    ],
+    "studio": "Firaxis Games",
+    "creator": "Ed Beach",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Gandhi",
+      "Cleopatra",
+      "Montezuma",
+      "Teddy Roosevelt"
+    ],
+    "themes": [
+      "History",
+      "Empire"
+    ],
+    "credits": [
+      "Lead designer: Ed Beach",
+      "Composer: Geoff Knorr; main theme by Christopher Tin",
+      "Developer: Firaxis Games"
+    ],
+    "fandom": "civilization",
+    "cover": {
+      "wiki": "Civilization VI",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Civilization_VI_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A Swahili choral main theme rising over the ages.",
+      "query": "Civilization VI main theme Sogno di Volare",
+      "youtubeId": "WQYN2P3E06s"
+    },
+    "emoji": "🏛️🗺️⚔️🚀👑",
+    "item": {
+      "name": "Settler",
+      "description": "The unit that founds every new city.",
+      "image": "https://static.wikia.nocookie.net/civilization/images/3/32/Settler_%28Civ6%29.png/revision/latest?cb=20161128020105"
+    },
+    "visual": {
+      "icon": "🏛️",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-11-18"
+  },
+  {
+    "id": "g-repo",
+    "name": "R.E.P.O.",
+    "aliases": [
+      "repo"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Co-op",
+      "Horror"
+    ],
+    "studio": "semiwork",
+    "creator": "semiwork",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Semibots",
+      "Taxman"
+    ],
+    "themes": [
+      "Physics",
+      "Salvage"
+    ],
+    "credits": [
+      "Developer and publisher: semiwork"
+    ],
+    "cover": {
+      "wiki": "R.E.P.O.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/R.E.P.O._cover.jpg"
+    },
+    "audio": {
+      "clue": "Lounge music in a truck between two haunted manors.",
+      "query": "REPO game soundtrack",
+      "youtubeId": "M7S86GHHx5c"
+    },
+    "emoji": "🤖👻🏚️💰🏺",
+    "item": {
+      "name": "The Extraction Point",
+      "description": "A station where the little robots bring fragile valuables to sell."
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#111827",
+        "#facc15"
+      ]
+    },
+    "from": "2026-11-25"
+  },
+  {
+    "id": "g-blueprince",
+    "name": "Blue Prince",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Puzzle",
+      "Roguelike"
+    ],
+    "studio": "Dogubomb",
+    "creator": "Tonda Ros",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Simon P. Jones",
+      "Herbert S. Sinclair"
+    ],
+    "themes": [
+      "Inheritance",
+      "Mystery"
+    ],
+    "credits": [
+      "Creator: Tonda Ros",
+      "Publisher: Raw Fury"
+    ],
+    "cover": {
+      "wiki": "Blue Prince",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Blue_Prince_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Calm piano and strings in a shifting manor.",
+      "query": "Blue Prince soundtrack"
+    },
+    "emoji": "🏰🚪🧩🔑💙",
+    "item": {
+      "name": "Room 46",
+      "description": "The rumoured last room of a forty-five room manor, promised to whoever finds it."
+    },
+    "location": {
+      "name": "Mt. Holly Manor",
+      "description": "A manor whose rooms are drafted anew every day, left by a great-uncle."
+    },
+    "visual": {
+      "icon": "🚪",
+      "colors": [
+        "#1e3a8a",
+        "#e0f2fe"
+      ]
+    },
+    "from": "2026-12-08"
+  },
+  {
+    "id": "g-unturned",
+    "name": "Unturned",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Survival",
+      "Sandbox"
+    ],
+    "studio": "Smartly Dressed Games",
+    "creator": "Nelson Sexton",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Survivor"
+    ],
+    "themes": [
+      "Zombies",
+      "Blocky"
+    ],
+    "credits": [
+      "Creator: Nelson Sexton",
+      "Developer: Smartly Dressed Games"
+    ],
+    "fandom": "unturned-bunker",
+    "cover": {
+      "wiki": "Unturned",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Unturned_Steam_artwork.jpg"
+    },
+    "audio": {
+      "clue": "A gentle acoustic theme for a blocky apocalypse.",
+      "query": "Unturned main menu theme",
+      "youtubeId": "g8bgJzW7LfU"
+    },
+    "emoji": "🧟🔫🪓🏠🥫",
+    "location": {
+      "name": "PEI",
+      "description": "A blocky Canadian island overrun by zombies, the first map."
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#365314",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-05"
+  },
+  {
+    "id": "g-marvelrivals",
+    "name": "Marvel Rivals",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Hero Shooter",
+      "Multiplayer"
+    ],
+    "studio": "NetEase Games",
+    "creator": "Guangyun Chen",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Spider-Man",
+      "Iron Man",
+      "Doctor Strange",
+      "Loki",
+      "Jeff the Land Shark",
+      "Doctor Doom"
+    ],
+    "themes": [
+      "Timestream",
+      "Superheroes"
+    ],
+    "credits": [
+      "Developer: NetEase Games",
+      "Licence: Marvel Entertainment"
+    ],
+    "fandom": "marvelrivals",
+    "cover": {
+      "wiki": "Marvel Rivals",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Logo_Marvel_Rivals.svg/960px-Logo_Marvel_Rivals.svg.png"
+    },
+    "audio": {
+      "clue": "An epic orchestral superhero theme.",
+      "query": "Marvel Rivals main theme",
+      "youtubeId": "w5UzdBw38zc"
+    },
+    "emoji": "🦸🕷️🛡️🦈⚡",
+    "item": {
+      "name": "The Chronovium",
+      "description": "The time-bending element both Dooms fight over.",
+      "image": "https://static.wikia.nocookie.net/marvel-rivals/images/a/a1/Chronovium_Lore_Item.png/revision/latest?cb=20240829170639"
+    },
+    "location": {
+      "name": "Tokyo 2099",
+      "description": "A neon future city, one of the battlefields torn out of time.",
+      "image": "https://static.wikia.nocookie.net/marvel-rivals/images/6/6e/Shibuyaa_2099.png/revision/latest/scale-to-width-down/640?cb=20250220235222"
+    },
+    "visual": {
+      "icon": "🦸",
+      "colors": [
+        "#7f1d1d",
+        "#facc15"
+      ]
+    },
+    "from": "2026-11-19"
+  },
+  {
+    "id": "g-wizardoflegend",
+    "name": "Wizard of Legend",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Contingent99",
+    "creator": "Contingent99",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Wizard",
+      "Freiya",
+      "Atlas",
+      "Sola",
+      "Master Council"
+    ],
+    "themes": [
+      "Arcana",
+      "Trials"
+    ],
+    "credits": [
+      "Developer: Contingent99",
+      "Publisher: Humble Games"
+    ],
+    "fandom": "wizardoflegend",
+    "cover": {
+      "wiki": "Wizard of Legend",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/63/Wizard_of_Legend_logo.jpg"
+    },
+    "audio": {
+      "clue": "Upbeat chiptune-tinged battle music.",
+      "query": "Wizard of Legend soundtrack"
+    },
+    "emoji": "🧙🔥❄️⚡🌀",
+    "location": {
+      "name": "The Chaos Trials",
+      "description": "A museum exhibit that turns real, full of spells and its council of masters."
+    },
+    "visual": {
+      "icon": "🧙",
+      "colors": [
+        "#312e81",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-14"
+  },
+  {
+    "id": "g-norestforthewicked",
+    "name": "No Rest for the Wicked",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "Moon Studios",
+    "creator": "Thomas Mahler",
+    "origin": "Austria",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Cerim",
+      "Madronna",
+      "Seriath"
+    ],
+    "themes": [
+      "Plague",
+      "Holy war"
+    ],
+    "credits": [
+      "Director: Thomas Mahler",
+      "Developer: Moon Studios",
+      "Publisher: Private Division"
+    ],
+    "cover": {
+      "wiki": "No Rest for the Wicked (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/71/No_Rest_for_the_Wicked_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Mournful strings on a plague-struck island.",
+      "query": "No Rest for the Wicked soundtrack"
+    },
+    "emoji": "⚔️🏝️🦠👑🌧️",
+    "location": {
+      "name": "Sacra",
+      "description": "The rain-soaked town of an island struck by a plague called the Pestilence."
+    },
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#1c1917",
+        "#a8a29e"
+      ]
+    },
+    "from": "2026-11-30"
+  },
+  {
+    "id": "g-borderlands2",
+    "name": "Borderlands 2",
+    "aliases": [
+      "borderlands"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "FPS",
+      "Co-op"
+    ],
+    "studio": "Gearbox Software",
+    "creator": "Paul Hellquist",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Handsome Jack",
+      "Claptrap",
+      "Lilith",
+      "Tiny Tina",
+      "Mr. Torgue"
+    ],
+    "themes": [
+      "Loot",
+      "Space western"
+    ],
+    "credits": [
+      "Creative director: Paul Hellquist",
+      "Developer: Gearbox Software",
+      "Publisher: 2K"
+    ],
+    "fandom": "borderlands",
+    "cover": {
+      "wiki": "Borderlands 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Borderlands_2_cover_art.png"
+    },
+    "audio": {
+      "clue": "A dusty indie-folk opening song for a lawless planet.",
+      "query": "Borderlands 2 intro Short Change Hero",
+      "youtubeId": "QAPD2X_pjAY"
+    },
+    "emoji": "🔫💰🤖🌵😈",
+    "item": {
+      "name": "Eridium",
+      "description": "A purple mineral the planet is mined for, worth killing over.",
+      "image": "https://static.wikia.nocookie.net/borderlands/images/0/09/Eridium02.png/revision/latest/scale-to-width-down/392?cb=20121002080247"
+    },
+    "location": {
+      "name": "Sanctuary",
+      "description": "The last free city on Pandora, home of the resistance.",
+      "image": "https://static.wikia.nocookie.net/borderlands/images/e/ed/Sanctuary.png/revision/latest/scale-to-width-down/640?cb=20130807223156"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#78350f",
+        "#fde047"
+      ]
+    },
+    "from": "2026-11-18"
+  },
+  {
+    "id": "g-ballxpit",
+    "name": "Ball x Pit",
+    "aliases": [
+      "ballxpit",
+      "ball pit"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Kenny Sun",
+    "creator": "Kenny Sun",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Warrior",
+      "The Itchy Finger",
+      "The Repentant"
+    ],
+    "themes": [
+      "Brick-breaking",
+      "Fusion"
+    ],
+    "credits": [
+      "Creator: Kenny Sun",
+      "Publisher: Devolver Digital"
+    ],
+    "cover": {
+      "wiki": "Ball x Pit",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5c/Ball_x_Pit_cover.jpg"
+    },
+    "audio": {
+      "clue": "Pulsing synth music as balls ricochet into a pit.",
+      "query": "BALL x PIT soundtrack"
+    },
+    "emoji": "⚪🧱💥🕳️🏘️",
+    "location": {
+      "name": "New Ballbylon",
+      "description": "A town rebuilt at the edge of a great pit, from what heroes bring back up."
+    },
+    "visual": {
+      "icon": "⚪",
+      "colors": [
+        "#18181b",
+        "#a3e635"
+      ]
+    },
+    "from": "2026-12-03"
+  },
+  {
+    "id": "g-rounds",
+    "name": "Rounds",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Party",
+      "Shooter"
+    ],
+    "studio": "Landfall",
+    "creator": "Landfall",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Orange Blob",
+      "The Blue Blob"
+    ],
+    "themes": [
+      "Card upgrades",
+      "Duels"
+    ],
+    "credits": [
+      "Developer and publisher: Landfall"
+    ],
+    "cover": {
+      "wiki": "Rounds (video game)"
+    },
+    "audio": {
+      "clue": "Punchy electronic music between short duels.",
+      "query": "ROUNDS game soundtrack"
+    },
+    "emoji": "🔴🔵🃏🔫🛡️",
+    "item": {
+      "name": "The Cards",
+      "description": "An upgrade the loser of each point picks, stacking into absurd guns."
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#0a0a0a",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-14"
+  },
+  {
+    "id": "g-kingdomtwocrowns",
+    "name": "Kingdom Two Crowns",
+    "aliases": [
+      "kingdom"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Strategy",
+      "Simulation"
+    ],
+    "studio": "Coatsink & Fury Studios",
+    "creator": "Thomas van den Berge",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Monarch",
+      "The Greed",
+      "The Hermit"
+    ],
+    "themes": [
+      "Building a kingdom",
+      "Coins"
+    ],
+    "credits": [
+      "Creators: Thomas van den Berge & Marco Bancale",
+      "Publisher: Raw Fury"
+    ],
+    "fandom": "kingdomthegame",
+    "cover": {
+      "wiki": "Kingdom Two Crowns",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Kingdom_Two_Crowns_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Soft, melancholy strings while a monarch rides at dusk.",
+      "query": "Kingdom Two Crowns soundtrack"
+    },
+    "emoji": "👑🐎🪙🏰🌙",
+    "item": {
+      "name": "The Coin Purse",
+      "description": "The monarch’s only means of building: coins dropped to hire and to raise walls.",
+      "image": "https://static.wikia.nocookie.net/kingdomthegame/images/7/79/Pouch.png/revision/latest?cb=20181220024302"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#0c4a6e",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-11"
+  },
+  {
+    "id": "g-armoredcore6",
+    "name": "Armored Core VI: Fires of Rubicon",
+    "aliases": [
+      "armored core",
+      "armored core 6",
+      "ac6"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Action",
+      "Third-Person Shooter"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Masaru Yamamura",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "C4-621",
+      "Handler Walter",
+      "Ayre",
+      "V.IV Rusty"
+    ],
+    "themes": [
+      "Mechs",
+      "Corporate war"
+    ],
+    "credits": [
+      "Director: Masaru Yamamura",
+      "Developer: FromSoftware",
+      "Publisher: Bandai Namco"
+    ],
+    "fandom": "armoredcore",
+    "cover": {
+      "wiki": "Armored Core VI: Fires of Rubicon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/89/Armored_Core_VI_Fires_of_Rubicon_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Heavy industrial electronics for a mech duel.",
+      "query": "Armored Core 6 soundtrack",
+      "youtubeId": "EZ8CiIQbXf8"
+    },
+    "emoji": "🤖🔥🪐🚀💥",
+    "item": {
+      "name": "Coral",
+      "description": "A mysterious energy substance that once set a whole planet ablaze.",
+      "image": "https://static.wikia.nocookie.net/armoredcore/images/8/85/Coral_Contact.png/revision/latest/scale-to-width-down/640?cb=20231107004039"
+    },
+    "location": {
+      "name": "Rubicon 3",
+      "description": "A frozen frontier planet scarred by a fire half a century ago.",
+      "image": "https://static.wikia.nocookie.net/armoredcore/images/f/f1/Stage_select_ACVI_Bona_Dea_Dunes.png/revision/latest?cb=20231005071107"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#1c1917",
+        "#ef4444"
+      ]
+    },
+    "from": "2026-11-22"
+  },
+  {
+    "id": "g-nomanssky",
+    "name": "No Man's Sky",
+    "aliases": [
+      "nms",
+      "no mans sky"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Survival",
+      "Exploration"
+    ],
+    "studio": "Hello Games",
+    "creator": "Sean Murray",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Traveller",
+      "Artemis",
+      "Nada",
+      "Polo",
+      "The Atlas"
+    ],
+    "themes": [
+      "Procedural universe",
+      "Simulation"
+    ],
+    "credits": [
+      "Director: Sean Murray",
+      "Music: 65daysofstatic",
+      "Developer: Hello Games"
+    ],
+    "fandom": "nomanssky",
+    "cover": {
+      "wiki": "No Man's Sky",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/No_Man%27s_Sky.jpg"
+    },
+    "audio": {
+      "clue": "Post-rock guitars and drums over an endless universe.",
+      "query": "No Man's Sky 65daysofstatic Supermoon",
+      "youtubeId": "PZAM-_5h4QE"
+    },
+    "emoji": "🚀🪐🦕🌌🔭",
+    "item": {
+      "name": "The Multi-Tool",
+      "description": "The traveller’s scanner, mining laser and weapon in one.",
+      "image": "https://static.wikia.nocookie.net/nomanssky_gamepedia/images/5/5c/20221014115848_1.jpg/revision/latest/scale-to-width-down/640?cb=20221014015937"
+    },
+    "location": {
+      "name": "The Space Anomaly",
+      "description": "A strange station that appears wherever travellers meet, ruled by Nada and Polo.",
+      "image": "https://static.wikia.nocookie.net/nomanssky_gamepedia/images/5/58/20191012104457_1.jpg/revision/latest/scale-to-width-down/640?cb=20191012004658"
+    },
+    "visual": {
+      "icon": "🪐",
+      "colors": [
+        "#7c2d12",
+        "#38bdf8"
+      ]
+    },
+    "from": "2026-11-19"
+  },
+  {
+    "id": "g-megabonk",
+    "name": "Megabonk",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "vedinad",
+    "creator": "vedinad",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "CL4NK",
+      "Sir Oofie",
+      "Megachad"
+    ],
+    "themes": [
+      "Hordes",
+      "Bonks"
+    ],
+    "credits": [
+      "Creator: vedinad"
+    ],
+    "cover": {
+      "wiki": "Megabonk",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d5/Megabonk_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Silly upbeat music while hordes swarm a low-poly hero.",
+      "query": "Megabonk soundtrack",
+      "youtubeId": "l8yZ9fXM2i4"
+    },
+    "emoji": "🔨💀💥📈🎮",
+    "visual": {
+      "icon": "🔨",
+      "colors": [
+        "#14532d",
+        "#fde047"
+      ]
+    },
+    "from": "2026-12-02"
+  },
+  {
+    "id": "g-noita",
+    "name": "Noita",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Nolla Games",
+    "creator": "Petri Purho",
+    "origin": "Finland",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Mina",
+      "Kolmisilmä"
+    ],
+    "themes": [
+      "Simulated pixels",
+      "Alchemy"
+    ],
+    "credits": [
+      "Developers: Nolla Games (Petri Purho, Olli Harjola, Arvi Teikari)"
+    ],
+    "fandom": "noita",
+    "cover": {
+      "wiki": "Noita (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/aa/Noita_game_logo.jpg"
+    },
+    "audio": {
+      "clue": "Finnish folk drums and droning strings in a burning mine.",
+      "query": "Noita soundtrack"
+    },
+    "emoji": "🧙‍♀️🔥💧⚗️💀",
+    "item": {
+      "name": "The Wand",
+      "description": "A wand whose spells are slotted in and combined, often to the witch’s own death.",
+      "image": "https://static.wikia.nocookie.net/noita_gamepedia_en/images/8/8c/Wand_examples.png/revision/latest?cb=20210327180517"
+    },
+    "location": {
+      "name": "The Mines",
+      "description": "The first depths, where every pixel can burn, melt or explode.",
+      "image": "https://static.wikia.nocookie.net/noita_gamepedia_en/images/4/4a/Mine_Entrance_2.png/revision/latest/scale-to-width-down/640?cb=20200821190251"
+    },
+    "visual": {
+      "icon": "🧙‍♀️",
+      "colors": [
+        "#0c0a09",
+        "#a855f7"
+      ]
+    },
+    "from": "2026-11-26"
+  },
+  {
+    "id": "g-ninesols",
+    "name": "Nine Sols",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Metroidvania",
+      "Action"
+    ],
+    "studio": "Red Candle Games",
+    "creator": "Red Candle Games",
+    "origin": "Taiwan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Yi",
+      "Shuanshuan",
+      "Kuafu",
+      "Eigong",
+      "Lady Ethereal"
+    ],
+    "themes": [
+      "Taopunk",
+      "Revenge"
+    ],
+    "credits": [
+      "Developer and publisher: Red Candle Games"
+    ],
+    "fandom": "ninesols",
+    "cover": {
+      "wiki": "Nine Sols",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/I0_nine-sols-promotional-art.jpg"
+    },
+    "audio": {
+      "clue": "Erhu and synths in a temple of machines.",
+      "query": "Nine Sols soundtrack",
+      "youtubeId": "jo_-vr1FwJ0"
+    },
+    "emoji": "🐱⚔️🏯🤖☯️",
+    "location": {
+      "name": "New Kunlun",
+      "description": "A vast ancient vessel-city where nine rulers of a fallen race hide."
+    },
+    "visual": {
+      "icon": "☯️",
+      "colors": [
+        "#14532d",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-04"
+  },
+  {
+    "id": "g-dyinglight",
+    "name": "Dying Light",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Survival Horror",
+      "Open World"
+    ],
+    "studio": "Techland",
+    "creator": "Adrian Ciszewski",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Kyle Crane",
+      "Rahim",
+      "Jade",
+      "Rais",
+      "Brecken"
+    ],
+    "themes": [
+      "Parkour",
+      "Zombies"
+    ],
+    "credits": [
+      "Developer: Techland",
+      "Composer: Paweł Błaszczak"
+    ],
+    "fandom": "dyinglight",
+    "cover": {
+      "wiki": "Dying Light",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c0/Dying_Light_cover.jpg"
+    },
+    "audio": {
+      "clue": "A retro synth theme over a quarantined city.",
+      "query": "Dying Light main theme"
+    },
+    "emoji": "🧟🏃🌙🏙️🪝",
+    "item": {
+      "name": "Antizin",
+      "description": "The drug that slows the infection, airdropped into a sealed city.",
+      "image": "https://static.wikia.nocookie.net/dyinglight/images/0/01/Antizin.jpg/revision/latest/scale-to-width-down/640?cb=20210616120220"
+    },
+    "location": {
+      "name": "Harran",
+      "description": "A quarantined Middle Eastern city overrun by the infected, deadlier at night.",
+      "image": "https://static.wikia.nocookie.net/dyinglight/images/c/c3/Harran.jpg/revision/latest/scale-to-width-down/640?cb=20150203085024"
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    },
+    "from": "2026-11-21"
+  },
+  {
+    "id": "g-deadlock",
+    "name": "Deadlock",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "MOBA",
+      "Hero Shooter"
+    ],
+    "studio": "Valve",
+    "creator": "Valve",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Haze",
+      "Lady Geist",
+      "Abrams",
+      "The Doorman",
+      "Seven"
+    ],
+    "themes": [
+      "Occult New York",
+      "Lanes"
+    ],
+    "credits": [
+      "Developer: Valve",
+      "In early development"
+    ],
+    "fandom": "deadlock",
+    "cover": {
+      "wiki": "Deadlock (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Deadlock_box_art_cover%2C_%27Old_Gods%2C_New_Blood%27_update.jpg"
+    },
+    "audio": {
+      "clue": "Jazzy noir music in an occult city.",
+      "query": "Deadlock game soundtrack",
+      "youtubeId": "WkGDC3idX1E"
+    },
+    "emoji": "🎩🔫🏙️🧙🗽",
+    "item": {
+      "name": "The Patron",
+      "description": "A great entity each team guards at its base, whose fall ends the match."
+    },
+    "visual": {
+      "icon": "🎩",
+      "colors": [
+        "#1c1917",
+        "#d97706"
+      ]
+    },
+    "from": "2026-12-07"
+  },
+  {
+    "id": "g-hyperlightdrifter",
+    "name": "Hyper Light Drifter",
+    "aliases": [
+      "hld"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "Heart Machine",
+    "creator": "Alx Preston",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Drifter",
+      "The Jackal",
+      "The Guardian"
+    ],
+    "themes": [
+      "Illness",
+      "Fallen civilization"
+    ],
+    "credits": [
+      "Creator: Alx Preston",
+      "Composer: Disasterpeace"
+    ],
+    "fandom": "hyperlightdrifter",
+    "cover": {
+      "wiki": "Hyper Light Drifter",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/HyperLightDrifterBoxArt.png"
+    },
+    "audio": {
+      "clue": "Hazy synth music by a famous chiptune composer.",
+      "query": "Hyper Light Drifter Disasterpeace soundtrack"
+    },
+    "emoji": "🗡️💗🏛️🐺🔺",
+    "location": {
+      "name": "The Central Hub",
+      "description": "A town at the centre of a ruined land, its four corners hiding ancient technology.",
+      "image": "https://static.wikia.nocookie.net/hyperlightdrifter/images/0/0d/007_i_was_in_a_town.png/revision/latest/scale-to-width-down/640?cb=20160421090500"
+    },
+    "visual": {
+      "icon": "🔺",
+      "colors": [
+        "#4c1d95",
+        "#f472b6"
+      ]
+    },
+    "from": "2026-11-27"
+  },
+  {
+    "id": "g-gtfo",
+    "name": "GTFO",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "FPS",
+      "Co-op"
+    ],
+    "studio": "10 Chambers",
+    "creator": "Ulf Andersson",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Woods",
+      "Dauda",
+      "Hackett",
+      "Bishop",
+      "The Warden"
+    ],
+    "themes": [
+      "Underground complex",
+      "Stealth horror"
+    ],
+    "credits": [
+      "Director: Ulf Andersson",
+      "Developer: 10 Chambers"
+    ],
+    "fandom": "gtfo",
+    "cover": {
+      "wiki": "GTFO (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5c/GTFO_key_art.jpg"
+    },
+    "audio": {
+      "clue": "Oppressive electronic drones in the dark.",
+      "query": "GTFO soundtrack",
+      "youtubeId": "JF80sIxGyqc"
+    },
+    "emoji": "🔦👹🔇🏚️🔫",
+    "location": {
+      "name": "The Complex",
+      "description": "A huge underground facility of sleeping monsters, entered on the Warden’s orders."
+    },
+    "visual": {
+      "icon": "🔦",
+      "colors": [
+        "#020617",
+        "#ef4444"
+      ]
+    },
+    "from": "2026-12-01"
+  },
+  {
+    "id": "g-mgrising",
+    "name": "Metal Gear Rising: Revengeance",
+    "aliases": [
+      "metal gear rising",
+      "mgr",
+      "revengeance"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Hack and Slash"
+    ],
+    "studio": "PlatinumGames",
+    "creator": "Kenji Saito",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Raiden",
+      "Senator Armstrong",
+      "Jetstream Sam",
+      "Monsoon",
+      "Blade Wolf"
+    ],
+    "themes": [
+      "Cyborgs",
+      "Private military"
+    ],
+    "credits": [
+      "Director: Kenji Saito",
+      "Developer: PlatinumGames",
+      "Producer: Hideo Kojima (Konami)"
+    ],
+    "fandom": "metalgear",
+    "cover": {
+      "wiki": "Metal Gear Rising: Revengeance",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Metal_Gear_Rising_Revengeance_box_artwork.jpg"
+    },
+    "audio": {
+      "clue": "Thundering metal with a vocal track for each boss.",
+      "query": "Metal Gear Rising It Has To Be This Way",
+      "youtubeId": "rOmD2CQGgt4"
+    },
+    "emoji": "⚔️🤖⚡🍉🇺🇸",
+    "item": {
+      "name": "The High-Frequency Blade",
+      "description": "A vibrating sword that cuts through anything along any line."
+    },
+    "visual": {
+      "icon": "⚡",
+      "colors": [
+        "#18181b",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-11-23"
+  },
+  {
+    "id": "g-ultimatechickenhorse",
+    "name": "Ultimate Chicken Horse",
+    "aliases": [
+      "uch"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Party",
+      "Platformer"
+    ],
+    "studio": "Clever Endeavour Games",
+    "creator": "Clever Endeavour Games",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Chicken",
+      "Horse",
+      "Raccoon",
+      "Sheep"
+    ],
+    "themes": [
+      "Building traps",
+      "Friendship ruined"
+    ],
+    "credits": [
+      "Developer and publisher: Clever Endeavour Games"
+    ],
+    "cover": {
+      "wiki": "Ultimate Chicken Horse",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Ultimate_Chicken_Horse_logo.jpg"
+    },
+    "audio": {
+      "clue": "Jaunty folk-pop for a farmyard race.",
+      "query": "Ultimate Chicken Horse soundtrack",
+      "youtubeId": "L0k0zH7XfJs"
+    },
+    "emoji": "🐔🐴🦝🧱🏁",
+    "item": {
+      "name": "The Party Box",
+      "description": "A crate of random traps and platforms each player picks from before the run."
+    },
+    "visual": {
+      "icon": "🐔",
+      "colors": [
+        "#7c2d12",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-13"
+  },
+  {
+    "id": "g-spiritfarer",
+    "name": "Spiritfarer",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Adventure",
+      "Life Sim"
+    ],
+    "studio": "Thunder Lotus Games",
+    "creator": "Nicolas Guérin",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Stella",
+      "Daffodil",
+      "Gwen",
+      "Atul",
+      "Charon"
+    ],
+    "themes": [
+      "Death",
+      "Letting go"
+    ],
+    "credits": [
+      "Creative director: Nicolas Guérin",
+      "Composer: Max LL"
+    ],
+    "fandom": "spiritfarer",
+    "cover": {
+      "wiki": "Spiritfarer",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/13/Spiritfarer_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Warm piano and strings on a boat for the dead.",
+      "query": "Spiritfarer soundtrack"
+    },
+    "emoji": "⛵🐱🌻👻🔦",
+    "item": {
+      "name": "The Everlight",
+      "description": "A magical light that turns into the tools the ferrymaster needs."
+    },
+    "location": {
+      "name": "The Everdoor",
+      "description": "The door where spirits are taken when they are ready to leave.",
+      "image": "https://static.wikia.nocookie.net/spiritfarer/images/b/bb/Everdoor.png/revision/latest/scale-to-width-down/640?cb=20210424061357"
+    },
+    "visual": {
+      "icon": "⛵",
+      "colors": [
+        "#164e63",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-11-27"
+  },
+  {
+    "id": "g-spacemarine2",
+    "name": "Warhammer 40,000: Space Marine 2",
+    "aliases": [
+      "space marine 2",
+      "space marine"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Third-Person Shooter",
+      "Action"
+    ],
+    "studio": "Saber Interactive",
+    "creator": "Dmitry Grigorenko",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Titus",
+      "Chairon",
+      "Gadriel",
+      "Leandros"
+    ],
+    "themes": [
+      "Tyranids",
+      "Faith in the Emperor"
+    ],
+    "credits": [
+      "Developer: Saber Interactive",
+      "Publisher: Focus Entertainment",
+      "Licence: Games Workshop"
+    ],
+    "fandom": "warhammer40k",
+    "cover": {
+      "wiki": "Warhammer 40,000: Space Marine 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/42/Warhammer_40%2C000_Space_Marine_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Grim choirs and war drums for a holy war.",
+      "query": "Space Marine 2 soundtrack",
+      "youtubeId": "cVF1ESc87Fc"
+    },
+    "emoji": "🛡️🦂⚔️💀🔫",
+    "item": {
+      "name": "The Chainsword",
+      "description": "A sword whose edge is a roaring chain of teeth.",
+      "image": "https://static.wikia.nocookie.net/warhammer40k/images/5/57/Imperial_Variant.jpg/revision/latest/scale-to-width-down/581?cb=20140102031957"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-05"
+  },
+  {
+    "id": "g-battleblock",
+    "name": "BattleBlock Theater",
+    "aliases": [
+      "battleblock"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Platformer",
+      "Co-op"
+    ],
+    "studio": "The Behemoth",
+    "creator": "Dan Paladin",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox"
+    ],
+    "characters": [
+      "Hatty Hattington",
+      "The Narrator",
+      "The Cats"
+    ],
+    "themes": [
+      "Theatre",
+      "Gems"
+    ],
+    "credits": [
+      "Creator: Dan Paladin",
+      "Narrator: Will Stamper",
+      "Developer: The Behemoth"
+    ],
+    "fandom": "battleblocktheater",
+    "cover": {
+      "wiki": "BattleBlock Theater",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/59/Battleblockcover.png"
+    },
+    "audio": {
+      "clue": "Silly theatrical music with a booming narrator.",
+      "query": "BattleBlock Theater soundtrack",
+      "youtubeId": "J76KuJNW-Q0"
+    },
+    "emoji": "🎭🐱🎩💎🚢",
+    "location": {
+      "name": "The Theater",
+      "description": "A theatre on an island where cats force shipwrecked friends to perform deadly plays."
+    },
+    "visual": {
+      "icon": "🎭",
+      "colors": [
+        "#7f1d1d",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-07"
+  },
+  {
+    "id": "g-dmc5",
+    "name": "Devil May Cry 5",
+    "aliases": [
+      "devil may cry",
+      "dmc5",
+      "dmc 5"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Hack and Slash",
+      "Action"
+    ],
+    "studio": "Capcom",
+    "creator": "Hideaki Itsuno",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Dante",
+      "Nero",
+      "V",
+      "Vergil",
+      "Trish",
+      "Lady"
+    ],
+    "themes": [
+      "Demons",
+      "Style"
+    ],
+    "credits": [
+      "Director: Hideaki Itsuno",
+      "Developer: Capcom"
+    ],
+    "fandom": "devilmaycry",
+    "cover": {
+      "wiki": "Devil May Cry 5",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cb/Devil_May_Cry_5.jpg"
+    },
+    "audio": {
+      "clue": "Heavy metal that gets louder the more stylish you fight.",
+      "query": "Devil May Cry 5 Devil Trigger",
+      "youtubeId": "jELlbJLx1XQ"
+    },
+    "emoji": "😈⚔️🔫🍕🎸",
+    "item": {
+      "name": "Devil Breaker",
+      "description": "A detachable robotic arm, each with its own power."
+    },
+    "location": {
+      "name": "Red Grave City",
+      "description": "A city taken over by a demonic tree that drinks human blood."
+    },
+    "visual": {
+      "icon": "😈",
+      "colors": [
+        "#450a0a",
+        "#e5e7eb"
+      ]
+    },
+    "from": "2026-11-19"
+  },
+  {
+    "id": "g-pseudoregalia",
+    "name": "Pseudoregalia",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Metroidvania",
+      "Platformer"
+    ],
+    "studio": "rittzler",
+    "creator": "rittzler",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Sybil",
+      "The Princess"
+    ],
+    "themes": [
+      "Dream castle",
+      "Movement"
+    ],
+    "credits": [
+      "Creator: rittzler"
+    ],
+    "cover": {
+      "wiki": "Pseudoregalia",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/00/Pseudoregalia.jpg"
+    },
+    "audio": {
+      "clue": "Low-poly dreamy synths in a castle of dreams.",
+      "query": "Pseudoregalia soundtrack",
+      "youtubeId": "uQpSO8Z8OjY"
+    },
+    "emoji": "🐰🏰🌙🔑💤",
+    "visual": {
+      "icon": "🐰",
+      "colors": [
+        "#1e1b4b",
+        "#c4b5fd"
+      ]
+    },
+    "from": "2026-12-15"
+  },
+  {
+    "id": "g-paladins",
+    "name": "Paladins",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Hero Shooter",
+      "Multiplayer"
+    ],
+    "studio": "Evil Mojo Games",
+    "creator": "Hi-Rez Studios",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Androxus",
+      "Fernando",
+      "Maeve",
+      "Viktor",
+      "Pip"
+    ],
+    "themes": [
+      "Champions",
+      "Cards"
+    ],
+    "credits": [
+      "Developer: Evil Mojo Games",
+      "Publisher: Hi-Rez Studios"
+    ],
+    "fandom": "paladins",
+    "cover": {
+      "wiki": "Paladins (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/13/Paladins_%28video_game%29.jpg"
+    },
+    "audio": {
+      "clue": "Heroic fantasy orchestral music for an arena.",
+      "query": "Paladins main theme",
+      "youtubeId": "eLXl4tJ-Qgw"
+    },
+    "emoji": "🛡️🔫🐉🃏🏰",
+    "item": {
+      "name": "The Payload",
+      "description": "A siege engine teams push to the enemy base.",
+      "image": "https://static.wikia.nocookie.net/paladins_gamepedia/images/4/4d/GameMode_Payload.png/revision/latest?cb=20171015120005"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#1e3a8a",
+        "#f59e0b"
+      ]
+    },
+    "from": "2026-12-10"
+  },
+  {
+    "id": "g-whiteknuckle",
+    "name": "White Knuckle",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Platformer",
+      "Horror"
+    ],
+    "studio": "Dark Machine Games",
+    "creator": "Dark Machine Games",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Climber"
+    ],
+    "themes": [
+      "Climbing",
+      "Megastructure"
+    ],
+    "credits": [
+      "Developer: Dark Machine Games",
+      "Publisher: DreadXP"
+    ],
+    "cover": {
+      "wiki": "White Knuckle (video game)"
+    },
+    "audio": {
+      "clue": "Tense industrial ambience in a bottomless shaft.",
+      "query": "White Knuckle game soundtrack",
+      "youtubeId": "BhaDFCHRTd4"
+    },
+    "emoji": "✊🧗⬆️🏭🕳️",
+    "visual": {
+      "icon": "✊",
+      "colors": [
+        "#0a0a0a",
+        "#e5e7eb"
+      ]
+    },
+    "from": "2026-12-12"
+  },
+  {
+    "id": "g-jusant",
+    "name": "Jusant",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Adventure",
+      "Puzzle"
+    ],
+    "studio": "Don’t Nod",
+    "creator": "Don’t Nod",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Climber",
+      "Ballast"
+    ],
+    "themes": [
+      "Drought",
+      "Climbing"
+    ],
+    "credits": [
+      "Developer and publisher: Don’t Nod"
+    ],
+    "fandom": "jusant",
+    "cover": {
+      "wiki": "Jusant",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jusant_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "Airy, meditative music on a tower in a dried-up sea.",
+      "query": "Jusant soundtrack",
+      "youtubeId": "OWkGfeEWSJQ"
+    },
+    "emoji": "🧗🗼🌊💧🐚",
+    "item": {
+      "name": "Ballast",
+      "description": "A small creature of water that wakes plants with its song.",
+      "image": "https://static.wikia.nocookie.net/jusant/images/7/77/Ballast.png/revision/latest/scale-to-width-down/640?cb=20251210150513"
+    },
+    "visual": {
+      "icon": "🗼",
+      "colors": [
+        "#78350f",
+        "#7dd3fc"
+      ]
+    },
+    "from": "2026-12-03"
+  },
+  {
+    "id": "g-grounded",
+    "name": "Grounded",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Survival",
+      "Co-op"
+    ],
+    "studio": "Obsidian Entertainment",
+    "creator": "Adam Brennecke",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Max",
+      "Willow",
+      "Pete",
+      "Hoops",
+      "BURG.L"
+    ],
+    "themes": [
+      "Shrunk",
+      "Insects"
+    ],
+    "credits": [
+      "Director: Adam Brennecke",
+      "Developer: Obsidian Entertainment"
+    ],
+    "fandom": "grounded",
+    "cover": {
+      "wiki": "Grounded (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ab/Grounded_game_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Upbeat 1990s-style music in a giant backyard.",
+      "query": "Grounded soundtrack",
+      "youtubeId": "ohiNe1wbIa4"
+    },
+    "emoji": "🐜🕷️🌱🔍🧃",
+    "item": {
+      "name": "BURG.L",
+      "description": "A helpful robot that waits in a lab in the backyard, its memory scattered.",
+      "image": "https://static.wikia.nocookie.net/grounded9429/images/f/f5/BURG.L.png/revision/latest?cb=20250611071112"
+    },
+    "location": {
+      "name": "The Backyard",
+      "description": "A suburban garden made huge by a shrinking accident, full of spiders.",
+      "image": "https://static.wikia.nocookie.net/grounded9429/images/d/de/BackyardMap.png/revision/latest?cb=20230321233542"
+    },
+    "visual": {
+      "icon": "🐜",
+      "colors": [
+        "#14532d",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-12"
+  },
+  {
+    "id": "g-wormswmd",
+    "name": "Worms W.M.D",
+    "aliases": [
+      "worms",
+      "worms wmd"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Strategy",
+      "Turn-based"
+    ],
+    "studio": "Team17",
+    "creator": "Team17",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Worms"
+    ],
+    "themes": [
+      "Artillery",
+      "Absurd weapons"
+    ],
+    "credits": [
+      "Developer and publisher: Team17"
+    ],
+    "fandom": "worms",
+    "cover": {
+      "wiki": "Worms W.M.D",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/Worms_WMD_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Bouncy military marches for a war of worms.",
+      "query": "Worms WMD soundtrack",
+      "youtubeId": "o8Vb6hFiP0g"
+    },
+    "emoji": "🪱💣🐑🍌🚁",
+    "item": {
+      "name": "The Holy Hand Grenade",
+      "description": "A sacred grenade that sings Hallelujah before it explodes.",
+      "image": "https://static.wikia.nocookie.net/worms/images/0/04/Holy_Grenade.png/revision/latest?cb=20110430085240"
+    },
+    "visual": {
+      "icon": "🪱",
+      "colors": [
+        "#14532d",
+        "#f472b6"
+      ]
+    },
+    "from": "2026-12-05"
+  },
+  {
+    "id": "g-projectzomboid",
+    "name": "Project Zomboid",
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Survival",
+      "Sandbox"
+    ],
+    "studio": "The Indie Stone",
+    "creator": "Chris Simpson",
+    "origin": "United Kingdom",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Survivor",
+      "Kate",
+      "Baldspot"
+    ],
+    "themes": [
+      "Zombies",
+      "Slow death"
+    ],
+    "credits": [
+      "Developer: The Indie Stone",
+      "Early access from 2013"
+    ],
+    "fandom": "pzwiki",
+    "cover": {
+      "wiki": "Project Zomboid",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Boxshot_of_video_game_Project_zomboid.jpg"
+    },
+    "audio": {
+      "clue": "Melancholy piano for the end of the world.",
+      "query": "Project Zomboid main theme",
+      "youtubeId": "vIvXIvCn2UA"
+    },
+    "emoji": "🧟🏚️🔨🥫📻",
+    "location": {
+      "name": "Knox Country",
+      "description": "A Kentucky county sealed off in 1993, where everyone is already dead."
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#365314",
+        "#f5f5f4"
+      ]
+    },
+    "from": "2026-11-26"
+  },
+  {
+    "id": "g-division2",
+    "name": "Tom Clancy's The Division 2",
+    "aliases": [
+      "the division 2",
+      "division 2",
+      "the division"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Third-Person Shooter",
+      "Open World"
+    ],
+    "studio": "Massive Entertainment",
+    "creator": "Mathias Karlson",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Agent",
+      "Faye Lau",
+      "Manny Ortega",
+      "Aaron Keener"
+    ],
+    "themes": [
+      "Pandemic",
+      "Collapse"
+    ],
+    "credits": [
+      "Developer: Massive Entertainment",
+      "Publisher: Ubisoft"
+    ],
+    "fandom": "thedivision",
+    "cover": {
+      "wiki": "Tom Clancy's The Division 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/af/The_Division_2_art.jpg"
+    },
+    "audio": {
+      "clue": "Tense electronic score in an abandoned capital.",
+      "query": "The Division 2 soundtrack",
+      "youtubeId": "guJ4noT1D9A"
+    },
+    "emoji": "🦠🏛️🔫🟠⌚",
+    "item": {
+      "name": "The SHD Watch",
+      "description": "The orange-ringed watch that marks a sleeper agent."
+    },
+    "location": {
+      "name": "The White House",
+      "description": "The agents’ base, in a capital fallen after a pandemic.",
+      "image": "https://static.wikia.nocookie.net/thedivision/images/6/6e/WH_Zone.png/revision/latest/scale-to-width-down/640?cb=20260519091709"
+    },
+    "visual": {
+      "icon": "🟠",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-06"
+  },
+  {
+    "id": "g-pathofexile",
+    "name": "Path of Exile",
+    "aliases": [
+      "poe"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "Grinding Gear Games",
+    "creator": "Chris Wilson",
+    "origin": "New Zealand",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Exile",
+      "Kitava",
+      "Sin",
+      "Innocence",
+      "Zana"
+    ],
+    "themes": [
+      "Gods",
+      "Exile"
+    ],
+    "credits": [
+      "Director: Chris Wilson",
+      "Developer: Grinding Gear Games"
+    ],
+    "fandom": "pathofexile",
+    "cover": {
+      "wiki": "Path of Exile",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Path_of_Exile_Logo.png"
+    },
+    "audio": {
+      "clue": "Brooding dark-fantasy music on a cursed continent.",
+      "query": "Path of Exile soundtrack",
+      "youtubeId": "8OGJ2W6t26Q"
+    },
+    "emoji": "⚔️🌑💀🔮🌳",
+    "item": {
+      "name": "The Passive Skill Tree",
+      "description": "A huge web of over a thousand nodes, every build’s map.",
+      "image": "https://static.wikia.nocookie.net/pathofexile_gamepedia/images/3/33/PoE-SkillTree-33.jpg/revision/latest/scale-to-width-down/640?cb=20180718215014"
+    },
+    "location": {
+      "name": "Wraeclast",
+      "description": "A cursed continent where criminals are banished.",
+      "image": "https://static.wikia.nocookie.net/pathofexile_gamepedia/images/7/7a/Wraeclast_map.jpg/revision/latest/scale-to-width-down/640?cb=20170710161202"
+    },
+    "visual": {
+      "icon": "🌑",
+      "colors": [
+        "#1c1917",
+        "#d97706"
+      ]
+    },
+    "from": "2026-11-22"
+  },
+  {
+    "id": "g-ultrakill",
+    "name": "Ultrakill",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "FPS",
+      "Action"
+    ],
+    "studio": "Arsi \"Hakita\" Patala",
+    "creator": "Arsi \"Hakita\" Patala",
+    "origin": "Finland",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "V1",
+      "V2",
+      "Gabriel",
+      "Minos Prime",
+      "Sisyphus Prime"
+    ],
+    "themes": [
+      "Hell",
+      "Machines"
+    ],
+    "credits": [
+      "Creator: Arsi \"Hakita\" Patala",
+      "Publisher: New Blood Interactive"
+    ],
+    "fandom": "ultrakill",
+    "cover": {
+      "wiki": "Ultrakill",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Ultrakill_cover.png"
+    },
+    "audio": {
+      "clue": "Breakbeat and metal at a frenzied speed.",
+      "query": "ULTRAKILL soundtrack",
+      "youtubeId": "e9EqU9y69vU"
+    },
+    "emoji": "🤖🩸🔥🔫😇",
+    "item": {
+      "name": "Blood",
+      "description": "The fuel of the machines, which heal by standing in their enemies’ blood.",
+      "image": "https://static.wikia.nocookie.net/ultrakill/images/1/17/Bloodpool.png/revision/latest?cb=20220528073700"
+    },
+    "location": {
+      "name": "Hell",
+      "description": "Nine circles of a Hell where mankind is extinct and machines run on blood."
+    },
+    "visual": {
+      "icon": "🩸",
+      "colors": [
+        "#450a0a",
+        "#facc15"
+      ]
+    },
+    "from": "2026-11-26"
+  },
+  {
+    "id": "g-persona3reload",
+    "name": "Persona 3 Reload",
+    "aliases": [
+      "persona 3",
+      "p3r",
+      "p3"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "JRPG",
+      "Turn-based"
+    ],
+    "studio": "Atlus",
+    "creator": "Kazuhisa Wada",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Makoto Yuki",
+      "Yukari Takeba",
+      "Junpei Iori",
+      "Mitsuru Kirijo",
+      "Aigis"
+    ],
+    "themes": [
+      "Death",
+      "The Dark Hour"
+    ],
+    "credits": [
+      "Producer: Kazuhisa Wada",
+      "Composer: Shoji Meguro (remixed by Atsushi Kitajoh)",
+      "Developer: Atlus"
+    ],
+    "fandom": "megamitensei",
+    "cover": {
+      "wiki": "Persona 3 Reload",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/65/Persona_3_Reload_box_art.jpg"
+    },
+    "audio": {
+      "clue": "A J-pop and hip-hop battle theme with English rap.",
+      "query": "Persona 3 Reload It's Going Down Now",
+      "youtubeId": "v6PDPMQVGDM"
+    },
+    "emoji": "🌙🔫🗼🃏🎧",
+    "item": {
+      "name": "The Evoker",
+      "description": "A gun-shaped device students point at their own heads to call their Persona.",
+      "image": "https://static.wikia.nocookie.net/megamitensei/images/1/1f/Evoker.png/revision/latest/scale-to-width-down/640?cb=20240412175502"
+    },
+    "location": {
+      "name": "Tartarus",
+      "description": "A tower that rises from a school during a hidden hour each midnight.",
+      "image": "https://static.wikia.nocookie.net/megamitensei/images/8/8c/Tartarus_entrance_art.png/revision/latest/scale-to-width-down/640?cb=20161019105724"
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#1e3a8a",
+        "#7dd3fc"
+      ]
+    },
+    "from": "2026-11-20"
+  },
+  {
+    "id": "g-vermintide2",
+    "name": "Warhammer: Vermintide 2",
+    "aliases": [
+      "vermintide",
+      "vermintide 2"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action",
+      "Co-op"
+    ],
+    "studio": "Fatshark",
+    "creator": "Mårten Stormdal",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Markus Kruber",
+      "Bardin Goreksson",
+      "Kerillian",
+      "Victor Saltzpyre",
+      "Sienna Fuegonasus"
+    ],
+    "themes": [
+      "Skaven",
+      "Chaos"
+    ],
+    "credits": [
+      "Developer: Fatshark",
+      "Licence: Games Workshop"
+    ],
+    "fandom": "vermintide",
+    "cover": {
+      "wiki": "Warhammer: Vermintide 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Vermintide_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Grim orchestral music as a horde of rat-men approaches.",
+      "query": "Vermintide 2 soundtrack"
+    },
+    "emoji": "🐀⚔️🔥🏰🪓",
+    "location": {
+      "name": "Taal’s Horn Keep",
+      "description": "The heroes’ fortress, a ruined keep they hold between missions."
+    },
+    "visual": {
+      "icon": "🐀",
+      "colors": [
+        "#1c1917",
+        "#16a34a"
+      ]
+    },
+    "from": "2026-11-29"
+  },
+  {
+    "id": "g-towerfall",
+    "name": "TowerFall Ascension",
+    "aliases": [
+      "towerfall"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Party",
+      "Platformer"
+    ],
+    "studio": "Maddy Makes Games",
+    "creator": "Maddy Thorson",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Green Archer",
+      "The Pink Archer",
+      "The Orange Archer",
+      "The Blue Archer"
+    ],
+    "themes": [
+      "Archery",
+      "Couch versus"
+    ],
+    "credits": [
+      "Creator: Maddy Thorson",
+      "Art: Pedro Medeiros",
+      "Music: Alec Holowka"
+    ],
+    "fandom": "towerfall",
+    "cover": {
+      "wiki": "TowerFall",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/TowerFall_logo.png"
+    },
+    "audio": {
+      "clue": "Medieval chiptune for an archery brawl.",
+      "query": "TowerFall Ascension soundtrack",
+      "youtubeId": "RTIbBpxHHCM"
+    },
+    "emoji": "🏹👑💀🗼🎮",
+    "item": {
+      "name": "The Arrows",
+      "description": "Arrows that have to be picked back up after every shot, or stomped from a rival."
+    },
+    "visual": {
+      "icon": "🏹",
+      "colors": [
+        "#14532d",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-10"
+  },
+  {
+    "id": "g-gettingoverit",
+    "name": "Getting Over It with Bennett Foddy",
+    "aliases": [
+      "getting over it"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Bennett Foddy",
+    "creator": "Bennett Foddy",
+    "origin": "Australia",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "Diogenes",
+      "Bennett Foddy (narrator)"
+    ],
+    "themes": [
+      "Frustration",
+      "Failure"
+    ],
+    "credits": [
+      "Creator and narrator: Bennett Foddy"
+    ],
+    "cover": {
+      "wiki": "Getting Over It with Bennett Foddy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Getting_Over_It_with_Bennett_Foddy.jpg"
+    },
+    "audio": {
+      "clue": "No music of its own: a calm narrator and the clang of a hammer on rock.",
+      "query": "Getting Over It narration"
+    },
+    "emoji": "🔨🏺🧗😤🪨",
+    "item": {
+      "name": "The Sledgehammer",
+      "description": "A hammer held by a man in a pot, the only way up a mountain of junk."
+    },
+    "visual": {
+      "icon": "🔨",
+      "colors": [
+        "#78716c",
+        "#fafaf9"
+      ]
+    },
+    "from": "2026-11-22"
+  },
+  {
+    "id": "g-contentwarning",
+    "name": "Content Warning",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Co-op",
+      "Horror"
+    ],
+    "studio": "Skog, Landfall",
+    "creator": "Skog",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Content Creators"
+    ],
+    "themes": [
+      "Viral videos",
+      "Monsters"
+    ],
+    "credits": [
+      "Developers: Skog, Zorro, Wilnyl, Philip & thePetHen",
+      "Publisher: Landfall"
+    ],
+    "cover": {
+      "wiki": "Content Warning (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/63/Content_Warning_cover.jpg"
+    },
+    "audio": {
+      "clue": "Upbeat lo-fi music before a dive into the Old World.",
+      "query": "Content Warning game soundtrack",
+      "youtubeId": "2X1bEwY3jeU"
+    },
+    "emoji": "🎥👻📈🤳😱",
+    "item": {
+      "name": "The Camera",
+      "description": "A camera the team films monsters with, for views on SpookTube."
+    },
+    "visual": {
+      "icon": "🎥",
+      "colors": [
+        "#0f172a",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-03"
+  },
+  {
+    "id": "g-lostark",
+    "name": "Lost Ark",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "MMORPG",
+      "Action RPG"
+    ],
+    "studio": "Smilegate RPG",
+    "creator": "Ji Won-gil",
+    "origin": "South Korea",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Armen",
+      "Kadan",
+      "Kazeros",
+      "Thirain"
+    ],
+    "themes": [
+      "Demons",
+      "The Ark"
+    ],
+    "credits": [
+      "Developer: Smilegate RPG",
+      "Publisher in the West: Amazon Games"
+    ],
+    "fandom": "lostark",
+    "cover": {
+      "wiki": "Lost Ark"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral theme with a soaring choir.",
+      "query": "Lost Ark main theme",
+      "youtubeId": "ImLUK7HyaC4"
+    },
+    "emoji": "⚔️🚢🏝️👹💎",
+    "item": {
+      "name": "The Ark",
+      "description": "A legendary relic of seven pieces that can push back the demons."
+    },
+    "location": {
+      "name": "Arkesia",
+      "description": "A world of continents and islands invaded from the abyss."
+    },
+    "visual": {
+      "icon": "🚢",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-09"
+  },
+  {
+    "id": "g-waven",
+    "name": "Waven",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Tactical RPG",
+      "Turn-based"
+    ],
+    "studio": "Ankama",
+    "creator": "Anthony Roux",
+    "origin": "France",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "The Wanderers",
+      "Yugo",
+      "Nox"
+    ],
+    "themes": [
+      "Flood",
+      "Twelve gods"
+    ],
+    "credits": [
+      "Developer and publisher: Ankama Games"
+    ],
+    "fandom": "wakfu",
+    "cover": {
+      "wiki": "Waven"
+    },
+    "audio": {
+      "clue": "Light, adventurous music over a drowned world of islands.",
+      "query": "Waven soundtrack"
+    },
+    "emoji": "🌊🏝️🎲⚔️🎩",
+    "location": {
+      "name": "The Flooded World",
+      "description": "The World of Twelve after a great flood, nothing left but scattered islands."
+    },
+    "visual": {
+      "icon": "🌊",
+      "colors": [
+        "#0c4a6e",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-11"
+  },
+  {
+    "id": "g-vrising",
+    "name": "V Rising",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Survival",
+      "Action RPG"
+    ],
+    "studio": "Stunlock Studios",
+    "creator": "Stunlock Studios",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Vampire",
+      "Dracula",
+      "Solarus the Immaculate",
+      "Simon Belmont"
+    ],
+    "themes": [
+      "Vampires",
+      "Sunlight"
+    ],
+    "credits": [
+      "Developer and publisher: Stunlock Studios"
+    ],
+    "fandom": "vrising",
+    "cover": {
+      "wiki": "V Rising",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/V_Rising_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Gothic choir and strings for a waking vampire.",
+      "query": "V Rising soundtrack"
+    },
+    "emoji": "🧛🏰🩸☀️🦇",
+    "item": {
+      "name": "Blood Essence",
+      "description": "The red essence that keeps a vampire’s castle heart beating.",
+      "image": "https://static.wikia.nocookie.net/vrising/images/5/51/Item_BloodEssence.png/revision/latest?cb=20220528211530"
+    },
+    "location": {
+      "name": "Vardoran",
+      "description": "A gothic land of villages and dark forests where vampires awake from a long sleep."
+    },
+    "visual": {
+      "icon": "🧛",
+      "colors": [
+        "#450a0a",
+        "#a8a29e"
+      ]
+    },
+    "from": "2026-11-30"
+  },
+  {
+    "id": "g-kcd2",
+    "name": "Kingdom Come: Deliverance II",
+    "aliases": [
+      "kingdom come deliverance",
+      "kingdom come",
+      "kcd2",
+      "kcd"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Warhorse Studios",
+    "creator": "Daniel Vávra",
+    "origin": "Czech Republic",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Henry of Skalitz",
+      "Hans Capon",
+      "Sigismund",
+      "Žižka"
+    ],
+    "themes": [
+      "Middle Ages",
+      "Realism"
+    ],
+    "credits": [
+      "Director: Daniel Vávra",
+      "Developer: Warhorse Studios",
+      "Publisher: Deep Silver"
+    ],
+    "fandom": "kingdomcomedeliverance",
+    "cover": {
+      "wiki": "Kingdom Come: Deliverance II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/Kingdom_Come_Deliverance_II.jpg"
+    },
+    "audio": {
+      "clue": "Medieval lutes and choirs over Bohemian fields.",
+      "query": "Kingdom Come Deliverance 2 soundtrack"
+    },
+    "emoji": "🗡️🏰🍺🐎📜",
+    "item": {
+      "name": "Saviour Schnapps",
+      "description": "A brew that lets its drinker save their progress."
+    },
+    "location": {
+      "name": "Kuttenberg",
+      "description": "A rich silver-mining city of 15th-century Bohemia.",
+      "image": "https://static.wikia.nocookie.net/kingdom-come-deliverance/images/6/65/Kcd2_kuttenberg.png/revision/latest/scale-to-width-down/640?cb=20250901030515"
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#3f3f46",
+        "#ca8a04"
+      ]
+    },
+    "from": "2026-11-21"
+  },
+  {
+    "id": "g-warframe",
+    "name": "Warframe",
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Third-Person Shooter",
+      "Action"
+    ],
+    "studio": "Digital Extremes",
+    "creator": "Steve Sinclair",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Tenno",
+      "The Lotus",
+      "Ordis",
+      "Excalibur",
+      "Ballas"
+    ],
+    "themes": [
+      "Space ninjas",
+      "The Void"
+    ],
+    "credits": [
+      "Creative director: Steve Sinclair",
+      "Developer: Digital Extremes"
+    ],
+    "fandom": "warframe",
+    "cover": {
+      "wiki": "Warframe",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bd/Warframe_Cover_Art.png"
+    },
+    "audio": {
+      "clue": "Ethereal electronic music on a ninja spaceship.",
+      "query": "Warframe soundtrack We All Lift Together",
+      "youtubeId": "mPTCq3LiZSE"
+    },
+    "emoji": "🥷🚀🔫🌌⚔️",
+    "item": {
+      "name": "The Orbiter",
+      "description": "A small personal ship run by a cheerful but broken Cephalon.",
+      "image": "https://static.wikia.nocookie.net/warframe/images/c/c1/Jeff-ross-warframe-tnocarriership04.jpg/revision/latest/scale-to-width-down/640?cb=20230823215403"
+    },
+    "location": {
+      "name": "The Origin System",
+      "description": "A solar system fought over by clones, corporations and infected."
+    },
+    "visual": {
+      "icon": "🥷",
+      "colors": [
+        "#0f172a",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-11-20"
+  },
+  {
+    "id": "g-skycotl",
+    "name": "Sky: Children of the Light",
+    "nameFr": "Sky : Enfants de la Lumière",
+    "aliases": [
+      "sky children of the light",
+      "sky"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Adventure",
+      "Social"
+    ],
+    "studio": "thatgamecompany",
+    "creator": "Jenova Chen",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Child of Light",
+      "The Spirits",
+      "The Elders"
+    ],
+    "themes": [
+      "Light",
+      "Kindness"
+    ],
+    "credits": [
+      "Director: Jenova Chen",
+      "Composer: Vincent Diamante",
+      "Developer: thatgamecompany"
+    ],
+    "fandom": "sky-children-of-the-light",
+    "cover": {
+      "wiki": "Sky: Children of the Light",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/69/Sky_video_game.jpg"
+    },
+    "audio": {
+      "clue": "Soft orchestral music above a kingdom of clouds.",
+      "query": "Sky Children of the Light soundtrack"
+    },
+    "emoji": "🕯️☁️✨🦋🌅",
+    "item": {
+      "name": "The Candles",
+      "description": "Small flames gathered and traded as gifts between friends."
+    },
+    "visual": {
+      "icon": "🕯️",
+      "colors": [
+        "#0c4a6e",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-13"
+  },
+  {
+    "id": "g-splitgate",
+    "name": "Splitgate",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "studio": "1047 Games",
+    "creator": "Ian Proulx",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Simulation Soldier"
+    ],
+    "themes": [
+      "Portals",
+      "Arena"
+    ],
+    "credits": [
+      "Founders: Ian Proulx & Nicholas Bagamian",
+      "Developer: 1047 Games"
+    ],
+    "cover": {
+      "wiki": "Splitgate",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/Splitgate_cover.jpg"
+    },
+    "audio": {
+      "clue": "Futuristic electronic music for an arena shooter.",
+      "query": "Splitgate soundtrack",
+      "youtubeId": "N5NVL7a5o04"
+    },
+    "emoji": "🌀🔫🚀🏟️🔵",
+    "item": {
+      "name": "The Portal Gun",
+      "description": "A device on the off-hand that opens portals on special walls."
+    },
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#0f172a",
+        "#38bdf8"
+      ]
+    },
+    "from": "2026-12-04"
+  },
+  {
+    "id": "g-battlefield6",
+    "name": "Battlefield 6",
+    "aliases": [
+      "battlefield",
+      "bf6"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "studio": "Battlefield Studios",
+    "creator": "DICE",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Dagger 13",
+      "Pax Armata"
+    ],
+    "themes": [
+      "Modern war",
+      "Destruction"
+    ],
+    "credits": [
+      "Developers: DICE, Motive, Ripple Effect & Criterion",
+      "Publisher: Electronic Arts"
+    ],
+    "fandom": "battlefield",
+    "cover": {
+      "wiki": "Battlefield 6",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Battlefield_6_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A low, pounding orchestral theme for an all-out war.",
+      "query": "Battlefield 6 main theme",
+      "youtubeId": "UJaosACDB2A"
+    },
+    "emoji": "🪖🚁💥🏙️🔫",
+    "visual": {
+      "icon": "🪖",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    },
+    "from": "2026-11-24"
+  },
+  {
+    "id": "g-trombonechamp",
+    "name": "Trombone Champ",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Rhythm"
+    ],
+    "studio": "Holy Wow Studios",
+    "creator": "Dan Vecchitto",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation"
+    ],
+    "characters": [
+      "Baboons",
+      "The Trombone Champs"
+    ],
+    "themes": [
+      "Toot",
+      "Baboons"
+    ],
+    "credits": [
+      "Developer: Holy Wow Studios"
+    ],
+    "fandom": "trombonechamp",
+    "cover": {
+      "wiki": "Trombone Champ",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Steam_Storefront_cover_art_for_Trombone_Champ.jpg"
+    },
+    "audio": {
+      "clue": "A famous march, played very badly on a trombone.",
+      "query": "Trombone Champ gameplay Pomp and Circumstance"
+    },
+    "emoji": "🎺🐒🎶😂🏆",
+    "item": {
+      "name": "Toots",
+      "description": "The notes slid out of a trombone, rated from awful to champion."
+    },
+    "visual": {
+      "icon": "🎺",
+      "colors": [
+        "#7c2d12",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-12"
+  },
+  {
+    "id": "g-arksurvival",
+    "name": "ARK: Survival Evolved",
+    "aliases": [
+      "ark",
+      "ark survival"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Survival",
+      "Open World"
+    ],
+    "studio": "Studio Wildcard",
+    "creator": "Jeremy Stieglitz",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Helena Walker",
+      "Mei Yin",
+      "Rockwell",
+      "The Overseer"
+    ],
+    "themes": [
+      "Dinosaurs",
+      "Taming"
+    ],
+    "credits": [
+      "Creative director: Jesse Rapczak",
+      "Developer: Studio Wildcard"
+    ],
+    "fandom": "ark",
+    "cover": {
+      "wiki": "Ark: Survival Evolved",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2b/ArkSurvivalEvolved.png"
+    },
+    "audio": {
+      "clue": "An epic orchestral theme over an island of dinosaurs.",
+      "query": "ARK Survival Evolved main theme",
+      "youtubeId": "FDqXO7XOw7c"
+    },
+    "emoji": "🦖🏝️🪓🦕🏹",
+    "item": {
+      "name": "The Implant",
+      "description": "A glowing gem set in every survivor’s arm when they wake up.",
+      "image": "https://static.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/1/14/Specimen_Implant_%28Inactive%29.png/revision/latest?cb=20170721174835"
+    },
+    "location": {
+      "name": "The Island",
+      "description": "The first map, an island full of dinosaurs under three glowing obelisks."
+    },
+    "visual": {
+      "icon": "🦖",
+      "colors": [
+        "#14532d",
+        "#38bdf8"
+      ]
+    },
+    "from": "2026-11-23"
+  },
+  {
+    "id": "g-dungeonendless",
+    "name": "Dungeon of the Endless",
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Roguelike",
+      "Strategy"
+    ],
+    "studio": "Amplitude Studios",
+    "creator": "Amplitude Studios",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Sara Numas",
+      "Gork Koroser",
+      "Max O'Kane"
+    ],
+    "themes": [
+      "Crystal",
+      "Prisoners"
+    ],
+    "credits": [
+      "Developer: Amplitude Studios",
+      "Composer: FlybyNo"
+    ],
+    "fandom": "endlessspace",
+    "cover": {
+      "wiki": "Dungeon of the Endless",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Dungeon_of_the_Endless_Logo.jpg"
+    },
+    "audio": {
+      "clue": "Pixel-art synths as a crystal is carried floor by floor.",
+      "query": "Dungeon of the Endless soundtrack"
+    },
+    "emoji": "💎🚪🧑‍🚀👾🏚️",
+    "item": {
+      "name": "The Crystal",
+      "description": "The ship’s power crystal, carried up every floor while monsters pour in."
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#1e1b4b",
+        "#22d3ee"
+      ]
+    },
+    "from": "2026-12-01"
+  },
+  {
+    "id": "g-gangbeasts",
+    "name": "Gang Beasts",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Party",
+      "Fighting"
+    ],
+    "studio": "Boneloaf",
+    "creator": "James Brown & Jonathan Brown",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Gelatinous Beasts"
+    ],
+    "themes": [
+      "Wobbly physics",
+      "Brawls"
+    ],
+    "credits": [
+      "Developer: Boneloaf",
+      "Publisher: Double Fine Presents"
+    ],
+    "cover": {
+      "wiki": "Gang Beasts",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Gang_Beasts_Logo.png/960px-Gang_Beasts_Logo.png"
+    },
+    "audio": {
+      "clue": "Silly brass music for a wobbly brawl on a rooftop.",
+      "query": "Gang Beasts soundtrack",
+      "youtubeId": "08uAdoQgXzA"
+    },
+    "emoji": "🫠🥊🚚🌊🏙️",
+    "location": {
+      "name": "Beef City",
+      "description": "A city of ferris wheels, trucks and meat grinders where the beasts fight."
+    },
+    "visual": {
+      "icon": "🫠",
+      "colors": [
+        "#7c2d12",
+        "#93c5fd"
+      ]
+    },
+    "from": "2026-12-15"
+  },
+  {
+    "id": "g-solarash",
+    "name": "Solar Ash",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Action",
+      "Platformer"
+    ],
+    "studio": "Heart Machine",
+    "creator": "Alx Preston",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Rei",
+      "Cassiopeia",
+      "Echo"
+    ],
+    "themes": [
+      "Black hole",
+      "Void"
+    ],
+    "credits": [
+      "Creative director: Alx Preston",
+      "Composer: Troupe Gammage"
+    ],
+    "cover": {
+      "wiki": "Solar Ash",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Solar_Ash_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "Shimmering synths while skating across a black hole.",
+      "query": "Solar Ash soundtrack"
+    },
+    "emoji": "🕳️⛸️🌀🌈🗡️",
+    "location": {
+      "name": "The Ultravoid",
+      "description": "A black hole that swallowed worlds, explored on skates."
+    },
+    "visual": {
+      "icon": "🕳️",
+      "colors": [
+        "#3b0764",
+        "#f472b6"
+      ]
+    },
+    "from": "2026-12-06"
+  },
+  {
+    "id": "g-cursedeadgods",
+    "name": "Curse of the Dead Gods",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Passtech Games",
+    "creator": "Passtech Games",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Adventurer"
+    ],
+    "themes": [
+      "Temple",
+      "Curses"
+    ],
+    "credits": [
+      "Developer: Passtech Games",
+      "Publisher: Focus Entertainment"
+    ],
+    "cover": {
+      "wiki": "Curse of the Dead Gods",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Curse_of_the_Dead_Gods_cover_art.png"
+    },
+    "audio": {
+      "clue": "Tribal drums deep in a cursed temple.",
+      "query": "Curse of the Dead Gods soundtrack",
+      "youtubeId": "v07lg-ax2Z4"
+    },
+    "emoji": "💀🔥🏛️🗡️🕯️",
+    "item": {
+      "name": "Corruption",
+      "description": "A gauge that fills with each room and lays a curse on the adventurer at the top."
+    },
+    "visual": {
+      "icon": "💀",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-16"
+  },
+  {
+    "id": "g-golfit",
+    "name": "Golf It!",
+    "aliases": [
+      "golf it"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Party",
+      "Sports"
+    ],
+    "studio": "Perfuse Entertainment",
+    "creator": "Perfuse Entertainment",
+    "origin": "Germany",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Golf Balls"
+    ],
+    "themes": [
+      "Minigolf",
+      "Friends"
+    ],
+    "credits": [
+      "Developer: Perfuse Entertainment"
+    ],
+    "cover": {
+      "wiki": "Golf It!"
+    },
+    "audio": {
+      "clue": "Chill lounge music on an absurd minigolf course.",
+      "query": "Golf It soundtrack",
+      "youtubeId": "8raa-C4J3HM"
+    },
+    "emoji": "⛳🏌️🌀😂🔥",
+    "visual": {
+      "icon": "⛳",
+      "colors": [
+        "#14532d",
+        "#e0f2fe"
+      ]
+    },
+    "from": "2026-11-28"
+  },
+  {
+    "id": "g-knockoutcity",
+    "name": "Knockout City",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Sports",
+      "Multiplayer"
+    ],
+    "studio": "Velan Studios",
+    "creator": "Velan Studios",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Brawlers"
+    ],
+    "themes": [
+      "Dodgeball",
+      "Retro-futurism"
+    ],
+    "credits": [
+      "Developer: Velan Studios",
+      "Publisher: Electronic Arts"
+    ],
+    "cover": {
+      "wiki": "Knockout City",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/Knockout_City_cover_art.png"
+    },
+    "audio": {
+      "clue": "Funky retro music for a dodgeball street fight.",
+      "query": "Knockout City soundtrack",
+      "youtubeId": "Rs8Hnqctx78"
+    },
+    "emoji": "🔴🤾🏙️💥🎳",
+    "item": {
+      "name": "The Ball Form",
+      "description": "A brawler curled into a ball, thrown by a teammate."
+    },
+    "visual": {
+      "icon": "🔴",
+      "colors": [
+        "#1e3a8a",
+        "#f97316"
+      ]
+    },
+    "from": "2026-11-29"
+  },
+  {
+    "id": "g-spiderheck",
+    "name": "SpiderHeck",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Party",
+      "Fighting"
+    ],
+    "studio": "Neon Doctrine",
+    "creator": "Neon Doctrine",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Spiders"
+    ],
+    "themes": [
+      "Laser swords",
+      "Webs"
+    ],
+    "credits": [
+      "Developer: Neon Doctrine",
+      "Publisher: tinyBuild"
+    ],
+    "cover": {
+      "wiki": "SpiderHeck"
+    },
+    "audio": {
+      "clue": "Pumping synthwave as spiders swing with laser swords.",
+      "query": "SpiderHeck soundtrack",
+      "youtubeId": "_O8hWWq1bcs"
+    },
+    "emoji": "🕷️🗡️🕸️⚡🎉",
+    "visual": {
+      "icon": "🕷️",
+      "colors": [
+        "#18181b",
+        "#a855f7"
+      ]
+    },
+    "from": "2026-11-28"
+  },
+  {
+    "id": "g-mechabreak",
+    "name": "Mecha Break",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Third-Person Shooter",
+      "Multiplayer"
+    ],
+    "studio": "Amazing Seasun Games",
+    "creator": "Kris Kwok",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Pilots",
+      "Tricera",
+      "Falcon",
+      "Narukami"
+    ],
+    "themes": [
+      "Mechs",
+      "Corite"
+    ],
+    "credits": [
+      "Developer: Amazing Seasun Games",
+      "Publisher: Kingsoft"
+    ],
+    "cover": {
+      "wiki": "Mecha Break",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Mecha_Break_cover.jpg"
+    },
+    "audio": {
+      "clue": "Big anime-style rock for mech battles.",
+      "query": "Mecha BREAK main theme",
+      "youtubeId": "T_kEs91V3b4"
+    },
+    "emoji": "🤖🚀⚡🎌🔫",
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#0f172a",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-11"
+  },
+  {
+    "id": "g-wherewindsmeet",
+    "name": "Where Winds Meet",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Everstone Studio",
+    "creator": "Everstone Studio",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "The Young Swordsman"
+    ],
+    "themes": [
+      "Wuxia",
+      "Song dynasty"
+    ],
+    "credits": [
+      "Developer: Everstone Studio",
+      "Publisher: NetEase Games"
+    ],
+    "cover": {
+      "wiki": "Where Winds Meet",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/43/Where_Winds_Meet_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Chinese strings and flutes over misty mountains.",
+      "query": "Where Winds Meet soundtrack",
+      "youtubeId": "GQxa2RewR5Y"
+    },
+    "emoji": "🗡️🏯🍃🐉🌫️",
+    "location": {
+      "name": "Kaifeng",
+      "description": "The capital of a China at war in the tenth century."
+    },
+    "visual": {
+      "icon": "🍃",
+      "colors": [
+        "#064e3b",
+        "#fef3c7"
+      ]
+    },
+    "from": "2026-11-29"
+  },
+  {
+    "id": "g-blazblue",
+    "name": "BlazBlue: Centralfiction",
+    "aliases": [
+      "blazblue"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "Arc System Works",
+    "creator": "Toshimichi Mori",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Nintendo"
+    ],
+    "characters": [
+      "Ragna the Bloodedge",
+      "Jin Kisaragi",
+      "Noel Vermillion",
+      "Hazama"
+    ],
+    "themes": [
+      "Seithr",
+      "Time loops"
+    ],
+    "credits": [
+      "Director and composer: Toshimichi Mori",
+      "Developer: Arc System Works"
+    ],
+    "fandom": "blazblue",
+    "cover": {
+      "wiki": "BlazBlue: Centralfiction"
+    },
+    "audio": {
+      "clue": "Shredding guitar for a red-coated swordsman.",
+      "query": "BlazBlue Rebellion theme Ragna",
+      "youtubeId": "pSKZ017x6o0"
+    },
+    "emoji": "⚔️🩸🌹❄️🐈‍⬛",
+    "item": {
+      "name": "The Azure Grimoire",
+      "description": "A forbidden power sealed in an arm, the Blue."
+    },
+    "visual": {
+      "icon": "🩸",
+      "colors": [
+        "#0f172a",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-10"
+  },
+  {
+    "id": "g-witchit",
+    "name": "Witch It",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Party",
+      "Multiplayer"
+    ],
+    "studio": "Barrel Roll Games",
+    "creator": "Barrel Roll Games",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Witches",
+      "The Hunters"
+    ],
+    "themes": [
+      "Hide and seek",
+      "Props"
+    ],
+    "credits": [
+      "Developer and publisher: Barrel Roll Games"
+    ],
+    "cover": {
+      "wiki": "Witch It"
+    },
+    "audio": {
+      "clue": "Jaunty fantasy music in a village where witches hide as objects.",
+      "query": "Witch It soundtrack",
+      "youtubeId": "NeDnNIK5b2k"
+    },
+    "emoji": "🧙‍♀️🎃🔍🪣🏡",
+    "visual": {
+      "icon": "🎃",
+      "colors": [
+        "#312e81",
+        "#fb923c"
+      ]
+    },
+    "from": "2026-12-09"
+  },
+  {
+    "id": "g-thelastcampfire",
+    "name": "The Last Campfire",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Adventure",
+      "Puzzle"
+    ],
+    "studio": "Hello Games",
+    "creator": "Hello Games",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Ember",
+      "The Ferryman",
+      "The Forlorn"
+    ],
+    "themes": [
+      "Hope",
+      "Lost souls"
+    ],
+    "credits": [
+      "Developer: Hello Games",
+      "Composer: Paul Weir"
+    ],
+    "cover": {
+      "wiki": "The Last Campfire",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Last_Campfire_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Gentle acoustic music around a dying fire.",
+      "query": "The Last Campfire soundtrack"
+    },
+    "emoji": "🔥🌲🛶🌙🥺",
+    "item": {
+      "name": "The Horn",
+      "description": "A horn that reaches into distant objects and pulls on them."
+    },
+    "visual": {
+      "icon": "🔥",
+      "colors": [
+        "#1e293b",
+        "#fb923c"
+      ]
+    },
+    "from": "2026-12-15"
+  },
+  {
+    "id": "g-multiversus",
+    "name": "MultiVersus",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Fighting",
+      "Party"
+    ],
+    "studio": "Player First Games",
+    "creator": "Tony Huynh",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Shaggy",
+      "Bugs Bunny",
+      "Batman",
+      "Arya Stark",
+      "Rick Sanchez"
+    ],
+    "themes": [
+      "Crossover",
+      "Two versus two"
+    ],
+    "credits": [
+      "Director: Tony Huynh",
+      "Publisher: Warner Bros. Games"
+    ],
+    "fandom": "multiversus",
+    "cover": {
+      "wiki": "MultiVersus",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/MultiVersus_Cover_Art.png"
+    },
+    "audio": {
+      "clue": "A cartoony orchestral theme for a crossover brawl.",
+      "query": "MultiVersus main theme",
+      "youtubeId": "jMRslUCXch8"
+    },
+    "emoji": "🐰🦇🐶🥊🌀",
+    "visual": {
+      "icon": "🥊",
+      "colors": [
+        "#1e1b4b",
+        "#facc15"
+      ]
+    },
+    "from": "2026-11-30"
+  },
+  {
+    "id": "g-trickytowers",
+    "name": "Tricky Towers",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Puzzle",
+      "Party"
+    ],
+    "studio": "WeirdBeard",
+    "creator": "WeirdBeard",
+    "origin": "Netherlands",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Wizards"
+    ],
+    "themes": [
+      "Physics",
+      "Stacking"
+    ],
+    "credits": [
+      "Developer and publisher: WeirdBeard"
+    ],
+    "cover": {
+      "wiki": "Tricky Towers",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Tricky_Towers_Logo.png"
+    },
+    "audio": {
+      "clue": "Playful whimsical music while blocks topple.",
+      "query": "Tricky Towers soundtrack",
+      "youtubeId": "M8Frcxhc8iM"
+    },
+    "emoji": "🧙🧱🗼🌪️🏆",
+    "visual": {
+      "icon": "🧱",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-08"
   }
 ]
