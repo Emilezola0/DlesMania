@@ -77,7 +77,7 @@ export function buildRound(
   const seed = Math.floor(rand() * 2 ** 31);
   if (type === 'connections') {
     // Six times in ten, a grid built from a theme's sub-categories; otherwise a hand-made one.
-    const themes = themesFor(domain);
+    const themes = themesFor(domain).filter((b) => !b.from || !dateKey || b.from <= dateKey);
     if (themes.length && rand() < 0.6) {
       const bank = pick(themes, rand);
       return { type, domain: bank.domain, seed, puzzleId: `${THEME_PREFIX}${bank.id}:${Math.floor(rand() * 2 ** 31)}` };
@@ -155,19 +155,20 @@ function worksShownBy(spec: RoundSpec, domain: Domain): Set<string> {
   const shown = new Set(spec.workIds ?? []);
   if (!spec.puzzleId) return shown;
   let titles: string[] = [];
-  let fandom: string | undefined;
+  let fandoms: string[] = [];
   if (spec.puzzleId.startsWith(THEME_PREFIX)) {
     const bank = connectionThemes.find((b) => b.id === spec.puzzleId!.slice(THEME_PREFIX.length).split(':')[0]);
     if (bank) {
       titles = [bank.theme];
-      fandom = bank.id;
+      // Its works by their wiki: the bank's own id ("zelda") or the wiki its pictures come from ("marvelcinematicuniverse").
+      fandoms = [bank.id, ...(bank.images.startsWith('fandom:') ? [bank.images.slice('fandom:'.length)] : [])];
     }
   } else {
     const p = connectionsPuzzles.find((x) => x.id === spec.puzzleId);
     if (p) titles = [...(p.theme ? [p.theme] : []), ...p.groups.flatMap((g) => g.items.map((t) => t.label))];
   }
   const keys = titles.map(norm);
-  for (const w of candidates('classic', domain)) if ((fandom && w.fandom === fandom) || namesOf(w).some((n) => keys.some((k) => sameSeries(n, k)))) shown.add(w.id);
+  for (const w of candidates('classic', domain)) if ((!!w.fandom && fandoms.includes(w.fandom)) || namesOf(w).some((n) => keys.some((k) => sameSeries(n, k)))) shown.add(w.id);
   return shown;
 }
 

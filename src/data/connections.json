@@ -5347,5 +5347,2325 @@
     ],
     "images": "wp",
     "from": "2026-11-20"
+  },
+  {
+    "id": "ca-squads",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Fairy Tail’s strongest team",
+        "items": [
+          {
+            "label": "Natsu",
+            "src": "fandom:fairytail:Natsu Dragneel",
+            "image": "https://static.wikia.nocookie.net/fairytail/images/c/ca/Natsu_X792.png/revision/latest/scale-to-width-down/320?cb=20181111122101"
+          },
+          {
+            "label": "Lucy",
+            "src": "fandom:fairytail:Lucy Heartfilia",
+            "image": "https://static.wikia.nocookie.net/fairytail/images/9/9c/Lucy_X792_image.png/revision/latest/scale-to-width-down/320?cb=20190106110751"
+          },
+          {
+            "label": "Gray",
+            "src": "fandom:fairytail:Gray Fullbuster",
+            "image": "https://static.wikia.nocookie.net/fairytail/images/c/c6/Gray_in_Alvarez_Empire_arc.png/revision/latest/scale-to-width-down/320?cb=20190519091455"
+          },
+          {
+            "label": "Erza",
+            "src": "fandom:fairytail:Erza Scarlet",
+            "image": "https://static.wikia.nocookie.net/fairytail/images/c/c3/Erza%27s_picture.png/revision/latest/scale-to-width-down/320?cb=20190929085837"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "The Forger family",
+        "items": [
+          {
+            "label": "Loid",
+            "src": "fandom:spy-x-family:Loid Forger",
+            "image": "https://static.wikia.nocookie.net/spy-x-family9171/images/c/cd/Loid_Forger_Anime_3.png/revision/latest/scale-to-width-down/153?cb=20211031154403"
+          },
+          {
+            "label": "Yor",
+            "src": "fandom:spy-x-family:Yor Forger",
+            "image": "https://static.wikia.nocookie.net/spy-x-family9171/images/5/53/Yor_Forger_Anime_3.png/revision/latest/scale-to-width-down/256?cb=20211031154658"
+          },
+          {
+            "label": "Anya",
+            "src": "fandom:spy-x-family:Anya Forger",
+            "image": "https://static.wikia.nocookie.net/spy-x-family9171/images/f/ff/Anya_Forger_Anime.png/revision/latest/scale-to-width-down/144?cb=20230112004645"
+          },
+          {
+            "label": "Bond",
+            "src": "fandom:spy-x-family:Bond Forger",
+            "image": "https://static.wikia.nocookie.net/spy-x-family9171/images/d/da/Bond_Forger_Anime.png/revision/latest/scale-to-width-down/258?cb=20221015174857"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Hashira",
+        "items": [
+          {
+            "label": "Giyu",
+            "src": "fandom:kimetsu-no-yaiba:Giyu Tomioka",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/4/43/Giyu_anime_design.png/revision/latest/scale-to-width-down/224?cb=20190831073602"
+          },
+          {
+            "label": "Rengoku",
+            "src": "fandom:kimetsu-no-yaiba:Kyojuro Rengoku",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/d/de/Kyojuro_anime_right_face.png/revision/latest/scale-to-width-down/257?cb=20241228001647"
+          },
+          {
+            "label": "Shinobu",
+            "src": "fandom:kimetsu-no-yaiba:Shinobu Kocho",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/e/e5/Shinobu_anime.png/revision/latest/scale-to-width-down/224?cb=20241010231126"
+          },
+          {
+            "label": "Tengen",
+            "src": "fandom:kimetsu-no-yaiba:Tengen Uzui",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/0/07/Tengen_anime.png/revision/latest/scale-to-width-down/224?cb=20191024210335"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "The Hero Party of Frieren",
+        "items": [
+          {
+            "label": "Himmel",
+            "src": "fandom:frieren:Himmel",
+            "image": "https://static.wikia.nocookie.net/frieren/images/9/92/Himmel_anime_profile.png/revision/latest/scale-to-width-down/135?cb=20230714204210"
+          },
+          {
+            "label": "Heiter",
+            "src": "fandom:frieren:Heiter",
+            "image": "https://static.wikia.nocookie.net/frieren/images/f/f2/Heiter_anime_profile.png/revision/latest/scale-to-width-down/118?cb=20230714205913"
+          },
+          {
+            "label": "Eisen",
+            "src": "fandom:frieren:Eisen",
+            "image": "https://static.wikia.nocookie.net/frieren/images/9/97/Eisen_anime_profile.png/revision/latest/scale-to-width-down/236?cb=20230714205930"
+          },
+          {
+            "label": "Frieren",
+            "src": "fandom:frieren:Frieren",
+            "image": "https://static.wikia.nocookie.net/frieren/images/3/35/Frieren_anime_profile.png/revision/latest/scale-to-width-down/117?cb=20230521074853"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "ca-powers",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Transformations",
+        "items": [
+          {
+            "label": "Super Saiyan",
+            "src": "fandom:dragonball:Super Saiyan",
+            "image": "https://static.wikia.nocookie.net/dragonball/images/c/c1/Super_Saiyan_Goku.png/revision/latest/scale-to-width-down/125?cb=20261103234824"
+          },
+          {
+            "label": "Gear 5",
+            "src": "fandom:onepiece:Gear 5",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/6/66/Gear_5_Infobox.png/revision/latest/scale-to-width-down/254?cb=20251221160520"
+          },
+          {
+            "label": "Bankai",
+            "src": "fandom:bleach:Bankai",
+            "image": "https://static.wikia.nocookie.net/bleach/images/c/cd/Ep376Zanpakuto.png/revision/latest/scale-to-width-down/320?cb=20221218061219&path-prefix=en"
+          },
+          {
+            "label": "Sage Mode",
+            "src": "fandom:naruto:Sage Mode",
+            "image": "https://static.wikia.nocookie.net/naruto/images/5/50/Sage_mode.png/revision/latest/scale-to-width-down/320?cb=20150125202353"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Special eyes",
+        "items": [
+          {
+            "label": "Sharingan",
+            "src": "fandom:naruto:Sharingan",
+            "image": "https://static.wikia.nocookie.net/naruto/images/9/93/Sharingan_Stages.png/revision/latest/scale-to-width-down/320?cb=20170809154134"
+          },
+          {
+            "label": "Byakugan",
+            "src": "fandom:naruto:Byakugan",
+            "image": "https://static.wikia.nocookie.net/naruto/images/5/5c/Byakugan_Momoshiki.svg/revision/latest?cb=20171226164335"
+          },
+          {
+            "label": "Rinnegan",
+            "src": "fandom:naruto:Rinnegan",
+            "image": "https://static.wikia.nocookie.net/naruto/images/f/f9/Rinnegan_Momoshiki.svg/revision/latest?cb=20171226164214"
+          },
+          {
+            "label": "Six Eyes",
+            "src": "fandom:jujutsu-kaisen:Six Eyes",
+            "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5a/Satoru_Gojo_arrives_on_the_battlefield_%28Anime%29.png/revision/latest/scale-to-width-down/320?cb=20210226205256"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Breathing styles",
+        "items": [
+          {
+            "label": "Water Breathing",
+            "src": "fandom:kimetsu-no-yaiba:Water Breathing",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/3/32/Water_Breathing_%28Zenshuchuten%29.png/revision/latest/scale-to-width-down/226?cb=20240529110051"
+          },
+          {
+            "label": "Flame Breathing",
+            "src": "fandom:kimetsu-no-yaiba:Flame Breathing",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/0/0f/Flame_Breathing_%28Zenshuchuten%29.png/revision/latest/scale-to-width-down/226?cb=20220304074903"
+          },
+          {
+            "label": "Thunder Breathing",
+            "src": "fandom:kimetsu-no-yaiba:Thunder Breathing",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/0/00/Thunder_Breathing_%28Zenshuchuten%29.png/revision/latest/scale-to-width-down/226?cb=20240529105731"
+          },
+          {
+            "label": "Sun Breathing",
+            "src": "fandom:kimetsu-no-yaiba:Sun Breathing",
+            "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/9/92/Hinokami_Kagura_%28Zenshuchuten%29.png/revision/latest/scale-to-width-down/232?cb=20240529102619"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Quirks",
+        "items": [
+          {
+            "label": "One For All",
+            "src": "fandom:myheroacademia:One For All",
+            "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d2/One_For_All.gif/revision/latest?cb=20250507111127"
+          },
+          {
+            "label": "Explosion",
+            "src": "fandom:myheroacademia:Explosion",
+            "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/17/Explosion.gif/revision/latest?cb=20250617222837"
+          },
+          {
+            "label": "Half-Cold Half-Hot",
+            "src": "fandom:myheroacademia:Half-Cold Half-Hot",
+            "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/13/Half-Cold_Half-Hot.png/revision/latest/scale-to-width-down/320?cb=20250627024855"
+          },
+          {
+            "label": "Zero Gravity",
+            "src": "fandom:myheroacademia:Zero Gravity",
+            "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/da/Zero_Gravity.png/revision/latest/scale-to-width-down/320?cb=20251116063836"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "ca-beasts",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Mascot sidekicks",
+        "items": [
+          {
+            "label": "Kyubey",
+            "src": "fandom:madoka:Kyubey",
+            "image": "https://static.wikia.nocookie.net/madoka/images/4/4e/Kyubey_profile.png/revision/latest/scale-to-width-down/242?cb=20221029201917"
+          },
+          {
+            "label": "Kero",
+            "src": "fandom:ccsakura:Keroberos",
+            "image": "https://static.wikia.nocookie.net/ccs/images/d/d0/CCS_IC_V1_PG39.jpg/revision/latest/scale-to-width-down/176?cb=20200117055903"
+          },
+          {
+            "label": "Mokona",
+            "src": "fandom:tsubasa:Mokona Modoki",
+            "image": "https://static.wikia.nocookie.net/tsubasa/images/a/aa/White_Mokona_Soel.jpg/revision/latest/scale-to-width-down/320?cb=20221116083508"
+          },
+          {
+            "label": "Pochita",
+            "src": "fandom:chainsaw-man:Pochita",
+            "image": "https://static.wikia.nocookie.net/chainsaw-man/images/5/54/Pochita_anime_design.png/revision/latest/scale-to-width-down/192?cb=20220919121110"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Naruto summons",
+        "items": [
+          {
+            "label": "Gamabunta",
+            "src": "fandom:naruto:Gamabunta",
+            "image": "https://static.wikia.nocookie.net/naruto/images/f/f6/Gamabunta2.png/revision/latest/scale-to-width-down/320?cb=20150131220923"
+          },
+          {
+            "label": "Manda",
+            "src": "fandom:naruto:Manda",
+            "image": "https://static.wikia.nocookie.net/naruto/images/e/e0/Manda_Summoned.png/revision/latest/scale-to-width-down/320?cb=20150131221107"
+          },
+          {
+            "label": "Katsuyu",
+            "src": "fandom:naruto:Katsuyu",
+            "image": "https://static.wikia.nocookie.net/naruto/images/5/59/Katsuyu_Summoned.png/revision/latest/scale-to-width-down/320?cb=20150131221131"
+          },
+          {
+            "label": "Pakkun",
+            "src": "fandom:naruto:Pakkun",
+            "image": "https://static.wikia.nocookie.net/naruto/images/b/bc/Pakkun.png/revision/latest/scale-to-width-down/320?cb=20240902033238"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Dragons",
+        "items": [
+          {
+            "label": "Shenron",
+            "src": "fandom:dragonball:Shenron",
+            "image": "https://static.wikia.nocookie.net/dragonball/images/2/26/Shenron_DBZ_Episode_240.png/revision/latest/scale-to-width-down/208?cb=20210429121425"
+          },
+          {
+            "label": "Porunga",
+            "src": "fandom:dragonball:Porunga",
+            "image": "https://static.wikia.nocookie.net/dragonball/images/8/88/Porunga_is_summoned_by_Dende.png/revision/latest/scale-to-width-down/320?cb=20250214203821"
+          },
+          {
+            "label": "Tohru",
+            "src": "Miss Kobayashi's Dragon Maid",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2d/Miss_Kobayashi%27s_Dragon_Maid%2C_volume_1.jpg"
+          },
+          {
+            "label": "Haku",
+            "src": "fandom:ghibli:Haku",
+            "image": "https://static.wikia.nocookie.net/studio-ghibli/images/8/89/Haku-2.png/revision/latest/scale-to-width-down/284?cb=20201008131345"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Stands",
+        "items": [
+          {
+            "label": "Star Platinum",
+            "src": "fandom:jojo:Star Platinum",
+            "image": "https://static.wikia.nocookie.net/jjba/images/0/06/Star_Platinum_The_World.png/revision/latest/scale-to-width-down/320?cb=20150610162343"
+          },
+          {
+            "label": "The World",
+            "src": "fandom:jojo:The World",
+            "image": "https://static.wikia.nocookie.net/jjba/images/d/d8/The_world_c252.png/revision/latest/scale-to-width-down/172?cb=20160413152044"
+          },
+          {
+            "label": "Gold Experience",
+            "src": "fandom:jojo:Gold Experience",
+            "image": "https://static.wikia.nocookie.net/jjba/images/1/14/Gold_Experience_color.png/revision/latest/scale-to-width-down/182?cb=20161020091009"
+          },
+          {
+            "label": "Killer Queen",
+            "src": "fandom:jojo:Killer Queen",
+            "image": "https://static.wikia.nocookie.net/jjba/images/3/39/Killer_queen_c345.png/revision/latest/scale-to-width-down/228?cb=20160325163154"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "ca-rivals",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Chainsaw Man’s devil hunters",
+        "items": [
+          {
+            "label": "Denji",
+            "src": "fandom:chainsaw-man:Denji",
+            "image": "https://static.wikia.nocookie.net/chainsaw-man/images/b/b0/Denji_Reze_Arc_anime_design.png/revision/latest/scale-to-width-down/191?cb=20250324010006"
+          },
+          {
+            "label": "Power",
+            "src": "fandom:chainsaw-man:Power",
+            "image": "https://static.wikia.nocookie.net/chainsaw-man/images/a/ac/Power_anime_design_2.png/revision/latest/scale-to-width-down/192?cb=20231006042039"
+          },
+          {
+            "label": "Aki",
+            "src": "fandom:chainsaw-man:Aki Hayakawa",
+            "image": "https://static.wikia.nocookie.net/chainsaw-man/images/c/cb/Aki_Reze_Arc_anime_design.png/revision/latest/scale-to-width-down/192?cb=20250323073818"
+          },
+          {
+            "label": "Himeno",
+            "src": "fandom:chainsaw-man:Himeno",
+            "image": "https://static.wikia.nocookie.net/chainsaw-man/images/9/91/Himeno_anime_design.png/revision/latest/scale-to-width-down/192?cb=20220919121139"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Homunculi",
+        "items": [
+          {
+            "label": "Lust",
+            "src": "fandom:fma:Lust",
+            "image": "https://static.wikia.nocookie.net/fma/images/1/1a/7s-lust.png/revision/latest/scale-to-width-down/231?cb=20140622230622"
+          },
+          {
+            "label": "Gluttony",
+            "src": "fandom:fma:Gluttony",
+            "image": "https://static.wikia.nocookie.net/fma/images/2/28/Avatar_gluttony.png/revision/latest?cb=20170405143919"
+          },
+          {
+            "label": "Envy",
+            "src": "fandom:fma:Envy",
+            "image": "https://static.wikia.nocookie.net/fma/images/d/d1/7s_envy.png/revision/latest/scale-to-width-down/320?cb=20140622215303"
+          },
+          {
+            "label": "Greed",
+            "src": "fandom:fma:Greed",
+            "image": "https://static.wikia.nocookie.net/fma/images/e/ef/7s_greed.png/revision/latest/scale-to-width-down/320?cb=20180727194821"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Espada",
+        "items": [
+          {
+            "label": "Ulquiorra",
+            "src": "fandom:bleach:Ulquiorra Cifer",
+            "image": "https://static.wikia.nocookie.net/bleach/images/1/11/271Ulquiorra_profile3.png/revision/latest/scale-to-width-down/317?cb=20220616075213&path-prefix=en"
+          },
+          {
+            "label": "Grimmjow",
+            "src": "fandom:bleach:Grimmjow Jaegerjaquez",
+            "image": "https://static.wikia.nocookie.net/bleach/images/4/4c/Ep398GrimmjowProfile.png/revision/latest/scale-to-width-down/263?cb=20260410211205&path-prefix=en"
+          },
+          {
+            "label": "Starrk",
+            "src": "fandom:bleach:Coyote Starrk",
+            "image": "https://static.wikia.nocookie.net/bleach/images/3/3b/Ep277StarrkProfile.png/revision/latest/scale-to-width-down/320?cb=20230831173004&path-prefix=en"
+          },
+          {
+            "label": "Nnoitra",
+            "src": "fandom:bleach:Nnoitra Gilga",
+            "image": "https://static.wikia.nocookie.net/bleach/images/1/10/Ep190NnoitraProfile.png/revision/latest/scale-to-width-down/320?cb=20221225060324&path-prefix=en"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Phantom Troupe",
+        "items": [
+          {
+            "label": "Chrollo",
+            "src": "fandom:hunterxhunter:Chrollo Lucilfer",
+            "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/78/Chrollo_Lucilfer_GI_Portrait.png/revision/latest/scale-to-width-down/320?cb=20130502190618"
+          },
+          {
+            "label": "Hisoka",
+            "src": "fandom:hunterxhunter:Hisoka Morow",
+            "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/29/Hisoka_Morow_YC_Portrait.png/revision/latest/scale-to-width-down/320?cb=20190123172039"
+          },
+          {
+            "label": "Feitan",
+            "src": "fandom:hunterxhunter:Feitan Portor",
+            "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/86/HxH2011_EP50_Feitan_Portrait.png/revision/latest/scale-to-width-down/320?cb=20230121061055"
+          },
+          {
+            "label": "Nobunaga",
+            "src": "fandom:hunterxhunter:Nobunaga Hazama",
+            "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/46/HxH2011_EP50_Nobunaga_Portrait.png/revision/latest/scale-to-width-down/320?cb=20230122183803"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "ca-worlds",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Hidden villages",
+        "items": [
+          {
+            "label": "Hidden Leaf Village",
+            "src": "fandom:naruto:Konohagakure",
+            "image": "https://static.wikia.nocookie.net/naruto/images/3/34/Konohagakure.png/revision/latest/scale-to-width-down/320?cb=20160728115517"
+          },
+          {
+            "label": "Hidden Sand Village",
+            "src": "fandom:naruto:Sunagakure",
+            "image": "https://static.wikia.nocookie.net/naruto/images/b/b0/Sunagakure.png/revision/latest/scale-to-width-down/320?cb=20201012155824"
+          },
+          {
+            "label": "Hidden Mist Village",
+            "src": "fandom:naruto:Kirigakure",
+            "image": "https://static.wikia.nocookie.net/naruto/images/9/9d/Current_Kirigakure.png/revision/latest/scale-to-width-down/320?cb=20220220024956"
+          },
+          {
+            "label": "Hidden Cloud Village",
+            "src": "fandom:naruto:Kumogakure",
+            "image": "https://static.wikia.nocookie.net/naruto/images/5/5a/Kumogakure.png/revision/latest/scale-to-width-down/320?cb=20160129210622"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "The four Blues",
+        "items": [
+          {
+            "label": "East Blue",
+            "src": "fandom:onepiece:East Blue",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/a/a0/East_Blue_Infobox.png/revision/latest/scale-to-width-down/320?cb=20200827165925"
+          },
+          {
+            "label": "West Blue",
+            "src": "fandom:onepiece:West Blue",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/0/0c/West_Blue_Infobox.png/revision/latest/scale-to-width-down/320?cb=20231015153310"
+          },
+          {
+            "label": "North Blue",
+            "src": "fandom:onepiece:North Blue",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/f/f5/North_Blue_Infobox.png/revision/latest/scale-to-width-down/320?cb=20150809121628"
+          },
+          {
+            "label": "South Blue",
+            "src": "fandom:onepiece:South Blue",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/6/6f/Summit_War_South_Blue.png/revision/latest/scale-to-width-down/320?cb=20241023071909"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Schools",
+        "items": [
+          {
+            "label": "U.A. High School",
+            "src": "fandom:myheroacademia:U.A. High School",
+            "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a7/U.A._Main_Building.png/revision/latest/scale-to-width-down/320?cb=20250618031358"
+          },
+          {
+            "label": "Jujutsu High",
+            "src": "fandom:jujutsu-kaisen:Tokyo Metropolitan Curse Technical College",
+            "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/d/d9/Tokyo_Metropolitan_Jujutsu_Technical_School_%28Anime%29.png/revision/latest/scale-to-width-down/320?cb=20201010033541"
+          },
+          {
+            "label": "Ouran Academy",
+            "src": "Ouran High School Host Club",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/dc/Ouran_High_School_Vol_1_cover.jpg"
+          },
+          {
+            "label": "Shuchiin Academy",
+            "src": "Kaguya-sama: Love Is War",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Kaguya-sama_-_Love_is_War%2C_volume_1.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Bleach worlds",
+        "items": [
+          {
+            "label": "Soul Society",
+            "src": "fandom:bleach:Soul Society",
+            "image": "https://static.wikia.nocookie.net/bleach/images/c/c1/Ep380SeireiteiShakonmaku.png/revision/latest/scale-to-width-down/320?cb=20230808183515&path-prefix=en"
+          },
+          {
+            "label": "Hueco Mundo",
+            "src": "fandom:bleach:Hueco Mundo",
+            "image": "https://static.wikia.nocookie.net/bleach/images/4/40/Ep395HuecoMundo.png/revision/latest/scale-to-width-down/320?cb=20241023225516&path-prefix=en"
+          },
+          {
+            "label": "Karakura Town",
+            "src": "fandom:bleach:Karakura Town",
+            "image": "https://static.wikia.nocookie.net/bleach/images/b/bf/Ep394KarakuraTown.png/revision/latest/scale-to-width-down/320?cb=20241017193849&path-prefix=en"
+          },
+          {
+            "label": "Las Noches",
+            "src": "fandom:bleach:Las Noches",
+            "image": "https://static.wikia.nocookie.net/bleach/images/2/2f/Ep281Las_Noches.png/revision/latest/scale-to-width-down/320?cb=20220808160833&path-prefix=en"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "ca-genres",
+    "domain": "anime",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Sports anime",
+        "items": [
+          {
+            "label": "Blue Lock",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Blue_Lock_manga_volume_1.png"
+          },
+          {
+            "label": "Slam Dunk",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Griner_dunking_at_2015_All-Star_game_%28cropped%29.jpg/330px-Griner_dunking_at_2015_All-Star_game_%28cropped%29.jpg"
+          },
+          {
+            "label": "Kuroko's Basketball",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/79/Kuroko_no_Basuke_Cover.jpg"
+          },
+          {
+            "label": "Hajime no Ippo",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Hajime_no_Ippo_1.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Isekai",
+        "items": [
+          {
+            "label": "Re:Zero",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Re-Zero_kara_Hajimeru_Isekai_Seikatsu_light_novel_volume_1_cover.jpg"
+          },
+          {
+            "label": "Sword Art Online",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Sword_Art_Online_light_novel_volume_1_cover.jpg"
+          },
+          {
+            "label": "That Time I Got Reincarnated as a Slime",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/That_Time_I_Got_Reincarnated_as_a_Slime_light_novel_volume_1_cover.jpg"
+          },
+          {
+            "label": "Mushoku Tensei",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Mushoku_Tensei_1.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Music anime",
+        "items": [
+          {
+            "label": "Bocchi the Rock!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Bocchi_The_Rock%21_volume_1_cover.jpg"
+          },
+          {
+            "label": "Your Lie in April",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Your_Lie_in_April_Manga_cover.png"
+          },
+          {
+            "label": "Beck",
+            "src": "Beck (manga)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/BECK_vol1_Cover.jpg"
+          },
+          {
+            "label": "Nana",
+            "src": "Nana (manga)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/09/Nana_volume_1.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Romantic comedies",
+        "items": [
+          {
+            "label": "Toradora!",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Toradora%21_light_novel_volume_1_cover.jpg"
+          },
+          {
+            "label": "Horimiya",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/ab/Vol1hori.jpg"
+          },
+          {
+            "label": "Rent-A-Girlfriend",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Rent-A-Girlfriend_volume_1_cover.jpg"
+          },
+          {
+            "label": "My Dress-Up Darling",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2f/Sono_Bisque_Doll_wa_Koi_wo_Suru%2C_Volume_1.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-filmmakers",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Directed by James Cameron",
+        "items": [
+          {
+            "label": "Titanic",
+            "src": "Titanic (1997 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/18/Titanic_%281997_film%29_poster.png"
+          },
+          {
+            "label": "Avatar",
+            "src": "Avatar (2009 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg"
+          },
+          {
+            "label": "Terminator 2: Judgment Day",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Terminator_2-Judgment_Day.png"
+          },
+          {
+            "label": "The Abyss",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/ad/TheAbyss.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Directed by Ridley Scott",
+        "items": [
+          {
+            "label": "Alien",
+            "src": "Alien (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/Alien_movie_poster.jpg"
+          },
+          {
+            "label": "Gladiator",
+            "src": "Gladiator (2000 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png"
+          },
+          {
+            "label": "Blade Runner",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Blade_Runner_%281982_poster%29.png"
+          },
+          {
+            "label": "The Martian",
+            "src": "The Martian (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/The_Martian_film_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Directed by Guillermo del Toro",
+        "items": [
+          {
+            "label": "Pan's Labyrinth",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Pan%27s_Labyrinth.jpg"
+          },
+          {
+            "label": "The Shape of Water",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/37/The_Shape_of_Water_%28film%29.png"
+          },
+          {
+            "label": "Pacific Rim",
+            "src": "Pacific Rim (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f3/Pacific_Rim_FilmPoster.jpeg"
+          },
+          {
+            "label": "Hellboy",
+            "src": "Hellboy (2004 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Hellboy_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Directed by Christopher Nolan",
+        "items": [
+          {
+            "label": "Inception",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg"
+          },
+          {
+            "label": "Interstellar",
+            "src": "Interstellar (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg"
+          },
+          {
+            "label": "The Dark Knight",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg"
+          },
+          {
+            "label": "The Dark Knight Rises",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-animated",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "In Shrek",
+        "items": [
+          {
+            "label": "Donkey",
+            "src": "Donkey (Shrek)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6c/Donkey_%28Shrek%29.png"
+          },
+          {
+            "label": "Fiona",
+            "src": "Princess Fiona",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Princess_Fiona.png"
+          },
+          {
+            "label": "Lord Farquaad",
+            "src": "fandom:shrek:Lord Farquaad",
+            "image": "https://static.wikia.nocookie.net/shrek/images/2/2d/Farquaad_portrait.png/revision/latest/scale-to-width-down/121?cb=20260904102001"
+          },
+          {
+            "label": "Puss in Boots",
+            "src": "Puss in Boots (Shrek)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8a/Puss_in_Boots_from_Shrek.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "The Disney Renaissance",
+        "items": [
+          {
+            "label": "The Little Mermaid",
+            "src": "The Little Mermaid (1989 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c0/The_Little_Mermaid_%28Official_1989_Film_Poster%29.png"
+          },
+          {
+            "label": "Beauty and the Beast",
+            "src": "Beauty and the Beast (1991 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Beauty_and_the_Beast_%281991_film%29_poster.jpg"
+          },
+          {
+            "label": "Aladdin",
+            "src": "Aladdin (1992 Disney film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bd/Aladdin_%281992_Disney_film%29_poster.jpg"
+          },
+          {
+            "label": "The Lion King",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Illumination",
+        "items": [
+          {
+            "label": "Despicable Me",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Despicable_Me_logo_2.svg/330px-Despicable_Me_logo_2.svg.png"
+          },
+          {
+            "label": "Minions",
+            "src": "Minions (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/19/Minions_%282015_film%29.jpg"
+          },
+          {
+            "label": "Sing",
+            "src": "Sing (2016 American film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bb/Sing_%282016_film%29_poster.jpg"
+          },
+          {
+            "label": "The Secret Life of Pets",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/64/The_Secret_Life_of_Pets_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Laika stop-motion",
+        "items": [
+          {
+            "label": "Coraline",
+            "src": "Coraline (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/36/Coraline_poster.jpg"
+          },
+          {
+            "label": "Kubo and the Two Strings",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c4/Kubo_and_the_Two_Strings_poster.png"
+          },
+          {
+            "label": "ParaNorman",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/32/ParaNorman_poster.jpg"
+          },
+          {
+            "label": "The Boxtrolls",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/db/The_Boxtrolls_poster.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-villains",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Disney villains",
+        "items": [
+          {
+            "label": "Scar",
+            "src": "Scar (The Lion King)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4d/Scar_lion_king.png/330px-Scar_lion_king.png"
+          },
+          {
+            "label": "Ursula",
+            "src": "Ursula (The Little Mermaid)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e3/Ursula%28TheLittleMermaid%29character.png"
+          },
+          {
+            "label": "Jafar",
+            "src": "fandom:disney:Jafar",
+            "image": "https://static.wikia.nocookie.net/disney/images/6/60/Profile_-_Jafar.jpeg/revision/latest/scale-to-width-down/320?cb=20190312023726"
+          },
+          {
+            "label": "Maleficent",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/7e/Malefica.jpg/330px-Malefica.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Batman villains",
+        "items": [
+          {
+            "label": "Joker",
+            "src": "Joker (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5f/Batman_Three_Jokers.jpg"
+          },
+          {
+            "label": "Bane",
+            "src": "Bane (DC Comics)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/59/Bane_%28DC_Comics_character%29.png"
+          },
+          {
+            "label": "Penguin",
+            "src": "Penguin (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Penguin_%28Oswald_Cobblepot%29.png"
+          },
+          {
+            "label": "Riddler",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/68/Riddler.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Sith Lords",
+        "items": [
+          {
+            "label": "Darth Vader",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0b/Darth_Vader_in_The_Empire_Strikes_Back.jpg"
+          },
+          {
+            "label": "Darth Maul",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bb/MaulStarWars.jpg"
+          },
+          {
+            "label": "Palpatine",
+            "src": "Palpatine",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8f/Emperor_RotJ.png/330px-Emperor_RotJ.png"
+          },
+          {
+            "label": "Count Dooku",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/58/Count_Dooku_%28Christopher_Lee%29.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Bond villains",
+        "items": [
+          {
+            "label": "Ernst Stavro Blofeld",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/68/Donald_Pleasence_as_Ernst_Stavro_Blofeld%2C_%27%27You_Only_Live_Twice%27%27.jpg"
+          },
+          {
+            "label": "Goldfinger",
+            "src": "Auric Goldfinger",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Goldfinger_by_Gert_Fr%C3%B6be.jpg"
+          },
+          {
+            "label": "Jaws",
+            "src": "Jaws (James Bond)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/55/Jaws_%28James_Bond%29.jpg"
+          },
+          {
+            "label": "Le Chiffre",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/00/Le_Chiffre_by_Mads_Mikkelsen.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-actors",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Played by Keanu Reeves",
+        "items": [
+          {
+            "label": "Neo",
+            "src": "Neo (The Matrix)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/NeoTheMatrix.jpg"
+          },
+          {
+            "label": "John Wick",
+            "src": "John Wick (character)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/9f/John_Wick_Keanu.jpeg/330px-John_Wick_Keanu.jpeg"
+          },
+          {
+            "label": "Ted Logan",
+            "src": "Bill & Ted's Excellent Adventure",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/Bill_%26_Ted.jpg"
+          },
+          {
+            "label": "John Constantine",
+            "src": "Constantine (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2b/Constantine_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Played by Tom Hanks",
+        "items": [
+          {
+            "label": "Forrest Gump",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg"
+          },
+          {
+            "label": "Woody",
+            "src": "Woody (Toy Story)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Woody_at_Toy_Story_Land%2C_Hong_Kong.jpg/330px-Woody_at_Toy_Story_Land%2C_Hong_Kong.jpg"
+          },
+          {
+            "label": "Chuck Noland",
+            "src": "Cast Away",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Cast_away_film_poster.jpg"
+          },
+          {
+            "label": "Captain Miller",
+            "src": "Saving Private Ryan",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/ac/Saving_Private_Ryan_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Played by Leonardo DiCaprio",
+        "items": [
+          {
+            "label": "Jack Dawson",
+            "src": "Titanic (1997 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/18/Titanic_%281997_film%29_poster.png"
+          },
+          {
+            "label": "Dom Cobb",
+            "src": "Inception",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg"
+          },
+          {
+            "label": "Jordan Belfort",
+            "src": "The Wolf of Wall Street (2013 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d8/The_Wolf_of_Wall_Street_%282013%29.png"
+          },
+          {
+            "label": "Hugh Glass",
+            "src": "The Revenant (2015 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/The_Revenant_2015_film_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Played by Hugh Jackman",
+        "items": [
+          {
+            "label": "Wolverine",
+            "src": "X-Men (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/81/X-MenfilmPoster.jpg"
+          },
+          {
+            "label": "P. T. Barnum",
+            "src": "The Greatest Showman",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/10/The_Greatest_Showman_poster.png"
+          },
+          {
+            "label": "Jean Valjean",
+            "src": "Les Misérables (2012 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b0/Les-miserables-movie-poster1.jpg"
+          },
+          {
+            "label": "Robert Angier",
+            "src": "The Prestige (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Prestige_poster.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-props",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Famous cars",
+        "items": [
+          {
+            "label": "DeLorean",
+            "src": "DeLorean time machine",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/DeLorean_Replica_Kovacs_Time_Machine.png/330px-DeLorean_Replica_Kovacs_Time_Machine.png"
+          },
+          {
+            "label": "Ecto-1",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/47/Ectomobile.png/330px-Ectomobile.png"
+          },
+          {
+            "label": "Batmobile",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/27/Batmobile_%28circa_2018%29.png/330px-Batmobile_%28circa_2018%29.png"
+          },
+          {
+            "label": "Herbie",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Herbie_car.jpg/330px-Herbie_car.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Harry Potter objects",
+        "items": [
+          {
+            "label": "Elder Wand",
+            "src": "fandom:harrypotter:Elder Wand",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/5/59/Elder_Wand.png/revision/latest/scale-to-width-down/320?cb=20241227040818"
+          },
+          {
+            "label": "Sorting Hat",
+            "src": "fandom:harrypotter:Sorting Hat",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/6/62/Sorting_Hat.png/revision/latest/scale-to-width-down/320?cb=20161120072849"
+          },
+          {
+            "label": "Time-Turner",
+            "src": "fandom:harrypotter:Time-Turner",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a4/Time_Turner.png/revision/latest/scale-to-width-down/226?cb=20161126042527"
+          },
+          {
+            "label": "Marauder's Map",
+            "src": "fandom:harrypotter:Marauder's Map",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Marauder%27sMap.png/revision/latest/scale-to-width-down/170?cb=20210912142119"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Marvel weapons",
+        "items": [
+          {
+            "label": "Mjolnir",
+            "src": "fandom:marvelcinematicuniverse:Mjølnir",
+            "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c9/Reformed_Mjolnir.png/revision/latest/scale-to-width-down/320?cb=20221026062139"
+          },
+          {
+            "label": "Stormbreaker",
+            "src": "fandom:marvelcinematicuniverse:Stormbreaker",
+            "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/f/f8/Stormbreaker_png.png/revision/latest/scale-to-width-down/211?cb=20220716224110"
+          },
+          {
+            "label": "Captain America's shield",
+            "src": "fandom:marvelcinematicuniverse:Captain America's Shield",
+            "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/36/Captain_America_Shield.png/revision/latest/scale-to-width-down/320?cb=20190316204818"
+          },
+          {
+            "label": "Infinity Gauntlet",
+            "src": "fandom:marvelcinematicuniverse:Infinity Gauntlet",
+            "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/00/InfinityGauntletProfilePicture.jpg/revision/latest/scale-to-width-down/271?cb=20210816221827"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Things everyone chases",
+        "items": [
+          {
+            "label": "The Briefcase",
+            "src": "Pulp Fiction",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg"
+          },
+          {
+            "label": "The Ark of the Covenant",
+            "src": "Raiders of the Lost Ark",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Raiders_of_the_Lost_Ark.jpg"
+          },
+          {
+            "label": "The Maltese Falcon",
+            "src": "The Maltese Falcon (1941 film)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/The_Maltese_Falcon_%281941_film_poster%29.jpg/330px-The_Maltese_Falcon_%281941_film_poster%29.jpg"
+          },
+          {
+            "label": "Rosebud",
+            "src": "Citizen Kane",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg/330px-Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cc-casts",
+    "domain": "cinema",
+    "groups": [
+      {
+        "level": 0,
+        "label": "The Fellowship’s big folk",
+        "items": [
+          {
+            "label": "Aragorn",
+            "src": "fandom:lotr:Aragorn II Elessar",
+            "image": "https://static.wikia.nocookie.net/lotr/images/5/50/KipR_Aragorn.JPG/revision/latest/scale-to-width-down/226?cb=20230422203513"
+          },
+          {
+            "label": "Legolas",
+            "src": "fandom:lotr:Legolas",
+            "image": "https://static.wikia.nocookie.net/lotr/images/b/be/Legolas%2C_Giancola.jpg/revision/latest/scale-to-width-down/179?cb=20231003014314"
+          },
+          {
+            "label": "Gimli",
+            "src": "fandom:lotr:Gimli",
+            "image": "https://static.wikia.nocookie.net/lotr/images/2/2e/Forty-Two.jpg/revision/latest/scale-to-width-down/320?cb=20230510233809"
+          },
+          {
+            "label": "Boromir",
+            "src": "fandom:lotr:Boromir",
+            "image": "https://static.wikia.nocookie.net/lotr/images/9/95/Boromir%2C_Venlian.png/revision/latest/scale-to-width-down/220?cb=20230619183907"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Ghostbusters",
+        "items": [
+          {
+            "label": "Peter Venkman",
+            "src": "Ghostbusters",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2f/Ghostbusters_%281984%29_theatrical_poster.png"
+          },
+          {
+            "label": "Ray Stantz",
+            "src": "Ghostbusters II",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/01/Ghostbusters_ii_poster.jpg"
+          },
+          {
+            "label": "Egon Spengler",
+            "src": "Ghostbusters: Afterlife",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d1/Ghostbusters_-_Afterlife_official_theatrical_poster.jpg"
+          },
+          {
+            "label": "Winston Zeddemore",
+            "src": "Ghostbusters: Frozen Empire",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/31/Ghostbusters_%282024%29_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Jurassic Park",
+        "items": [
+          {
+            "label": "Alan Grant",
+            "src": "fandom:jurassicpark:Alan Grant",
+            "image": "https://static.wikia.nocookie.net/jurassicpark/images/0/04/Alan_Grant_2022_4p.jpg/revision/latest/scale-to-width-down/259?cb=20250705175943"
+          },
+          {
+            "label": "Ian Malcolm",
+            "src": "fandom:jurassicpark:Ian Malcolm",
+            "image": "https://static.wikia.nocookie.net/jurassicpark/images/0/0a/Ian_Malcolm_in_2022_1p.png/revision/latest/scale-to-width-down/256?cb=20250706044511"
+          },
+          {
+            "label": "Ellie Sattler",
+            "src": "fandom:jurassicpark:Ellie Sattler",
+            "image": "https://static.wikia.nocookie.net/jurassicpark/images/5/54/Ellie_Sattler_JWD_.png/revision/latest/scale-to-width-down/262?cb=20241205230202"
+          },
+          {
+            "label": "John Hammond",
+            "src": "fandom:jurassicpark:John Hammond",
+            "image": "https://static.wikia.nocookie.net/jurassicpark/images/3/33/John_Hammond_in_1997.png/revision/latest/scale-to-width-down/213?cb=20261001061958"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Fast & Furious",
+        "items": [
+          {
+            "label": "Dominic Toretto",
+            "src": "fandom:fastandfurious:Dominic Toretto",
+            "image": "https://static.wikia.nocookie.net/fastandfurious/images/c/cc/Dom_-_FastXProfile.jpg/revision/latest/scale-to-width-down/227?cb=20230420063354"
+          },
+          {
+            "label": "Brian O'Conner",
+            "src": "fandom:fastandfurious:Brian O'Conner",
+            "image": "https://static.wikia.nocookie.net/fastandfurious/images/0/00/Paul.png/revision/latest/scale-to-width-down/222?cb=20150221185329"
+          },
+          {
+            "label": "Letty Ortiz",
+            "src": "fandom:fastandfurious:Letty Ortiz",
+            "image": "https://static.wikia.nocookie.net/fastandfurious/images/2/2a/Letty_-_FastXProfile.jpg/revision/latest/scale-to-width-down/227?cb=20230419000956"
+          },
+          {
+            "label": "Luke Hobbs",
+            "src": "fandom:fastandfurious:Luke Hobbs",
+            "image": "https://static.wikia.nocookie.net/fastandfurious/images/1/16/Hobbs_-_HSProfile.jpeg/revision/latest/scale-to-width-down/230?cb=20200907044321"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-stars",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Coldplay songs",
+        "items": [
+          {
+            "label": "Viva la Vida",
+            "src": "Viva la Vida (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/84/Coldplay_-_Viva_la_Vida.jpg"
+          },
+          {
+            "label": "Yellow",
+            "src": "Yellow (Coldplay song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9b/Yellow_cover_art.JPG"
+          },
+          {
+            "label": "Fix You",
+            "src": "Fix You",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b1/Coldplay_-_Fix_You.jpg"
+          },
+          {
+            "label": "The Scientist",
+            "src": "The Scientist (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Coldplay_-_The_Scientist.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Ed Sheeran songs",
+        "items": [
+          {
+            "label": "Shape of You",
+            "src": "Shape of You",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png"
+          },
+          {
+            "label": "Perfect",
+            "src": "Perfect (Ed Sheeran song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/80/Ed_Sheeran_Perfect_Single_cover.jpg"
+          },
+          {
+            "label": "Thinking Out Loud",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Thinking_Out_Loud_cover.png"
+          },
+          {
+            "label": "Photograph",
+            "src": "Photograph (Ed Sheeran song)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/cf/Photograph_%28Ed_Sheeran_song%29_cover.png/330px-Photograph_%28Ed_Sheeran_song%29_cover.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Adele songs",
+        "items": [
+          {
+            "label": "Hello",
+            "src": "Hello (Adele song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/85/Adele_-_Hello_%28Official_Single_Cover%29.png"
+          },
+          {
+            "label": "Rolling in the Deep",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png"
+          },
+          {
+            "label": "Someone Like You",
+            "src": "Someone Like You (Adele song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Adele_-_Someone_Like_You.png"
+          },
+          {
+            "label": "Easy on Me",
+            "src": "Easy on Me",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Adele_-_Easy_on_Me.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Linkin Park songs",
+        "items": [
+          {
+            "label": "In the End",
+            "src": "In the End (Linkin Park song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/LinkinParkIntheEnd.jpg"
+          },
+          {
+            "label": "Numb",
+            "src": "Numb (Linkin Park song)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/b/b9/Linkin_Park_-_Numb_CD_cover.jpg/330px-Linkin_Park_-_Numb_CD_cover.jpg"
+          },
+          {
+            "label": "Crawling",
+            "src": "Crawling (song)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/26/Linkin_Park_-_Crawling_CD_cover.jpg/330px-Linkin_Park_-_Crawling_CD_cover.jpg"
+          },
+          {
+            "label": "Faint",
+            "src": "Faint (song)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/73/Linkin_Park_-_Faint_CD_cover.jpg/330px-Linkin_Park_-_Faint_CD_cover.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-gamesongs",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "From Undertale",
+        "items": [
+          {
+            "label": "Megalovania",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b3/Halloween_Hack_Final_Boss.png"
+          },
+          "Hopes and Dreams",
+          {
+            "label": "Spider Dance",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Undertale_Soundtrack_2015.svg/330px-Undertale_Soundtrack_2015.svg.png"
+          },
+          {
+            "label": "Fallen Down",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Undertale_Soundtrack_2015.svg/330px-Undertale_Soundtrack_2015.svg.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "From Final Fantasy",
+        "items": [
+          {
+            "label": "One-Winged Angel",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c4/Sephiroth.png"
+          },
+          "Aerith's Theme",
+          "To Zanarkand",
+          "Liberi Fatali"
+        ]
+      },
+      {
+        "level": 2,
+        "label": "From Persona",
+        "items": [
+          {
+            "label": "Last Surprise",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b0/Persona_5_cover_art.jpg"
+          },
+          {
+            "label": "Beneath the Mask",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Beneath_the_mask_-_chick_corea.jpg"
+          },
+          "Mass Destruction",
+          {
+            "label": "Burn My Dread",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Persona3cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "From Hollow Knight",
+        "items": [
+          "City of Tears",
+          "Dirtmouth",
+          "Sealed Vessel",
+          "Mantis Lords"
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-openings",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Naruto openings",
+        "items": [
+          {
+            "label": "Blue Bird",
+            "src": "Blue Bird (Ikimonogakari song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/81/Ikimonogakari-Blue_Bird_cover.jpg"
+          },
+          {
+            "label": "Silhouette",
+            "src": "Silhouette (Kana-Boon song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Silhouette_by_Kana-Boon.jpg"
+          },
+          {
+            "label": "GO!!!",
+            "src": "Go!!! (Flow song)"
+          },
+          {
+            "label": "Sign",
+            "src": "Sign (Flow song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/03/FLOWSignReg.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Attack on Titan openings",
+        "items": [
+          {
+            "label": "Guren no Yumiya",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/73/Attack_on_Titan_OP_LTD.jpg"
+          },
+          "Shinzou wo Sasageyo!",
+          {
+            "label": "My War",
+            "src": "My War (Shinsei Kamattechan song)"
+          },
+          {
+            "label": "The Rumbling",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/78/The_Rumbling_SiM_full_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Jujutsu Kaisen openings",
+        "items": [
+          {
+            "label": "Kaikai Kitan",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/10/Kaikai_Kitan_-_cover.png"
+          },
+          {
+            "label": "Vivid Vice",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/7f/Vivid_Vice_-_cover.png"
+          },
+          "Ao no Sumika",
+          {
+            "label": "Specialz",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/57/King_Gnu_-_Specialz.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Demon Slayer openings",
+        "items": [
+          {
+            "label": "Gurenge",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/30/Gurenge_-_LiSA_Reguler_Edition.jpg"
+          },
+          {
+            "label": "Zankyosanka",
+            "src": "Zankyōsanka"
+          },
+          {
+            "label": "Kizuna no Kiseki",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1e/Kizuna_no_Kiseki%2C_Koi_Kogare.png"
+          },
+          {
+            "label": "Mugen",
+            "src": "Mugen (MY FIRST STORY and Hyde song)"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-electro",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Avicii songs",
+        "items": [
+          {
+            "label": "Wake Me Up",
+            "src": "Wake Me Up (Avicii song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/da/Avicii_Wake_Me_Up_Official_Single_Cover.png"
+          },
+          {
+            "label": "Levels",
+            "src": "Levels (Avicii song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Levelssong.jpg"
+          },
+          {
+            "label": "Hey Brother",
+            "src": "Hey Brother",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/Avicii_Hey_Brother.jpg"
+          },
+          {
+            "label": "The Nights",
+            "src": "The Nights (Avicii song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/34/Avicii_Nights_Artwork.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Calvin Harris songs",
+        "items": [
+          {
+            "label": "Summer",
+            "src": "Summer (Calvin Harris song)",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Calvin_Harris_-_Summer.png"
+          },
+          {
+            "label": "Feel So Close",
+            "src": "Feel So Close",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/07/Calvin_Harris_-_Feel_So_Close.png"
+          },
+          {
+            "label": "This Is What You Came For",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a8/This_Is_What_You_Came_For_cover.png"
+          },
+          {
+            "label": "One Kiss",
+            "src": "One Kiss (Calvin Harris and Dua Lipa song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Calvin_Harris_and_Dua_Lipa_One_Kiss.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "David Guetta songs",
+        "items": [
+          {
+            "label": "Titanium",
+            "src": "Titanium (David Guetta song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/Titaniumsong.jpg"
+          },
+          {
+            "label": "Memories",
+            "src": "Memories (David Guetta song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/47/David_Guetta_featuring_Kid_Cudi_-_Memories.png"
+          },
+          {
+            "label": "When Love Takes Over",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/f5/When_Love_Takes_Over.jpg/330px-When_Love_Takes_Over.jpg"
+          },
+          {
+            "label": "Hey Mama",
+            "src": "Hey Mama (David Guetta song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/10/David_Guetta_-_Hey_Mama_%28feat._Nicki_Minaj%2C_Bebe_Rexha_and_Afrojack%29.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Songs that became memes",
+        "items": [
+          {
+            "label": "Never Gonna Give You Up",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/34/RickAstleyNeverGonnaGiveYouUp7InchSingleCover.jpg"
+          },
+          {
+            "label": "Sandstorm",
+            "src": "Sandstorm (instrumental)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/98/Sandstorm_single.jpg"
+          },
+          {
+            "label": "Running in the 90s",
+            "src": "Initial D",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/InitialD_vol1_Cover.jpg"
+          },
+          {
+            "label": "All Star",
+            "src": "All Star (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/16/All_star.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-musicals",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "From Encanto",
+        "items": [
+          {
+            "label": "We Don't Talk About Bruno",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Encanto_-_We_Don%27t_Talk_About_Bruno.png"
+          },
+          {
+            "label": "Surface Pressure",
+            "src": "Surface Pressure",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/58/Jessica_Darrow_-_Surface_Pressure_%28From_%22Encanto%29.png"
+          },
+          {
+            "label": "What Else Can I Do?",
+            "src": "Encanto (soundtrack)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/14/Encanto_%28Original_Motion_Picture_Soundtrack%29.png"
+          },
+          {
+            "label": "The Family Madrigal",
+            "src": "Encanto (film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/83/Encanto_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "From Moana",
+        "items": [
+          "How Far I'll Go",
+          {
+            "label": "You're Welcome",
+            "src": "You're Welcome (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/28/You%27re_Welcome_-_The_Beach_Boys.jpg"
+          },
+          {
+            "label": "Shiny",
+            "src": "Moana (soundtrack)"
+          },
+          {
+            "label": "We Know the Way",
+            "src": "Moana (2016 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "From The Greatest Showman",
+        "items": [
+          {
+            "label": "This Is Me",
+            "src": "This Is Me (Keala Settle song)"
+          },
+          {
+            "label": "The Greatest Show",
+            "src": "The Greatest Showman (soundtrack)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/39/The_Greatest_Showman_%28Original_Motion_Picture_Soundtrack%29.png"
+          },
+          {
+            "label": "Rewrite the Stars",
+            "src": "Rewrite the Stars",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/Rewrite_the_Stars_Efron_and_Zendaya.jpg"
+          },
+          {
+            "label": "A Million Dreams",
+            "src": "The Greatest Showman",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/10/The_Greatest_Showman_poster.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Sung in video games",
+        "items": [
+          {
+            "label": "Still Alive",
+            "src": "Still Alive"
+          },
+          {
+            "label": "Want You Gone",
+            "src": "Portal 2",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"
+          },
+          {
+            "label": "Snake Eater",
+            "src": "Metal Gear Solid 3: Snake Eater",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b3/Mgs3box.jpg"
+          },
+          {
+            "label": "Baba Yetu",
+            "src": "Baba Yetu"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cm-charts",
+    "domain": "music",
+    "groups": [
+      {
+        "level": 0,
+        "label": "The Weeknd songs",
+        "items": [
+          {
+            "label": "Blinding Lights",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
+          },
+          {
+            "label": "Starboy",
+            "src": "Starboy (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/The_Weeknd_-_Starboy_%28single%29.jpg"
+          },
+          {
+            "label": "Save Your Tears",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/Save_Your_Tears_-_Official_Fortnite_Jam_Track_Cover_Art.png"
+          },
+          {
+            "label": "The Hills",
+            "src": "The Hills (The Weeknd song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/af/The_Weeknd_-_The_Hills.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Billie Eilish songs",
+        "items": [
+          {
+            "label": "Bad Guy",
+            "src": "Bad Guy (Billie Eilish song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Billie_Eilish_-_Bad_Guy.png"
+          },
+          {
+            "label": "Ocean Eyes",
+            "src": "Ocean Eyes (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Billie_Eilish_-_Ocean_Eyes.png"
+          },
+          {
+            "label": "Happier Than Ever",
+            "src": "Happier Than Ever (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Billie_Eilish_-_Happier_Than_Ever_%28song%29.png"
+          },
+          {
+            "label": "What Was I Made For?",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/54/Billie_Eilish_-_What_Was_I_Made_For%3F.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Dua Lipa songs",
+        "items": [
+          {
+            "label": "Levitating",
+            "src": "Levitating (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Dua_Lipa_Levitating_Solo_Single_Cover.jpeg"
+          },
+          {
+            "label": "New Rules",
+            "src": "New Rules (song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/New_Rules_%28Official_Single_Cover%29_by_Dua_Lipa.png"
+          },
+          {
+            "label": "Don't Start Now",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2b/Dua_Lipa_-_Don%27t_Start_Now.png"
+          },
+          {
+            "label": "Houdini",
+            "src": "Houdini (Dua Lipa song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a0/Dua_Lipa_-_Houdini.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Olivia Rodrigo songs",
+        "items": [
+          {
+            "label": "Drivers License",
+            "src": "Drivers License",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Driving_licence_Poland_2013_recto.png/330px-Driving_licence_Poland_2013_recto.png"
+          },
+          {
+            "label": "Good 4 U",
+            "src": "Good 4 U",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Olivia_Rodrigo_-_Good_4_U.png"
+          },
+          {
+            "label": "Vampire",
+            "src": "Vampire (Olivia Rodrigo song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/14/Olivia_Rodrigo_-_Vampire.png"
+          },
+          {
+            "label": "Deja Vu",
+            "src": "Deja Vu (Olivia Rodrigo song)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Olivia_Rodrigo_-_Deja_Vu.png"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cx-creatures",
+    "domain": "mixed",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Cats",
+        "items": [
+          {
+            "label": "Garfield",
+            "src": "Garfield (character)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/330px-Garfield_the_Cat.svg.png"
+          },
+          {
+            "label": "Cheshire Cat",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Tennel_Cheshire_proof.png/330px-Tennel_Cheshire_proof.png"
+          },
+          {
+            "label": "Puss in Boots",
+            "src": "Puss in Boots (Shrek)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8a/Puss_in_Boots_from_Shrek.png"
+          },
+          {
+            "label": "Doraemon",
+            "src": "Doraemon (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Robots",
+        "items": [
+          {
+            "label": "R2-D2",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Parents_of_Earth%2C_are_your_children_fully_immunized_%284647268251%29_%28cropped%29_auto_color_%28cropped_to_R2-D2%29.jpg/330px-Parents_of_Earth%2C_are_your_children_fully_immunized_%284647268251%29_%28cropped%29_auto_color_%28cropped_to_R2-D2%29.jpg"
+          },
+          {
+            "label": "WALL-E",
+            "src": "WALL-E (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/68/WALL-E_%28character%29.png"
+          },
+          {
+            "label": "Bender",
+            "src": "Bender (Futurama)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png"
+          },
+          {
+            "label": "Baymax",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Baymax_%28Marvel_Comics%29.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Dragons",
+        "items": [
+          {
+            "label": "Smaug",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/26/Conversation_with_Smaug.png"
+          },
+          {
+            "label": "Toothless",
+            "src": "Toothless (How to Train Your Dragon)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/77/How_to_Train_Your_Dragon_%282003_book_cover%29.jpg"
+          },
+          {
+            "label": "Shenron",
+            "src": "fandom:dragonball:Shenron",
+            "image": "https://static.wikia.nocookie.net/dragonball/images/2/26/Shenron_DBZ_Episode_240.png/revision/latest/scale-to-width-down/208?cb=20210429121425"
+          },
+          {
+            "label": "Drogon",
+            "src": "fandom:gameofthrones:Drogon",
+            "image": "https://static.wikia.nocookie.net/gameofthrones/images/8/8f/DrogonWinterfell8x01.PNG/revision/latest/scale-to-width-down/232?cb=20190515233534"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Ghosts",
+        "items": [
+          {
+            "label": "Casper",
+            "src": "Casper the Friendly Ghost",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Cover_of_Casper_the_Friendly_Ghost_no._34_%28July_1955%29.jpg/330px-Cover_of_Casper_the_Friendly_Ghost_no._34_%28July_1955%29.jpg"
+          },
+          {
+            "label": "Slimer",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/7c/Slimer_%28Ghostbusters_1984_film_character%29.png"
+          },
+          {
+            "label": "Moaning Myrtle",
+            "src": "fandom:harrypotter:Myrtle Warren",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Myrtle_Warren_profile.png/revision/latest/scale-to-width-down/240?cb=20170113020338"
+          },
+          {
+            "label": "Boo",
+            "src": "fandom:mario:Boo",
+            "image": "https://static.wikia.nocookie.net/mario/images/3/3f/MPS_Boo_Artwork.png/revision/latest/scale-to-width-down/320?cb=20230418174843"
+          }
+        ]
+      }
+    ],
+    "images": "wp"
+  },
+  {
+    "id": "cx-looks",
+    "domain": "mixed",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Iconic moustaches",
+        "items": [
+          {
+            "label": "Hercule Poirot",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2d/Albert_Finney_plays_Poirot.jpg/330px-Albert_Finney_plays_Poirot.jpg"
+          },
+          {
+            "label": "Ned Flanders",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/84/Ned_Flanders.png"
+          },
+          {
+            "label": "Charlie Chaplin",
+            "src": "The Tramp",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Charlie_Chaplin.jpg/330px-Charlie_Chaplin.jpg"
+          },
+          {
+            "label": "Freddie Mercury",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/330px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Wears a cape",
+        "items": [
+          {
+            "label": "Superman",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/35/Supermanflying.png"
+          },
+          {
+            "label": "Dracula",
+            "src": "Count Dracula",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Bela_Lugosi_as_Dracula.jpg/330px-Bela_Lugosi_as_Dracula.jpg"
+          },
+          {
+            "label": "Zorro",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Zorro_Productions%2C_Inc._logo.svg/330px-Zorro_Productions%2C_Inc._logo.svg.png"
+          },
+          {
+            "label": "Doctor Strange",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/4f/Doctor_Strange_Vol_4_2_Ross_Variant_Textless.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Eye patches",
+        "items": [
+          {
+            "label": "Nick Fury",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/71/Nick_Fury_I.png"
+          },
+          {
+            "label": "Big Boss",
+            "src": "fandom:metalgear:Big Boss",
+            "image": "https://static.wikia.nocookie.net/metalgear/images/7/79/Snake_MPO.jpg/revision/latest?cb=20110530114116"
+          },
+          {
+            "label": "Odin",
+            "src": "Odin (Marvel Comics)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/Odin_%28Marvel_Comics_character%29.png"
+          },
+          {
+            "label": "Snake Plissken",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/e/e8/SnakePlissken.jpeg/330px-SnakePlissken.jpeg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Iconic hats",
+        "items": [
+          {
+            "label": "Indiana Jones",
+            "src": "Indiana Jones (character)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Indianajones4.jpg/330px-Indianajones4.jpg"
+          },
+          {
+            "label": "Luffy",
+            "src": "fandom:onepiece:Monkey D. Luffy",
+            "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/153?cb=20260611004637"
+          },
+          {
+            "label": "Link",
+            "src": "Link (The Legend of Zelda)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9d/Link_%28Hyrule_Historia%29.png"
+          },
+          {
+            "label": "Ash Ketchum",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e4/Ash_Ketchum_Journeys.png"
+          }
+        ]
+      }
+    ],
+    "images": "wp"
+  },
+  {
+    "id": "cx-numbers",
+    "domain": "mixed",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Come in sevens",
+        "items": [
+          {
+            "label": "Dragon Balls",
+            "src": "fandom:dragonball:Earth Dragon Ball",
+            "image": "https://static.wikia.nocookie.net/dragonball/images/7/7b/The_Tree_of_Might_-_The_7_Dragon_Balls_gathered.jpg/revision/latest/scale-to-width-down/320?cb=20261106045817"
+          },
+          {
+            "label": "Deadly Sins",
+            "src": "Seven deadly sins",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Hieronymus_Bosch-_The_Seven_Deadly_Sins_and_the_Four_Last_Things.JPG/330px-Hieronymus_Bosch-_The_Seven_Deadly_Sins_and_the_Four_Last_Things.JPG"
+          },
+          {
+            "label": "Dwarfs",
+            "src": "Seven Dwarfs",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Schneewittchen-Otto-Kubel.jpg/330px-Schneewittchen-Otto-Kubel.jpg"
+          },
+          {
+            "label": "Horcruxes",
+            "src": "fandom:harrypotter:Horcrux",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Seven_Horcruxes.png/revision/latest/scale-to-width-down/320?cb=20161126081048"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Come in fours",
+        "items": [
+          {
+            "label": "Ninja Turtles",
+            "src": "Teenage Mutant Ninja Turtles (2014 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/09/Teenage_Mutant_Ninja_Turtles_film_July_2014_poster.jpg"
+          },
+          {
+            "label": "Hogwarts houses",
+            "src": "fandom:harrypotter:Hogwarts Houses",
+            "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Hogwarts_houses.jpg/revision/latest?cb=20160813020635"
+          },
+          {
+            "label": "Fantastic Four",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/Fantastic_Four_%28Marvel_Comics_characters%29.jpg"
+          },
+          {
+            "label": "The Beatles",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/The_Beatles_1963_Dezo_Hoffman_Capitol_Records_press_photo_2.jpg/330px-The_Beatles_1963_Dezo_Hoffman_Capitol_Records_press_photo_2.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Come in threes",
+        "items": [
+          {
+            "label": "Triforce pieces",
+            "src": "Triforce",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Trifuerza.svg/330px-Trifuerza.svg.png"
+          },
+          {
+            "label": "Musketeers",
+            "src": "The Three Musketeers",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Dartagnan-musketeers.jpg/330px-Dartagnan-musketeers.jpg"
+          },
+          {
+            "label": "The Powerpuff Girls",
+            "src": "fandom:powerpuffgirls:The Powerpuff Girls",
+            "image": "https://static.wikia.nocookie.net/powerpuff/images/1/17/Thepowerpuffgirls_poster.jpg/revision/latest/scale-to-width-down/211?cb=20261013234027"
+          },
+          {
+            "label": "Little Pigs",
+            "src": "The Three Little Pigs",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Three_little_pigs_and_mother_sow_-_Project_Gutenberg_eText_15661.jpg/330px-Three_little_pigs_and_mother_sow_-_Project_Gutenberg_eText_15661.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Come in nines",
+        "items": [
+          {
+            "label": "Tailed Beasts",
+            "src": "fandom:naruto:Tailed Beasts",
+            "image": "https://static.wikia.nocookie.net/naruto/images/1/1c/BijuuComplete.jpg/revision/latest/scale-to-width-down/230?cb=20110408194315"
+          },
+          {
+            "label": "Nazgûl",
+            "src": "fandom:lotr:Nazgûl",
+            "image": "https://static.wikia.nocookie.net/lotr/images/5/5b/Nazgul%2C_Cavini.jpg/revision/latest/scale-to-width-down/210?cb=20240107125242"
+          },
+          {
+            "label": "Muses",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Muse_reading_Louvre_CA2220.jpg/330px-Muse_reading_Louvre_CA2220.jpg"
+          },
+          {
+            "label": "Circles of Hell",
+            "src": "Inferno (Dante)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Inferno.jpg/330px-Inferno.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp"
+  },
+  {
+    "id": "cx-voices",
+    "domain": "mixed",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Played by Mark Hamill",
+        "items": [
+          {
+            "label": "Luke Skywalker",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/6/67/Luke_Skywalker_-_Welcome_Banner_%28Cropped%29.jpg"
+          },
+          {
+            "label": "The Joker",
+            "src": "Batman: The Animated Series",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Batman-_The_Animated_Series_logo.svg/330px-Batman-_The_Animated_Series_logo.svg.png"
+          },
+          {
+            "label": "Fire Lord Ozai",
+            "src": "fandom:avatar:Ozai",
+            "image": "https://static.wikia.nocookie.net/avatar/images/4/4a/Ozai.png/revision/latest/scale-to-width-down/320?cb=20130612170743"
+          },
+          {
+            "label": "Chucky",
+            "src": "Child's Play (2019 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/39/Child%27s_Play_%282019_film%29.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Played by Robin Williams",
+        "items": [
+          {
+            "label": "Genie",
+            "src": "Genie (Aladdin)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/The_Genie_Aladdin.png"
+          },
+          {
+            "label": "Mrs. Doubtfire",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Mrs_Doubtfire.jpg"
+          },
+          {
+            "label": "John Keating",
+            "src": "Dead Poets Society",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Dead_poets_society.png"
+          },
+          {
+            "label": "Mork",
+            "src": "Mork & Mindy",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Mork_%26_Mindy_1978_logo.svg/330px-Mork_%26_Mindy_1978_logo.svg.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Played by Jim Carrey",
+        "items": [
+          {
+            "label": "The Mask",
+            "src": "The Mask (1994 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/The_Mask_%28film%29_poster.jpg"
+          },
+          {
+            "label": "Ace Ventura",
+            "src": "Ace Ventura: Pet Detective",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/84/Ace_ventura_pet_detective.jpg"
+          },
+          {
+            "label": "Truman Burbank",
+            "src": "The Truman Show",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Trumanshow.jpg"
+          },
+          {
+            "label": "The Grinch",
+            "src": "How the Grinch Stole Christmas (2000 film)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e7/How_the_Grinch_Stole_Christmas_film_poster.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Played by Samuel L. Jackson",
+        "items": [
+          {
+            "label": "Nick Fury",
+            "src": "Nick Fury (Marvel Cinematic Universe)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c8/Samuel_L._Jackson_as_Nick_Fury_in_The_Avengers_%282012_film%29.jpg"
+          },
+          {
+            "label": "Jules Winnfield",
+            "src": "Pulp Fiction",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg"
+          },
+          {
+            "label": "Mace Windu",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Mace_Windu.png"
+          },
+          {
+            "label": "Frozone",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/88/IncredibleFamily.jpg/330px-IncredibleFamily.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp"
   }
 ]

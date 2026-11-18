@@ -56,6 +56,8 @@ export interface ThemeBank {
    * are) is read from the label when left out: see kindOf() in src/lib/connections.ts.
    */
   categories: { id: string; label: string; level: number; items: string[]; kind?: 'character' | 'place' | 'thing' }[];
+  /** The first day (YYYY-MM-DD) the dailies may draw it: a bank added later leaves the days before as they were. */
+  from?: string;
 }
 
 export const connectionThemes = rawThemes as unknown as ThemeBank[];
