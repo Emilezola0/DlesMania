@@ -4318,5 +4318,1034 @@
         ]
       }
     ]
+  },
+  {
+    "id": "cg-indies",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Roguelike deckbuilders",
+        "items": [
+          {
+            "label": "Slay the Spire",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/Slay_the_spire_cover.jpg"
+          },
+          {
+            "label": "Balatro",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/89/Balatro_cover.jpg/330px-Balatro_cover.jpg"
+          },
+          {
+            "label": "Monster Train",
+            "src": "Monster Train (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/49/Monster_Train_logo.png"
+          },
+          {
+            "label": "Inscryption",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/48/Inscryption_Cover_Art.jpg/330px-Inscryption_Cover_Art.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Supergiant Games",
+        "items": [
+          {
+            "label": "Bastion",
+            "src": "Bastion (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f4/Bastion_Boxart.jpg"
+          },
+          {
+            "label": "Transistor",
+            "src": "Transistor (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/41/Transistor_art.jpg"
+          },
+          {
+            "label": "Pyre",
+            "src": "Pyre (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/ad/Pyre_cover_art.jpg"
+          },
+          {
+            "label": "Hades",
+            "src": "Hades (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Farming games",
+        "items": [
+          {
+            "label": "Stardew Valley",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png"
+          },
+          {
+            "label": "Harvest Moon",
+            "src": "Harvest Moon: Back to Nature",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Harvest_Moon_Back_to_Nature.jpg"
+          },
+          {
+            "label": "Rune Factory",
+            "src": "Rune Factory 4",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/3/30/Rune_Factory_4_Box_Art.jpg/330px-Rune_Factory_4_Box_Art.jpg"
+          },
+          {
+            "label": "Story of Seasons",
+            "src": "Story of Seasons: Friends of Mineral Town",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harvest_Moon-_FoMT.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Published by Annapurna Interactive",
+        "items": [
+          {
+            "label": "Outer Wilds",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Outer_Wilds_Steam_artwork.jpg"
+          },
+          {
+            "label": "Stray",
+            "src": "Stray (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f1/Stray_cover_art.jpg"
+          },
+          {
+            "label": "What Remains of Edith Finch",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/79/What_Remains_of_Edith_Finch_cover_art.jpg"
+          },
+          {
+            "label": "Neon White",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/Neon_White_cover_art.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-friends",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Co-op horror with friends",
+        "items": [
+          {
+            "label": "Lethal Company",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lethal_Company_Steam_cover.jpg"
+          },
+          {
+            "label": "Phasmophobia",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Phasmophobia_VG.jpg"
+          },
+          {
+            "label": "R.E.P.O.",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/12/R.E.P.O._cover.jpg/330px-R.E.P.O._cover.jpg"
+          },
+          {
+            "label": "Content Warning",
+            "src": "Content Warning (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/63/Content_Warning_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Directed by Josef Fares",
+        "items": [
+          {
+            "label": "Brothers: A Tale of Two Sons",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Brothers_A_Tale_of_Two_Sons_cover_art.jpg"
+          },
+          {
+            "label": "A Way Out",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/83/A_Way_Out_Logo.jpg"
+          },
+          {
+            "label": "It Takes Two",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/aa/It_Takes_Two_cover_art.png"
+          },
+          {
+            "label": "Split Fiction",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/40/Split_Fiction_cover_art.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Wobbly physics party games",
+        "items": [
+          {
+            "label": "Gang Beasts",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Gang_Beasts_Logo.png/330px-Gang_Beasts_Logo.png"
+          },
+          {
+            "label": "Human: Fall Flat",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Human_Fall_Flat_cover_art.jpg"
+          },
+          {
+            "label": "Fall Guys",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1097150/library_600x900.jpg"
+          },
+          {
+            "label": "Party Animals",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1260320/library_600x900.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Coffee Stain games",
+        "items": [
+          {
+            "label": "Goat Simulator",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/fd/Goat_Simulator_cover.jpg/330px-Goat_Simulator_cover.jpg"
+          },
+          {
+            "label": "Satisfactory",
+            "src": "Satisfactory (video game)",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/526870/library_600x900.jpg"
+          },
+          {
+            "label": "Deep Rock Galactic",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b3/Deep_rock_galactic_cover_art.jpg"
+          },
+          {
+            "label": "Valheim",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/77/Valheim_2021_logo.jpg/330px-Valheim_2021_logo.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-survival",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Zombie survival",
+        "items": [
+          {
+            "label": "DayZ",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/library_600x900.jpg"
+          },
+          {
+            "label": "Project Zomboid",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Boxshot_of_video_game_Project_zomboid.jpg"
+          },
+          {
+            "label": "7 Days to Die",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/20/7_Days_To_Die_cover_art.jpg"
+          },
+          {
+            "label": "Dying Light",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c0/Dying_Light_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Klei Entertainment games",
+        "items": [
+          {
+            "label": "Don't Starve",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Don%27t_Starve_cover.jpg"
+          },
+          {
+            "label": "Oxygen Not Included",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Oxygen_Not_Included_cover_art.jpg"
+          },
+          {
+            "label": "Mark of the Ninja",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f5/Mark_of_the_Ninja_cover.png"
+          },
+          {
+            "label": "Invisible, Inc.",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/ac/Invisible%2C_Inc.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Under the sea",
+        "items": [
+          {
+            "label": "Subnautica",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/Subnautica_cover_art.png"
+          },
+          {
+            "label": "Abzû",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/73/Abzu.jpg"
+          },
+          {
+            "label": "SOMA",
+            "src": "Soma (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Soma_Game_Art.png"
+          },
+          {
+            "label": "BioShock",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/BioShock_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "With dinosaurs",
+        "items": [
+          {
+            "label": "ARK: Survival Evolved",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2b/ArkSurvivalEvolved.png"
+          },
+          {
+            "label": "Jurassic World Evolution",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/Jurassic_World_Evolution_cover_art.jpg"
+          },
+          {
+            "label": "Turok",
+            "src": "Turok: Dinosaur Hunter",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Turok-dinosaur_hunter_n64_cover.png"
+          },
+          {
+            "label": "The Isle",
+            "src": "The Isle (video game)",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/376210/library_600x900.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-studios2",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Valve games",
+        "items": [
+          {
+            "label": "Portal",
+            "src": "Portal (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg"
+          },
+          {
+            "label": "Half-Life",
+            "src": "Half-Life (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fa/Half-Life_Cover_Art.jpg"
+          },
+          {
+            "label": "Left 4 Dead",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5b/Left4Dead_Windows_cover.jpg"
+          },
+          {
+            "label": "Dota 2",
+            "image": "https://upload.wikimedia.org/wikipedia/en/3/31/Dota_2_Steam_artwork.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Paradox grand strategy",
+        "items": [
+          {
+            "label": "Stellaris",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/281990/library_600x900.jpg"
+          },
+          {
+            "label": "Crusader Kings III",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Crusader_Kings_III.jpg"
+          },
+          {
+            "label": "Europa Universalis IV",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c5/EuropaUniversalisIV_Packshot_edited.png"
+          },
+          {
+            "label": "Hearts of Iron IV",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b3/Hearts_of_Iron_IV_packshot.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Published by Devolver Digital",
+        "items": [
+          {
+            "label": "Hotline Miami",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f4/Hotline_Miami_cover.png"
+          },
+          {
+            "label": "Enter the Gungeon",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/16/Enter_the_Gungeon_cover_art.jpeg/330px-Enter_the_Gungeon_cover_art.jpeg"
+          },
+          {
+            "label": "Cult of the Lamb",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Cult_of_the_Lamb_Key_Art.png"
+          },
+          {
+            "label": "Loop Hero",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2c/Loop_Hero_cover.jpg/330px-Loop_Hero_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Frictional Games horror",
+        "items": [
+          {
+            "label": "Amnesia: The Dark Descent",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/62/Amnesia-The-Dark-Descent-Cover-Art.png"
+          },
+          {
+            "label": "Soma",
+            "src": "Soma (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Soma_Game_Art.png"
+          },
+          {
+            "label": "Penumbra: Overture",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Penumbra-win-cover.jpg"
+          },
+          {
+            "label": "Amnesia: The Bunker",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Amnesia_The_Bunker_cover_art.png"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-heroes",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Silent protagonists",
+        "items": [
+          {
+            "label": "Gordon Freeman",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Gordon_Freeman.png"
+          },
+          {
+            "label": "Link",
+            "src": "Link (The Legend of Zelda)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9d/Link_%28Hyrule_Historia%29.png"
+          },
+          {
+            "label": "Doomguy",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Doom_Slayer.png"
+          },
+          {
+            "label": "Chell",
+            "src": "Chell (Portal)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/4/40/Chell.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Bald heads",
+        "items": [
+          {
+            "label": "Kratos",
+            "src": "Kratos (God of War)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/2f/Kratos_PS4.png"
+          },
+          {
+            "label": "Agent 47",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/62/Agent_47_in_Hitman_Absolution.png"
+          },
+          {
+            "label": "Isaac",
+            "src": "The Binding of Isaac (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fa/Binding_of_isaac_header.jpg"
+          },
+          {
+            "label": "Doctor Eggman",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/72/Doctor_EggmanSDT.png/330px-Doctor_EggmanSDT.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Ninjas",
+        "items": [
+          {
+            "label": "Ryu Hayabusa",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/71/Ryu_Hayabusa.png"
+          },
+          {
+            "label": "Genji",
+            "src": "Genji (Overwatch)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/ea/Genji_%28Overwatch%29.png"
+          },
+          {
+            "label": "Joe Musashi",
+            "src": "Shinobi (series)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/9c/Shinobi_Sega_logo.png/330px-Shinobi_Sega_logo.png"
+          },
+          {
+            "label": "Strider Hiryu",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/88/Strider_Hiryu_%28character%29.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Voiced by Troy Baker",
+        "items": [
+          {
+            "label": "Joel",
+            "src": "Joel (The Last of Us)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/94/Joel_in_The_Last_of_Us.png"
+          },
+          {
+            "label": "Booker DeWitt",
+            "src": "fandom:bioshock:Booker DeWitt",
+            "image": "https://static.wikia.nocookie.net/bioshock/images/4/4a/Bookerdewitt.png/revision/latest/scale-to-width-down/213?cb=20140505222109"
+          },
+          {
+            "label": "Higgs",
+            "src": "Death Stranding",
+            "image": "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg"
+          },
+          {
+            "label": "Indiana Jones",
+            "src": "Indiana Jones and the Great Circle",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Indiana_Jones_and_the_Great_Circle-box_art.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-gear",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Legendary blades",
+        "items": [
+          {
+            "label": "Master Sword",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/f9/Master_Sword_Lead.png/330px-Master_Sword_Lead.png"
+          },
+          {
+            "label": "Buster Sword",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4b/Busterswordvii.png/330px-Busterswordvii.png"
+          },
+          {
+            "label": "Keyblade",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/6/68/Kingdom_Hearts_logo.png/330px-Kingdom_Hearts_logo.png"
+          },
+          {
+            "label": "Soul Edge",
+            "src": "fandom:soulcalibur:Soul Edge",
+            "image": "https://static.wikia.nocookie.net/soulcalibur/images/4/4a/Soulcalibur-VI_2017_12-08-17_014.jpg/revision/latest/scale-to-width-down/240?cb=20171208224131"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Half-Life and Portal tools",
+        "items": [
+          {
+            "label": "Crowbar",
+            "src": "Crowbar (Half-Life)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Orange_lambda.svg/330px-Orange_lambda.svg.png"
+          },
+          {
+            "label": "Gravity Gun",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Gravity_gun.png"
+          },
+          {
+            "label": "Portal Gun",
+            "src": "fandom:half-life:Aperture Science Handheld Portal Device",
+            "image": "https://static.wikia.nocookie.net/half-life/images/b/bb/Aperture_Science_Handheld_Portal_Device_Portal.jpg/revision/latest/scale-to-width-down/320?cb=20110519012833&path-prefix=en"
+          },
+          {
+            "label": "HEV Suit",
+            "src": "fandom:half-life:HEV Suit",
+            "image": "https://static.wikia.nocookie.net/half-life/images/4/44/HEV_HL2.png/revision/latest/scale-to-width-down/320?cb=20230216025308&path-prefix=en"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Things that heal you",
+        "items": [
+          {
+            "label": "Estus Flask",
+            "src": "fandom:darksouls:Estus Flask (Dark Souls III)",
+            "image": "https://static.wikia.nocookie.net/darksouls/images/0/08/Estus_Flask_%28DSIII%29_-_01.png/revision/latest/scale-to-width-down/320?cb=20160613233757"
+          },
+          {
+            "label": "Medkit",
+            "src": "First aid kit",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/British_Red_Cross_First_Aid_Kits.jpg/330px-British_Red_Cross_First_Aid_Kits.jpg"
+          },
+          {
+            "label": "Stimpak",
+            "src": "fandom:fallout:Stimpak",
+            "image": "https://static.wikia.nocookie.net/fallout/images/c/cd/FOTV_First_Aid_Kit.png/revision/latest/scale-to-width-down/320?cb=20240520113847"
+          },
+          {
+            "label": "Red Potion",
+            "src": "Potion",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Filtre_d%27Amour.jpg/330px-Filtre_d%27Amour.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Things you throw",
+        "items": [
+          {
+            "label": "Poké Ball",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/330px-International_Pok%C3%A9mon_logo.svg.png"
+          },
+          {
+            "label": "Plasma Grenade",
+            "src": "fandom:halo:Anskum-Pattern Firebomb",
+            "image": "https://static.wikia.nocookie.net/halo/images/1/16/H5G_Render_PlasmaGrenade.png/revision/latest/scale-to-width-down/320?cb=20160422003439"
+          },
+          {
+            "label": "Holy Hand Grenade",
+            "src": "Holy Hand Grenade of Antioch",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/24/Rabbitattack.jpg/330px-Rabbitattack.jpg"
+          },
+          {
+            "label": "Leviathan Axe",
+            "src": "God of War (2018 video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-creatures",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Animal mascots",
+        "items": [
+          {
+            "label": "Sonic",
+            "src": "Sonic the Hedgehog (character)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/f4/Sonic_modern_and_classic_designs.png/330px-Sonic_modern_and_classic_designs.png"
+          },
+          {
+            "label": "Crash",
+            "src": "Crash Bandicoot (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/IAT_Crash_Bandicoot.png"
+          },
+          {
+            "label": "Spyro",
+            "src": "Spyro (character)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/53/Spyro.png"
+          },
+          {
+            "label": "Banjo",
+            "src": "Banjo-Kazooie",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Banjo_Kazooie_logo.png/330px-Banjo_Kazooie_logo.png"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Ghosts",
+        "items": [
+          {
+            "label": "Boo",
+            "src": "fandom:mario:Boo",
+            "image": "https://static.wikia.nocookie.net/mario/images/3/3f/MPS_Boo_Artwork.png/revision/latest/scale-to-width-down/320?cb=20230418174843"
+          },
+          {
+            "label": "Blinky",
+            "src": "fandom:pacman:Blinky",
+            "image": "https://static.wikia.nocookie.net/pacman/images/0/03/Img_blinky_02.png/revision/latest/scale-to-width-down/320?cb=20260522021224"
+          },
+          {
+            "label": "Napstablook",
+            "src": "fandom:undertale:Napstablook",
+            "image": "https://static.wikia.nocookie.net/undertale/images/a/a0/Napstablook_tarot.png/revision/latest/scale-to-width-down/139?cb=20160422234911"
+          },
+          {
+            "label": "Gengar",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Pok%C3%A9mon_Gengar_art.png"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Cats",
+        "items": [
+          {
+            "label": "Meowth",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/99/Meowth.png"
+          },
+          {
+            "label": "Palico",
+            "src": "Monster Hunter: World",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg"
+          },
+          {
+            "label": "Cait Sith",
+            "src": "fandom:finalfantasy:Cait Sith (Final Fantasy VII)",
+            "image": "https://static.wikia.nocookie.net/finalfantasy/images/9/91/Cait_Sith_from_FFVII_Revelation_promo_render.png/revision/latest/scale-to-width-down/320?cb=20260904180253"
+          },
+          {
+            "label": "Bubsy",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Bubsy_in_Claws_Encounters_of_the_Furred_Kind_%281993%29_logo_official_%28SGDB_32512%29.png/330px-Bubsy_in_Claws_Encounters_of_the_Furred_Kind_%281993%29_logo_official_%28SGDB_32512%29.png"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Slimes",
+        "items": [
+          {
+            "label": "Slime",
+            "src": "Slime (Dragon Quest)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9d/Slime_%28Dragon_Quest%29.png"
+          },
+          {
+            "label": "King Slime",
+            "src": "Terraria",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1a/Terraria_Steam_artwork.jpg"
+          },
+          {
+            "label": "Pink Slime",
+            "src": "Slime Rancher",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Slime_Rancher_cover_art.png"
+          },
+          {
+            "label": "ChuChu",
+            "src": "fandom:zelda:ChuChu",
+            "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/0/07/TWW_Chuchus_Artwork.png/revision/latest/scale-to-width-down/320?cb=20131109184102"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-places",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Fictional cities",
+        "items": [
+          {
+            "label": "Rapture",
+            "src": "Rapture (BioShock)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/Bioshock-rapture.jpg"
+          },
+          {
+            "label": "City 17",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Orange_lambda.svg/330px-Orange_lambda.svg.png"
+          },
+          {
+            "label": "Midgar",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/20/FFVIImidgar.jpg/330px-FFVIImidgar.jpg"
+          },
+          {
+            "label": "Night City",
+            "src": "fandom:cyberpunk:Night City",
+            "image": "https://static.wikia.nocookie.net/cyberpunk/images/1/1c/NC-Profile-2077-Placeholder.jpg/revision/latest/scale-to-width-down/180?cb=20200501024902"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Islands",
+        "items": [
+          {
+            "label": "Koholint Island",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/Link%27s_Awakening.png"
+          },
+          {
+            "label": "Monkey Island",
+            "src": "The Secret of Monkey Island",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a8/The_Secret_of_Monkey_Island_artwork.jpg"
+          },
+          {
+            "label": "Rook Islands",
+            "src": "Far Cry 3",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Far_Cry_3_PAL_box_art.jpg"
+          },
+          {
+            "label": "Outset Island",
+            "src": "The Legend of Zelda: The Wind Waker",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/79/The_Legend_of_Zelda_The_Wind_Waker.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Ships and stations",
+        "items": [
+          {
+            "label": "USG Ishimura",
+            "src": "Dead Space (2008 video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/57/Dead_Space_Box_Art.jpg"
+          },
+          {
+            "label": "Normandy",
+            "src": "Normandy (Mass Effect)",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/a/a9/Mass_Effect_Normandy_SR-1.png/330px-Mass_Effect_Normandy_SR-1.png"
+          },
+          {
+            "label": "Sevastopol",
+            "src": "Alien: Isolation",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Alien_Isolation.jpg"
+          },
+          {
+            "label": "Pillar of Autumn",
+            "src": "Halo: Combat Evolved",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/80/Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Soulslike hubs",
+        "items": [
+          {
+            "label": "Firelink Shrine",
+            "src": "Dark Souls (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg"
+          },
+          {
+            "label": "Majula",
+            "src": "Dark Souls II",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/ed/Dark_Souls_II_cover.jpg"
+          },
+          {
+            "label": "Roundtable Hold",
+            "src": "Elden Ring",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg"
+          },
+          {
+            "label": "Hunter's Dream",
+            "src": "Bloodborne",
+            "image": "https://upload.wikimedia.org/wikipedia/en/6/68/Bloodborne_Cover_Wallpaper.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-years",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Released in 2023",
+        "items": [
+          {
+            "label": "Baldur's Gate 3",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Baldur%27s_Gate_3_cover_art.jpg"
+          },
+          {
+            "label": "The Legend of Zelda: Tears of the Kingdom",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/The_Legend_of_Zelda_Tears_of_the_Kingdom_cover.jpg"
+          },
+          {
+            "label": "Lethal Company",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lethal_Company_Steam_cover.jpg"
+          },
+          {
+            "label": "Dave the Diver",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/d4/Dave_the_Diver_cover.jpg/330px-Dave_the_Diver_cover.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Released in 2020",
+        "items": [
+          {
+            "label": "Hades",
+            "src": "Hades (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
+          },
+          {
+            "label": "Ghost of Tsushima",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg"
+          },
+          {
+            "label": "Animal Crossing: New Horizons",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/Animal_Crossing_New_Horizons.jpg"
+          },
+          {
+            "label": "Cyberpunk 2077",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Released in 2017",
+        "items": [
+          {
+            "label": "The Legend of Zelda: Breath of the Wild",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
+          },
+          {
+            "label": "Hollow Knight",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg"
+          },
+          {
+            "label": "Cuphead",
+            "image": "https://upload.wikimedia.org/wikipedia/en/e/eb/Cuphead_%28artwork%29.png"
+          },
+          {
+            "label": "Super Mario Odyssey",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Released in 2011",
+        "items": [
+          {
+            "label": "The Elder Scrolls V: Skyrim",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png"
+          },
+          {
+            "label": "Portal 2",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"
+          },
+          {
+            "label": "Minecraft",
+            "src": "fandom:minecraft:Grass Block",
+            "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c7/Grass_Block.png/revision/latest?cb=20230226144250"
+          },
+          {
+            "label": "Dark Souls",
+            "src": "Dark Souls (video game)",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
+  },
+  {
+    "id": "cg-countries",
+    "domain": "games",
+    "groups": [
+      {
+        "level": 0,
+        "label": "Made in Poland",
+        "items": [
+          {
+            "label": "The Witcher 3: Wild Hunt",
+            "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg"
+          },
+          {
+            "label": "Frostpunk",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Frostpunk_cover_art.jpg"
+          },
+          {
+            "label": "Dying Light",
+            "image": "https://upload.wikimedia.org/wikipedia/en/c/c0/Dying_Light_cover.jpg"
+          },
+          {
+            "label": "Superhot",
+            "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322500/library_600x900.jpg"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "label": "Made in France",
+        "items": [
+          {
+            "label": "Clair Obscur: Expedition 33",
+            "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Clair_Obscur%2C_Expedition_33_Cover_1.webp"
+          },
+          {
+            "label": "A Plague Tale: Innocence",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/A_Plague_Tale_cover_art.jpg"
+          },
+          {
+            "label": "Dead Cells",
+            "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/Dead_cells_cover_art.png"
+          },
+          {
+            "label": "Rayman Legends",
+            "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Rayman_Legends_Box_Art.jpg"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "label": "Made in Sweden",
+        "items": [
+          {
+            "label": "Minecraft",
+            "src": "fandom:minecraft:Grass Block",
+            "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c7/Grass_Block.png/revision/latest?cb=20230226144250"
+          },
+          {
+            "label": "Valheim",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/77/Valheim_2021_logo.jpg/330px-Valheim_2021_logo.jpg"
+          },
+          {
+            "label": "Goat Simulator",
+            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/fd/Goat_Simulator_cover.jpg/330px-Goat_Simulator_cover.jpg"
+          },
+          {
+            "label": "Mirror's Edge",
+            "image": "https://upload.wikimedia.org/wikipedia/en/9/97/Mirror%27s_Edge.jpg"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "label": "Made in Canada",
+        "items": [
+          {
+            "label": "Celeste",
+            "src": "Celeste (video game)",
+            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/330px-Celeste_box_art_full.png"
+          },
+          {
+            "label": "Darkest Dungeon",
+            "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Darkest_Dungeon_Logo.png"
+          },
+          {
+            "label": "Don't Starve",
+            "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Don%27t_Starve_cover.jpg"
+          },
+          {
+            "label": "Outlast",
+            "image": "https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg"
+          }
+        ]
+      }
+    ],
+    "images": "wp",
+    "from": "2026-11-20"
   }
 ]

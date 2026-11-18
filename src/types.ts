@@ -111,6 +111,8 @@ export interface ConnectionsPuzzle {
   /** Optional universe the whole grid is about, e.g. "Final Fantasy". */
   theme?: string;
   groups: { label: string; level: ConnectionsLevel; items: ConnectionsTile[] }[];
+  /** The first day (YYYY-MM-DD) the dailies may draw it: a grid added later leaves the days before as they were. */
+  from?: string;
 }
 
 /** Everything needed to deterministically render one round. */

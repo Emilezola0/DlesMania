@@ -32,6 +32,7 @@ export const connectionsPuzzles: ConnectionsPuzzle[] = (rawPuzzles as unknown as
   id: p.id,
   domain: p.domain,
   theme: p.theme,
+  from: p.from,
   groups: p.groups.map((g) => ({
     label: g.label,
     level: g.level,

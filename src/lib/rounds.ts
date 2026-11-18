@@ -1,4 +1,4 @@
-import { candidates, connectionsPuzzles, DOMAINS } from '../data';
+import { candidates, connectionsPuzzles, connectionThemes, DOMAINS } from '../data';
 import { THEME_PREFIX, themesFor } from './connections';
 import { GAME_TYPES } from '../games/meta';
 import type { Domain, GameType, RoundSpec, Work } from '../types';
@@ -71,6 +71,8 @@ export function buildRound(
   avoid: Set<string> = new Set(),
   lastUsed?: Map<string, number>,
   only?: (w: Work) => boolean,
+  /** A daily's day: the hand-made grids added after it (`from`) stay out. */
+  dateKey?: string,
 ): RoundSpec | null {
   const seed = Math.floor(rand() * 2 ** 31);
   if (type === 'connections') {
@@ -80,7 +82,7 @@ export function buildRound(
       const bank = pick(themes, rand);
       return { type, domain: bank.domain, seed, puzzleId: `${THEME_PREFIX}${bank.id}:${Math.floor(rand() * 2 ** 31)}` };
     }
-    const p = pick(leastRecent(puzzlesFor(domain), (x) => x.id, lastUsed), rand);
+    const p = pick(leastRecent(puzzlesFor(domain).filter((x) => !x.from || !dateKey || x.from <= dateKey), (x) => x.id, lastUsed), rand);
     return { type, domain: p.domain, seed, puzzleId: p.id };
   }
   if (type === 'timeline') {
@@ -122,12 +124,88 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   // Works added later (`from`) stay out of the days before they came, so those days keep their rounds.
   const live = (w: Work) => !w.from || w.from <= dateKey;
   const only = (w: Work) => live(w) && (!musicOnly || musicOnly(w));
+  if (dateKey >= ONE_ANSWER_FROM) {
+    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only);
+    dailyCache.set(key, specs);
+    return specs;
+  }
   const specs = types.map((type) => {
-    const spec = buildRound(type, domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, live)!;
+    const spec = buildRound(type, domain, rand, used, lastUsed, only, dateKey) ?? buildRound('classic', domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, live)!;
     if (spec.targetId) used.add(spec.targetId);
     return spec;
   });
   dailyCache.set(key, specs);
+  return specs;
+}
+
+/**
+ * From this day on, a work is to be found once a day: not the answer of one round and shown in another (a Timeline, a
+ * Connections grid naming it or about its franchise), and a song is not drawn from a game or an anime that is an answer
+ * in that day's Video Games or Anime (the owner's call). Days before it keep the rounds they always had.
+ */
+export const ONE_ANSWER_FROM = '2026-11-20';
+
+const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+const namesOf = (w: Work) => [w.name, w.nameFr, ...(w.aliases ?? [])].filter((n): n is string => !!n).map(norm);
+/** Whether two titles are the same work, or one the other's franchise ("The Legend of Zelda", "…: Ocarina of Time"). */
+const sameSeries = (a: string, b: string) => !!a && !!b && (a === b || (Math.min(a.length, b.length) >= 5 && (a.startsWith(b) || b.startsWith(a))));
+
+/** The works of a category a round shows or is about, beyond its own answer: a Timeline's four, a grid's titles and franchise. */
+function worksShownBy(spec: RoundSpec, domain: Domain): Set<string> {
+  const shown = new Set(spec.workIds ?? []);
+  if (!spec.puzzleId) return shown;
+  let titles: string[] = [];
+  let fandom: string | undefined;
+  if (spec.puzzleId.startsWith(THEME_PREFIX)) {
+    const bank = connectionThemes.find((b) => b.id === spec.puzzleId!.slice(THEME_PREFIX.length).split(':')[0]);
+    if (bank) {
+      titles = [bank.theme];
+      fandom = bank.id;
+    }
+  } else {
+    const p = connectionsPuzzles.find((x) => x.id === spec.puzzleId);
+    if (p) titles = [...(p.theme ? [p.theme] : []), ...p.groups.flatMap((g) => g.items.map((t) => t.label))];
+  }
+  const keys = titles.map(norm);
+  for (const w of candidates('classic', domain)) if ((fandom && w.fandom === fandom) || namesOf(w).some((n) => keys.some((k) => sameSeries(n, k)))) shown.add(w.id);
+  return shown;
+}
+
+/**
+ * A day's rounds with each work found once: the rounds that show several works (Timeline, Connections) are drawn first,
+ * then every other round's answer among the works none of them shows. Music leaves out the songs of that day's Video
+ * Games and Anime answers.
+ */
+function buildOneAnswerEach(
+  dateKey: string,
+  domain: Domain,
+  types: GameType[],
+  rand: () => number,
+  lastUsed: Map<string, number>,
+  live: (w: Work) => boolean,
+  only: (w: Work) => boolean,
+): RoundSpec[] {
+  const used = new Set<string>();
+  // A song's source (its `studio`: the game or anime it comes from) against the answers of the other categories.
+  let fromOtherAnswer = (_w: Work) => false;
+  if (domain === 'music') {
+    const others = (['games', 'anime'] as Domain[]).flatMap((d) => {
+      const ids = new Set(buildDaily(dateKey, d).flatMap((s) => [s.targetId, ...worksShownBy(s, d)]).filter((x): x is string => !!x));
+      return candidates('classic', d).filter((w) => ids.has(w.id)).flatMap(namesOf);
+    });
+    fromOtherAnswer = (w) => !!w.studio && others.some((n) => sameSeries(norm(w.studio), n));
+  }
+  const free = (w: Work) => only(w) && !used.has(w.id) && !fromOtherAnswer(w);
+  const specs: RoundSpec[] = new Array(types.length);
+  const order = types.map((t, i) => [t, i] as const);
+  const showsSeveral = (t: GameType) => t === 'timeline' || t === 'connections';
+  for (const [type, i] of [...order.filter(([t]) => showsSeveral(t)), ...order.filter(([t]) => !showsSeveral(t))]) {
+    const spec =
+      buildRound(type, domain, rand, used, lastUsed, free, dateKey) ?? buildRound('classic', domain, rand, used, lastUsed, free) ?? buildRound('classic', domain, rand, used, lastUsed, live)!;
+    if (spec.targetId) used.add(spec.targetId);
+    for (const id of worksShownBy(spec, domain)) used.add(id);
+    specs[i] = spec;
+  }
   return specs;
 }
 
