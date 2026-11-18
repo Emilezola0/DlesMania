@@ -49,7 +49,7 @@ function ascendNote(g: Got, copies: number | undefined): string {
   const n = ascendToNext(g.frame, copies);
   return n ? `${n} more cop${n === 1 ? 'y' : 'ies'} to Ascendant ${ROMAN[lv + 1]}` : `Ascendant ${ROMAN[lv]}, fully evolved`;
 }
-type Stage = 'idle' | 'turning' | 'dropped' | 'zoom' | 'open';
+type Stage = 'idle' | 'turning' | 'dropped' | 'zoom' | 'open' | 'haul';
 
 export function Capsules() {
   const coins = useProgress((s) => s.coins);
@@ -59,10 +59,10 @@ export function Capsules() {
   const [turn, setTurn] = useState(0);
   const [got, setGot] = useState<Got[]>([]);
   const [shells, setShells] = useState<string[]>([SHELLS[0]]);
-  // How many at once (1 to 100): free capsules first, then DleCoins.
+  // How many at once (1 to 1000): free capsules first, then DleCoins.
   const [count, setCount] = useState(1);
   const busy = stage === 'turning' || stage === 'dropped' || stage === 'zoom';
-  const most = Math.min(100, tokens + Math.floor(coins / CAPSULES.cost));
+  const most = Math.min(1000, tokens + Math.floor(coins / CAPSULES.cost));
   const n = Math.max(1, Math.min(count, most));
   const freeHere = Math.min(tokens, n);
   const price = (n - freeHere) * CAPSULES.cost;
@@ -78,14 +78,19 @@ export function Capsules() {
     if (again ? most <= 0 : !can) return;
     const r = openMany(n);
     if (!r.length) return;
+    if (r.length > 1) {
+      // Many at once: no machine, no capsules to open, the haul right away.
+      setGot(r);
+      setStage('haul');
+      return;
+    }
     // What's inside stays inside until it's opened: the last one's result goes, nothing new shows.
     setGot(r);
     setShells(r.map(() => SHELLS[Math.floor(Math.random() * SHELLS.length)]));
     setStage('turning');
     setTurn((t) => t + 1);
-    const more = Math.min(4, r.length - 1);
-    for (let k = 0; k < 6 + more; k++) later(() => sfx.wheelTick(0.7 + k * 0.05), k * 120);
-    later(() => (sfx.pop(), setStage('dropped')), 900 + more * 120);
+    for (let k = 0; k < 6; k++) later(() => sfx.wheelTick(0.7 + k * 0.05), k * 120);
+    later(() => (sfx.pop(), setStage('dropped')), 900);
   };
   const one = got.length === 1;
 
@@ -135,13 +140,13 @@ export function Capsules() {
             <button type="button" disabled={busy || n <= 1} onClick={() => (sfx.select(), setCount(n - 1))} aria-label="One fewer" className="grid size-7 place-items-center rounded-full bg-[#1b1033] font-display font-bold disabled:opacity-40">
               −
             </button>
-            {[1, 5, 10, 50, 100].map((k) => (
+            {[1, 10, 100, 1000].map((k) => (
               <button
                 key={k}
                 type="button"
-                disabled={busy || k > Math.max(1, most)}
+                disabled={busy || (k > 1 && most < 2)}
                 onClick={() => (sfx.select(), setCount(k))}
-                className={`rounded-full px-2.5 py-0.5 font-display text-xs font-bold disabled:opacity-40 ${n === k ? 'bg-[#fbbf24] text-[#1b1033]' : 'bg-[#1b1033] text-white/85'}`}
+                className={`rounded-full px-2.5 py-0.5 font-display text-xs font-bold disabled:opacity-40 ${count === k ? 'bg-[#fbbf24] text-[#1b1033]' : 'bg-[#1b1033] text-white/85'}`}
               >
                 ×{k}
               </button>
@@ -158,7 +163,7 @@ export function Capsules() {
 
       {stage === 'zoom' && one && <Opening got={got[0]} shell={shells[0]} onOpen={() => setStage('open')} />}
       {stage === 'open' && one && <Revealed got={got[0]} again={can ? () => go() : undefined} />}
-      {stage === 'zoom' && !one && got.length > 0 && <ManyOpening got={got} shells={shells} again={most > 0 ? () => go(true) : undefined} onClose={() => setStage('idle')} />}
+      {stage === 'haul' && <Haul got={got} again={most > 0 ? () => go(true) : undefined} onClose={() => setStage('idle')} />}
 
       {/* Until they're open, the new frames aren't in the collection either. */}
       <FrameCollection hide={busy ? got.filter((g) => !g.duplicate).map((g) => g.frame.id) : []} />
@@ -336,139 +341,110 @@ function Revealed({ got, again }: { got: Got; again?: () => void }) {
   );
 }
 
+/** One frame of a haul, with how many times it came out. */
+type HaulRow = { frame: Frame; count: number; fresh: boolean; up: number; level?: number; coins: number };
+
 /**
- * Several capsules at once: they lie in a tray, each opened with a tap (or all of them, one after another, with a
- * pause and a shake before a rare one). Each frame comes out where its capsule was, then the haul is added up.
+ * Several capsules at once (up to 1000): no capsule effects (no tray, no cracking, no sparks: with hundreds it
+ * lagged), the haul straight away, each frame once with how many times it came out, the rarest first.
  */
-function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: string[]; again?: () => void; onClose: () => void }) {
+function Haul({ got, again, onClose }: { got: Got[]; again?: () => void; onClose: () => void }) {
   const worn = useProgress((s) => s.frame);
   const setFrame = useProgress((s) => s.setFrame);
-  const [opened, setOpened] = useState<boolean[]>(() => got.map(() => false));
-  const [auto, setAuto] = useState(false);
-  const [charging, setCharging] = useState(-1);
-  const stage = useRef<HTMLDivElement>(null);
-  const done = opened.every(Boolean);
-  const rankOf = (i: number) => FRAME_RARITIES.indexOf(got[i].frame.rarity);
-  // A big haul (50, 100): ten to a row, smaller, and Open all goes faster.
-  const big = got.length > 10;
-  const best = got.reduce((b, g) => Math.max(b, FRAME_RARITIES.indexOf(g.frame.rarity)), 0);
-
-  const crack = (i: number) => {
-    if (opened[i]) return;
-    const rank = rankOf(i);
-    setOpened((o) => o.map((v, k) => v || k === i));
-    setCharging(-1);
-    sfx.pop();
-    if (rank >= 2) sfx.shimmer(1 + rank);
-    if (rank >= 5) sfx.supernova();
-    buzz(rank >= 3 ? [30, 40, 80] : 15);
-    if (rank >= 3) {
-      shake(stage.current, 4 + rank * 2, 320);
-      celebrateBig();
-    } else if (rank >= 2) celebrate();
-    if (got[i].duplicate) window.setTimeout(() => sfx.coins(2), 300);
-  };
-  // Open all: one after another; before a rare one, it strains and hums a moment.
+  const rows = useMemo(() => {
+    const by = new Map<string, HaulRow>();
+    for (const g of got) {
+      const r = by.get(g.frame.id) ?? { frame: g.frame, count: 0, fresh: false, up: 0, coins: 0 };
+      r.count++;
+      r.fresh ||= !g.duplicate;
+      if (g.up) r.up++;
+      if (g.level !== undefined) r.level = Math.max(r.level ?? 0, g.level);
+      r.coins += g.coins;
+      by.set(g.frame.id, r);
+    }
+    return [...by.values()].sort((a, b) => FRAME_RARITIES.indexOf(b.frame.rarity) - FRAME_RARITIES.indexOf(a.frame.rarity) || b.count - a.count);
+  }, [got]);
+  const best = rows.length ? FRAME_RARITIES.indexOf(rows[0].frame.rarity) : 0;
+  // One sound for the whole haul (a shimmer for a rare one), no confetti.
   useEffect(() => {
-    if (!auto) return;
-    const i = opened.indexOf(false);
-    if (i < 0) {
-      setAuto(false);
-      return;
-    }
-    const rare = rankOf(i) >= 3;
-    if (rare) {
-      setCharging(i);
-      sfx.suspense(0.8);
-    }
-    const t = window.setTimeout(() => crack(i), reducedMotion() ? 0 : rare ? (big ? 600 : 900) : big ? 70 : 260);
-    return () => window.clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auto, opened]);
-
-  const fresh = got.filter((g) => !g.duplicate).length;
-  const ups = got.filter((g) => g.up).length;
-  const back = got.reduce((t, g) => t + g.coins, 0);
+    sfx.pop();
+    if (best >= 2) sfx.shimmer(1 + best);
+  }, [best]);
+  const fresh = rows.filter((r) => r.fresh).length;
+  const ups = rows.reduce((t, r) => t + r.up, 0);
+  const back = rows.reduce((t, r) => t + r.coins, 0);
+  const perRarity = FRAME_RARITIES.map((rarity) => ({ rarity, n: got.filter((g) => g.frame.rarity === rarity).length })).filter((x) => x.n > 0);
   return createPortal(
-    <div ref={stage} className="fixed inset-0 z-50 flex overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm pointer-coarse:backdrop-blur-none" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
-      {done && <div className="capsule-stage-rays pointer-events-none fixed left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.45 }} aria-hidden />}
-      <div className={`relative m-auto flex w-full flex-col items-center text-center text-white ${big ? 'max-w-3xl' : 'max-w-md'}`}>
-        <p className="font-display text-sm font-bold tracking-[0.3em] text-white/90">{done ? 'YOUR HAUL' : `${opened.filter(Boolean).length} / ${got.length} OPEN`}</p>
-        <div className={`mt-6 grid w-full ${big ? 'grid-cols-5 gap-x-1 gap-y-4 sm:grid-cols-10' : 'grid-cols-5 gap-x-2 gap-y-7'}`}>
-          {got.map((g, i) => {
-            const color = FRAME_RARITY_COLOR[g.frame.rarity];
-            return opened[i] ? (
+    <div className="fixed inset-0 z-50 flex overflow-y-auto overflow-x-hidden bg-[#07060c]/[0.97] p-4">
+      <div className="relative m-auto flex w-full max-w-3xl flex-col items-center text-center text-white">
+        <p className="font-display text-sm font-bold tracking-[0.3em] text-white/90">YOUR HAUL · {got.length.toLocaleString()} CAPSULES</p>
+        <p className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs font-bold">
+          {perRarity.map(({ rarity, n }) => (
+            <span key={rarity} style={{ color: FRAME_RARITY_COLOR[rarity] }}>
+              {FRAME_RARITY_NAME[rarity]} ×{n.toLocaleString()}
+            </span>
+          ))}
+        </p>
+        <div className="mt-5 grid w-full grid-cols-4 gap-x-1 gap-y-4 sm:grid-cols-8">
+          {rows.map((r) => {
+            const color = FRAME_RARITY_COLOR[r.frame.rarity];
+            return (
               <button
-                key={i}
+                key={r.frame.id}
                 type="button"
                 onClick={() => {
-                  if (g.duplicate || worn === g.frame.id) return;
+                  if (worn === r.frame.id) return;
                   sfx.select();
-                  setFrame(g.frame.id);
+                  setFrame(r.frame.id);
                 }}
-                title={g.duplicate ? `${g.frame.name}: already yours` : worn === g.frame.id ? `${g.frame.name}: worn` : `Wear ${g.frame.name}`}
+                title={worn === r.frame.id ? `${r.frame.name}: worn` : `Wear ${r.frame.name}`}
                 className="relative flex min-w-0 flex-col items-center gap-1"
-                style={{ ['--glow' as string]: color }}
               >
-                <span className={`capsule-frame-in grid place-items-center ${big ? 'size-11' : 'size-14'}`}>
-                  <FrameRing frame={g.frame} level={g.level} badge>
-                    <YourIcon className={big ? 'size-8' : 'size-11'} />
+                <span className="grid size-12 place-items-center">
+                  <FrameRing frame={r.frame} level={r.level} badge>
+                    <YourIcon className="size-9" />
                   </FrameRing>
                 </span>
                 <span className="max-w-full truncate text-[10px] font-bold" style={{ color }}>
-                  {g.frame.name}
+                  {r.frame.name}
                 </span>
-                <span className={`text-[9px] ${g.up ? 'font-bold text-amber-300' : 'text-white/60'}`}>{g.up ? `▲ Ascendant ${ROMAN[g.level ?? 0]}` : g.duplicate ? `+${g.coins}` : worn === g.frame.id ? 'worn' : FRAME_RARITY_NAME[g.frame.rarity]}</span>
-                {!g.duplicate && <span className="pack-stamp absolute -right-1 -top-3 rounded border border-coral bg-[#1b1530] px-1 font-display text-[9px] font-black text-coral">NEW</span>}
-              </button>
-            ) : (
-              <button key={i} type="button" onClick={() => crack(i)} disabled={auto} aria-label={`Open capsule ${i + 1}`} className={`grid place-items-center ${big ? 'h-[62px]' : 'h-[84px]'}`}>
-                <span className={charging === i ? 'capsule-strain' : 'capsule-idle'} style={{ ['--strain' as string]: '6deg', animationDelay: `${(i % 10) * 90}ms` }}>
-                  <Capsule color={shells[i]} size={big ? 38 : 52} style={charging === i ? { filter: 'drop-shadow(0 0 14px #fff)' } : undefined} />
+                <span className={`text-[9px] ${r.up ? 'font-bold text-amber-300' : 'text-white/60'}`}>
+                  ×{r.count}
+                  {r.up ? ` · ▲ ${ROMAN[r.level ?? 0]}` : r.coins ? ` · +${r.coins.toLocaleString()}` : ''}
                 </span>
+                {r.fresh && <span className="absolute -right-1 -top-3 rounded border border-coral bg-[#1b1530] px-1 font-display text-[9px] font-black text-coral">NEW</span>}
               </button>
             );
           })}
         </div>
-        {done ? (
-          <>
-            <p className="mt-6 text-sm text-white/80">
-              {fresh ? `${fresh} new frame${fresh > 1 ? 's' : ''}` : ups ? '' : 'Nothing new this time'}
-              {ups > 0 && <span className="font-bold text-amber-300">{fresh ? ' · ' : ''}▲ {ups} evolution{ups > 1 ? 's' : ''}</span>}
-              {back > 0 && (
-                <>
-                  {' · '}
-                  <Coins n={back} /> back
-                </>
-              )}
-            </p>
-            <p className="mt-1 text-xs text-white/50">Tap a new frame to wear it.</p>
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {again && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onClose();
-                    again();
-                  }}
-                  className="rounded-md bg-white px-5 py-2 font-display font-bold text-[#1b1530]"
-                >
-                  Again
-                </button>
-              )}
-              <button type="button" onClick={onClose} className="rounded-md border-2 border-white/60 px-5 py-2 font-display font-bold">
-                Close
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="mt-6 flex flex-col items-center gap-2">
-            <button type="button" disabled={auto} onClick={() => setAuto(true)} className="rounded-md bg-white px-5 py-2 font-display font-bold text-[#1b1530] disabled:opacity-60">
-              Open all
+        <p className="mt-6 text-sm text-white/80">
+          {fresh ? `${fresh} new frame${fresh > 1 ? 's' : ''}` : ups ? '' : 'Nothing new this time'}
+          {ups > 0 && <span className="font-bold text-amber-300">{fresh ? ' · ' : ''}▲ {ups} evolution{ups > 1 ? 's' : ''}</span>}
+          {back > 0 && (
+            <>
+              {' · '}
+              <Coins n={back} /> back
+            </>
+          )}
+        </p>
+        <p className="mt-1 text-xs text-white/50">Tap a frame to wear it.</p>
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {again && (
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                again();
+              }}
+              className="rounded-md bg-white px-5 py-2 font-display font-bold text-[#1b1530]"
+            >
+              Again
             </button>
-            <p className="text-xs text-white/60">or tap them one by one</p>
-          </div>
-        )}
+          )}
+          <button type="button" onClick={onClose} className="rounded-md border-2 border-white/60 px-5 py-2 font-display font-bold">
+            Close
+          </button>
+        </div>
       </div>
     </div>,
     document.body,

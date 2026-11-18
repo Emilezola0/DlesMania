@@ -994,7 +994,7 @@ export const useProgress = create<ProgressState>()(
         const copies = { ...(s.frameCopies ?? {}) };
         const got: { frame: Frame; duplicate: boolean; coins: number; free: boolean; level?: number; up?: boolean }[] = [];
         // One after another, so a frame won in the first counts as owned for the next.
-        for (let k = 0; k < Math.min(100, Math.max(1, Math.floor(n))); k++) {
+        for (let k = 0; k < Math.min(1000, Math.max(1, Math.floor(n))); k++) {
           const free = tokens > 0;
           if (!free && coins < CAPSULES.cost) break;
           if (free) tokens--;
