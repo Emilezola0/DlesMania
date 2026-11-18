@@ -17267,5 +17267,7579 @@
       ]
     },
     "from": "2026-12-08"
+  },
+  {
+    "id": "g-pvz",
+    "name": "Plants vs. Zombies",
+    "aliases": [
+      "plants vs zombies",
+      "pvz"
+    ],
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "Strategy"
+    ],
+    "studio": "PopCap Games",
+    "creator": "George Fan",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Peashooter",
+      "Sunflower",
+      "Crazy Dave",
+      "Dr. Zomboss",
+      "Wall-nut"
+    ],
+    "themes": [
+      "Lawn defence",
+      "Zombies"
+    ],
+    "credits": [
+      "Creator: George Fan",
+      "Composer: Laura Shigihara"
+    ],
+    "fandom": "plantsvszombies",
+    "cover": {
+      "wiki": "Plants vs. Zombies",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3590/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "A playful, spooky tune over a back lawn at night.",
+      "query": "Plants vs Zombies Grasswalk",
+      "youtubeId": "b3xnLXYUYOw"
+    },
+    "emoji": "🌻🧟🌱🏡🥜",
+    "item": {
+      "name": "The Sun",
+      "description": "Falling sunlight the plants are planted with."
+    },
+    "visual": {
+      "icon": "🌻",
+      "colors": [
+        "#15803d",
+        "#fde047"
+      ]
+    },
+    "from": "2026-12-17"
+  },
+  {
+    "id": "g-dota2",
+    "name": "Dota 2",
+    "aliases": [
+      "dota"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "MOBA"
+    ],
+    "studio": "Valve",
+    "creator": "IceFrog",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Pudge",
+      "Invoker",
+      "Crystal Maiden",
+      "Axe",
+      "Roshan"
+    ],
+    "themes": [
+      "Ancients",
+      "Radiant and Dire"
+    ],
+    "credits": [
+      "Lead designer: IceFrog",
+      "Developer: Valve",
+      "Composer: Jason Hayes"
+    ],
+    "fandom": "dota2",
+    "cover": {
+      "wiki": "Dota 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/31/Dota_2_Steam_artwork.jpg"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral main theme.",
+      "query": "Dota 2 main theme",
+      "youtubeId": "eMQ1CzJYumA"
+    },
+    "emoji": "🛡️🌳⚔️👹🏆",
+    "item": {
+      "name": "Aegis of the Immortal",
+      "description": "A shield dropped by a giant creature that brings its holder back to life.",
+      "image": "https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a9/Aegis_of_the_Immortal_death.png/revision/latest?cb=20150506032708"
+    },
+    "location": {
+      "name": "Roshan's Pit",
+      "description": "The lair of a huge creature in the river, killed for a second life."
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#7f1d1d",
+        "#1c1917"
+      ]
+    },
+    "from": "2026-12-17"
+  },
+  {
+    "id": "g-pubg",
+    "name": "PUBG: Battlegrounds",
+    "aliases": [
+      "pubg",
+      "playerunknown's battlegrounds"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Battle Royale",
+      "Shooter"
+    ],
+    "studio": "PUBG Studios",
+    "creator": "Brendan Greene",
+    "origin": "South Korea",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "The Players"
+    ],
+    "themes": [
+      "Last one standing",
+      "Shrinking zone"
+    ],
+    "credits": [
+      "Creative director: Brendan \"PlayerUnknown\" Greene",
+      "Publisher: Krafton"
+    ],
+    "cover": {
+      "wiki": "PUBG: Battlegrounds",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Pubgbattlegrounds.png"
+    },
+    "audio": {
+      "clue": "A grand orchestral theme before the plane takes off.",
+      "query": "PUBG main theme",
+      "youtubeId": "Ze38kD1ZNfo"
+    },
+    "emoji": "🪂🍗🔫🚗🏆",
+    "item": {
+      "name": "The Frying Pan",
+      "description": "A cooking pan that stops bullets and wins a famous dinner."
+    },
+    "location": {
+      "name": "Erangel",
+      "description": "The first island, dropped onto from a plane by a hundred players."
+    },
+    "visual": {
+      "icon": "🍗",
+      "colors": [
+        "#a16207",
+        "#1c1917"
+      ]
+    },
+    "from": "2026-12-17"
+  },
+  {
+    "id": "g-hearthstone",
+    "name": "Hearthstone",
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Strategy"
+    ],
+    "studio": "Blizzard Entertainment",
+    "creator": "Eric Dodds",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "Harth Stonebrew",
+      "Jaina Proudmoore",
+      "Rexxar",
+      "Gul'dan"
+    ],
+    "themes": [
+      "Cards",
+      "Tavern"
+    ],
+    "credits": [
+      "Game director: Eric Dodds",
+      "Developer: Blizzard Entertainment"
+    ],
+    "fandom": "hearthstone",
+    "cover": {
+      "wiki": "Hearthstone",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Hearthstone_2016_logo.png"
+    },
+    "audio": {
+      "clue": "Cosy tavern music with a lute.",
+      "query": "Hearthstone main theme",
+      "youtubeId": "WXxy3Y8daks"
+    },
+    "emoji": "🃏🍺🔥🧙🪙",
+    "location": {
+      "name": "The Tavern",
+      "description": "A warm inn where heroes meet by the hearth to play cards."
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#78350f",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-18"
+  },
+  {
+    "id": "g-re2",
+    "name": "Resident Evil 2",
+    "aliases": [
+      "re2",
+      "resident evil 2 remake"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Capcom",
+    "creator": "Kazunori Kadoi",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Leon S. Kennedy",
+      "Claire Redfield",
+      "Mr. X",
+      "Ada Wong",
+      "William Birkin"
+    ],
+    "themes": [
+      "Zombie outbreak",
+      "Police station"
+    ],
+    "credits": [
+      "Director: Kazunori Kadoi",
+      "Developer: Capcom"
+    ],
+    "fandom": "residentevil",
+    "cover": {
+      "wiki": "Resident Evil 2 (2019 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_2_Remake.jpg"
+    },
+    "audio": {
+      "clue": "Uneasy strings in a police station at night.",
+      "query": "Resident Evil 2 Remake Save Room theme",
+      "youtubeId": "ydECXY8v5nQ"
+    },
+    "emoji": "🧟👮🏢🔑🎩",
+    "location": {
+      "name": "The Raccoon Police Department",
+      "description": "A grand police station, once a museum, overrun on a night of outbreak."
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#1c1917",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-18"
+  },
+  {
+    "id": "g-cod4",
+    "name": "Call of Duty 4: Modern Warfare",
+    "aliases": [
+      "cod4",
+      "cod 4",
+      "modern warfare"
+    ],
+    "domain": "games",
+    "year": 2007,
+    "genres": [
+      "FPS"
+    ],
+    "studio": "Infinity Ward",
+    "creator": "Jason West & Vince Zampella",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Soap MacTavish",
+      "Captain Price",
+      "Gaz",
+      "Imran Zakhaev"
+    ],
+    "themes": [
+      "Modern war",
+      "Nuclear threat"
+    ],
+    "credits": [
+      "Leads: Jason West & Vince Zampella",
+      "Composer: Stephen Barton",
+      "Publisher: Activision"
+    ],
+    "cover": {
+      "wiki": "Call of Duty 4: Modern Warfare",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5f/Call_of_Duty_4_Modern_Warfare.jpg"
+    },
+    "audio": {
+      "clue": "A pulsing military theme with guitars.",
+      "query": "Call of Duty 4 Modern Warfare main theme",
+      "youtubeId": "uamh1l_tmeI"
+    },
+    "emoji": "🎖️🔫☢️🚁🌙",
+    "location": {
+      "name": "Pripyat",
+      "description": "An abandoned Ukrainian city, crossed in ghillie suits."
+    },
+    "visual": {
+      "icon": "🎖️",
+      "colors": [
+        "#1c1917",
+        "#65a30d"
+      ]
+    },
+    "from": "2026-12-18"
+  },
+  {
+    "id": "g-oblivion",
+    "name": "The Elder Scrolls IV: Oblivion",
+    "aliases": [
+      "oblivion"
+    ],
+    "domain": "games",
+    "year": 2006,
+    "genres": [
+      "RPG",
+      "Open World"
+    ],
+    "studio": "Bethesda Game Studios",
+    "creator": "Todd Howard",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Hero of Kvatch",
+      "Martin Septim",
+      "Uriel Septim VII",
+      "Mehrunes Dagon"
+    ],
+    "themes": [
+      "Daedra",
+      "Empire"
+    ],
+    "credits": [
+      "Director: Todd Howard",
+      "Composer: Jeremy Soule",
+      "Remastered in 2025"
+    ],
+    "fandom": "elderscrolls",
+    "cover": {
+      "wiki": "The Elder Scrolls IV: Oblivion",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/The_Elder_Scrolls_IV_Oblivion_cover.png"
+    },
+    "audio": {
+      "clue": "A pastoral orchestral theme over Cyrodiil.",
+      "query": "Oblivion soundtrack Reign of the Septims",
+      "youtubeId": "y-jNCOn4-SA"
+    },
+    "emoji": "🌀🔥🏰⚔️🗝️",
+    "location": {
+      "name": "The Imperial City",
+      "description": "A white city on an island lake at the heart of an empire.",
+      "image": "https://static.wikia.nocookie.net/elderscrolls/images/b/b2/ImperialCity.png/revision/latest/scale-to-width-down/640?cb=20170801195827"
+    },
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#14532d",
+        "#ea580c"
+      ]
+    },
+    "from": "2026-12-19"
+  },
+  {
+    "id": "g-farcry3",
+    "name": "Far Cry 3",
+    "aliases": [
+      "far cry"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "FPS",
+      "Open World"
+    ],
+    "studio": "Ubisoft Montreal",
+    "creator": "Patrik Méthé",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Jason Brody",
+      "Vaas Montenegro",
+      "Hoyt Volker",
+      "Citra"
+    ],
+    "themes": [
+      "Insanity",
+      "Tropical island"
+    ],
+    "credits": [
+      "Creative director: Dan Hay",
+      "Developer: Ubisoft Montreal",
+      "Vaas: Michael Mando"
+    ],
+    "fandom": "farcry",
+    "cover": {
+      "wiki": "Far Cry 3",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Far_Cry_3_PAL_box_art.jpg"
+    },
+    "audio": {
+      "clue": "Dubstep and tribal drums on a pirate island.",
+      "query": "Far Cry 3 soundtrack",
+      "youtubeId": "KC-kTC473gQ"
+    },
+    "emoji": "🏝️🔫🐯🔥🎭",
+    "location": {
+      "name": "Rook Islands",
+      "description": "A Pacific archipelago run by pirates and slavers.",
+      "image": "https://static.wikia.nocookie.net/farcry/images/8/88/FC3_Worldmap_Level_1.png/revision/latest/scale-to-width-down/640?cb=20130909090825"
+    },
+    "visual": {
+      "icon": "🏝️",
+      "colors": [
+        "#14532d",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-19"
+  },
+  {
+    "id": "g-rust",
+    "name": "Rust",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Survival",
+      "Multiplayer"
+    ],
+    "studio": "Facepunch Studios",
+    "creator": "Garry Newman",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Naked Survivors",
+      "The Scientists"
+    ],
+    "themes": [
+      "Raids",
+      "Betrayal"
+    ],
+    "credits": [
+      "Creator: Garry Newman",
+      "Developer: Facepunch Studios"
+    ],
+    "fandom": "rust",
+    "cover": {
+      "wiki": "Rust (video game)",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Ambient electronic menu music over an island.",
+      "query": "Rust game menu theme",
+      "youtubeId": "DeCnsghKxd4"
+    },
+    "emoji": "🪨🏠🔫🌊💣",
+    "visual": {
+      "icon": "🪨",
+      "colors": [
+        "#7c2d12",
+        "#e7e5e4"
+      ]
+    },
+    "from": "2026-12-19"
+  },
+  {
+    "id": "g-hitman",
+    "name": "Hitman: World of Assassination",
+    "aliases": [
+      "hitman",
+      "hitman 3"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Stealth"
+    ],
+    "studio": "IO Interactive",
+    "creator": "Christian Elverdam",
+    "origin": "Denmark",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Agent 47",
+      "Diana Burnwood",
+      "Lucas Grey"
+    ],
+    "themes": [
+      "Disguises",
+      "Sandbox"
+    ],
+    "credits": [
+      "Creative director: Christian Elverdam",
+      "Developer: IO Interactive",
+      "Composer: Niels Bye Nielsen"
+    ],
+    "fandom": "hitman",
+    "cover": {
+      "wiki": "Hitman: World of Assassination",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "A cool, elegant score as a bald man changes clothes.",
+      "query": "Hitman World of Assassination main theme",
+      "youtubeId": "o6ZY6kegi8c"
+    },
+    "emoji": "🕴️🔴🎻🧳🎯",
+    "item": {
+      "name": "The Fiber Wire",
+      "description": "A garrote the bald assassin carries everywhere.",
+      "image": "https://static.wikia.nocookie.net/hitman/images/0/0d/Fiber_Wire_HITMAN2021.jpeg/revision/latest/scale-to-width-down/640?cb=20210305035123"
+    },
+    "visual": {
+      "icon": "🕴️",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-20"
+  },
+  {
+    "id": "g-overcooked2",
+    "name": "Overcooked! 2",
+    "aliases": [
+      "overcooked"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Co-op",
+      "Party"
+    ],
+    "studio": "Ghost Town Games",
+    "creator": "Phil Duncan",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Onion King",
+      "Kevin"
+    ],
+    "themes": [
+      "Cooking",
+      "Chaos"
+    ],
+    "credits": [
+      "Developers: Ghost Town Games & Team17"
+    ],
+    "fandom": "overcooked",
+    "cover": {
+      "wiki": "Overcooked! 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Overcooked_2_cover_art.png"
+    },
+    "audio": {
+      "clue": "Busy kitchen music that speeds up near the end.",
+      "query": "Overcooked 2 soundtrack",
+      "youtubeId": "8XBu4ZSlOsw"
+    },
+    "emoji": "🍳🔥🧅👑🍝",
+    "location": {
+      "name": "The Onion Kingdom",
+      "description": "A kingdom of onions saved, again, by cooking.",
+      "image": "https://static.wikia.nocookie.net/overcooked/images/8/87/Onionking.PNG/revision/latest/scale-to-width-down/558?cb=20260502095722"
+    },
+    "visual": {
+      "icon": "🍳",
+      "colors": [
+        "#991b1b",
+        "#fde047"
+      ]
+    },
+    "from": "2026-12-20"
+  },
+  {
+    "id": "g-goosegame",
+    "name": "Untitled Goose Game",
+    "aliases": [
+      "goose game"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Puzzle",
+      "Stealth"
+    ],
+    "studio": "House House",
+    "creator": "House House",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Goose",
+      "The Gardener",
+      "The Shopkeeper"
+    ],
+    "themes": [
+      "Mischief",
+      "Village"
+    ],
+    "credits": [
+      "Developer: House House",
+      "Publisher: Panic",
+      "Music after Debussy’s Préludes"
+    ],
+    "cover": {
+      "wiki": "Untitled Goose Game",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b2/Untitled_Goose_Game_Cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Debussy piano pieces that quicken as a goose makes trouble.",
+      "query": "Untitled Goose Game soundtrack"
+    },
+    "emoji": "🪿🏡🔔🥕😈",
+    "visual": {
+      "icon": "🪿",
+      "colors": [
+        "#14532d",
+        "#f8fafc"
+      ]
+    },
+    "from": "2026-12-20"
+  },
+  {
+    "id": "g-geometrydash",
+    "name": "Geometry Dash",
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Platformer",
+      "Rhythm"
+    ],
+    "studio": "RobTop Games",
+    "creator": "Robert Topala",
+    "origin": "Sweden",
+    "format": "Mobile",
+    "platforms": [
+      "Mobile",
+      "PC"
+    ],
+    "characters": [
+      "The Cube"
+    ],
+    "themes": [
+      "Rhythm",
+      "Rage"
+    ],
+    "credits": [
+      "Creator: Robert Topala"
+    ],
+    "fandom": "geometry-dash",
+    "cover": {
+      "wiki": "Geometry Dash",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322170/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Electronic dance music, one jump per beat.",
+      "query": "Geometry Dash Stereo Madness",
+      "youtubeId": "E5L083YQzVE"
+    },
+    "emoji": "🟨🔺🎵💥🚀",
+    "visual": {
+      "icon": "🟨",
+      "colors": [
+        "#1e40af",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-21"
+  },
+  {
+    "id": "g-ffxiv",
+    "name": "Final Fantasy XIV",
+    "aliases": [
+      "ffxiv",
+      "ff14",
+      "final fantasy 14"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "MMORPG"
+    ],
+    "studio": "Square Enix",
+    "creator": "Naoki Yoshida",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Warrior of Light",
+      "Y'shtola",
+      "Alphinaud",
+      "Emet-Selch",
+      "G'raha Tia"
+    ],
+    "themes": [
+      "Calamity",
+      "Primals"
+    ],
+    "credits": [
+      "Producer and director: Naoki Yoshida",
+      "Composer: Masayoshi Soken"
+    ],
+    "fandom": "finalfantasy",
+    "cover": {
+      "wiki": "Final Fantasy XIV",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Final_Fantasy_XIV%2C_A_Realm_Reborn_box_cover.jpg"
+    },
+    "audio": {
+      "clue": "A soaring orchestral and choral main theme.",
+      "query": "Final Fantasy XIV Answers",
+      "youtubeId": "bREZqkbI2WU"
+    },
+    "emoji": "⚔️🐉🌙🔮🦄",
+    "location": {
+      "name": "Eorzea",
+      "description": "The realm reborn after a red moon fell on it."
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#1e1b4b",
+        "#93c5fd"
+      ]
+    },
+    "from": "2026-12-21"
+  },
+  {
+    "id": "g-mk11",
+    "name": "Mortal Kombat 11",
+    "aliases": [
+      "mortal kombat",
+      "mk11"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "NetherRealm Studios",
+    "creator": "Ed Boon",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Scorpion",
+      "Sub-Zero",
+      "Raiden",
+      "Kronika",
+      "Liu Kang"
+    ],
+    "themes": [
+      "Time",
+      "Fatalities"
+    ],
+    "credits": [
+      "Creative director: Ed Boon",
+      "Developer: NetherRealm Studios"
+    ],
+    "fandom": "mortalkombat",
+    "cover": {
+      "wiki": "Mortal Kombat 11",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7e/Mortal_Kombat_11_cover_art.png"
+    },
+    "audio": {
+      "clue": "Driving orchestra and electronics for a tournament of death.",
+      "query": "Mortal Kombat 11 main theme",
+      "youtubeId": "X68Wy4U017U"
+    },
+    "emoji": "🐉🔥❄️💀⏳",
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#450a0a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-21"
+  },
+  {
+    "id": "g-deadspace",
+    "name": "Dead Space",
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "Survival Horror",
+      "Third-Person Shooter"
+    ],
+    "studio": "EA Redwood Shores",
+    "creator": "Glen Schofield",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Isaac Clarke",
+      "Nicole Brennan",
+      "Kendra Daniels",
+      "Hammond"
+    ],
+    "themes": [
+      "Necromorphs",
+      "Cult"
+    ],
+    "credits": [
+      "Creator: Glen Schofield",
+      "Composer: Jason Graves",
+      "Remake: Motive (2023)"
+    ],
+    "fandom": "deadspace",
+    "cover": {
+      "wiki": "Dead Space (2008 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/57/Dead_Space_Box_Art.jpg"
+    },
+    "audio": {
+      "clue": "Screeching strings in a silent mining ship.",
+      "query": "Dead Space Twinkle Twinkle Little Star",
+      "youtubeId": "bpYz4EQVo1w"
+    },
+    "emoji": "🚀🧟🔧🩸🔺",
+    "item": {
+      "name": "The Plasma Cutter",
+      "description": "A mining tool turned weapon, for cutting off limbs."
+    },
+    "location": {
+      "name": "The USG Ishimura",
+      "description": "A planet-cracking mining ship gone silent in deep space."
+    },
+    "visual": {
+      "icon": "🔧",
+      "colors": [
+        "#0c0a09",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-22"
+  },
+  {
+    "id": "g-mirrorsedge",
+    "name": "Mirror's Edge",
+    "aliases": [
+      "mirrors edge"
+    ],
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "Platformer",
+      "First-Person"
+    ],
+    "studio": "DICE",
+    "creator": "Tom Farrer",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Faith Connors",
+      "Merc",
+      "Kate Connors"
+    ],
+    "themes": [
+      "Parkour",
+      "Surveillance"
+    ],
+    "credits": [
+      "Producer: Tom Farrer",
+      "Developer: DICE",
+      "Theme song: Lisa Miskovsky"
+    ],
+    "cover": {
+      "wiki": "Mirror's Edge",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/97/Mirror%27s_Edge.jpg"
+    },
+    "audio": {
+      "clue": "A soft Swedish pop song above white rooftops.",
+      "query": "Mirror's Edge Still Alive Lisa Miskovsky",
+      "youtubeId": "SzmUde_EK5Y"
+    },
+    "emoji": "🏃‍♀️🏙️🟥🤍🪂",
+    "visual": {
+      "icon": "🟥",
+      "colors": [
+        "#f8fafc",
+        "#ef4444"
+      ]
+    },
+    "from": "2026-12-22"
+  },
+  {
+    "id": "g-stanleyparable",
+    "name": "The Stanley Parable",
+    "aliases": [
+      "stanley parable"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Narrative"
+    ],
+    "studio": "Galactic Cafe",
+    "creator": "Davey Wreden",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Stanley",
+      "The Narrator"
+    ],
+    "themes": [
+      "Choice",
+      "Office"
+    ],
+    "credits": [
+      "Creators: Davey Wreden & William Pugh",
+      "Narrator: Kevan Brighting",
+      "Ultra Deluxe (2022): Crows Crows Crows"
+    ],
+    "cover": {
+      "wiki": "The Stanley Parable",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/Stanley_parable_cover.jpg"
+    },
+    "audio": {
+      "clue": "Muzak on loop in an empty office.",
+      "query": "The Stanley Parable soundtrack"
+    },
+    "emoji": "🚪🏢🎙️⬅️➡️",
+    "location": {
+      "name": "The Two Doors",
+      "description": "An open office where the narrator says Stanley went through the door on his left."
+    },
+    "visual": {
+      "icon": "🚪",
+      "colors": [
+        "#f1f5f9",
+        "#64748b"
+      ]
+    },
+    "from": "2026-12-22"
+  },
+  {
+    "id": "g-factorio",
+    "name": "Factorio",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Simulation",
+      "Strategy"
+    ],
+    "studio": "Wube Software",
+    "creator": "Michal Kovařík",
+    "origin": "Czech Republic",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Engineer",
+      "The Biters"
+    ],
+    "themes": [
+      "Automation",
+      "The factory must grow"
+    ],
+    "credits": [
+      "Creator: Michal Kovařík",
+      "Developer: Wube Software",
+      "Early access from 2016"
+    ],
+    "fandom": "factorio",
+    "cover": {
+      "wiki": "Factorio",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Factorio_cover.png"
+    },
+    "audio": {
+      "clue": "Quiet ambient tones over endless conveyor belts.",
+      "query": "Factorio soundtrack"
+    },
+    "emoji": "🏭⚙️🚂🐛🚀",
+    "item": {
+      "name": "The Rocket Silo",
+      "description": "The last building of a run, which launches a rocket off the planet.",
+      "image": "https://static.wikia.nocookie.net/factorio/images/3/30/Rocket_silo_%28technology%29.png/revision/latest?cb=20160406175433"
+    },
+    "visual": {
+      "icon": "⚙️",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-23"
+  },
+  {
+    "id": "g-palworld",
+    "name": "Palworld",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Survival",
+      "Open World"
+    ],
+    "studio": "Pocketpair",
+    "creator": "Takuro Mizobe",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Lamball",
+      "Anubis",
+      "Jetragon",
+      "Chillet"
+    ],
+    "themes": [
+      "Creature taming",
+      "Guns"
+    ],
+    "credits": [
+      "CEO: Takuro Mizobe",
+      "Developer: Pocketpair"
+    ],
+    "fandom": "palworld",
+    "cover": {
+      "wiki": "Palworld",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Palworld_Steam_artwork.jpg"
+    },
+    "audio": {
+      "clue": "An airy orchestral theme over a world of creatures.",
+      "query": "Palworld main theme",
+      "youtubeId": "eqB-DlAsctQ"
+    },
+    "emoji": "🐑🔫🏝️🏭🐉",
+    "item": {
+      "name": "The Pal Sphere",
+      "description": "A sphere thrown to catch the island’s creatures.",
+      "image": "https://static.wikia.nocookie.net/palworld/images/9/98/Exotic_Sphere_icon.png/revision/latest?cb=20241223142241"
+    },
+    "visual": {
+      "icon": "🐑",
+      "colors": [
+        "#0369a1",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-23"
+  },
+  {
+    "id": "g-dbfz",
+    "name": "Dragon Ball FighterZ",
+    "aliases": [
+      "fighterz",
+      "dbfz"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "Arc System Works",
+    "creator": "Junya Motomura",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Goku",
+      "Vegeta",
+      "Android 21",
+      "Frieza",
+      "Cell"
+    ],
+    "themes": [
+      "Saiyans",
+      "Tag team"
+    ],
+    "credits": [
+      "Director: Junya Motomura",
+      "Developer: Arc System Works",
+      "Publisher: Bandai Namco"
+    ],
+    "fandom": "dragonball",
+    "cover": {
+      "wiki": "Dragon Ball FighterZ",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ad/DBFZ_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Hard rock with an anime edge for a three-on-three.",
+      "query": "Dragon Ball FighterZ soundtrack"
+    },
+    "emoji": "🐉💥🟠👊⚡",
+    "visual": {
+      "icon": "🟠",
+      "colors": [
+        "#ea580c",
+        "#1e3a8a"
+      ]
+    },
+    "from": "2026-12-23"
+  },
+  {
+    "id": "g-supermeatboy",
+    "name": "Super Meat Boy",
+    "aliases": [
+      "meat boy"
+    ],
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Team Meat",
+    "creator": "Edmund McMillen & Tommy Refenes",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Meat Boy",
+      "Bandage Girl",
+      "Dr. Fetus"
+    ],
+    "themes": [
+      "Difficulty",
+      "Rescue"
+    ],
+    "credits": [
+      "Developers: Edmund McMillen & Tommy Refenes",
+      "Composer: Danny Baranowsky"
+    ],
+    "fandom": "supermeatboy",
+    "cover": {
+      "wiki": "Super Meat Boy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/aa/SuperMeatBoy_cover.png"
+    },
+    "audio": {
+      "clue": "A fast chiptune rock theme among saw blades.",
+      "query": "Super Meat Boy soundtrack Forest Funk",
+      "youtubeId": "3xHttYIwocY"
+    },
+    "emoji": "🥩🩹🪚💀🏃",
+    "visual": {
+      "icon": "🥩",
+      "colors": [
+        "#7f1d1d",
+        "#fca5a5"
+      ]
+    },
+    "from": "2026-12-24"
+  },
+  {
+    "id": "g-forzahorizon5",
+    "name": "Forza Horizon 5",
+    "aliases": [
+      "forza",
+      "forza horizon"
+    ],
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Racing",
+      "Open World"
+    ],
+    "studio": "Playground Games",
+    "creator": "Mike Brown",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "Xbox",
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Superstar",
+      "Ramirez",
+      "Keira"
+    ],
+    "themes": [
+      "Festival",
+      "Mexico"
+    ],
+    "credits": [
+      "Creative director: Mike Brown",
+      "Developer: Playground Games",
+      "Publisher: Xbox Game Studios"
+    ],
+    "cover": {
+      "wiki": "Forza Horizon 5",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Forza_Horizon_5_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Festival radio electro over Mexican roads.",
+      "query": "Forza Horizon 5 main theme",
+      "youtubeId": "dujPgJNBL44"
+    },
+    "emoji": "🏎️🌵🎉🌋📻",
+    "location": {
+      "name": "Mexico",
+      "description": "A festival country of jungles, deserts and a volcano."
+    },
+    "visual": {
+      "icon": "🏎️",
+      "colors": [
+        "#be185d",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-24"
+  },
+  {
+    "id": "g-citiesskylines",
+    "name": "Cities: Skylines",
+    "aliases": [
+      "cities skylines"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Simulation"
+    ],
+    "studio": "Colossal Order",
+    "creator": "Mariina Hallikainen",
+    "origin": "Finland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Chirper"
+    ],
+    "themes": [
+      "City building",
+      "Traffic"
+    ],
+    "credits": [
+      "CEO: Mariina Hallikainen",
+      "Developer: Colossal Order",
+      "Publisher: Paradox Interactive"
+    ],
+    "cover": {
+      "wiki": "Cities: Skylines",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/58/Cities_Skylines_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Easy-listening pop over a growing city.",
+      "query": "Cities Skylines soundtrack"
+    },
+    "emoji": "🏙️🚗🛣️🐦💡",
+    "visual": {
+      "icon": "🏙️",
+      "colors": [
+        "#0369a1",
+        "#a3e635"
+      ]
+    },
+    "from": "2026-12-24"
+  },
+  {
+    "id": "g-ksp",
+    "name": "Kerbal Space Program",
+    "aliases": [
+      "kerbal",
+      "ksp"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Simulation"
+    ],
+    "studio": "Squad",
+    "creator": "Felipe Falanghe",
+    "origin": "Mexico",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Jebediah Kerman",
+      "Bill Kerman",
+      "Bob Kerman",
+      "Valentina Kerman"
+    ],
+    "themes": [
+      "Rocketry",
+      "Orbits"
+    ],
+    "credits": [
+      "Creator: Felipe Falanghe",
+      "Developer: Squad"
+    ],
+    "fandom": "kerbalspaceprogram",
+    "cover": {
+      "wiki": "Kerbal Space Program",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e7/Kerbal_Space_Program_High_Res_Logo.png"
+    },
+    "audio": {
+      "clue": "Light jazz in the space centre before a launch.",
+      "query": "Kerbal Space Program soundtrack"
+    },
+    "emoji": "🚀🟢🌍🪐💥",
+    "location": {
+      "name": "Kerbin",
+      "description": "The small green home planet of a space programme run by little green people.",
+      "image": "https://static.wikia.nocookie.net/kerbalspaceprogram/images/c/c9/Kerbin.jpg/revision/latest?cb=20190618003821"
+    },
+    "visual": {
+      "icon": "🚀",
+      "colors": [
+        "#0f172a",
+        "#4ade80"
+      ]
+    },
+    "from": "2026-12-25"
+  },
+  {
+    "id": "g-honkaistarrail",
+    "name": "Honkai: Star Rail",
+    "aliases": [
+      "star rail",
+      "hsr",
+      "honkai"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "RPG",
+      "Turn-based"
+    ],
+    "studio": "HoYoverse",
+    "creator": "Shen Hao",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "The Trailblazer",
+      "March 7th",
+      "Dan Heng",
+      "Himeko",
+      "Kafka"
+    ],
+    "themes": [
+      "Paths and Aeons",
+      "Space train"
+    ],
+    "credits": [
+      "Developer: HoYoverse",
+      "Music: HOYO-MiX"
+    ],
+    "fandom": "honkai-star-rail",
+    "cover": {
+      "wiki": "Honkai: Star Rail",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8e/Honkai_Star_Rail_logo.svg/960px-Honkai_Star_Rail_logo.svg.png"
+    },
+    "audio": {
+      "clue": "A grand theme aboard a train between stars.",
+      "query": "Honkai Star Rail main theme",
+      "youtubeId": "o1XvMwk9HCg"
+    },
+    "emoji": "🚂🌌⭐📸🌀",
+    "item": {
+      "name": "The Astral Express",
+      "description": "A train that travels between worlds across the stars."
+    },
+    "visual": {
+      "icon": "🚂",
+      "colors": [
+        "#1e1b4b",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-25"
+  },
+  {
+    "id": "g-bayonetta",
+    "name": "Bayonetta",
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "Hack and Slash"
+    ],
+    "studio": "PlatinumGames",
+    "creator": "Hideki Kamiya",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Bayonetta",
+      "Jeanne",
+      "Luka",
+      "Rodin",
+      "Enzo"
+    ],
+    "themes": [
+      "Witches",
+      "Angels"
+    ],
+    "credits": [
+      "Director: Hideki Kamiya",
+      "Developer: PlatinumGames",
+      "Publisher: Sega"
+    ],
+    "fandom": "bayonetta",
+    "cover": {
+      "wiki": "Bayonetta",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d5/Logo_for_Bayonetta.png"
+    },
+    "audio": {
+      "clue": "A jazzy cover of Fly Me to the Moon in combat.",
+      "query": "Bayonetta Fly Me to the Moon",
+      "youtubeId": "EV6E13xODyA"
+    },
+    "emoji": "🧙‍♀️🔫👠🦋💥",
+    "location": {
+      "name": "Vigrid",
+      "description": "A European city where angels walk unseen.",
+      "image": "https://static.wikia.nocookie.net/bayonetta/images/6/68/Vigrid.jpg/revision/latest/scale-to-width-down/640?cb=20200328113138"
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#0a0a0a",
+        "#a855f7"
+      ]
+    },
+    "from": "2026-12-25"
+  },
+  {
+    "id": "g-amnesia",
+    "name": "Amnesia: The Dark Descent",
+    "aliases": [
+      "amnesia"
+    ],
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Frictional Games",
+    "creator": "Thomas Grip",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Daniel",
+      "Alexander of Brennenburg",
+      "The Gatherers"
+    ],
+    "themes": [
+      "Sanity",
+      "Darkness"
+    ],
+    "credits": [
+      "Creative director: Thomas Grip",
+      "Developer: Frictional Games"
+    ],
+    "cover": {
+      "wiki": "Amnesia: The Dark Descent",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/62/Amnesia-The-Dark-Descent-Cover-Art.png"
+    },
+    "audio": {
+      "clue": "Dark ambient music in a Prussian castle.",
+      "query": "Amnesia The Dark Descent soundtrack",
+      "youtubeId": "eWDzqUud3jU"
+    },
+    "emoji": "🕯️🏰😱🧠🚪",
+    "location": {
+      "name": "Brennenburg Castle",
+      "description": "A castle in Prussia, 1839, where a man wakes with no memory."
+    },
+    "visual": {
+      "icon": "🕯️",
+      "colors": [
+        "#1c1917",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-26"
+  },
+  {
+    "id": "g-outlast",
+    "name": "Outlast",
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Red Barrels",
+    "creator": "Philippe Morin",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Miles Upshur",
+      "Chris Walker",
+      "Father Martin",
+      "Eddie Gluskin"
+    ],
+    "themes": [
+      "Asylum",
+      "Found footage"
+    ],
+    "credits": [
+      "Co-founders: Philippe Morin, David Chateauneuf & Hugo Dallaire",
+      "Developer: Red Barrels"
+    ],
+    "cover": {
+      "wiki": "Outlast",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg"
+    },
+    "audio": {
+      "clue": "Shrill strings in an abandoned asylum.",
+      "query": "Outlast main theme",
+      "youtubeId": "nEjn63QGL-s"
+    },
+    "emoji": "📹🏥😱🌙🔋",
+    "item": {
+      "name": "The Camcorder",
+      "description": "A night-vision camera that eats batteries, the only light."
+    },
+    "location": {
+      "name": "Mount Massive Asylum",
+      "description": "A remote psychiatric hospital in Colorado, overrun by its patients."
+    },
+    "visual": {
+      "icon": "📹",
+      "colors": [
+        "#052e16",
+        "#d4d4d8"
+      ]
+    },
+    "from": "2026-12-26"
+  },
+  {
+    "id": "g-darkestdungeon",
+    "name": "Darkest Dungeon",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Roguelike",
+      "RPG"
+    ],
+    "studio": "Red Hook Studios",
+    "creator": "Chris Bourassa",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Ancestor",
+      "The Crusader",
+      "The Highwayman",
+      "The Plague Doctor"
+    ],
+    "themes": [
+      "Stress",
+      "Madness"
+    ],
+    "credits": [
+      "Creative director: Chris Bourassa",
+      "Narrator: Wayne June",
+      "Composer: Stuart Chatwood"
+    ],
+    "fandom": "darkestdungeon",
+    "cover": {
+      "wiki": "Darkest Dungeon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Darkest_Dungeon_Logo.png"
+    },
+    "audio": {
+      "clue": "A gloomy theme as an old voice warns of ruin.",
+      "query": "Darkest Dungeon main theme",
+      "youtubeId": "UpIBKNxSeZU"
+    },
+    "emoji": "🕯️💀🗡️😱🏚️",
+    "item": {
+      "name": "The Torch",
+      "description": "A light that keeps the heroes calmer, and the dungeon less deadly."
+    },
+    "location": {
+      "name": "The Hamlet",
+      "description": "The ruined town at the foot of an ancestor’s estate.",
+      "image": "https://static.wikia.nocookie.net/darkestdungeon_gamepedia/images/8/8f/Loading_screen_Town.png/revision/latest/scale-to-width-down/640?cb=20160131223925"
+    },
+    "visual": {
+      "icon": "🕯️",
+      "colors": [
+        "#0c0a09",
+        "#b91c1c"
+      ]
+    },
+    "from": "2026-12-26"
+  },
+  {
+    "id": "g-pizzatower",
+    "name": "Pizza Tower",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Tour De Pizza",
+    "creator": "McPig",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "Peppino Spaghetti",
+      "Pizzaface",
+      "The Noise",
+      "Gustavo"
+    ],
+    "themes": [
+      "Pizza",
+      "Speed"
+    ],
+    "credits": [
+      "Creator: McPig",
+      "Composers: Mr. Sauceman & ClascyJitto"
+    ],
+    "fandom": "pizzatower",
+    "cover": {
+      "wiki": "Pizza Tower",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Pizza_Tower_Promo_Art.jpg"
+    },
+    "audio": {
+      "clue": "Frantic funk while an escape timer runs out.",
+      "query": "Pizza Tower It's Pizza Time",
+      "youtubeId": "B7gGacb8cO4"
+    },
+    "emoji": "🍕👨‍🍳🏃💨🗼",
+    "visual": {
+      "icon": "🍕",
+      "colors": [
+        "#7c2d12",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-27"
+  },
+  {
+    "id": "g-superhot",
+    "name": "Superhot",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "FPS",
+      "Puzzle"
+    ],
+    "studio": "Superhot Team",
+    "creator": "Piotr Iwanicki",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Player"
+    ],
+    "themes": [
+      "Time moves when you move",
+      "The system"
+    ],
+    "credits": [
+      "Director: Piotr Iwanicki",
+      "Developer: Superhot Team"
+    ],
+    "cover": {
+      "wiki": "Superhot",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322500/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Almost no music: just silence and shattering glass.",
+      "query": "SUPERHOT game sounds"
+    },
+    "emoji": "🔴⏱️🔫🕶️🧊",
+    "visual": {
+      "icon": "🔴",
+      "colors": [
+        "#f8fafc",
+        "#dc2626"
+      ]
+    },
+    "from": "2026-12-27"
+  },
+  {
+    "id": "g-dredge",
+    "name": "Dredge",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Adventure",
+      "Horror"
+    ],
+    "studio": "Black Salt Games",
+    "creator": "Black Salt Games",
+    "origin": "New Zealand",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Fisherman",
+      "The Collector",
+      "The Lighthouse Keeper"
+    ],
+    "themes": [
+      "Fishing",
+      "Eldritch"
+    ],
+    "credits": [
+      "Developer: Black Salt Games",
+      "Publisher: Team17"
+    ],
+    "fandom": "dredge",
+    "cover": {
+      "wiki": "Dredge (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/15/Dredge_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "Lonely strings at sea, until the fog rolls in.",
+      "query": "DREDGE soundtrack"
+    },
+    "emoji": "🎣🐟🌫️🐙⚓",
+    "location": {
+      "name": "Greater Marrow",
+      "description": "The harbour town where a fisherman takes his first job."
+    },
+    "visual": {
+      "icon": "🎣",
+      "colors": [
+        "#0c4a6e",
+        "#a3e635"
+      ]
+    },
+    "from": "2026-12-27"
+  },
+  {
+    "id": "g-humanfallflat",
+    "name": "Human: Fall Flat",
+    "aliases": [
+      "human fall flat"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Puzzle",
+      "Co-op"
+    ],
+    "studio": "No Brakes Games",
+    "creator": "Tomas Sakalauskas",
+    "origin": "Lithuania",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Bob"
+    ],
+    "themes": [
+      "Wobbly physics",
+      "Dreams"
+    ],
+    "credits": [
+      "Creator: Tomas Sakalauskas",
+      "Publisher: Curve Games"
+    ],
+    "cover": {
+      "wiki": "Human: Fall Flat",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Human_Fall_Flat_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Calm ambient music while a wobbly man climbs.",
+      "query": "Human Fall Flat soundtrack"
+    },
+    "emoji": "🧍🌀🪜🏰🤲",
+    "visual": {
+      "icon": "🧍",
+      "colors": [
+        "#e0f2fe",
+        "#f97316"
+      ]
+    },
+    "from": "2026-12-28"
+  },
+  {
+    "id": "g-poppyplaytime",
+    "name": "Poppy Playtime",
+    "aliases": [
+      "poppy"
+    ],
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Survival Horror",
+      "Puzzle"
+    ],
+    "studio": "Mob Entertainment",
+    "creator": "Zach Belanger",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Huggy Wuggy",
+      "Poppy",
+      "Mommy Long Legs",
+      "Kissy Missy"
+    ],
+    "themes": [
+      "Toy factory",
+      "Experiments"
+    ],
+    "credits": [
+      "CEO: Zach Belanger",
+      "Developer and publisher: Mob Entertainment"
+    ],
+    "cover": {
+      "wiki": "Poppy Playtime",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Poppy_Playtime_cover.jpg"
+    },
+    "audio": {
+      "clue": "A creepy jingle in an abandoned toy factory.",
+      "query": "Poppy Playtime Huggy Wuggy theme"
+    },
+    "emoji": "🧸🏭😱✋🔵",
+    "item": {
+      "name": "The GrabPack",
+      "description": "A backpack with two long extending hands."
+    },
+    "location": {
+      "name": "Playtime Co.",
+      "description": "An abandoned toy factory whose staff vanished."
+    },
+    "visual": {
+      "icon": "🧸",
+      "colors": [
+        "#1e3a8a",
+        "#ef4444"
+      ]
+    },
+    "from": "2026-12-28"
+  },
+  {
+    "id": "g-gearsofwar",
+    "name": "Gears of War",
+    "aliases": [
+      "gears"
+    ],
+    "domain": "games",
+    "year": 2006,
+    "genres": [
+      "Third-Person Shooter"
+    ],
+    "studio": "Epic Games",
+    "creator": "Cliff Bleszinski",
+    "origin": "USA",
+    "format": "Xbox",
+    "platforms": [
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "Marcus Fenix",
+      "Dominic Santiago",
+      "Augustus Cole",
+      "General RAAM"
+    ],
+    "themes": [
+      "Locust Horde",
+      "Cover shooting"
+    ],
+    "credits": [
+      "Lead designer: Cliff Bleszinski",
+      "Developer: Epic Games",
+      "Publisher: Microsoft"
+    ],
+    "fandom": "gearsofwar",
+    "cover": {
+      "wiki": "Gears of War",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gears_of_War_logo.png"
+    },
+    "audio": {
+      "clue": "Brutal orchestral war music in ruined cities.",
+      "query": "Gears of War main theme",
+      "youtubeId": "ndaJphlTPY8"
+    },
+    "emoji": "🪚🔫💪🪖🌋",
+    "item": {
+      "name": "The Lancer",
+      "description": "An assault rifle with a chainsaw bayonet."
+    },
+    "location": {
+      "name": "Sera",
+      "description": "A ruined world whose crust gave birth to a horde."
+    },
+    "visual": {
+      "icon": "🪚",
+      "colors": [
+        "#1c1917",
+        "#b91c1c"
+      ]
+    },
+    "from": "2026-12-28"
+  },
+  {
+    "id": "g-xcom2",
+    "name": "XCOM 2",
+    "aliases": [
+      "xcom"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Strategy",
+      "Turn-based"
+    ],
+    "studio": "Firaxis Games",
+    "creator": "Jake Solomon",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Commander",
+      "Central Officer Bradford",
+      "Dr. Tygan",
+      "The Elders"
+    ],
+    "themes": [
+      "Alien occupation",
+      "Resistance"
+    ],
+    "credits": [
+      "Director: Jake Solomon",
+      "Composer: Tim Wynn",
+      "Publisher: 2K"
+    ],
+    "fandom": "xcom",
+    "cover": {
+      "wiki": "XCOM 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/XCOM_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Tense military synths as aliens rule the Earth.",
+      "query": "XCOM 2 main theme",
+      "youtubeId": "qTmrXmCzTi8"
+    },
+    "emoji": "👽🎯🛸⏳💀",
+    "item": {
+      "name": "The Avenger",
+      "description": "A captured alien ship turned into a mobile resistance base.",
+      "image": "https://static.wikia.nocookie.net/xcom/images/6/6d/Xcom2_avenger_landed.jpg/revision/latest/scale-to-width-down/640?cb=20210215165849"
+    },
+    "visual": {
+      "icon": "👽",
+      "colors": [
+        "#0f172a",
+        "#22d3ee"
+      ]
+    },
+    "from": "2026-12-29"
+  },
+  {
+    "id": "g-ftl",
+    "name": "FTL: Faster Than Light",
+    "aliases": [
+      "ftl"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "Roguelike",
+      "Strategy"
+    ],
+    "studio": "Subset Games",
+    "creator": "Justin Ma & Matthew Davis",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "The Federation crew",
+      "The Rebel Flagship"
+    ],
+    "themes": [
+      "Space",
+      "Being chased"
+    ],
+    "credits": [
+      "Developers: Justin Ma & Matthew Davis",
+      "Composer: Ben Prunty"
+    ],
+    "fandom": "ftl",
+    "cover": {
+      "wiki": "FTL: Faster Than Light",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/FTL_Faster_Than_Light_Logo.svg/960px-FTL_Faster_Than_Light_Logo.svg.png"
+    },
+    "audio": {
+      "clue": "Spacey synths while a small ship flees a rebel fleet.",
+      "query": "FTL Faster Than Light soundtrack Milky Way",
+      "youtubeId": "AgL6jbqDbx8"
+    },
+    "emoji": "🚀👨‍🚀🔥🛰️🏃",
+    "item": {
+      "name": "The Kestrel",
+      "description": "The first cruiser a captain commands, with its blue hull.",
+      "image": "https://static.wikia.nocookie.net/ftl/images/3/3a/Kestrel_Cruiser_A.png/revision/latest/scale-to-width-down/640?cb=20210812163620"
+    },
+    "visual": {
+      "icon": "🚀",
+      "colors": [
+        "#0f172a",
+        "#22c55e"
+      ]
+    },
+    "from": "2026-12-29"
+  },
+  {
+    "id": "g-rimworld",
+    "name": "RimWorld",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Simulation",
+      "Strategy"
+    ],
+    "studio": "Ludeon Studios",
+    "creator": "Tynan Sylvester",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Cassandra Classic",
+      "Phoebe Chillax",
+      "Randy Random"
+    ],
+    "themes": [
+      "Colony",
+      "Storyteller"
+    ],
+    "credits": [
+      "Designer: Tynan Sylvester",
+      "Composer: Alistair Lindsay"
+    ],
+    "fandom": "rimworld",
+    "cover": {
+      "wiki": "RimWorld",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/294100/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Country guitar for a colony on a frontier world.",
+      "query": "RimWorld soundtrack"
+    },
+    "emoji": "🧑‍🌾🏠🦌🌋😤",
+    "visual": {
+      "icon": "🧑‍🌾",
+      "colors": [
+        "#365314",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-29"
+  },
+  {
+    "id": "g-enterthegungeon",
+    "name": "Enter the Gungeon",
+    "aliases": [
+      "gungeon"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Roguelike",
+      "Shooter"
+    ],
+    "studio": "Dodge Roll",
+    "creator": "Dave Crooks",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Pilot",
+      "The Marine",
+      "The Convict",
+      "The Hunter",
+      "The Bullet"
+    ],
+    "themes": [
+      "Guns",
+      "Past"
+    ],
+    "credits": [
+      "Developer: Dodge Roll",
+      "Publisher: Devolver Digital",
+      "Composer: doseone"
+    ],
+    "fandom": "enterthegungeon",
+    "cover": {
+      "wiki": "Enter the Gungeon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Enter_the_Gungeon_cover_art.jpeg"
+    },
+    "audio": {
+      "clue": "Hip-hop-flavoured chiptune beats in a gun fortress.",
+      "query": "Enter the Gungeon soundtrack",
+      "youtubeId": "xZzWiFjsbM0"
+    },
+    "emoji": "🔫🏰💀🎲🌀",
+    "item": {
+      "name": "The Gun That Can Kill the Past",
+      "description": "The legendary gun hidden at the bottom of the fortress.",
+      "image": "https://static.wikia.nocookie.net/enterthegungeon_gamepedia/images/4/4e/Bullet_that_can_kill_the_past_animation.gif/revision/latest?cb=20200614010254"
+    },
+    "visual": {
+      "icon": "🔫",
+      "colors": [
+        "#1c1917",
+        "#facc15"
+      ]
+    },
+    "from": "2026-12-30"
+  },
+  {
+    "id": "g-stellaris",
+    "name": "Stellaris",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Strategy"
+    ],
+    "studio": "Paradox Development Studio",
+    "creator": "Henrik Fåhraeus",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Your empire",
+      "The Fallen Empires",
+      "The Unbidden"
+    ],
+    "themes": [
+      "Space empire",
+      "First contact"
+    ],
+    "credits": [
+      "Game director: Henrik Fåhraeus",
+      "Composer: Andreas Waldetoft"
+    ],
+    "fandom": "stellaris",
+    "cover": {
+      "wiki": "Stellaris",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/281990/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Majestic space orchestra across a galaxy.",
+      "query": "Stellaris soundtrack"
+    },
+    "emoji": "🌌🚀👾🪐👑",
+    "visual": {
+      "icon": "🌌",
+      "colors": [
+        "#0f172a",
+        "#a78bfa"
+      ]
+    },
+    "from": "2026-12-30"
+  },
+  {
+    "id": "g-brothers",
+    "name": "Brothers: A Tale of Two Sons",
+    "aliases": [
+      "brothers"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Adventure",
+      "Puzzle"
+    ],
+    "studio": "Starbreeze Studios",
+    "creator": "Josef Fares",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Naiee",
+      "Naia",
+      "Their father"
+    ],
+    "themes": [
+      "Grief",
+      "Two sticks, two brothers"
+    ],
+    "credits": [
+      "Director: Josef Fares",
+      "Publisher: 505 Games"
+    ],
+    "cover": {
+      "wiki": "Brothers: A Tale of Two Sons",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Brothers_A_Tale_of_Two_Sons_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A gentle folk theme for a journey to save a father.",
+      "query": "Brothers A Tale of Two Sons soundtrack",
+      "youtubeId": "27nB-t_IrHE"
+    },
+    "emoji": "👦👦🌳🦅💧",
+    "visual": {
+      "icon": "👦",
+      "colors": [
+        "#14532d",
+        "#fde68a"
+      ]
+    },
+    "from": "2026-12-30"
+  },
+  {
+    "id": "g-wolfamongus",
+    "name": "The Wolf Among Us",
+    "aliases": [
+      "wolf among us"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Adventure",
+      "Narrative"
+    ],
+    "studio": "Telltale Games",
+    "creator": "Nick Herman & Dennis Lenart",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Bigby Wolf",
+      "Snow White",
+      "Ichabod Crane",
+      "The Crooked Man"
+    ],
+    "themes": [
+      "Fairy tales",
+      "Noir"
+    ],
+    "credits": [
+      "Directors: Nick Herman & Dennis Lenart",
+      "Based on Fables by Bill Willingham"
+    ],
+    "cover": {
+      "wiki": "The Wolf Among Us",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/96/The_Wolf_Among_Us_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Neon synthwave in a fairy-tale New York.",
+      "query": "The Wolf Among Us main theme",
+      "youtubeId": "_hNMZWlaPRU"
+    },
+    "emoji": "🐺🚬🌃🔪👠",
+    "location": {
+      "name": "Fabletown",
+      "description": "A hidden neighbourhood of New York where fairy-tale characters live in exile."
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#3b0764",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-31"
+  },
+  {
+    "id": "g-zzz",
+    "name": "Zenless Zone Zero",
+    "aliases": [
+      "zzz"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action",
+      "Hack and Slash"
+    ],
+    "studio": "HoYoverse",
+    "creator": "Li Zhenyu",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "Wise",
+      "Belle",
+      "Nicole Demara",
+      "Anby",
+      "Ellen Joe"
+    ],
+    "themes": [
+      "Hollows",
+      "Urban fantasy"
+    ],
+    "credits": [
+      "Developer: HoYoverse",
+      "Music: HOYO-MiX"
+    ],
+    "fandom": "zenless-zone-zero",
+    "cover": {
+      "wiki": "Zenless Zone Zero",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/d2/Zenless_Zone_Zero_curved_box_logo.svg/960px-Zenless_Zone_Zero_curved_box_logo.svg.png"
+    },
+    "audio": {
+      "clue": "Funky city-pop beats in a video store.",
+      "query": "Zenless Zone Zero soundtrack"
+    },
+    "emoji": "📼🐰🏙️⚔️🎧",
+    "location": {
+      "name": "New Eridu",
+      "description": "The last great city, built around dangerous rifts called Hollows."
+    },
+    "visual": {
+      "icon": "📼",
+      "colors": [
+        "#18181b",
+        "#a3e635"
+      ]
+    },
+    "from": "2026-12-31"
+  },
+  {
+    "id": "g-indianajones",
+    "name": "Indiana Jones and the Great Circle",
+    "aliases": [
+      "indiana jones",
+      "great circle"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "MachineGames",
+    "creator": "Jerk Gustafsson",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Indiana Jones",
+      "Gina Lombardi",
+      "Emmerich Voss",
+      "Marcus Brody"
+    ],
+    "themes": [
+      "Archaeology",
+      "1937"
+    ],
+    "credits": [
+      "Game director: Jerk Gustafsson",
+      "Indy: Troy Baker",
+      "Publisher: Bethesda"
+    ],
+    "cover": {
+      "wiki": "Indiana Jones and the Great Circle",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Indiana_Jones_and_the_Great_Circle-box_art.jpg"
+    },
+    "audio": {
+      "clue": "A famous adventure march for an archaeologist.",
+      "query": "Indiana Jones and the Great Circle soundtrack"
+    },
+    "emoji": "🤠🗺️🐍🏺🧭",
+    "item": {
+      "name": "The Whip",
+      "description": "A bullwhip an archaeologist uses to swing, climb and disarm."
+    },
+    "visual": {
+      "icon": "🤠",
+      "colors": [
+        "#78350f",
+        "#fbbf24"
+      ]
+    },
+    "from": "2026-12-31"
+  },
+  {
+    "id": "g-tothemoon",
+    "name": "To the Moon",
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Adventure",
+      "Narrative"
+    ],
+    "studio": "Freebird Games",
+    "creator": "Kan Gao",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Mobile",
+      "Nintendo"
+    ],
+    "characters": [
+      "Johnny",
+      "River",
+      "Dr. Eva Rosalene",
+      "Dr. Neil Watts"
+    ],
+    "themes": [
+      "Memories",
+      "Dying wish"
+    ],
+    "credits": [
+      "Creator and composer: Kan Gao",
+      "Song: Laura Shigihara"
+    ],
+    "cover": {
+      "wiki": "To the Moon (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/To_the_Moon_cover.png"
+    },
+    "audio": {
+      "clue": "A tender piano theme for a dying man's wish.",
+      "query": "To the Moon For River",
+      "youtubeId": "9QfPDmzpC2Q"
+    },
+    "emoji": "🌙🐇🎹🧠🏠",
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#1e3a8a",
+        "#fef3c7"
+      ]
+    },
+    "from": "2027-01-01"
+  },
+  {
+    "id": "g-marvelsnap",
+    "name": "Marvel Snap",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Strategy"
+    ],
+    "studio": "Second Dinner",
+    "creator": "Ben Brode",
+    "origin": "USA",
+    "format": "Mobile",
+    "platforms": [
+      "Mobile",
+      "PC"
+    ],
+    "characters": [
+      "Spider-Man",
+      "Thanos",
+      "Iron Man",
+      "Galactus"
+    ],
+    "themes": [
+      "Cards",
+      "Locations"
+    ],
+    "credits": [
+      "Chief creative officer: Ben Brode",
+      "Developer: Second Dinner"
+    ],
+    "fandom": "marvelsnap",
+    "cover": {
+      "wiki": "Marvel Snap",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Marvel_Snap.png"
+    },
+    "audio": {
+      "clue": "Punchy pop-orchestral music for a quick duel.",
+      "query": "Marvel Snap main theme",
+      "youtubeId": "3CVyq8xIjYk"
+    },
+    "emoji": "🦸🃏⚡🌀🫰",
+    "visual": {
+      "icon": "🫰",
+      "colors": [
+        "#1e3a8a",
+        "#f43f5e"
+      ]
+    },
+    "from": "2027-01-01"
+  },
+  {
+    "id": "g-tabs",
+    "name": "Totally Accurate Battle Simulator",
+    "aliases": [
+      "tabs"
+    ],
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Strategy",
+      "Simulation"
+    ],
+    "studio": "Landfall",
+    "creator": "Landfall",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Wobblers",
+      "The Farmer",
+      "The Chicken"
+    ],
+    "themes": [
+      "Physics battles",
+      "History"
+    ],
+    "credits": [
+      "Developer: Landfall",
+      "Early access from 2019"
+    ],
+    "cover": {
+      "wiki": "Totally Accurate Battle Simulator",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/99/Totally_Accurate_Battle_Simulator_logo.jpg"
+    },
+    "audio": {
+      "clue": "Pompous orchestral music for very silly battles.",
+      "query": "Totally Accurate Battle Simulator soundtrack",
+      "youtubeId": "LL5KSk6KzlE"
+    },
+    "emoji": "⚔️🐔🦖🪓🤡",
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#14532d",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-01"
+  },
+  {
+    "id": "g-deathsdoor",
+    "name": "Death's Door",
+    "aliases": [
+      "deaths door"
+    ],
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Acid Nerve",
+    "creator": "Mark Foster & David Fenn",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Crow",
+      "The Grey Crow",
+      "The Lord of Doors",
+      "Pothead"
+    ],
+    "themes": [
+      "Reaping souls",
+      "Death"
+    ],
+    "credits": [
+      "Developers: Mark Foster & David Fenn",
+      "Publisher: Devolver Digital"
+    ],
+    "fandom": "deaths-door",
+    "cover": {
+      "wiki": "Death's Door",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/894020/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Melancholy piano as a crow reaps souls.",
+      "query": "Death's Door soundtrack"
+    },
+    "emoji": "🐦‍⬛🚪🗡️💀🏺",
+    "visual": {
+      "icon": "🐦‍⬛",
+      "colors": [
+        "#1c1917",
+        "#e5e7eb"
+      ]
+    },
+    "from": "2027-01-02"
+  },
+  {
+    "id": "g-brawlhalla",
+    "name": "Brawlhalla",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Fighting",
+      "Party"
+    ],
+    "studio": "Blue Mammoth Games",
+    "creator": "Matt Woomer",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Bödvar",
+      "Cassidy",
+      "Orion",
+      "Hattori"
+    ],
+    "themes": [
+      "Valhalla",
+      "Platform fighter"
+    ],
+    "credits": [
+      "Developer: Blue Mammoth Games",
+      "Publisher: Ubisoft"
+    ],
+    "cover": {
+      "wiki": "Brawlhalla",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2d/Brawlhalla_BoxArt.jpg"
+    },
+    "audio": {
+      "clue": "Upbeat Viking rock for a free platform fighter.",
+      "query": "Brawlhalla main theme",
+      "youtubeId": "J3r-CoZsgcc"
+    },
+    "emoji": "🥊🪓🗡️🏆🌈",
+    "visual": {
+      "icon": "🥊",
+      "colors": [
+        "#0369a1",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-02"
+  },
+  {
+    "id": "g-ashorthike",
+    "name": "A Short Hike",
+    "aliases": [
+      "short hike"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Adventure",
+      "Exploration"
+    ],
+    "studio": "adamgryu",
+    "creator": "Adam Robinson-Yu",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Claire",
+      "Aunt May"
+    ],
+    "themes": [
+      "Hiking",
+      "Summer"
+    ],
+    "credits": [
+      "Creator: Adam Robinson-Yu",
+      "Composer: Mark Sparling"
+    ],
+    "cover": {
+      "wiki": "A Short Hike",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9d/A_Short_Hike.png"
+    },
+    "audio": {
+      "clue": "Light, sunny music for a walk up a mountain.",
+      "query": "A Short Hike soundtrack"
+    },
+    "emoji": "🐦⛰️🎒🪶📱",
+    "location": {
+      "name": "Hawk Peak",
+      "description": "The summit of an island’s mountain, where a bird hopes to find phone signal."
+    },
+    "visual": {
+      "icon": "⛰️",
+      "colors": [
+        "#0e7490",
+        "#fef3c7"
+      ]
+    },
+    "from": "2027-01-02"
+  },
+  {
+    "id": "g-againstthestorm",
+    "name": "Against the Storm",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Strategy",
+      "Roguelike"
+    ],
+    "studio": "Eremite Games",
+    "creator": "Eremite Games",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Viceroy",
+      "The Scorched Queen"
+    ],
+    "themes": [
+      "Rain",
+      "City building"
+    ],
+    "credits": [
+      "Developer: Eremite Games",
+      "Publisher: Hooded Horse"
+    ],
+    "fandom": "against-the-storm",
+    "cover": {
+      "wiki": "Against the Storm",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1336490/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Folk strings and rain over a new settlement.",
+      "query": "Against the Storm soundtrack"
+    },
+    "emoji": "🌧️🦫🦊🏘️👑",
+    "visual": {
+      "icon": "🌧️",
+      "colors": [
+        "#365314",
+        "#f97316"
+      ]
+    },
+    "from": "2027-01-03"
+  },
+  {
+    "id": "g-ghostrunner",
+    "name": "Ghostrunner",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Action",
+      "Platformer"
+    ],
+    "studio": "One More Level",
+    "creator": "One More Level",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Jack",
+      "The Architect",
+      "Mara"
+    ],
+    "themes": [
+      "Cyberpunk",
+      "One-hit kills"
+    ],
+    "credits": [
+      "Developer: One More Level",
+      "Composer: Daniel Deluxe"
+    ],
+    "cover": {
+      "wiki": "Ghostrunner",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Ghostrunner_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Pounding synthwave for a cyber-ninja run.",
+      "query": "Ghostrunner Daniel Deluxe soundtrack"
+    },
+    "emoji": "🥷🗡️🏙️⚡🧗",
+    "location": {
+      "name": "Dharma Tower",
+      "description": "The last city of humanity, a vertical megastructure."
+    },
+    "visual": {
+      "icon": "🥷",
+      "colors": [
+        "#0f172a",
+        "#ef4444"
+      ]
+    },
+    "from": "2027-01-03"
+  },
+  {
+    "id": "g-thiswarofmine",
+    "name": "This War of Mine",
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Survival",
+      "Strategy"
+    ],
+    "studio": "11 bit studios",
+    "creator": "Michał Drozdowski",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Pavle",
+      "Katia",
+      "Bruno",
+      "Marko"
+    ],
+    "themes": [
+      "Civilians in war",
+      "Siege"
+    ],
+    "credits": [
+      "Developer: 11 bit studios",
+      "Composer: Piotr Musiał"
+    ],
+    "cover": {
+      "wiki": "This War of Mine",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/This_War_of_Mine_logo.png"
+    },
+    "audio": {
+      "clue": "A sad guitar in a besieged city.",
+      "query": "This War of Mine soundtrack"
+    },
+    "emoji": "🏚️🌙🥫💔🔦",
+    "visual": {
+      "icon": "🏚️",
+      "colors": [
+        "#292524",
+        "#d6d3d1"
+      ]
+    },
+    "from": "2027-01-03"
+  },
+  {
+    "id": "g-alienisolation",
+    "name": "Alien: Isolation",
+    "aliases": [
+      "alien isolation"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Survival Horror",
+      "Stealth"
+    ],
+    "studio": "Creative Assembly",
+    "creator": "Alistair Hope",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Amanda Ripley",
+      "The Alien",
+      "Working Joe"
+    ],
+    "themes": [
+      "Stalked",
+      "Retro future"
+    ],
+    "credits": [
+      "Creative lead: Alistair Hope",
+      "Publisher: Sega"
+    ],
+    "cover": {
+      "wiki": "Alien: Isolation",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Alien_Isolation.jpg"
+    },
+    "audio": {
+      "clue": "Tense orchestral horror in a dying station.",
+      "query": "Alien Isolation soundtrack"
+    },
+    "emoji": "👽🚀🔦😱🖥️",
+    "item": {
+      "name": "The Motion Tracker",
+      "description": "A beeping device showing what moves nearby."
+    },
+    "location": {
+      "name": "Sevastopol Station",
+      "description": "A decaying space station near a gas giant."
+    },
+    "visual": {
+      "icon": "👽",
+      "colors": [
+        "#0c0a09",
+        "#22c55e"
+      ]
+    },
+    "from": "2027-01-04"
+  },
+  {
+    "id": "g-forhonor",
+    "name": "For Honor",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Fighting",
+      "Multiplayer"
+    ],
+    "studio": "Ubisoft Montreal",
+    "creator": "Jason VandenBerghe",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Apollyon",
+      "The Warden",
+      "The Raider",
+      "The Orochi"
+    ],
+    "themes": [
+      "Knights, vikings, samurai",
+      "War"
+    ],
+    "credits": [
+      "Creative director: Jason VandenBerghe",
+      "Developer: Ubisoft Montreal"
+    ],
+    "fandom": "forhonor",
+    "cover": {
+      "wiki": "For Honor",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d5/For_Honor_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Epic war drums as three factions clash.",
+      "query": "For Honor soundtrack",
+      "youtubeId": "pTsHPuyLHiw"
+    },
+    "emoji": "⚔️🛡️🪓🗡️🏰",
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#1c1917",
+        "#b91c1c"
+      ]
+    },
+    "from": "2027-01-04"
+  },
+  {
+    "id": "g-frostpunk",
+    "name": "Frostpunk",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Strategy",
+      "Simulation"
+    ],
+    "studio": "11 bit studios",
+    "creator": "Kuba Stokalski",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Captain",
+      "The Londoners"
+    ],
+    "themes": [
+      "Ice age",
+      "Hard choices"
+    ],
+    "credits": [
+      "Developer: 11 bit studios",
+      "Composer: Piotr Musiał"
+    ],
+    "fandom": "frostpunk",
+    "cover": {
+      "wiki": "Frostpunk",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Frostpunk_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A grave orchestral theme around the last furnace.",
+      "query": "Frostpunk soundtrack",
+      "youtubeId": "TpaFE6_nDJw"
+    },
+    "emoji": "❄️🏭🔥⚙️⚖️",
+    "item": {
+      "name": "The Generator",
+      "description": "A giant furnace at the heart of the last city, keeping everyone alive."
+    },
+    "visual": {
+      "icon": "❄️",
+      "colors": [
+        "#0c4a6e",
+        "#f97316"
+      ]
+    },
+    "from": "2027-01-04"
+  },
+  {
+    "id": "g-awayout",
+    "name": "A Way Out",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action-Adventure",
+      "Co-op"
+    ],
+    "studio": "Hazelight Studios",
+    "creator": "Josef Fares",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Leo",
+      "Vincent",
+      "Harvey"
+    ],
+    "themes": [
+      "Prison break",
+      "Split screen"
+    ],
+    "credits": [
+      "Director: Josef Fares",
+      "Publisher: Electronic Arts"
+    ],
+    "cover": {
+      "wiki": "A Way Out",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/83/A_Way_Out_Logo.jpg"
+    },
+    "audio": {
+      "clue": "Tense strings for a split-screen prison break.",
+      "query": "A Way Out soundtrack",
+      "youtubeId": "3oIz_PXu9gw"
+    },
+    "emoji": "⛓️🏃🏃‍♂️🔀🚔",
+    "visual": {
+      "icon": "⛓️",
+      "colors": [
+        "#1c1917",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-05"
+  },
+  {
+    "id": "g-schedulei",
+    "name": "Schedule I",
+    "aliases": [
+      "schedule 1"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Simulation",
+      "Co-op"
+    ],
+    "studio": "TVGS",
+    "creator": "Tyler",
+    "origin": "Australia",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Uncle Nelson",
+      "Benji"
+    ],
+    "themes": [
+      "Crime",
+      "Small business"
+    ],
+    "credits": [
+      "Developer and publisher: TVGS"
+    ],
+    "cover": {
+      "wiki": "Schedule I",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164500/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Mellow hip-hop beats in a grungy city.",
+      "query": "Schedule I soundtrack",
+      "youtubeId": "FBT6pVibU5k"
+    },
+    "emoji": "🌿💊🏘️💵🚗",
+    "location": {
+      "name": "Hyland Point",
+      "description": "A grungy city where a small-time dealer builds an empire."
+    },
+    "visual": {
+      "icon": "💊",
+      "colors": [
+        "#14532d",
+        "#a3e635"
+      ]
+    },
+    "from": "2027-01-05"
+  },
+  {
+    "id": "g-twwarhammer",
+    "name": "Total War: Warhammer",
+    "aliases": [
+      "total war",
+      "total war warhammer"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Strategy",
+      "Real-Time Strategy"
+    ],
+    "studio": "Creative Assembly",
+    "creator": "Ian Roxburgh",
+    "origin": "United Kingdom",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Karl Franz",
+      "Grimgor Ironhide",
+      "Thorgrim Grudgebearer",
+      "Archaon"
+    ],
+    "themes": [
+      "Fantasy wars",
+      "Empires"
+    ],
+    "credits": [
+      "Game director: Ian Roxburgh",
+      "Developer: Creative Assembly",
+      "Publisher: Sega"
+    ],
+    "fandom": "totalwar",
+    "cover": {
+      "wiki": "Total War: Warhammer",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cb/Total_War_Warhammer_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A heroic orchestral main theme for the Old World.",
+      "query": "Total War Warhammer main theme",
+      "youtubeId": "im0vK4dWL6E"
+    },
+    "emoji": "⚔️🐉🏰💀🪓",
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#1c1917",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-05"
+  },
+  {
+    "id": "g-jumpking",
+    "name": "Jump King",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nexile",
+    "creator": "Nexile",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Jump King",
+      "The Smoking Hot Babe"
+    ],
+    "themes": [
+      "Falling",
+      "Patience"
+    ],
+    "credits": [
+      "Developer: Nexile",
+      "Publisher: UKIYO Publishing"
+    ],
+    "cover": {
+      "wiki": "Jump King",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/88/Jump_King_Art_Steam.jpg"
+    },
+    "audio": {
+      "clue": "Calm medieval ambience, and the sound of a long fall.",
+      "query": "Jump King soundtrack",
+      "youtubeId": "IgcRmsSTYU8"
+    },
+    "emoji": "👑🦘⬆️😤🏰",
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#14532d",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-06"
+  },
+  {
+    "id": "g-dragonage",
+    "name": "Dragon Age: Origins",
+    "aliases": [
+      "dragon age"
+    ],
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "BioWare",
+    "creator": "Dan Tudge",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Warden",
+      "Alistair",
+      "Morrigan",
+      "Leliana",
+      "Loghain"
+    ],
+    "themes": [
+      "Blight",
+      "Grey Wardens"
+    ],
+    "credits": [
+      "Director: Dan Tudge",
+      "Developer: BioWare",
+      "Composer: Inon Zur"
+    ],
+    "fandom": "dragonage",
+    "cover": {
+      "wiki": "Dragon Age: Origins",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/89/Dragon_Age_Origins_cover.png"
+    },
+    "audio": {
+      "clue": "Epic orchestra and choir against the Blight.",
+      "query": "Dragon Age Origins main theme",
+      "youtubeId": "oWFEVbfCcOY"
+    },
+    "emoji": "🐉🗡️🛡️🩸🏰",
+    "location": {
+      "name": "Ferelden",
+      "description": "A kingdom threatened by the darkspawn of the fifth Blight.",
+      "image": "https://static.wikia.nocookie.net/dragonage/images/3/31/Ferelden.png/revision/latest/scale-to-width-down/640?cb=20110319021314"
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#450a0a",
+        "#a3a3a3"
+      ]
+    },
+    "from": "2027-01-06"
+  },
+  {
+    "id": "g-raft",
+    "name": "Raft",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Survival",
+      "Co-op"
+    ],
+    "studio": "Redbeet Interactive",
+    "creator": "Redbeet Interactive",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Rouhi",
+      "Mayu",
+      "Bruce the shark"
+    ],
+    "themes": [
+      "Ocean",
+      "Flood"
+    ],
+    "credits": [
+      "Developer: Redbeet Interactive",
+      "Publisher: Axolot Games"
+    ],
+    "cover": {
+      "wiki": "Raft (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fa/Raft_cover.jpg"
+    },
+    "audio": {
+      "clue": "Calm tropical music on a raft adrift.",
+      "query": "Raft game soundtrack"
+    },
+    "emoji": "🛶🦈🌊🪝🏝️",
+    "visual": {
+      "icon": "🛶",
+      "colors": [
+        "#0369a1",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-06"
+  },
+  {
+    "id": "g-readyornot",
+    "name": "Ready or Not",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Tactical Shooter",
+      "FPS"
+    ],
+    "studio": "VOID Interactive",
+    "creator": "VOID Interactive",
+    "origin": "Ireland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The SWAT team",
+      "Judge"
+    ],
+    "themes": [
+      "Police raids",
+      "Los Suenos"
+    ],
+    "credits": [
+      "Developer and publisher: VOID Interactive"
+    ],
+    "cover": {
+      "wiki": "Ready or Not (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e6/Ready_or_Not_Console_Release.jpg"
+    },
+    "audio": {
+      "clue": "Tense ambient music before a door is breached.",
+      "query": "Ready or Not soundtrack",
+      "youtubeId": "pKmTMrsfUWQ"
+    },
+    "emoji": "🚔🛡️🚪🔦🎯",
+    "visual": {
+      "icon": "🚔",
+      "colors": [
+        "#0f172a",
+        "#1d4ed8"
+      ]
+    },
+    "from": "2027-01-07"
+  },
+  {
+    "id": "g-minimetro",
+    "name": "Mini Metro",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Puzzle",
+      "Strategy"
+    ],
+    "studio": "Dinosaur Polo Club",
+    "creator": "Robert & Peter Curry",
+    "origin": "New Zealand",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Passengers"
+    ],
+    "themes": [
+      "Subway maps",
+      "Minimalism"
+    ],
+    "credits": [
+      "Developers: Dinosaur Polo Club",
+      "Sound: Disasterpeace"
+    ],
+    "cover": {
+      "wiki": "Mini Metro (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mini_Metro_header.png"
+    },
+    "audio": {
+      "clue": "Generative tones, one note per train.",
+      "query": "Mini Metro Disasterpeace soundtrack"
+    },
+    "emoji": "🚇🔺⚪🟥🗺️",
+    "visual": {
+      "icon": "🚇",
+      "colors": [
+        "#f8fafc",
+        "#e11d48"
+      ]
+    },
+    "from": "2027-01-07"
+  },
+  {
+    "id": "g-dusk",
+    "name": "Dusk",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "FPS"
+    ],
+    "studio": "David Szymanski",
+    "creator": "David Szymanski",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Dusk Dude"
+    ],
+    "themes": [
+      "Cults",
+      "Retro shooter"
+    ],
+    "credits": [
+      "Creator: David Szymanski",
+      "Composer: Andrew Hulshult",
+      "Publisher: New Blood Interactive"
+    ],
+    "cover": {
+      "wiki": "Dusk (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/91/Dusk_cover.jpg"
+    },
+    "audio": {
+      "clue": "Grinding metal riffs in a cursed farmland.",
+      "query": "DUSK Andrew Hulshult soundtrack",
+      "youtubeId": "9u9Kf7qTUXY"
+    },
+    "emoji": "🔫🌾🐷⛪🌒",
+    "visual": {
+      "icon": "🌒",
+      "colors": [
+        "#450a0a",
+        "#a16207"
+      ]
+    },
+    "from": "2027-01-07"
+  },
+  {
+    "id": "g-mouthwashing",
+    "name": "Mouthwashing",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Psychological horror",
+      "Narrative"
+    ],
+    "studio": "Wrong Organ",
+    "creator": "Wrong Organ",
+    "origin": "Sweden",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Jimmy",
+      "Curly",
+      "Anya",
+      "Swansea",
+      "Daisuke"
+    ],
+    "themes": [
+      "Guilt",
+      "Stranded in space"
+    ],
+    "credits": [
+      "Developer: Wrong Organ",
+      "Publisher: Critical Reflex"
+    ],
+    "cover": {
+      "wiki": "Mouthwashing",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2475490/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Unsettling drones aboard a stranded freighter.",
+      "query": "Mouthwashing soundtrack",
+      "youtubeId": "H-SLiGbn3aM"
+    },
+    "emoji": "🚀🩹🦷💊🌅",
+    "location": {
+      "name": "The Tulpar",
+      "description": "A space freight ship stranded with five crew members."
+    },
+    "visual": {
+      "icon": "🦷",
+      "colors": [
+        "#7c2d12",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-08"
+  },
+  {
+    "id": "g-beatsaber",
+    "name": "Beat Saber",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Rhythm"
+    ],
+    "studio": "Beat Games",
+    "creator": "Ján Ilavský",
+    "origin": "Czech Republic",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Player"
+    ],
+    "themes": [
+      "VR",
+      "Lightsabers"
+    ],
+    "credits": [
+      "Creators: Ján Ilavský & Vladimír Hrinčár",
+      "Composer: Jaroslav Beck",
+      "Publisher: Meta"
+    ],
+    "cover": {
+      "wiki": "Beat Saber",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/58/Beat_Saber_logo.jpg"
+    },
+    "audio": {
+      "clue": "Pumping electronic music for slicing blocks in VR.",
+      "query": "Beat Saber Jaroslav Beck soundtrack",
+      "youtubeId": "Rlr1cRWoh2s"
+    },
+    "emoji": "🟥🟦🎶🗡️🥽",
+    "visual": {
+      "icon": "🟥",
+      "colors": [
+        "#1e1b4b",
+        "#ef4444"
+      ]
+    },
+    "from": "2027-01-08"
+  },
+  {
+    "id": "g-dontstarvetogether",
+    "name": "Don't Starve Together",
+    "aliases": [
+      "dont starve",
+      "don't starve",
+      "dst"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Survival",
+      "Co-op"
+    ],
+    "studio": "Klei Entertainment",
+    "creator": "Klei Entertainment",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Wilson",
+      "Willow",
+      "Wolfgang",
+      "Wendy",
+      "Maxwell",
+      "Charlie"
+    ],
+    "themes": [
+      "Gothic wilderness",
+      "Hunger"
+    ],
+    "credits": [
+      "Developer: Klei Entertainment",
+      "Composers: Vince de Vera & Jason Garner"
+    ],
+    "fandom": "dont-starve",
+    "cover": {
+      "wiki": "Don't Starve Together",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322330/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Jaunty, creepy accordion music in a strange wilderness.",
+      "query": "Don't Starve main theme",
+      "youtubeId": "HL4tOF8lCds"
+    },
+    "emoji": "🥩🌙👻🔥🌲",
+    "item": {
+      "name": "The Science Machine",
+      "description": "The first contraption of the wild, used to invent everything else.",
+      "image": "https://static.wikia.nocookie.net/dont-starve-game/images/f/f1/Science_Machine_Build.png/revision/latest?cb=20220330224433"
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#292524",
+        "#f5f5f4"
+      ]
+    },
+    "from": "2027-01-08"
+  },
+  {
+    "id": "g-hunt",
+    "name": "Hunt: Showdown 1896",
+    "aliases": [
+      "hunt showdown",
+      "hunt"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "FPS",
+      "Multiplayer"
+    ],
+    "studio": "Crytek",
+    "creator": "Crytek",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Hunters",
+      "The Butcher",
+      "The Spider",
+      "The Assassin"
+    ],
+    "themes": [
+      "Bayou",
+      "Monsters"
+    ],
+    "credits": [
+      "Developer and publisher: Crytek"
+    ],
+    "fandom": "huntshowdown",
+    "cover": {
+      "wiki": "Hunt: Showdown 1896",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594650/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Slide guitar and swamp blues in the bayou.",
+      "query": "Hunt Showdown main theme",
+      "youtubeId": "kvd5Mrjq3jc"
+    },
+    "emoji": "🤠🕷️🐊🔫🌫️",
+    "location": {
+      "name": "Stillwater Bayou",
+      "description": "A Louisiana swamp of 1895, overrun by monsters.",
+      "image": "https://static.wikia.nocookie.net/hunthorrorsofthegildedage_gamepedia/images/8/86/Louisiana-bayou-spawns.png/revision/latest/scale-to-width-down/640?cb=20190327230910"
+    },
+    "visual": {
+      "icon": "🤠",
+      "colors": [
+        "#1c1917",
+        "#b45309"
+      ]
+    },
+    "from": "2027-01-09"
+  },
+  {
+    "id": "g-nuclearthrone",
+    "name": "Nuclear Throne",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Roguelike",
+      "Shooter"
+    ],
+    "studio": "Vlambeer",
+    "creator": "Rami Ismail & Jan Willem Nijman",
+    "origin": "Netherlands",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Fish",
+      "Crystal",
+      "Eyes",
+      "Melting",
+      "Y.V."
+    ],
+    "themes": [
+      "Mutation",
+      "Wasteland"
+    ],
+    "credits": [
+      "Developer: Vlambeer",
+      "Composer: Jukio Kallio"
+    ],
+    "fandom": "nuclear-throne",
+    "cover": {
+      "wiki": "Nuclear Throne",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Nuclear_Throne_icon.png/960px-Nuclear_Throne_icon.png"
+    },
+    "audio": {
+      "clue": "Brooding synths in a mutant wasteland.",
+      "query": "Nuclear Throne soundtrack",
+      "youtubeId": "FXB3f5RKV1A"
+    },
+    "emoji": "☢️👑🐟🔫💀",
+    "visual": {
+      "icon": "☢️",
+      "colors": [
+        "#365314",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-09"
+  },
+  {
+    "id": "g-oxygennotincluded",
+    "name": "Oxygen Not Included",
+    "aliases": [
+      "oni"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Simulation",
+      "Survival"
+    ],
+    "studio": "Klei Entertainment",
+    "creator": "Klei Entertainment",
+    "origin": "Canada",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Duplicants",
+      "Meep",
+      "Jorge"
+    ],
+    "themes": [
+      "Asteroid colony",
+      "Gases"
+    ],
+    "credits": [
+      "Developer: Klei Entertainment"
+    ],
+    "fandom": "oxygennotincluded",
+    "cover": {
+      "wiki": "Oxygen Not Included",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Oxygen_Not_Included_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Playful music in an asteroid running out of air.",
+      "query": "Oxygen Not Included soundtrack"
+    },
+    "emoji": "🫧🧑‍🔬🪨💨🚽",
+    "visual": {
+      "icon": "🫧",
+      "colors": [
+        "#0e7490",
+        "#a3e635"
+      ]
+    },
+    "from": "2027-01-09"
+  },
+  {
+    "id": "g-goldenidol",
+    "name": "The Case of the Golden Idol",
+    "aliases": [
+      "golden idol"
+    ],
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Puzzle",
+      "Adventure"
+    ],
+    "studio": "Color Gray Games",
+    "creator": "Andrejs & Ernests Klavins",
+    "origin": "Latvia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Cloudsley family",
+      "The Golden Idol"
+    ],
+    "themes": [
+      "Deduction",
+      "Murders"
+    ],
+    "credits": [
+      "Creators: Andrejs & Ernests Klavins",
+      "Publisher: Playstack"
+    ],
+    "cover": {
+      "wiki": "The Case of the Golden Idol",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/68/The_Case_of_the_Golden_Idol_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Bright harpsichord as each scene is solved.",
+      "query": "The Case of the Golden Idol soundtrack",
+      "youtubeId": "uY1N9lPG_6c"
+    },
+    "emoji": "🗿🔍💀📜🕵️",
+    "item": {
+      "name": "The Golden Idol",
+      "description": "A small golden statue, cursed, that passes from hand to hand."
+    },
+    "visual": {
+      "icon": "🗿",
+      "colors": [
+        "#fbbf24",
+        "#1c1917"
+      ]
+    },
+    "from": "2027-01-10"
+  },
+  {
+    "id": "g-neonwhite",
+    "name": "Neon White",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "FPS",
+      "Platformer"
+    ],
+    "studio": "Angel Matrix",
+    "creator": "Ben Esposito",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Nintendo"
+    ],
+    "characters": [
+      "White",
+      "Neon Red",
+      "Neon Yellow",
+      "Mikey"
+    ],
+    "themes": [
+      "Heaven",
+      "Speedrunning"
+    ],
+    "credits": [
+      "Director: Ben Esposito",
+      "Music: Machine Girl",
+      "Publisher: Annapurna Interactive"
+    ],
+    "cover": {
+      "wiki": "Neon White",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/Neon_White_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Breakcore beats for speedrunning Heaven.",
+      "query": "Neon White soundtrack Machine Girl"
+    },
+    "emoji": "😇🃏🔫💨⏱️",
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#f8fafc",
+        "#38bdf8"
+      ]
+    },
+    "from": "2027-01-10"
+  },
+  {
+    "id": "g-tarkov",
+    "name": "Escape from Tarkov",
+    "aliases": [
+      "tarkov",
+      "eft"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Extraction shooter",
+      "FPS"
+    ],
+    "studio": "Battlestate Games",
+    "creator": "Nikita Buyanov",
+    "origin": "Russia",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The PMC",
+      "The Scavs",
+      "Prapor",
+      "Therapist"
+    ],
+    "themes": [
+      "Extraction",
+      "Gear fear"
+    ],
+    "credits": [
+      "Director: Nikita Buyanov",
+      "Developer: Battlestate Games"
+    ],
+    "fandom": "escapefromtarkov",
+    "cover": {
+      "wiki": "Escape from Tarkov",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Escape_from_Tarkov.jpg"
+    },
+    "audio": {
+      "clue": "Tense military ambience in a closed city.",
+      "query": "Escape from Tarkov main menu theme",
+      "youtubeId": "xECVQV1EhMk"
+    },
+    "emoji": "🎒🔫🏚️💀🚪",
+    "location": {
+      "name": "Tarkov",
+      "description": "A closed port city in Russia, sealed off after a conflict."
+    },
+    "visual": {
+      "icon": "🎒",
+      "colors": [
+        "#1c1917",
+        "#78716c"
+      ]
+    },
+    "from": "2027-01-10"
+  },
+  {
+    "id": "g-loophero",
+    "name": "Loop Hero",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Roguelike",
+      "Strategy"
+    ],
+    "studio": "Four Quarters",
+    "creator": "Four Quarters",
+    "origin": "Russia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Hero",
+      "The Lich",
+      "Yota"
+    ],
+    "themes": [
+      "Memory",
+      "Cards"
+    ],
+    "credits": [
+      "Developer: Four Quarters",
+      "Publisher: Devolver Digital",
+      "Composer: blinch"
+    ],
+    "cover": {
+      "wiki": "Loop Hero",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Loop_Hero_cover.jpg"
+    },
+    "audio": {
+      "clue": "Chiptune with a melancholy, looping melody.",
+      "query": "Loop Hero soundtrack",
+      "youtubeId": "mvnxWqYzF1E"
+    },
+    "emoji": "♾️🃏⚔️💀🏕️",
+    "visual": {
+      "icon": "♾️",
+      "colors": [
+        "#0a0a0a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-11"
+  },
+  {
+    "id": "g-hellblade",
+    "name": "Hellblade: Senua's Sacrifice",
+    "aliases": [
+      "hellblade",
+      "senua's sacrifice"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Ninja Theory",
+    "creator": "Tameem Antoniades",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Senua",
+      "Dillion",
+      "Hela",
+      "Druth"
+    ],
+    "themes": [
+      "Psychosis",
+      "Norse myth"
+    ],
+    "credits": [
+      "Director: Tameem Antoniades",
+      "Senua: Melina Juergens"
+    ],
+    "cover": {
+      "wiki": "Hellblade: Senua's Sacrifice",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Hellblade_-_Senua%27s_Sacrifice.jpg"
+    },
+    "audio": {
+      "clue": "Whispering voices and drums on the road to Helheim.",
+      "query": "Hellblade Senua's Sacrifice soundtrack"
+    },
+    "emoji": "🗡️🧠🌫️💀🔥",
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#0c0a09",
+        "#9ca3af"
+      ]
+    },
+    "from": "2027-01-11"
+  },
+  {
+    "id": "g-plaguetale",
+    "name": "A Plague Tale: Innocence",
+    "aliases": [
+      "a plague tale",
+      "plague tale"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Action-Adventure",
+      "Stealth"
+    ],
+    "studio": "Asobo Studio",
+    "creator": "Kevin Choteau",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Amicia de Rune",
+      "Hugo de Rune",
+      "Lucas",
+      "Vitalis"
+    ],
+    "themes": [
+      "Black Death",
+      "Siblings"
+    ],
+    "credits": [
+      "Director: Kevin Choteau",
+      "Composer: Olivier Deriviere",
+      "Publisher: Focus Entertainment"
+    ],
+    "fandom": "aplaguetale",
+    "cover": {
+      "wiki": "A Plague Tale: Innocence",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/A_Plague_Tale_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A mournful cello theme in plague-stricken France.",
+      "query": "A Plague Tale Innocence soundtrack"
+    },
+    "emoji": "🐀🔥👧🏰🪨",
+    "item": {
+      "name": "The Sling",
+      "description": "A girl’s sling, shooting stones and alchemical mixtures.",
+      "image": "https://static.wikia.nocookie.net/a-plague-tale-innocence/images/b/b3/Plaguetale36.png/revision/latest/scale-to-width-down/640?cb=20190930173146"
+    },
+    "visual": {
+      "icon": "🐀",
+      "colors": [
+        "#451a03",
+        "#f59e0b"
+      ]
+    },
+    "from": "2027-01-11"
+  },
+  {
+    "id": "g-powerwash",
+    "name": "PowerWash Simulator",
+    "aliases": [
+      "powerwash"
+    ],
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Simulation"
+    ],
+    "studio": "FuturLab",
+    "creator": "FuturLab",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Washer",
+      "Cal the Mayor"
+    ],
+    "themes": [
+      "Cleaning",
+      "Muckingham"
+    ],
+    "credits": [
+      "Developer: FuturLab",
+      "Publisher: Square Enix (Europe)"
+    ],
+    "cover": {
+      "wiki": "PowerWash Simulator",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c4/PowerWash_Simulator_Logo.jpg"
+    },
+    "audio": {
+      "clue": "No music: the hiss of water on dirt.",
+      "query": "PowerWash Simulator ambience"
+    },
+    "emoji": "💦🧽🚐🏠✨",
+    "location": {
+      "name": "Muckingham",
+      "description": "A town of very dirty houses, vans and playgrounds."
+    },
+    "visual": {
+      "icon": "💦",
+      "colors": [
+        "#0369a1",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-12"
+  },
+  {
+    "id": "g-pacificdrive",
+    "name": "Pacific Drive",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Survival",
+      "Adventure"
+    ],
+    "studio": "Ironwood Studios",
+    "creator": "Alex Dracott",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Driver",
+      "Oppy",
+      "Tobias",
+      "Francis"
+    ],
+    "themes": [
+      "Anomalies",
+      "A station wagon"
+    ],
+    "credits": [
+      "Creative director: Alex Dracott",
+      "Publisher: Kepler Interactive"
+    ],
+    "cover": {
+      "wiki": "Pacific Drive",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1458140/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Indie rock on the car radio in a strange zone.",
+      "query": "Pacific Drive soundtrack",
+      "youtubeId": "brTZXoxuzFc"
+    },
+    "emoji": "🚗🌲⚡📻🔧",
+    "location": {
+      "name": "The Olympic Exclusion Zone",
+      "description": "A walled-off part of the Pacific Northwest full of anomalies."
+    },
+    "visual": {
+      "icon": "🚗",
+      "colors": [
+        "#14532d",
+        "#f97316"
+      ]
+    },
+    "from": "2027-01-12"
+  },
+  {
+    "id": "g-shadowofmordor",
+    "name": "Middle-earth: Shadow of Mordor",
+    "aliases": [
+      "shadow of mordor",
+      "mordor"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Monolith Productions",
+    "creator": "Michael de Plater",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Talion",
+      "Celebrimbor",
+      "Ratbag",
+      "The Black Hand"
+    ],
+    "themes": [
+      "Nemesis system",
+      "Revenge"
+    ],
+    "credits": [
+      "Design director: Michael de Plater",
+      "Developer: Monolith Productions",
+      "Publisher: Warner Bros."
+    ],
+    "fandom": "shadowofwar",
+    "cover": {
+      "wiki": "Middle-earth: Shadow of Mordor",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/01/Shadow_of_Mordor_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Dark orchestral music in a land of orcs.",
+      "query": "Shadow of Mordor main theme",
+      "youtubeId": "xQ9OpOJOEWs"
+    },
+    "emoji": "🗡️💍👹🌋👻",
+    "visual": {
+      "icon": "💍",
+      "colors": [
+        "#1c1917",
+        "#a3e635"
+      ]
+    },
+    "from": "2027-01-12"
+  },
+  {
+    "id": "g-greenhell",
+    "name": "Green Hell",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Survival"
+    ],
+    "studio": "Creepy Jar",
+    "creator": "Creepy Jar",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Jake Higgins",
+      "Mia Higgins"
+    ],
+    "themes": [
+      "Amazon",
+      "Sanity"
+    ],
+    "credits": [
+      "Developer and publisher: Creepy Jar"
+    ],
+    "cover": {
+      "wiki": "Green Hell",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/815370/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Jungle drones and insects in the Amazon.",
+      "query": "Green Hell soundtrack",
+      "youtubeId": "V3bhdIGoWCI"
+    },
+    "emoji": "🌿🐍🩸🏹🌧️",
+    "visual": {
+      "icon": "🌿",
+      "colors": [
+        "#14532d",
+        "#991b1b"
+      ]
+    },
+    "from": "2027-01-13"
+  },
+  {
+    "id": "g-farfarwest",
+    "name": "Far Far West",
+    "domain": "games",
+    "year": 2026,
+    "genres": [
+      "FPS",
+      "Co-op"
+    ],
+    "studio": "Evil Raptor",
+    "creator": "Evil Raptor",
+    "origin": "France",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Robot Cowboys"
+    ],
+    "themes": [
+      "Western",
+      "Magic"
+    ],
+    "credits": [
+      "Developer: Evil Raptor",
+      "Publisher: Fireshine Games"
+    ],
+    "cover": {
+      "wiki": "Far Far West",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3124540/2d55092d45b1784dcc7cb0ba6ad3f919e62eb5d0/header.jpg"
+    },
+    "audio": {
+      "clue": "Twangy western guitars with a magic twist.",
+      "query": "Far Far West soundtrack",
+      "youtubeId": "1Zu2VARVsb8"
+    },
+    "emoji": "🤠🤖🔫🪄💰",
+    "visual": {
+      "icon": "🤠",
+      "colors": [
+        "#7c2d12",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-13"
+  },
+  {
+    "id": "g-walkingdead",
+    "name": "The Walking Dead",
+    "aliases": [
+      "twd"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "Adventure",
+      "Narrative"
+    ],
+    "studio": "Telltale Games",
+    "creator": "Sean Vanaman & Jake Rodkin",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Lee Everett",
+      "Clementine",
+      "Kenny",
+      "Lilly"
+    ],
+    "themes": [
+      "Choices",
+      "Survival"
+    ],
+    "credits": [
+      "Writers and directors: Sean Vanaman & Jake Rodkin",
+      "Composer: Jared Emerson-Johnson"
+    ],
+    "fandom": "walkingdead",
+    "cover": {
+      "wiki": "The Walking Dead (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/31/The_Walking_Dead%2C_Season_One_cover.jpeg"
+    },
+    "audio": {
+      "clue": "A sad acoustic song after a hard choice.",
+      "query": "The Walking Dead Telltale Take Us Back",
+      "youtubeId": "qVWmELSsuHg"
+    },
+    "emoji": "🧟👧🧢🚗💔",
+    "visual": {
+      "icon": "🧢",
+      "colors": [
+        "#365314",
+        "#f59e0b"
+      ]
+    },
+    "from": "2027-01-13"
+  },
+  {
+    "id": "g-wolfensteintno",
+    "name": "Wolfenstein: The New Order",
+    "aliases": [
+      "wolfenstein"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "FPS"
+    ],
+    "studio": "MachineGames",
+    "creator": "Jens Matthies",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "B.J. Blazkowicz",
+      "Anya",
+      "Deathshead",
+      "Frau Engel"
+    ],
+    "themes": [
+      "Alternate history",
+      "Resistance"
+    ],
+    "credits": [
+      "Creative director: Jens Matthies",
+      "Developer: MachineGames",
+      "Publisher: Bethesda"
+    ],
+    "fandom": "wolfenstein",
+    "cover": {
+      "wiki": "Wolfenstein: The New Order",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/95/Wolfenstein_The_New_Order_cover.jpg"
+    },
+    "audio": {
+      "clue": "Heavy industrial guitars in an alternate 1960.",
+      "query": "Wolfenstein The New Order soundtrack",
+      "youtubeId": "x_artPecEaM"
+    },
+    "emoji": "🔫🤖🌍🔥🎖️",
+    "visual": {
+      "icon": "🔫",
+      "colors": [
+        "#1c1917",
+        "#b91c1c"
+      ]
+    },
+    "from": "2027-01-14"
+  },
+  {
+    "id": "g-lethalleague",
+    "name": "Lethal League Blaze",
+    "aliases": [
+      "lethal league"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Fighting",
+      "Sports"
+    ],
+    "studio": "Team Reptile",
+    "creator": "Dion Koster",
+    "origin": "Netherlands",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Latch",
+      "Raptor",
+      "Candyman",
+      "Doombox"
+    ],
+    "themes": [
+      "Speed",
+      "Ball"
+    ],
+    "credits": [
+      "Developer: Team Reptile",
+      "Music: Hideki Naganuma, Frank Klepacki & others"
+    ],
+    "cover": {
+      "wiki": "Lethal League Blaze",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553310/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Breakbeats and funky samples as a ball speeds up.",
+      "query": "Lethal League Blaze soundtrack Hideki Naganuma",
+      "youtubeId": "B1lNhNHdoPI"
+    },
+    "emoji": "⚾💥🏃🎧🔥",
+    "visual": {
+      "icon": "⚾",
+      "colors": [
+        "#4c1d95",
+        "#22d3ee"
+      ]
+    },
+    "from": "2027-01-14"
+  },
+  {
+    "id": "g-cocoon",
+    "name": "Cocoon",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Puzzle",
+      "Adventure"
+    ],
+    "studio": "Geometric Interactive",
+    "creator": "Jeppe Carlsen",
+    "origin": "Denmark",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Moth"
+    ],
+    "themes": [
+      "Worlds within worlds",
+      "Insects"
+    ],
+    "credits": [
+      "Director: Jeppe Carlsen",
+      "Publisher: Annapurna Interactive"
+    ],
+    "cover": {
+      "wiki": "Cocoon (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/96/Cocoon_Cover_Art.png"
+    },
+    "audio": {
+      "clue": "Ambient alien drones over glowing orbs.",
+      "query": "Cocoon game soundtrack"
+    },
+    "emoji": "🐛🌍🔮🪲🟠",
+    "visual": {
+      "icon": "🔮",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-14"
+  },
+  {
+    "id": "g-duckov",
+    "name": "Escape from Duckov",
+    "aliases": [
+      "duckov"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Extraction shooter"
+    ],
+    "studio": "Team Soda",
+    "creator": "Team Soda",
+    "origin": "China",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Duck"
+    ],
+    "themes": [
+      "Extraction",
+      "Ducks"
+    ],
+    "credits": [
+      "Developer: Team Soda",
+      "Publisher: Bilibili"
+    ],
+    "cover": {
+      "wiki": "Escape from Duckov",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Escape_from_Duckov_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Tense music as a duck raids for loot.",
+      "query": "Escape from Duckov soundtrack",
+      "youtubeId": "n1JkhdhgnCE"
+    },
+    "emoji": "🦆🔫🎒🏚️🚪",
+    "visual": {
+      "icon": "🦆",
+      "colors": [
+        "#365314",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-15"
+  },
+  {
+    "id": "g-va11halla",
+    "name": "VA-11 Hall-A",
+    "aliases": [
+      "valhalla",
+      "va11 hall-a",
+      "va-11 hall-a: cyberpunk bartender action"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Visual novel",
+      "Narrative"
+    ],
+    "studio": "Sukeban Games",
+    "creator": "Christopher Ortiz",
+    "origin": "Venezuela",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Jill",
+      "Dana",
+      "Gillian",
+      "Dorothy",
+      "Alma"
+    ],
+    "themes": [
+      "Cyberpunk",
+      "Bartending"
+    ],
+    "credits": [
+      "Creators: Christopher Ortiz & Fernando Damas",
+      "Composer: Michael Kelly (Garoad)"
+    ],
+    "cover": {
+      "wiki": "VA-11 Hall-A",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/83/VA-11_HALL-A_logo.png"
+    },
+    "audio": {
+      "clue": "Smooth synth jazz at a dive bar.",
+      "query": "VA-11 Hall-A Garoad soundtrack"
+    },
+    "emoji": "🍸🌃🐱🤖💬",
+    "location": {
+      "name": "Glitch City",
+      "description": "A dystopian city where a small bar listens to its customers."
+    },
+    "visual": {
+      "icon": "🍸",
+      "colors": [
+        "#3b0764",
+        "#f472b6"
+      ]
+    },
+    "from": "2027-01-15"
+  },
+  {
+    "id": "g-furi",
+    "name": "Furi",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Action",
+      "Shooter"
+    ],
+    "studio": "The Game Bakers",
+    "creator": "Emeric Thoa",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Stranger",
+      "The Voice",
+      "The Chain",
+      "The Edge"
+    ],
+    "themes": [
+      "Boss rush",
+      "Freedom"
+    ],
+    "credits": [
+      "Director: Emeric Thoa",
+      "Character design: Takashi Okazaki",
+      "Music: Carpenter Brut, Danger & others"
+    ],
+    "cover": {
+      "wiki": "Furi (video game)",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/423230/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Heavy synthwave for a duel with a jailer.",
+      "query": "Furi Carpenter Brut You're Mine",
+      "youtubeId": "gQ5gtInauiI"
+    },
+    "emoji": "⚔️🔫🌀👹🗝️",
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#1e1b4b",
+        "#f43f5e"
+      ]
+    },
+    "from": "2027-01-15"
+  },
+  {
+    "id": "g-stellarblade",
+    "name": "Stellar Blade",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action",
+      "Hack and Slash"
+    ],
+    "studio": "Shift Up",
+    "creator": "Kim Hyung-tae",
+    "origin": "South Korea",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Eve",
+      "Adam",
+      "Lily",
+      "Kaya"
+    ],
+    "themes": [
+      "Naytiba",
+      "Earth retaken"
+    ],
+    "credits": [
+      "Director: Kim Hyung-tae",
+      "Developer: Shift Up"
+    ],
+    "cover": {
+      "wiki": "Stellar Blade",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/63/Stellar_Blade_Pre_Order_Box.png"
+    },
+    "audio": {
+      "clue": "Melancholic vocal pop in a ruined city.",
+      "query": "Stellar Blade soundtrack Xion",
+      "youtubeId": "0K5vCbTnv6k"
+    },
+    "emoji": "🗡️👩‍🚀🌍👹🌃",
+    "location": {
+      "name": "Xion",
+      "description": "The last human city on a ruined Earth."
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#0f172a",
+        "#f43f5e"
+      ]
+    },
+    "from": "2027-01-16"
+  },
+  {
+    "id": "g-viewfinder",
+    "name": "Viewfinder",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Puzzle",
+      "First-Person"
+    ],
+    "studio": "Sad Owl Studios",
+    "creator": "Matt Stark",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Explorer",
+      "Cait the cat"
+    ],
+    "themes": [
+      "Photos become places",
+      "Climate"
+    ],
+    "credits": [
+      "Creative director: Matt Stark",
+      "Publisher: Thunderful"
+    ],
+    "cover": {
+      "wiki": "Viewfinder (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/36/Viewfinder_video_game_cover.png"
+    },
+    "audio": {
+      "clue": "Warm synths as photos turn into the world.",
+      "query": "Viewfinder soundtrack"
+    },
+    "emoji": "📷🖼️🏛️🐈🌍",
+    "visual": {
+      "icon": "📷",
+      "colors": [
+        "#fde68a",
+        "#0e7490"
+      ]
+    },
+    "from": "2027-01-16"
+  },
+  {
+    "id": "g-guildwars2",
+    "name": "Guild Wars 2",
+    "aliases": [
+      "guild wars"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "MMORPG"
+    ],
+    "studio": "ArenaNet",
+    "creator": "Colin Johanson",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Commander",
+      "Logan Thackeray",
+      "Rytlock Brimstone",
+      "Zojja",
+      "Caithe"
+    ],
+    "themes": [
+      "Elder dragons",
+      "Tyria"
+    ],
+    "credits": [
+      "Game director: Colin Johanson",
+      "Composer: Jeremy Soule (launch)"
+    ],
+    "fandom": "guildwars2",
+    "cover": {
+      "wiki": "Guild Wars 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/96/Gw2-boxfront.png"
+    },
+    "audio": {
+      "clue": "A noble orchestral theme over Tyria.",
+      "query": "Guild Wars 2 Fear Not This Night",
+      "youtubeId": "qOMQxVtbkik"
+    },
+    "emoji": "🐉⚔️🌍🛡️🦅",
+    "location": {
+      "name": "Divinity’s Reach",
+      "description": "The great circular human capital of Tyria."
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#7f1d1d",
+        "#e5e7eb"
+      ]
+    },
+    "from": "2027-01-16"
+  },
+  {
+    "id": "g-trackmania",
+    "name": "Trackmania",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Racing"
+    ],
+    "studio": "Nadeo",
+    "creator": "Florent Castelnérac",
+    "origin": "France",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Driver"
+    ],
+    "themes": [
+      "Time attack",
+      "Track editor"
+    ],
+    "credits": [
+      "Founder: Florent Castelnérac",
+      "Developer: Nadeo",
+      "Publisher: Ubisoft"
+    ],
+    "cover": {
+      "wiki": "Trackmania (2020 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d9/Cover_of_Trackmania.jpg"
+    },
+    "audio": {
+      "clue": "Pumping electro for a lap against the clock.",
+      "query": "Trackmania soundtrack"
+    },
+    "emoji": "🏎️⏱️🌀🏁🛠️",
+    "visual": {
+      "icon": "🏁",
+      "colors": [
+        "#0f172a",
+        "#22c55e"
+      ]
+    },
+    "from": "2027-01-17"
+  },
+  {
+    "id": "g-domekeeper",
+    "name": "Dome Keeper",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Bippinbits",
+    "creator": "Bippinbits",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Engineer",
+      "The Assessor"
+    ],
+    "themes": [
+      "Mining",
+      "Defence"
+    ],
+    "credits": [
+      "Developer: Bippinbits",
+      "Publisher: Raw Fury"
+    ],
+    "cover": {
+      "wiki": "Dome Keeper",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/55/Dome_Keeper_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "Calm synths underground, then alarms above.",
+      "query": "Dome Keeper soundtrack"
+    },
+    "emoji": "⛏️🛡️👾💎⏱️",
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#1e1b4b",
+        "#fb923c"
+      ]
+    },
+    "from": "2027-01-17"
+  },
+  {
+    "id": "g-osrs",
+    "name": "Old School RuneScape",
+    "aliases": [
+      "runescape",
+      "osrs"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "MMORPG"
+    ],
+    "studio": "Jagex",
+    "creator": "Jagex",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "Bob the Cat",
+      "Hans",
+      "Zezima"
+    ],
+    "themes": [
+      "Skilling",
+      "Grinding"
+    ],
+    "credits": [
+      "Developer and publisher: Jagex",
+      "Composer: Ian Taylor (original music)"
+    ],
+    "cover": {
+      "wiki": "Old School RuneScape",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Old_School_Runescape_Logo.png"
+    },
+    "audio": {
+      "clue": "A MIDI tune in a medieval town.",
+      "query": "Old School RuneScape Harmony",
+      "youtubeId": "JkR7zClEkAo"
+    },
+    "emoji": "⚔️🪓🐟💰🧙",
+    "location": {
+      "name": "Lumbridge",
+      "description": "A castle town where every adventurer first wakes."
+    },
+    "visual": {
+      "icon": "🪓",
+      "colors": [
+        "#14532d",
+        "#a16207"
+      ]
+    },
+    "from": "2027-01-17"
+  },
+  {
+    "id": "g-littlenightmares",
+    "name": "Little Nightmares",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Platformer",
+      "Horror"
+    ],
+    "studio": "Tarsier Studios",
+    "creator": "Tarsier Studios",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Six",
+      "The Janitor",
+      "The Twin Chefs",
+      "The Lady"
+    ],
+    "themes": [
+      "Hunger",
+      "Childhood fear"
+    ],
+    "credits": [
+      "Developer: Tarsier Studios",
+      "Publisher: Bandai Namco"
+    ],
+    "fandom": "little-nightmares",
+    "cover": {
+      "wiki": "Little Nightmares",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d8/Little_Nightmares_Box_Art.png"
+    },
+    "audio": {
+      "clue": "A music box tune in a ship of horrors.",
+      "query": "Little Nightmares soundtrack"
+    },
+    "emoji": "🧥💛🍖🌊😱",
+    "location": {
+      "name": "The Maw",
+      "description": "A huge underwater resort where guests come to feast."
+    },
+    "visual": {
+      "icon": "🧥",
+      "colors": [
+        "#1c1917",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-18"
+  },
+  {
+    "id": "g-pratfall",
+    "name": "Pratfall",
+    "domain": "games",
+    "year": 2026,
+    "genres": [
+      "Co-op",
+      "Platformer"
+    ],
+    "studio": "Quad Head",
+    "creator": "Quad Head",
+    "origin": "Germany",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Spelunkers",
+      "The Lost Dog"
+    ],
+    "themes": [
+      "Falling",
+      "Caves"
+    ],
+    "credits": [
+      "Developer and publisher: Quad Head"
+    ],
+    "cover": {
+      "wiki": "Pratfall (video game)",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4244510/aa5134d11626034935daa974478c834d03d73f54/header.jpg"
+    },
+    "audio": {
+      "clue": "Cheerful music on the way down a deadly cave.",
+      "query": "Pratfall game soundtrack"
+    },
+    "emoji": "🕳️🐕🧨⛏️😵",
+    "visual": {
+      "icon": "🕳️",
+      "colors": [
+        "#1c1917",
+        "#f59e0b"
+      ]
+    },
+    "from": "2027-01-18"
+  },
+  {
+    "id": "g-bendy",
+    "name": "Bendy and the Ink Machine",
+    "aliases": [
+      "bendy"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Joey Drew Studios",
+    "creator": "Theme Meme",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Henry Stein",
+      "Bendy",
+      "Boris the Wolf",
+      "Alice Angel",
+      "Joey Drew"
+    ],
+    "themes": [
+      "Ink",
+      "Cartoons"
+    ],
+    "credits": [
+      "Developers: Theme Meme (Joey Drew Studios)",
+      "Music: The Living Tombstone & others"
+    ],
+    "cover": {
+      "wiki": "Bendy and the Ink Machine",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Bendy_and_the_Ink_Machine_logo.svg/960px-Bendy_and_the_Ink_Machine_logo.svg.png"
+    },
+    "audio": {
+      "clue": "A 1930s cartoon jingle gone wrong.",
+      "query": "Bendy and the Ink Machine Build Our Machine"
+    },
+    "emoji": "🖋️😈🎬🐺🎞️",
+    "item": {
+      "name": "The Ink Machine",
+      "description": "A huge machine at the heart of an old animation studio, pumping ink."
+    },
+    "visual": {
+      "icon": "🖋️",
+      "colors": [
+        "#fde68a",
+        "#0a0a0a"
+      ]
+    },
+    "from": "2027-01-18"
+  },
+  {
+    "id": "g-dayz",
+    "name": "DayZ",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Survival",
+      "Multiplayer"
+    ],
+    "studio": "Bohemia Interactive",
+    "creator": "Dean Hall",
+    "origin": "Czech Republic",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Survivor"
+    ],
+    "themes": [
+      "Zombies",
+      "Strangers"
+    ],
+    "credits": [
+      "Creator: Dean Hall",
+      "Developer: Bohemia Interactive"
+    ],
+    "fandom": "dayz",
+    "cover": {
+      "wiki": "DayZ",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "A haunting piano theme over an empty country.",
+      "query": "DayZ main menu theme",
+      "youtubeId": "BtjsleIn5_k"
+    },
+    "emoji": "🧟🥫🌲🔫🤝",
+    "location": {
+      "name": "Chernarus",
+      "description": "A fictional post-Soviet country of forests and villages, emptied by an infection."
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#365314",
+        "#d6d3d1"
+      ]
+    },
+    "from": "2027-01-19"
+  },
+  {
+    "id": "g-superliminal",
+    "name": "Superliminal",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Puzzle",
+      "First-Person"
+    ],
+    "studio": "Pillow Castle",
+    "creator": "Albert Shih",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Dr. Glenn Pierce",
+      "The Dreamer"
+    ],
+    "themes": [
+      "Forced perspective",
+      "Dream therapy"
+    ],
+    "credits": [
+      "Creator: Albert Shih",
+      "Developer: Pillow Castle"
+    ],
+    "cover": {
+      "wiki": "Superliminal",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1049410/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Dreamy, calm music in a dream clinic.",
+      "query": "Superliminal soundtrack"
+    },
+    "emoji": "🧀♟️🌀😴🚪",
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#e0f2fe",
+        "#7c3aed"
+      ]
+    },
+    "from": "2027-01-19"
+  },
+  {
+    "id": "g-signalis",
+    "name": "Signalis",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "rose-engine",
+    "creator": "Yuri Stern & Barbara Wittmann",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Elster",
+      "Ariane",
+      "Isa",
+      "Falke"
+    ],
+    "themes": [
+      "Memory",
+      "Totalitarian state"
+    ],
+    "credits": [
+      "Creators: Yuri Stern & Barbara Wittmann",
+      "Publishers: Humble Games & PLAYISM"
+    ],
+    "cover": {
+      "wiki": "Signalis",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/37/Signalis_cover.jpg"
+    },
+    "audio": {
+      "clue": "Cold ambient synths in a frozen mine.",
+      "query": "SIGNALIS soundtrack"
+    },
+    "emoji": "🌹📻🤖❄️🔴",
+    "location": {
+      "name": "Sierpinski",
+      "description": "A labour camp on a frozen moon, where a replika wakes up."
+    },
+    "visual": {
+      "icon": "🌹",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    },
+    "from": "2027-01-19"
+  },
+  {
+    "id": "g-soma",
+    "name": "Soma",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Frictional Games",
+    "creator": "Thomas Grip",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Simon Jarrett",
+      "Catherine Chun",
+      "The WAU"
+    ],
+    "themes": [
+      "Consciousness",
+      "Deep sea"
+    ],
+    "credits": [
+      "Creative director: Thomas Grip",
+      "Developer: Frictional Games"
+    ],
+    "cover": {
+      "wiki": "Soma (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/21/Soma_Game_Art.png"
+    },
+    "audio": {
+      "clue": "Deep, droning ambience at the bottom of the sea.",
+      "query": "SOMA game soundtrack",
+      "youtubeId": "Pw6DCTm-yOU"
+    },
+    "emoji": "🌊🤖🧠🐙🔦",
+    "location": {
+      "name": "PATHOS-II",
+      "description": "An underwater research facility, the last on Earth after an impact."
+    },
+    "visual": {
+      "icon": "🌊",
+      "colors": [
+        "#082f49",
+        "#22d3ee"
+      ]
+    },
+    "from": "2027-01-20"
+  },
+  {
+    "id": "g-raymanlegends",
+    "name": "Rayman Legends",
+    "aliases": [
+      "rayman"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Ubisoft Montpellier",
+    "creator": "Michel Ancel",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Rayman",
+      "Globox",
+      "Barbara",
+      "Murfy",
+      "The Teensies"
+    ],
+    "themes": [
+      "Dreams",
+      "Music levels"
+    ],
+    "credits": [
+      "Creator: Michel Ancel",
+      "Composer: Christophe Héral"
+    ],
+    "fandom": "rayman",
+    "cover": {
+      "wiki": "Rayman Legends",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Rayman_Legends_Box_Art.jpg"
+    },
+    "audio": {
+      "clue": "A mariachi cover of Black Betty in a musical level.",
+      "query": "Rayman Legends Castle Rock",
+      "youtubeId": "rFMCX0NF4wQ"
+    },
+    "emoji": "🎸🐸👑🤲🌙",
+    "visual": {
+      "icon": "🤲",
+      "colors": [
+        "#4c1d95",
+        "#fde047"
+      ]
+    },
+    "from": "2027-01-20"
+  },
+  {
+    "id": "g-slimerancher",
+    "name": "Slime Rancher",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Simulation",
+      "Exploration"
+    ],
+    "studio": "Monomi Park",
+    "creator": "Nick Popovich",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Beatrix LeBeau",
+      "Ogden Ortiz",
+      "Mochi Miles",
+      "Thora"
+    ],
+    "themes": [
+      "Farming slimes",
+      "Frontier"
+    ],
+    "credits": [
+      "Creative director: Nick Popovich",
+      "Developer: Monomi Park"
+    ],
+    "fandom": "slimerancher",
+    "cover": {
+      "wiki": "Slime Rancher",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Slime_Rancher_cover_art.png"
+    },
+    "audio": {
+      "clue": "A breezy country-pop theme on a farm of slimes.",
+      "query": "Slime Rancher soundtrack",
+      "youtubeId": "bmCj0UNiflg"
+    },
+    "emoji": "🟢🐮🌵🌈🥕",
+    "item": {
+      "name": "The Vacpack",
+      "description": "A backpack vacuum that sucks up slimes and fires them back out.",
+      "image": "https://static.wikia.nocookie.net/slimerancher/images/a/ac/Vacpack_Upgrade.png/revision/latest/scale-to-width-down/640?cb=20170331222459"
+    },
+    "location": {
+      "name": "The Far, Far Range",
+      "description": "A frontier planet a thousand light-years from Earth.",
+      "image": "https://static.wikia.nocookie.net/slimerancher/images/c/c0/InGameMap.png/revision/latest/scale-to-width-down/640?cb=20170808191450"
+    },
+    "visual": {
+      "icon": "🟢",
+      "colors": [
+        "#0e7490",
+        "#f472b6"
+      ]
+    },
+    "from": "2027-01-20"
+  },
+  {
+    "id": "g-blasphemous",
+    "name": "Blasphemous",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Metroidvania",
+      "Soulslike"
+    ],
+    "studio": "The Game Kitchen",
+    "creator": "Enrique Cabeza",
+    "origin": "Spain",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Penitent One",
+      "Deogracias",
+      "Crisanta"
+    ],
+    "themes": [
+      "Guilt",
+      "Catholic imagery"
+    ],
+    "credits": [
+      "Director: Enrique Cabeza",
+      "Developer: The Game Kitchen"
+    ],
+    "fandom": "blasphemous",
+    "cover": {
+      "wiki": "Blasphemous",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/774361/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Flamenco guitar and Spanish choirs in a land of penance.",
+      "query": "Blasphemous soundtrack"
+    },
+    "emoji": "⛪🗡️🩸👑🕯️",
+    "item": {
+      "name": "Mea Culpa",
+      "description": "A sword born of guilt, its hilt a thorned crucifix."
+    },
+    "location": {
+      "name": "Cvstodia",
+      "description": "A land cursed by the Miracle, where guilt takes physical form.",
+      "image": "https://static.wikia.nocookie.net/blasphemous/images/9/93/Cvstodia.png/revision/latest/scale-to-width-down/640?cb=20191004234407"
+    },
+    "visual": {
+      "icon": "⛪",
+      "colors": [
+        "#450a0a",
+        "#d4d4d8"
+      ]
+    },
+    "from": "2027-01-21"
+  },
+  {
+    "id": "g-prisonarchitect",
+    "name": "Prison Architect",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Simulation",
+      "Management"
+    ],
+    "studio": "Introversion Software",
+    "creator": "Chris Delay",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Warden",
+      "The Prisoners"
+    ],
+    "themes": [
+      "Prisons",
+      "Riots"
+    ],
+    "credits": [
+      "Designer: Chris Delay",
+      "Developer: Introversion Software"
+    ],
+    "cover": {
+      "wiki": "Prison Architect",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Prison_Architect_Logo.jpg"
+    },
+    "audio": {
+      "clue": "Light, ambient music over a growing jail.",
+      "query": "Prison Architect soundtrack",
+      "youtubeId": "FbP045ZVw18"
+    },
+    "emoji": "🏢🔒👮🧑‍🦲🚿",
+    "visual": {
+      "icon": "🔒",
+      "colors": [
+        "#f1f5f9",
+        "#ea580c"
+      ]
+    },
+    "from": "2027-01-21"
+  },
+  {
+    "id": "g-brotato",
+    "name": "Brotato",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Roguelike",
+      "Action"
+    ],
+    "studio": "Blobfish",
+    "creator": "Blobfish",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Brotato"
+    ],
+    "themes": [
+      "Hordes",
+      "Six weapons"
+    ],
+    "credits": [
+      "Developer: Blobfish"
+    ],
+    "cover": {
+      "wiki": "Brotato",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Brotato_cover.jpg"
+    },
+    "audio": {
+      "clue": "Upbeat synths while aliens swarm a spud.",
+      "query": "Brotato soundtrack",
+      "youtubeId": "sp5T2vJXvPI"
+    },
+    "emoji": "🥔🔫👽🌀💰",
+    "visual": {
+      "icon": "🥔",
+      "colors": [
+        "#1c1917",
+        "#a3e635"
+      ]
+    },
+    "from": "2027-01-21"
+  },
+  {
+    "id": "g-unpacking",
+    "name": "Unpacking",
+    "domain": "games",
+    "year": 2021,
+    "genres": [
+      "Puzzle"
+    ],
+    "studio": "Witch Beam",
+    "creator": "Wren Brier",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Unseen Owner"
+    ],
+    "themes": [
+      "Moving house",
+      "Growing up"
+    ],
+    "credits": [
+      "Creative director: Wren Brier",
+      "Composer: Jeff van Dyck"
+    ],
+    "cover": {
+      "wiki": "Unpacking (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Unpacking_game_cover.png"
+    },
+    "audio": {
+      "clue": "Soft guitar and piano while boxes are opened.",
+      "query": "Unpacking soundtrack Jeff van Dyck",
+      "youtubeId": "LzzG8_TNfyI"
+    },
+    "emoji": "📦🏠🧸📚🪴",
+    "visual": {
+      "icon": "📦",
+      "colors": [
+        "#fde68a",
+        "#f472b6"
+      ]
+    },
+    "from": "2027-01-22"
+  },
+  {
+    "id": "g-ahatintime",
+    "name": "A Hat in Time",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Gears for Breakfast",
+    "creator": "Jonas Kærlev",
+    "origin": "Denmark",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Hat Kid",
+      "Mustache Girl",
+      "The Conductor",
+      "DJ Grooves",
+      "The Snatcher"
+    ],
+    "themes": [
+      "Time pieces",
+      "Collecting"
+    ],
+    "credits": [
+      "Director: Jonas Kærlev",
+      "Composers: Pascal Michael Stiefel & Grant Kirkhope"
+    ],
+    "fandom": "ahatintime",
+    "cover": {
+      "wiki": "A Hat in Time",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2a/A_Hat_in_Time_cover_art.png"
+    },
+    "audio": {
+      "clue": "A cheerful 3D-platformer theme with brass.",
+      "query": "A Hat in Time soundtrack",
+      "youtubeId": "IrzjCwHbwF0"
+    },
+    "emoji": "🎩👧⏳🚂🌌",
+    "visual": {
+      "icon": "🎩",
+      "colors": [
+        "#4c1d95",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-22"
+  },
+  {
+    "id": "g-goatsim",
+    "name": "Goat Simulator",
+    "aliases": [
+      "goat sim"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Simulation",
+      "Sandbox"
+    ],
+    "studio": "Coffee Stain Studios",
+    "creator": "Armin Ibrisagic",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Pilgor the Goat"
+    ],
+    "themes": [
+      "Chaos",
+      "Bugs as features"
+    ],
+    "credits": [
+      "Developer and publisher: Coffee Stain Studios"
+    ],
+    "cover": {
+      "wiki": "Goat Simulator",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/Goat_Simulator_cover.jpg"
+    },
+    "audio": {
+      "clue": "Peppy music while a goat ruins a town.",
+      "query": "Goat Simulator soundtrack",
+      "youtubeId": "LQb_hQlAdeM"
+    },
+    "emoji": "🐐💥🏠🤪🛹",
+    "visual": {
+      "icon": "🐐",
+      "colors": [
+        "#16a34a",
+        "#f8fafc"
+      ]
+    },
+    "from": "2027-01-22"
+  },
+  {
+    "id": "g-abzu",
+    "name": "Abzû",
+    "aliases": [
+      "abzu"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Adventure",
+      "Exploration"
+    ],
+    "studio": "Giant Squid",
+    "creator": "Matt Nava",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Diver",
+      "The Great White Shark"
+    ],
+    "themes": [
+      "Ocean",
+      "Life"
+    ],
+    "credits": [
+      "Creative director: Matt Nava",
+      "Composer: Austin Wintory",
+      "Publisher: 505 Games"
+    ],
+    "cover": {
+      "wiki": "Abzû",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/73/Abzu.jpg"
+    },
+    "audio": {
+      "clue": "A soaring orchestral score with choir under the sea.",
+      "query": "ABZU Austin Wintory soundtrack",
+      "youtubeId": "ipR2CvUTwXQ"
+    },
+    "emoji": "🤿🐋🐠🌊🔺",
+    "visual": {
+      "icon": "🐋",
+      "colors": [
+        "#0369a1",
+        "#5eead4"
+      ]
+    },
+    "from": "2027-01-23"
+  },
+  {
+    "id": "g-specops",
+    "name": "Spec Ops: The Line",
+    "aliases": [
+      "spec ops"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "Third-Person Shooter"
+    ],
+    "studio": "Yager Development",
+    "creator": "Cory Davis",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Martin Walker",
+      "John Konrad",
+      "Lugo",
+      "Adams"
+    ],
+    "themes": [
+      "Guilt",
+      "War"
+    ],
+    "credits": [
+      "Lead designer: Cory Davis",
+      "Writer: Walt Williams",
+      "Publisher: 2K"
+    ],
+    "cover": {
+      "wiki": "Spec Ops: The Line",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/57/Spec_Ops_The_Line_cover.png"
+    },
+    "audio": {
+      "clue": "Psychedelic rock in a city drowned in sand.",
+      "query": "Spec Ops The Line soundtrack",
+      "youtubeId": "I0mC__bGcmM"
+    },
+    "emoji": "🏜️🔫🏙️😔🎖️",
+    "location": {
+      "name": "Dubai",
+      "description": "A luxury city buried by sandstorms, where an army went missing."
+    },
+    "visual": {
+      "icon": "🏜️",
+      "colors": [
+        "#a16207",
+        "#1c1917"
+      ]
+    },
+    "from": "2027-01-23"
+  },
+  {
+    "id": "g-intothebreach",
+    "name": "Into the Breach",
+    "aliases": [
+      "itb"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Strategy",
+      "Turn-based"
+    ],
+    "studio": "Subset Games",
+    "creator": "Justin Ma & Matthew Davis",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Mech Pilots",
+      "The Vek"
+    ],
+    "themes": [
+      "Time travel",
+      "Kaiju"
+    ],
+    "credits": [
+      "Developers: Justin Ma & Matthew Davis",
+      "Composer: Ben Prunty"
+    ],
+    "cover": {
+      "wiki": "Into the Breach",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Into_the_breach_cover.png"
+    },
+    "audio": {
+      "clue": "Tense electronic music as giant bugs rise from the sea.",
+      "query": "Into the Breach Ben Prunty soundtrack",
+      "youtubeId": "XPPLZfUmf9A"
+    },
+    "emoji": "🤖🦂🏙️⏳♟️",
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#1e293b",
+        "#f97316"
+      ]
+    },
+    "from": "2027-01-23"
+  },
+  {
+    "id": "g-burnoutparadise",
+    "name": "Burnout Paradise",
+    "aliases": [
+      "burnout"
+    ],
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "Racing",
+      "Open World"
+    ],
+    "studio": "Criterion Games",
+    "creator": "Alex Ward",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "DJ Atomika"
+    ],
+    "themes": [
+      "Crashes",
+      "Open city"
+    ],
+    "credits": [
+      "Creative director: Alex Ward",
+      "Developer: Criterion Games"
+    ],
+    "cover": {
+      "wiki": "Burnout Paradise",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ab/Burnout_Paradise_Boxart_2.jpg"
+    },
+    "audio": {
+      "clue": "Guns N' Roses at the start of every open road.",
+      "query": "Burnout Paradise Paradise City"
+    },
+    "emoji": "💥🏎️🌴📻🔥",
+    "location": {
+      "name": "Paradise City",
+      "description": "An open city of junctions where every race begins at a traffic light."
+    },
+    "visual": {
+      "icon": "💥",
+      "colors": [
+        "#ea580c",
+        "#fde047"
+      ]
+    },
+    "from": "2027-01-24"
+  },
+  {
+    "id": "g-dispatch",
+    "name": "Dispatch",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Adventure",
+      "Narrative"
+    ],
+    "studio": "AdHoc Studio",
+    "creator": "Nick Herman",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Robert Robertson",
+      "Blonde Blazer",
+      "Invisigal",
+      "Flambae"
+    ],
+    "themes": [
+      "Superheroes",
+      "Office comedy"
+    ],
+    "credits": [
+      "Studio heads: Nick Herman, Dennis Lenart, Pierre Shorette & Michael Choung",
+      "Robert: Aaron Paul"
+    ],
+    "cover": {
+      "wiki": "Dispatch (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Dispatch_game_poster.png"
+    },
+    "audio": {
+      "clue": "Upbeat comedic music in a superhero call centre.",
+      "query": "Dispatch game soundtrack"
+    },
+    "emoji": "🦸📞🖥️🏢🎭",
+    "visual": {
+      "icon": "📞",
+      "colors": [
+        "#1e3a8a",
+        "#f59e0b"
+      ]
+    },
+    "from": "2027-01-24"
+  },
+  {
+    "id": "g-babaisyou",
+    "name": "Baba Is You",
+    "aliases": [
+      "baba"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Puzzle"
+    ],
+    "studio": "Hempuli",
+    "creator": "Arvi Teikari",
+    "origin": "Finland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Baba",
+      "Keke",
+      "Me"
+    ],
+    "themes": [
+      "Rules",
+      "Words"
+    ],
+    "credits": [
+      "Creator: Arvi Teikari"
+    ],
+    "cover": {
+      "wiki": "Baba Is You",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/28/Baba_is_you_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A bouncy, minimal melody while rules are rewritten.",
+      "query": "Baba Is You soundtrack",
+      "youtubeId": "X98pchrBVu0"
+    },
+    "emoji": "🐑📝🚩🧱🔑",
+    "visual": {
+      "icon": "🐑",
+      "colors": [
+        "#0f172a",
+        "#f472b6"
+      ]
+    },
+    "from": "2027-01-24"
+  },
+  {
+    "id": "g-pentiment",
+    "name": "Pentiment",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Adventure",
+      "Narrative"
+    ],
+    "studio": "Obsidian Entertainment",
+    "creator": "Josh Sawyer",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Andreas Maler",
+      "Magdalene",
+      "Brother Piero",
+      "Claus"
+    ],
+    "themes": [
+      "Murder mystery",
+      "Reformation"
+    ],
+    "credits": [
+      "Director: Josh Sawyer",
+      "Developer: Obsidian Entertainment"
+    ],
+    "cover": {
+      "wiki": "Pentiment",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1205520/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Renaissance lutes and choirs in a Bavarian abbey.",
+      "query": "Pentiment soundtrack",
+      "youtubeId": "q05z0AXgw-8"
+    },
+    "emoji": "📜🖋️⛪🔍🎨",
+    "location": {
+      "name": "Tassing",
+      "description": "An alpine Bavarian village around an abbey, in the 16th century."
+    },
+    "visual": {
+      "icon": "📜",
+      "colors": [
+        "#fef3c7",
+        "#b91c1c"
+      ]
+    },
+    "from": "2027-01-25"
+  },
+  {
+    "id": "g-dragonsdogma2",
+    "name": "Dragon's Dogma 2",
+    "aliases": [
+      "dragon's dogma",
+      "dragons dogma"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Capcom",
+    "creator": "Hideaki Itsuno",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Arisen",
+      "The Pawns",
+      "Ulrika",
+      "The Dragon"
+    ],
+    "themes": [
+      "Pawns",
+      "Fate"
+    ],
+    "credits": [
+      "Director: Hideaki Itsuno",
+      "Developer: Capcom"
+    ],
+    "fandom": "dragonsdogma",
+    "cover": {
+      "wiki": "Dragon's Dogma 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c7/Dragon%27s_Dogma_2_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral fantasy theme.",
+      "query": "Dragon's Dogma 2 main theme",
+      "youtubeId": "i6bZgWNIO9A"
+    },
+    "emoji": "🐉❤️🗡️🧙🏰",
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-25"
+  },
+  {
+    "id": "g-lostcrown",
+    "name": "Prince of Persia: The Lost Crown",
+    "aliases": [
+      "prince of persia",
+      "the lost crown"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Metroidvania",
+      "Action"
+    ],
+    "studio": "Ubisoft Montpellier",
+    "creator": "Mounir Radi",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Sargon",
+      "Prince Ghassan",
+      "Anahita",
+      "Vahram"
+    ],
+    "themes": [
+      "Time",
+      "Persian myth"
+    ],
+    "credits": [
+      "Game director: Mounir Radi",
+      "Composers: Gareth Coker & Mentrix"
+    ],
+    "cover": {
+      "wiki": "Prince of Persia: The Lost Crown",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a0/Prince_of_Persia_The_Lost_Crown_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Persian vocals and orchestra on a cursed mountain.",
+      "query": "Prince of Persia The Lost Crown soundtrack",
+      "youtubeId": "5Z31ZmuKVKs"
+    },
+    "emoji": "👑⏳🗡️🏔️🌀",
+    "location": {
+      "name": "Mount Qaf",
+      "description": "A mythical mountain where time is broken."
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-25"
+  },
+  {
+    "id": "g-ck3",
+    "name": "Crusader Kings III",
+    "aliases": [
+      "crusader kings",
+      "ck3"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Strategy"
+    ],
+    "studio": "Paradox Development Studio",
+    "creator": "Henrik Fåhraeus",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Your dynasty"
+    ],
+    "themes": [
+      "Medieval intrigue",
+      "Inheritance"
+    ],
+    "credits": [
+      "Game director: Henrik Fåhraeus",
+      "Composer: Andreas Waldetoft"
+    ],
+    "cover": {
+      "wiki": "Crusader Kings III",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Crusader_Kings_III.jpg"
+    },
+    "audio": {
+      "clue": "Medieval choirs and strings for a dynasty.",
+      "query": "Crusader Kings III main theme",
+      "youtubeId": "yjoCOKO_uHc"
+    },
+    "emoji": "👑🏰⚔️💍🗡️",
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-26"
+  },
+  {
+    "id": "g-pummelparty",
+    "name": "Pummel Party",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Party"
+    ],
+    "studio": "Rebuilt Games",
+    "creator": "Rebuilt Games",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Pummelers"
+    ],
+    "themes": [
+      "Board game",
+      "Friendship ruined"
+    ],
+    "credits": [
+      "Developer and publisher: Rebuilt Games"
+    ],
+    "cover": {
+      "wiki": "Pummel Party",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/880940/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Jolly board-game music before a betrayal.",
+      "query": "Pummel Party soundtrack",
+      "youtubeId": "YNY-cUE9WA0"
+    },
+    "emoji": "🎲🔨🎉🏆💥",
+    "visual": {
+      "icon": "🎲",
+      "colors": [
+        "#1e3a8a",
+        "#f472b6"
+      ]
+    },
+    "from": "2027-01-26"
+  },
+  {
+    "id": "g-plateup",
+    "name": "PlateUp!",
+    "aliases": [
+      "plate up"
+    ],
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Co-op",
+      "Management"
+    ],
+    "studio": "It's happening",
+    "creator": "Alastair Janse van Rensburg",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Chefs"
+    ],
+    "themes": [
+      "Restaurant",
+      "Roguelite"
+    ],
+    "credits": [
+      "Developer: It's happening",
+      "Publisher: Yogscast Games"
+    ],
+    "cover": {
+      "wiki": "PlateUp!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/71/PlateUp%21_cover.jpg"
+    },
+    "audio": {
+      "clue": "Bouncy music as a restaurant fills up.",
+      "query": "PlateUp soundtrack",
+      "youtubeId": "G4Ph6IbmFgM"
+    },
+    "emoji": "🍽️👨‍🍳🍔🔥⏱️",
+    "visual": {
+      "icon": "🍽️",
+      "colors": [
+        "#14532d",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-26"
+  },
+  {
+    "id": "g-twopointhospital",
+    "name": "Two Point Hospital",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Simulation",
+      "Management"
+    ],
+    "studio": "Two Point Studios",
+    "creator": "Gary Carr & Mark Webley",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Doctors",
+      "The Patients"
+    ],
+    "themes": [
+      "Silly diseases",
+      "Hospitals"
+    ],
+    "credits": [
+      "Founders: Gary Carr & Mark Webley",
+      "Publisher: Sega"
+    ],
+    "cover": {
+      "wiki": "Two Point Hospital",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d1/Two_Point_Hospital_-_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "Silly hospital radio with jingles.",
+      "query": "Two Point Hospital soundtrack"
+    },
+    "emoji": "🏥🤡💉📻🎈",
+    "item": {
+      "name": "Lightheadedness",
+      "description": "A disease whose patients have a light bulb for a head."
+    },
+    "visual": {
+      "icon": "🏥",
+      "colors": [
+        "#0e7490",
+        "#a3e635"
+      ]
+    },
+    "from": "2027-01-27"
+  },
+  {
+    "id": "g-talos",
+    "name": "The Talos Principle",
+    "aliases": [
+      "talos"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Puzzle",
+      "First-Person"
+    ],
+    "studio": "Croteam",
+    "creator": "Davor Hunski",
+    "origin": "Croatia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Android",
+      "Elohim",
+      "The Shepherd",
+      "Milton"
+    ],
+    "themes": [
+      "Philosophy",
+      "Consciousness"
+    ],
+    "credits": [
+      "Writers: Tom Jubert & Jonas Kyratzes",
+      "Developer: Croteam",
+      "Composer: Damjan Mravunac"
+    ],
+    "cover": {
+      "wiki": "The Talos Principle",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ac/The_Talos_Principle.jpg"
+    },
+    "audio": {
+      "clue": "Ethereal choirs among ancient ruins.",
+      "query": "The Talos Principle soundtrack"
+    },
+    "emoji": "🤖🏛️🧩🗼📜",
+    "location": {
+      "name": "The Tower",
+      "description": "A tower its voice forbids the player to climb."
+    },
+    "visual": {
+      "icon": "🏛️",
+      "colors": [
+        "#fef3c7",
+        "#0369a1"
+      ]
+    },
+    "from": "2027-01-27"
+  },
+  {
+    "id": "g-splitfiction",
+    "name": "Split Fiction",
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Action-Adventure",
+      "Co-op"
+    ],
+    "studio": "Hazelight Studios",
+    "creator": "Josef Fares",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Mio",
+      "Zoe",
+      "Rader"
+    ],
+    "themes": [
+      "Stories",
+      "Sci-fi and fantasy"
+    ],
+    "credits": [
+      "Director: Josef Fares",
+      "Publisher: Electronic Arts"
+    ],
+    "cover": {
+      "wiki": "Split Fiction",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/40/Split_Fiction_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A theme that slides between sci-fi synths and fantasy strings.",
+      "query": "Split Fiction soundtrack",
+      "youtubeId": "kFh3KcPvxVI"
+    },
+    "emoji": "📚🐉🚀✍️👭",
+    "item": {
+      "name": "The Machine",
+      "description": "A device that pulls writers into their own unfinished stories."
+    },
+    "visual": {
+      "icon": "📚",
+      "colors": [
+        "#4c1d95",
+        "#22d3ee"
+      ]
+    },
+    "from": "2027-01-27"
+  },
+  {
+    "id": "g-monstertrain",
+    "name": "Monster Train",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Roguelike",
+      "Strategy"
+    ],
+    "studio": "Shiny Shoe",
+    "creator": "Shiny Shoe",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Pyre",
+      "Seraph the Diligent",
+      "Hornbreaker Prince"
+    ],
+    "themes": [
+      "Hell frozen over",
+      "Deckbuilding"
+    ],
+    "credits": [
+      "Developer: Shiny Shoe",
+      "Publisher: Good Shepherd"
+    ],
+    "cover": {
+      "wiki": "Monster Train",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/49/Monster_Train_logo.png"
+    },
+    "audio": {
+      "clue": "Driving rock as a train goes back up to Heaven.",
+      "query": "Monster Train soundtrack",
+      "youtubeId": "KlS3jkEhi7o"
+    },
+    "emoji": "🚂😈🔥🃏❄️",
+    "visual": {
+      "icon": "🚂",
+      "colors": [
+        "#450a0a",
+        "#f97316"
+      ]
+    },
+    "from": "2027-01-28"
+  },
+  {
+    "id": "g-thewitness",
+    "name": "The Witness",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Puzzle",
+      "Exploration"
+    ],
+    "studio": "Thekla",
+    "creator": "Jonathan Blow",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "The Player"
+    ],
+    "themes": [
+      "Perception",
+      "Island"
+    ],
+    "credits": [
+      "Creator: Jonathan Blow",
+      "Developer: Thekla"
+    ],
+    "cover": {
+      "wiki": "The Witness (2016 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f4/The_Witness_cover.jpg"
+    },
+    "audio": {
+      "clue": "No music: only wind, waves and footsteps.",
+      "query": "The Witness ambience",
+      "youtubeId": "gLerGEJBybw"
+    },
+    "emoji": "🏝️🧩🌳🔆👁️",
+    "visual": {
+      "icon": "🧩",
+      "colors": [
+        "#fef3c7",
+        "#14532d"
+      ]
+    },
+    "from": "2027-01-28"
+  },
+  {
+    "id": "g-buckshotroulette",
+    "name": "Buckshot Roulette",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Horror",
+      "Strategy"
+    ],
+    "studio": "Mike Klubnika",
+    "creator": "Mike Klubnika",
+    "origin": "Estonia",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Dealer",
+      "The Player"
+    ],
+    "themes": [
+      "Russian roulette",
+      "Nightclub"
+    ],
+    "credits": [
+      "Creator: Mike Klubnika",
+      "Steam publisher: Critical Reflex"
+    ],
+    "cover": {
+      "wiki": "Buckshot Roulette",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/72/Buckshot_Roulette_Cover.jpg"
+    },
+    "audio": {
+      "clue": "Pounding techno from a club upstairs.",
+      "query": "Buckshot Roulette soundtrack General Release",
+      "youtubeId": "mvkcyB_lve0"
+    },
+    "emoji": "🔫🎲💊🍺🃏",
+    "item": {
+      "name": "The Shotgun",
+      "description": "A twelve-gauge loaded with live and blank shells in a random order."
+    },
+    "visual": {
+      "icon": "🔫",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    },
+    "from": "2027-01-28"
+  },
+  {
+    "id": "g-duckgame",
+    "name": "Duck Game",
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Party",
+      "Shooter"
+    ],
+    "studio": "Landon Podbielski",
+    "creator": "Landon Podbielski",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Ducks"
+    ],
+    "themes": [
+      "One shot",
+      "Hats"
+    ],
+    "credits": [
+      "Creator: Landon Podbielski",
+      "Publisher: Adult Swim Games"
+    ],
+    "cover": {
+      "wiki": "Duck Game",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Duck_Game_Logo.jpg"
+    },
+    "audio": {
+      "clue": "Groovy chiptune for a duel of armed ducks.",
+      "query": "Duck Game soundtrack"
+    },
+    "emoji": "🦆🔫🎩💥🏆",
+    "visual": {
+      "icon": "🦆",
+      "colors": [
+        "#f8fafc",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-29"
+  },
+  {
+    "id": "g-davethediver",
+    "name": "Dave the Diver",
+    "aliases": [
+      "dave"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Adventure",
+      "Management"
+    ],
+    "studio": "Mintrocket",
+    "creator": "Jaeho Hwang",
+    "origin": "South Korea",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Dave",
+      "Bancho",
+      "Cobra",
+      "Duff"
+    ],
+    "themes": [
+      "Diving",
+      "Sushi"
+    ],
+    "credits": [
+      "Director: Jaeho Hwang",
+      "Developer: Mintrocket (Nexon)"
+    ],
+    "fandom": "davethediver",
+    "cover": {
+      "wiki": "Dave the Diver",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Dave_the_Diver_cover.jpg"
+    },
+    "audio": {
+      "clue": "Breezy jazz in a sushi bar by the sea.",
+      "query": "Dave the Diver soundtrack"
+    },
+    "emoji": "🤿🐟🍣🌊🐋",
+    "location": {
+      "name": "The Blue Hole",
+      "description": "A sea hole whose depths change every day, full of fish to catch."
+    },
+    "visual": {
+      "icon": "🤿",
+      "colors": [
+        "#0369a1",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-29"
+  },
+  {
+    "id": "g-nidhogg",
+    "name": "Nidhogg",
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "Messhof",
+    "creator": "Mark Essen",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Yellow Fencer",
+      "The Orange Fencer",
+      "The Nidhogg"
+    ],
+    "themes": [
+      "Fencing",
+      "Tug of war"
+    ],
+    "credits": [
+      "Creator: Mark Essen",
+      "Music: Daedelus"
+    ],
+    "cover": {
+      "wiki": "Nidhogg",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/94400/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Frantic electronic music for a fencing tug-of-war.",
+      "query": "Nidhogg Daedelus soundtrack",
+      "youtubeId": "2lkI4gHLpl4"
+    },
+    "emoji": "🤺🐉🟨🟧🏃",
+    "visual": {
+      "icon": "🤺",
+      "colors": [
+        "#facc15",
+        "#ea580c"
+      ]
+    },
+    "from": "2027-01-29"
+  },
+  {
+    "id": "g-dorfromantik",
+    "name": "Dorfromantik",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Puzzle",
+      "Strategy"
+    ],
+    "studio": "Toukana Interactive",
+    "creator": "Toukana Interactive",
+    "origin": "Germany",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Villagers"
+    ],
+    "themes": [
+      "Countryside",
+      "Hex tiles"
+    ],
+    "credits": [
+      "Developer: Toukana Interactive"
+    ],
+    "cover": {
+      "wiki": "Dorfromantik",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/83/Dorfromantik_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Peaceful acoustic music over a growing countryside.",
+      "query": "Dorfromantik soundtrack"
+    },
+    "emoji": "🏡🌲🌾🛤️⬡",
+    "visual": {
+      "icon": "🏡",
+      "colors": [
+        "#365314",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-30"
+  },
+  {
+    "id": "g-metaphor",
+    "name": "Metaphor: ReFantazio",
+    "aliases": [
+      "metaphor"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "JRPG",
+      "Turn-based"
+    ],
+    "studio": "Studio Zero",
+    "creator": "Katsura Hashino",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Will",
+      "Gallica",
+      "Strohl",
+      "Hulkenberg",
+      "Louis"
+    ],
+    "themes": [
+      "Election",
+      "Fantasy kingdom"
+    ],
+    "credits": [
+      "Director: Katsura Hashino",
+      "Composer: Shoji Meguro",
+      "Publisher: Atlus"
+    ],
+    "cover": {
+      "wiki": "Metaphor: ReFantazio",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4d/Metaphor_Refantazio_Cover_Art.png"
+    },
+    "audio": {
+      "clue": "Gregorian chanting over a rock battle theme.",
+      "query": "Metaphor ReFantazio battle theme",
+      "youtubeId": "O6Y9y2kOy0w"
+    },
+    "emoji": "👑🧚🗳️⚔️🎭",
+    "item": {
+      "name": "The Gauntlet Runner",
+      "description": "A huge walking vehicle the party travels in."
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#0c4a6e",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-01-30"
+  },
+  {
+    "id": "g-sifu",
+    "name": "Sifu",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Beat 'em up",
+      "Action"
+    ],
+    "studio": "Sloclap",
+    "creator": "Pierre Tarno",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Student",
+      "Yang",
+      "Fajar",
+      "Kuroki"
+    ],
+    "themes": [
+      "Kung fu",
+      "Ageing"
+    ],
+    "credits": [
+      "Director: Pierre Tarno",
+      "Developer: Sloclap",
+      "Composer: Howie Lee"
+    ],
+    "cover": {
+      "wiki": "Sifu",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2138710/library_600x900.jpg"
+    },
+    "audio": {
+      "clue": "Chinese strings over electronic beats in a fight.",
+      "query": "Sifu Howie Lee soundtrack",
+      "youtubeId": "K69W5cYOmSM"
+    },
+    "emoji": "🥋👊🪙⏳🐉",
+    "item": {
+      "name": "The Talisman",
+      "description": "A pendant of coins that brings its owner back, a little older each time."
+    },
+    "visual": {
+      "icon": "🥋",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    },
+    "from": "2027-01-30"
+  },
+  {
+    "id": "g-nfsmw",
+    "name": "Need for Speed: Most Wanted",
+    "aliases": [
+      "need for speed",
+      "nfs most wanted",
+      "nfs"
+    ],
+    "domain": "games",
+    "year": 2005,
+    "genres": [
+      "Racing",
+      "Open World"
+    ],
+    "studio": "EA Black Box",
+    "creator": "EA Black Box",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Razor Callahan",
+      "Mia Townsend",
+      "Sergeant Cross"
+    ],
+    "themes": [
+      "Police chases",
+      "Blacklist"
+    ],
+    "credits": [
+      "Developer: EA Black Box",
+      "Publisher: Electronic Arts"
+    ],
+    "fandom": "nfs",
+    "cover": {
+      "wiki": "Need for Speed: Most Wanted (2005 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Need_for_Speed_Most_Wanted_Box_Art.jpg"
+    },
+    "audio": {
+      "clue": "Rock and hip-hop for a police chase.",
+      "query": "Need for Speed Most Wanted 2005 Riders on the Storm"
+    },
+    "emoji": "🏎️🚓🌆💨📋",
+    "item": {
+      "name": "The BMW M3 GTR",
+      "description": "A silver and blue race car, stolen at the start and won back at the end.",
+      "image": "https://static.wikia.nocookie.net/nfs/images/9/99/NFSMW_BMW_M3GTR_Stock_F.jpg/revision/latest/scale-to-width-down/640?cb=20251126223229&path-prefix=en"
+    },
+    "location": {
+      "name": "Rockport City",
+      "description": "A city ruled by a blacklist of fifteen street racers.",
+      "image": "https://static.wikia.nocookie.net/nfs/images/c/c7/MostWanted_RockportCityMap.jpg/revision/latest/scale-to-width-down/640?cb=20151219155458&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🚓",
+      "colors": [
+        "#78350f",
+        "#facc15"
+      ]
+    },
+    "from": "2027-01-31"
+  },
+  {
+    "id": "g-peglin",
+    "name": "Peglin",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Roguelike",
+      "Puzzle"
+    ],
+    "studio": "Red Nexus Games",
+    "creator": "Red Nexus Games",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Peglin",
+      "The Dragons"
+    ],
+    "themes": [
+      "Pachinko",
+      "Goblins"
+    ],
+    "credits": [
+      "Developer: Red Nexus Games"
+    ],
+    "cover": {
+      "wiki": "Peglin",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Peglin_steam_art.jpg"
+    },
+    "audio": {
+      "clue": "Cheerful music as orbs bounce down pegs.",
+      "query": "Peglin soundtrack",
+      "youtubeId": "14VflXGKV6k"
+    },
+    "emoji": "👺🟢⚪🐉💰",
+    "visual": {
+      "icon": "👺",
+      "colors": [
+        "#14532d",
+        "#e5e7eb"
+      ]
+    },
+    "from": "2027-01-31"
+  },
+  {
+    "id": "g-manorlords",
+    "name": "Manor Lords",
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Strategy",
+      "Simulation"
+    ],
+    "studio": "Slavic Magic",
+    "creator": "Greg Styczeń",
+    "origin": "Poland",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Lord",
+      "The Baron",
+      "The Bandits"
+    ],
+    "themes": [
+      "Medieval village",
+      "Realism"
+    ],
+    "credits": [
+      "Creator: Greg Styczeń",
+      "Publisher: Hooded Horse"
+    ],
+    "cover": {
+      "wiki": "Manor Lords",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Manor_Lords_box_art.jpg"
+    },
+    "audio": {
+      "clue": "Medieval folk strings over a new village.",
+      "query": "Manor Lords soundtrack"
+    },
+    "emoji": "🏡🌾🏰⚔️🐂",
+    "visual": {
+      "icon": "🏡",
+      "colors": [
+        "#365314",
+        "#a16207"
+      ]
+    },
+    "from": "2027-01-31"
+  },
+  {
+    "id": "g-eurotruck2",
+    "name": "Euro Truck Simulator 2",
+    "aliases": [
+      "euro truck",
+      "ets2"
+    ],
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "Simulation"
+    ],
+    "studio": "SCS Software",
+    "creator": "Pavel Šebor",
+    "origin": "Czech Republic",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Driver"
+    ],
+    "themes": [
+      "Roads of Europe",
+      "Deliveries"
+    ],
+    "credits": [
+      "CEO: Pavel Šebor",
+      "Developer: SCS Software"
+    ],
+    "cover": {
+      "wiki": "Euro Truck Simulator 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0e/Euro_Truck_Simulator_2_cover.jpg"
+    },
+    "audio": {
+      "clue": "Easy-going music for long drives across Europe.",
+      "query": "Euro Truck Simulator 2 menu music",
+      "youtubeId": "ez1_Mn6P_l0"
+    },
+    "emoji": "🚚🛣️🇪🇺📦🌄",
+    "visual": {
+      "icon": "🚚",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    },
+    "from": "2027-02-01"
   }
 ]
