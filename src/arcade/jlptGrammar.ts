@@ -6,16 +6,34 @@
 // Tatoeba that use it.
 import data from '../data/jlpt-grammar.json';
 import FR from '../data/jlpt-grammar-fr.json';
+import BOOK_GRAMMAR from '../data/jlpt-book-grammar.json';
 import { sentencesOf, type JlptSentence } from './jlptSentences';
 
 type Meaning = { en: string; src: string };
 const LEVELS = data.levels as Record<string, Record<string, Meaning>>;
 const FRENCH = FR as Record<string, string>;
 
+/**
+ * The owner's books' points that aren't on Coto's list (src/data/jlpt-book-grammar.json, scripts/build-jlpt-books.mjs),
+ * by level (中級へ行こう's with N4): in the grammar games too. Their meaning is written by AI from the book's table of
+ * contents. `game`: a form to fill in (not a lesson's title like 「比較」の整理).
+ */
+type BookGrammar = { p: string; book: string; n: number; en: string; fr: string; game?: boolean };
+const BOOK_POINTS = BOOK_GRAMMAR.levels as Record<string, BookGrammar[]>;
+const BOOK_NAME: Record<string, string> = { 'mimi-n2': '耳から覚える 文法 N2', 'mimi-n3': '耳から覚える 文法 N3', chukyu: '中級へ行こう' };
+
+/** A level's grammar points from the books (not on Coto's list) that a game can ask: their forms. */
+export const bookGrammar = (level: string): string[] => (BOOK_POINTS[level] ?? []).filter((b) => b.game).map((b) => b.p);
+
+/** A point of the books only (not on Coto's list): its book note says it all (meaning, form, examples). */
+export const bookOnly = (level: string, pattern: string) => !LEVELS[level]?.[pattern] && (BOOK_POINTS[level] ?? []).some((x) => x.p === pattern);
+
 /** A grammar point's translation in English or French, and where it was found; null when no source has it. */
 export function grammarMeaning(level: string, pattern: string, lang: 'en' | 'fr'): { text: string; src: string } | null {
   const m = LEVELS[level]?.[pattern];
-  return m ? { text: (lang === 'fr' && FRENCH[m.en]) || m.en, src: m.src } : null;
+  if (m) return { text: (lang === 'fr' && FRENCH[m.en]) || m.en, src: m.src };
+  const b = BOOK_POINTS[level]?.find((x) => x.p === pattern);
+  return b ? { text: lang === 'fr' ? b.fr : b.en, src: `${BOOK_NAME[b.book] ?? b.book} · ${lang === 'fr' ? 'écrit par IA' : 'written by AI'}` } : null;
 }
 
 /** The pages that explain a grammar point (its sources' lessons: Bunpro, JLPT Sensei), to read it in full. */

@@ -1,7 +1,10 @@
 // Fill the Gap (JLPT): a sentence with a hole where one of its level's grammar points goes, to type in. The
 // sentences are those the grammar notes already show, each checked to hold the point where it's marked: the
 // sources' own examples (Bunpro, JLPT Sensei: src/data/jlpt-grammar-examples.json), then the Tatoeba sentences
-// that passed the same check (src/data/jlpt-sentences.json). The grammar points are the list's (jlpt.json).
+// that passed the same check (src/data/jlpt-sentences.json), and the owner's books' examples (written by AI,
+// src/arcade/jlptBooks.ts: each under its book's level, 中級へ行こう
+// with N4). The grammar points are the list's (jlpt.json) and the books'.
+import { loadBooks, bookShort } from './jlptBooks';
 import { loadGrammarExamples } from './jlptGrammar';
 import { pieces, sentencesOf, type JlptSentence } from './jlptSentences';
 import { typedOneOf } from './toTheLast';
@@ -51,7 +54,7 @@ let cache: Promise<Record<string, FillItem[]>> | null = null;
 
 /** Every level's sentences to fill (the examples are a big file: loaded the first time). */
 export function loadFill(): Promise<Record<string, FillItem[]>> {
-  return (cache ??= loadGrammarExamples().then((d) => {
+  return (cache ??= Promise.all([loadGrammarExamples(), loadBooks()]).then(([d, books]) => {
     const out = new Set(d.tatoebaOut);
     const by: Record<string, FillItem[]> = {};
     for (const level of ['N5', 'N4', 'N3', 'N2', 'N1']) {
@@ -70,6 +73,17 @@ export function loadFill(): Promise<Record<string, FillItem[]>> {
       }
       by[level] = items;
     }
+    for (const book of books)
+      for (const point of book.points) {
+        // Under its book's level: as Coto's point when Coto has it there, as the book's form otherwise.
+        const level = book.level;
+        const pattern = point.coto?.level === level ? point.coto.pattern : point.p;
+        point.ex.forEach((s, i) => {
+          const answer = s.ja.slice(...s.blank);
+          if (!answer.trim() || !by[level]) return;
+          by[level].push({ key: `${level}|${pattern}|${book.id}-${point.n}-${i}`, level, pattern, ja: s.ja, furigana: s.furigana, blank: s.blank, answer, kana: kanaOf(s.furigana, s.blank), en: s.en, fr: s.fr, src: `${bookShort(book)} · AI`, url: `#/jlpt/books/${book.id}` });
+        });
+      }
     return by;
   }));
 }

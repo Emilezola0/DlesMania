@@ -46,10 +46,12 @@ let loaded: Promise<Book[]> | null = null;
 /** The books (a big file: loaded the first time it's needed). */
 export const loadBooks = () => (loaded ??= import('../data/jlpt-books.json').then((m) => (m.default as unknown as { books: Book[] }).books));
 
-/** The books' points that are this point of Coto's list, with their book. */
+/** The books' points that are this point of Coto's list (or the book's point of that form at its book's level), with their book. */
 export async function bookPointsFor(level: string, pattern: string): Promise<{ book: Book; point: BookPoint }[]> {
   const books = await loadBooks();
-  return books.flatMap((book) => book.points.filter((p) => p.coto?.level === level && p.coto.pattern === pattern).map((point) => ({ book, point })));
+  return books.flatMap((book) =>
+    book.points.filter((p) => (p.coto?.level === level && p.coto.pattern === pattern) || (book.level === level && p.p === pattern)).map((point) => ({ book, point })),
+  );
 }
 
 /** A book's short name, for the notes. */

@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { allGrammarExamples, grammarExplanation, grammarMeaning, type SourceExample } from '../arcade/jlptGrammar';
+import { allGrammarExamples, bookOnly, grammarExplanation, grammarMeaning, type SourceExample } from '../arcade/jlptGrammar';
 import { audioUrl, pieces, tatoebaUrl, type JlptSentence } from '../arcade/jlptSentences';
 import { bookPointsFor, bookShort, unitName, type Book, type BookPoint } from '../arcade/jlptBooks';
 import { useProgress } from '../store/progress';
@@ -118,7 +118,9 @@ function Example({ s, lang }: { s: JlptSentence; lang: 'en' | 'fr' }) {
  */
 export function GrammarNote({ level, pattern, not, examples = FIRST }: { level: string; pattern: string; not?: number; examples?: number }) {
   const lang = useProgress((s) => s.nameLang);
-  const meaning = grammarMeaning(level, pattern, lang);
+  // A point of the owner's books only: its book note has its meaning and says where it's from.
+  const book = bookOnly(level, pattern);
+  const meaning = book ? null : grammarMeaning(level, pattern, lang);
   const [found, setFound] = useState<{
     key: string;
     source: SourceExample[];
@@ -169,7 +171,7 @@ export function GrammarNote({ level, pattern, not, examples = FIRST }: { level: 
         </div>
       )}
       <BookNotes level={level} pattern={pattern} lang={lang} />
-      <p className="text-[11px] text-ink-faint">
+      {!book && <p className="text-[11px] text-ink-faint">
         {fr ? 'Règle' : 'Grammar point'}: Coto Academy
         {meaning && ` · ${fr ? 'sens' : 'meaning'}: ${meaning.src}`}
         {here?.source.length
@@ -178,7 +180,7 @@ export function GrammarNote({ level, pattern, not, examples = FIRST }: { level: 
             ? ` · ${fr ? 'exemples' : 'examples'}: Tatoeba`
             : ''}
         {fr && here?.source.length ? ' · traductions des exemples en anglais, comme dans la source' : ''}
-      </p>
+      </p>}
       {list.length > 0 && (
         <>
           <p className="font-display text-xs font-bold uppercase tracking-widest text-ink-faint">{fr ? 'Exemples' : 'Examples'}</p>

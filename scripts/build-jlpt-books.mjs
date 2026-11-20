@@ -60,7 +60,8 @@ const BOOKS = [
     edition: '第2版',
     authors: '平井悦子・三輪さち子',
     publisher: 'スリーエーネットワーク (3A Network)',
-    level: 'N3',
+    /** The owner's call: its points go with N4 in the games. */
+    level: 'N4',
     /** Its units are lessons (課), each on a topic. */
     lessons: true,
     units: [
@@ -215,4 +216,17 @@ writeFileSync(
   ROOT + 'src/data/jlpt-books.json',
   JSON.stringify({ about: 'The owner’s grammar books: their list of points only; meanings, explanations and examples written by an AI (Claude). scripts/build-jlpt-books.mjs', books: out }, null, 1) + '\n',
 );
+// The points not on Coto's list at their book's level (a point Coto has at another level is asked at the book's too), for the grammar games (src/arcade/jlptGrammar.ts bookGrammar): each level's, its
+// form once (the first book's), with its meaning. `game`: a form to fill in (not a lesson's title, like 「比較」の整理).
+const LESSON = /[「」［］]|整理|表現|練習|縮約形|連用中止|接続詞/;
+const games = {};
+for (const b of out)
+  for (const p of b.points) {
+    if (p.coto?.level === b.level) continue;
+    const list = (games[b.level] ??= []);
+    if (list.some((x) => x.p === p.p) || coto.some((c) => c.level === b.level && c.pattern === p.p)) continue;
+    list.push({ p: p.p, book: b.id, n: p.n, en: p.en, fr: p.fr, ...(LESSON.test(p.p) ? {} : { game: true }) });
+  }
+writeFileSync(ROOT + 'src/data/jlpt-book-grammar.json', JSON.stringify({ about: 'The books’ points not on Coto’s list, for the grammar games. scripts/build-jlpt-books.mjs', levels: games }, null, 1) + '\n');
+for (const [l, list] of Object.entries(games)) console.log(`${l}: ${list.length} book points for the games (${list.filter((x) => x.game).length} to fill in)`);
 if (doubts.length) console.log(`Readings the list can't confirm (${doubts.length}):\n  ${doubts.join('\n  ')}`);

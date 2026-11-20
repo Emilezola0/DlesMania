@@ -4,6 +4,7 @@
 import { hashString, mulberry32, shuffle } from '../lib/rng';
 import { kanaFromRomaji, romajiSpellings, toHiragana } from '../lib/romaji';
 import { BASIC_KANA, JLPT_LEVELS, typedRight, type JlptAsk, type JlptEntry } from './jlpt';
+import { bookGrammar } from './jlptGrammar';
 
 export type LastKind = 'vocab' | 'kanji' | 'grammar' | 'hiragana' | 'katakana';
 /** A level's kinds (N5…N1); the kana are a "level" of their own ("Kana"), the basic syllabary of each script. */
@@ -18,7 +19,12 @@ export function lastItems(level: string, kind: LastKind): JlptEntry[] {
   if (kind === 'hiragana' || kind === 'katakana') return BASIC_KANA[kind];
   const l = JLPT_LEVELS.find((x) => x.level === level);
   if (!l) return [];
-  if (kind === 'grammar') return l.grammar.map((g, i) => ({ id: `${l.level}:grammar:${i}`, text: g, reading: '', meaning: '', level: l.level }));
+  // Grammar: Coto's list, then the owner's books' points not on it (src/arcade/jlptGrammar.ts bookGrammar).
+  if (kind === 'grammar')
+    return [
+      ...l.grammar.map((g, i) => ({ id: `${l.level}:grammar:${i}`, text: g, reading: '', meaning: '', level: l.level })),
+      ...bookGrammar(l.level).map((g, i) => ({ id: `${l.level}:book:${i}`, text: g, reading: '', meaning: '', level: l.level })),
+    ];
   return l.decks.find((d) => d.kind === kind)!.entries;
 }
 

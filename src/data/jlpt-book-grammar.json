@@ -1,0 +1,1921 @@
+{
+ "about": "The books’ points not on Coto’s list, for the grammar games. scripts/build-jlpt-books.mjs",
+ "levels": {
+  "N2": [
+   {
+    "p": "～ことだ",
+    "book": "mimi-n2",
+    "n": 1,
+    "en": "You should…, the best thing is to… (advice)",
+    "fr": "Il faut…, le mieux est de… (conseil)",
+    "game": true
+   },
+   {
+    "p": "～ことだから",
+    "book": "mimi-n2",
+    "n": 2,
+    "en": "Knowing (someone) as I do…, since it’s…",
+    "fr": "Connaissant (quelqu’un)…, vu que c’est…",
+    "game": true
+   },
+   {
+    "p": "～ことに",
+    "book": "mimi-n2",
+    "n": 3,
+    "en": "What is (surprising, sad…) is that…",
+    "fr": "Ce qui est (étonnant, triste…), c’est que…",
+    "game": true
+   },
+   {
+    "p": "～ことなく",
+    "book": "mimi-n2",
+    "n": 4,
+    "en": "Without (doing)",
+    "fr": "Sans (faire)",
+    "game": true
+   },
+   {
+    "p": "～ものだ／ではない",
+    "book": "mimi-n2",
+    "n": 6,
+    "en": "One should… / one shouldn’t… (what is right, in general)",
+    "fr": "On doit… / on ne doit pas… (ce qui se fait, en général)",
+    "game": true
+   },
+   {
+    "p": "～ないものか／だろうか",
+    "book": "mimi-n2",
+    "n": 7,
+    "en": "Isn’t there some way to…? I wish I could…",
+    "fr": "N’y aurait-il pas moyen de… ? Si seulement on pouvait…",
+    "game": true
+   },
+   {
+    "p": "～ばかりか",
+    "book": "mimi-n2",
+    "n": 8,
+    "en": "Not only… but also",
+    "fr": "Non seulement… mais aussi",
+    "game": true
+   },
+   {
+    "p": "～ばかりだ",
+    "book": "mimi-n2",
+    "n": 9,
+    "en": "Keeps on (getting worse…), only goes one way",
+    "fr": "Ne fait que (empirer…), va toujours dans le même sens",
+    "game": true
+   },
+   {
+    "p": "～上（に）",
+    "book": "mimi-n2",
+    "n": 10,
+    "en": "On top of…, besides…",
+    "fr": "En plus de…, non content de…",
+    "game": true
+   },
+   {
+    "p": "～以上（は）／上は",
+    "book": "mimi-n2",
+    "n": 11,
+    "en": "Since…, now that… (you must)",
+    "fr": "Puisque…, du moment que… (il faut)",
+    "game": true
+   },
+   {
+    "p": "～まで",
+    "book": "mimi-n2",
+    "n": 13,
+    "en": "Even (as far as)…",
+    "fr": "Même, jusqu’à…",
+    "game": true
+   },
+   {
+    "p": "～でも",
+    "book": "mimi-n2",
+    "n": 14,
+    "en": "…or something (a light suggestion); even…",
+    "fr": "…ou quelque chose comme ça (suggestion légère) ; même…",
+    "game": true
+   },
+   {
+    "p": "～ながら（も）",
+    "book": "mimi-n2",
+    "n": 15,
+    "en": "Although…, while (being)…",
+    "fr": "Bien que…, tout en (étant)…",
+    "game": true
+   },
+   {
+    "p": "～さえ…ば／たら",
+    "book": "mimi-n2",
+    "n": 16,
+    "en": "If only…, as long as… (then that’s enough)",
+    "fr": "Il suffit que…, du moment que… (alors ça suffit)",
+    "game": true
+   },
+   {
+    "p": "～を…として",
+    "book": "mimi-n2",
+    "n": 17,
+    "en": "As…, taking (A) as (B)",
+    "fr": "En tant que…, en prenant (A) comme (B)",
+    "game": true
+   },
+   {
+    "p": "～に応じ（て）／応じ",
+    "book": "mimi-n2",
+    "n": 18,
+    "en": "According to…, depending on…",
+    "fr": "Selon…, en fonction de…",
+    "game": true
+   },
+   {
+    "p": "～に沿って／沿い",
+    "book": "mimi-n2",
+    "n": 19,
+    "en": "Along…, in line with…",
+    "fr": "Le long de…, conformément à…",
+    "game": true
+   },
+   {
+    "p": "～をめぐって／めぐり",
+    "book": "mimi-n2",
+    "n": 20,
+    "en": "Over…, concerning… (a dispute)",
+    "fr": "Au sujet de…, autour de… (un débat)",
+    "game": true
+   },
+   {
+    "p": "～といった",
+    "book": "mimi-n2",
+    "n": 21,
+    "en": "Such as…, like… (examples)",
+    "fr": "Tels que…, comme… (exemples)",
+    "game": true
+   },
+   {
+    "p": "～てしようがない／しかたがない",
+    "book": "mimi-n2",
+    "n": 22,
+    "en": "Terribly, can’t help (feeling)…",
+    "fr": "Terriblement, ne pas pouvoir s’empêcher (de ressentir)…",
+    "game": true
+   },
+   {
+    "p": "～ぬき（で／に）／（を）ぬきにして",
+    "book": "mimi-n2",
+    "n": 23,
+    "en": "Without…, leaving out…",
+    "fr": "Sans…, en laissant de côté…",
+    "game": true
+   },
+   {
+    "p": "～に相違ない",
+    "book": "mimi-n2",
+    "n": 24,
+    "en": "There’s no doubt that…, must be…",
+    "fr": "Il ne fait aucun doute que…, ce doit être…",
+    "game": true
+   },
+   {
+    "p": "～得る",
+    "book": "mimi-n2",
+    "n": 25,
+    "en": "Can, it’s possible that…",
+    "fr": "Pouvoir, il est possible que…",
+    "game": true
+   },
+   {
+    "p": "～がたい",
+    "book": "mimi-n2",
+    "n": 26,
+    "en": "Hard to (bring oneself to)…",
+    "fr": "Difficile à…, qu’on a du mal à…",
+    "game": true
+   },
+   {
+    "p": "～一方（で）",
+    "book": "mimi-n2",
+    "n": 27,
+    "en": "While…, on the other hand…",
+    "fr": "Tandis que…, d’un autre côté…",
+    "game": true
+   },
+   {
+    "p": "～につき",
+    "book": "mimi-n2",
+    "n": 28,
+    "en": "Due to…, because of… (notices); per…",
+    "fr": "En raison de…, pour cause de… (avis) ; par…",
+    "game": true
+   },
+   {
+    "p": "～やら…やら",
+    "book": "mimi-n2",
+    "n": 29,
+    "en": "…and…, what with… and… (and more)",
+    "fr": "…et…, entre… et… (et j’en passe)",
+    "game": true
+   },
+   {
+    "p": "～の／ものやら",
+    "book": "mimi-n2",
+    "n": 30,
+    "en": "I wonder… (with no idea)",
+    "fr": "Je me demande… (sans en avoir la moindre idée)",
+    "game": true
+   },
+   {
+    "p": "～だの…だの",
+    "book": "mimi-n2",
+    "n": 31,
+    "en": "…and…, saying this and that (complaining)",
+    "fr": "…et…, à dire ceci et cela (en se plaignant)",
+    "game": true
+   },
+   {
+    "p": "～に応え（て）",
+    "book": "mimi-n2",
+    "n": 32,
+    "en": "In response to…, to meet (expectations)",
+    "fr": "En réponse à…, pour répondre à (des attentes)",
+    "game": true
+   },
+   {
+    "p": "～のもとで／に",
+    "book": "mimi-n2",
+    "n": 33,
+    "en": "Under (the guidance of)…",
+    "fr": "Sous (la direction de)…",
+    "game": true
+   },
+   {
+    "p": "～にしては",
+    "book": "mimi-n2",
+    "n": 34,
+    "en": "For (a)…, considering…",
+    "fr": "Pour un(e)…, compte tenu de…",
+    "game": true
+   },
+   {
+    "p": "～は／ならともかく（として）",
+    "book": "mimi-n2",
+    "n": 35,
+    "en": "Leaving… aside, … may be one thing, but…",
+    "fr": "… passe encore, mais… ; laissons… de côté",
+    "game": true
+   },
+   {
+    "p": "～も…ば／なら～も",
+    "book": "mimi-n2",
+    "n": 36,
+    "en": "Both… and…, … as well as…",
+    "fr": "Et… et…, aussi bien… que…",
+    "game": true
+   },
+   {
+    "p": "～っぱなし",
+    "book": "mimi-n2",
+    "n": 37,
+    "en": "Left (on, open…), keeps on…",
+    "fr": "Laissé (allumé, ouvert…), ne pas arrêter de…",
+    "game": true
+   },
+   {
+    "p": "～っこない",
+    "book": "mimi-n2",
+    "n": 38,
+    "en": "No way…, can’t possibly…",
+    "fr": "Pas moyen que…, impossible que…",
+    "game": true
+   },
+   {
+    "p": "～きり",
+    "book": "mimi-n2",
+    "n": 39,
+    "en": "Only…, since… (and not again)",
+    "fr": "Seulement…, depuis… (et plus jamais)",
+    "game": true
+   },
+   {
+    "p": "～げ",
+    "book": "mimi-n2",
+    "n": 40,
+    "en": "…-looking, seeming…",
+    "fr": "L’air…, qui semble…",
+    "game": true
+   },
+   {
+    "p": "～なんて／とは",
+    "book": "mimi-n2",
+    "n": 41,
+    "en": "(Surprise:) to think that…!",
+    "fr": "(Surprise :) dire que… ! Quand on pense que… !",
+    "game": true
+   },
+   {
+    "p": "～にすぎない",
+    "book": "mimi-n2",
+    "n": 42,
+    "en": "Merely…, no more than…",
+    "fr": "Ne… que, n’être qu’un simple…",
+    "game": true
+   },
+   {
+    "p": "～あげく",
+    "book": "mimi-n2",
+    "n": 43,
+    "en": "After (a long…), in the end…",
+    "fr": "Après (bien des…), au bout du compte…",
+    "game": true
+   },
+   {
+    "p": "～べき",
+    "book": "mimi-n2",
+    "n": 44,
+    "en": "Should, ought to",
+    "fr": "Devoir, il faudrait",
+    "game": true
+   },
+   {
+    "p": "～というより",
+    "book": "mimi-n2",
+    "n": 45,
+    "en": "Rather than…, more… than…",
+    "fr": "Plutôt que…, plus… que…",
+    "game": true
+   },
+   {
+    "p": "～にかかわらず／かかわりなく",
+    "book": "mimi-n2",
+    "n": 46,
+    "en": "Regardless of…, whether… or not",
+    "fr": "Indépendamment de…, que… ou non",
+    "game": true
+   },
+   {
+    "p": "～にもかかわらず",
+    "book": "mimi-n2",
+    "n": 47,
+    "en": "Despite…, even though…",
+    "fr": "Malgré…, bien que…",
+    "game": true
+   },
+   {
+    "p": "～あまり（に）",
+    "book": "mimi-n2",
+    "n": 48,
+    "en": "So (much)… that…, out of too much…",
+    "fr": "Tellement… que…, par excès de…",
+    "game": true
+   },
+   {
+    "p": "～にあたって／あたり",
+    "book": "mimi-n2",
+    "n": 49,
+    "en": "On the occasion of…, when (starting)…",
+    "fr": "À l’occasion de…, au moment de (commencer)…",
+    "game": true
+   },
+   {
+    "p": "～に際して／際し",
+    "book": "mimi-n2",
+    "n": 50,
+    "en": "At the time of…, when…",
+    "fr": "Lors de…, au moment de…",
+    "game": true
+   },
+   {
+    "p": "～末（に）",
+    "book": "mimi-n2",
+    "n": 51,
+    "en": "After (a long…), finally…",
+    "fr": "Après (bien des…), finalement…",
+    "game": true
+   },
+   {
+    "p": "～を契機に（して）／として",
+    "book": "mimi-n2",
+    "n": 52,
+    "en": "Taking… as a turning point, with… as the trigger",
+    "fr": "À la faveur de…, à partir de… (comme déclencheur)",
+    "game": true
+   },
+   {
+    "p": "～を問わず",
+    "book": "mimi-n2",
+    "n": 53,
+    "en": "Regardless of…, no matter…",
+    "fr": "Sans distinction de…, quel que soit…",
+    "game": true
+   },
+   {
+    "p": "～かのようだ",
+    "book": "mimi-n2",
+    "n": 54,
+    "en": "As if…, as though…",
+    "fr": "Comme si…",
+    "game": true
+   },
+   {
+    "p": "～からいうと／からすると／から見ると",
+    "book": "mimi-n2",
+    "n": 55,
+    "en": "From the point of view of…, judging by…",
+    "fr": "Du point de vue de…, à en juger par…",
+    "game": true
+   },
+   {
+    "p": "～もかまわず",
+    "book": "mimi-n2",
+    "n": 56,
+    "en": "Without caring about…, regardless of…",
+    "fr": "Sans se soucier de…, sans faire attention à…",
+    "game": true
+   },
+   {
+    "p": "～ぬく",
+    "book": "mimi-n2",
+    "n": 57,
+    "en": "To (do) all the way, to the very end",
+    "fr": "(Faire) jusqu’au bout, entièrement",
+    "game": true
+   },
+   {
+    "p": "～ばかりに",
+    "book": "mimi-n2",
+    "n": 58,
+    "en": "Just because…, only because… (bad result)",
+    "fr": "Rien que parce que…, à cause de… (mauvais résultat)",
+    "game": true
+   },
+   {
+    "p": "～ところ（を）",
+    "book": "mimi-n2",
+    "n": 59,
+    "en": "When (you are…), even though (it’s a bad moment)",
+    "fr": "Alors que (vous êtes…), au moment où",
+    "game": true
+   },
+   {
+    "p": "～たところで",
+    "book": "mimi-n2",
+    "n": 60,
+    "en": "Even if…, it’s no use…",
+    "fr": "Même si…, il ne sert à rien de…",
+    "game": true
+   },
+   {
+    "p": "～ことから",
+    "book": "mimi-n2",
+    "n": 61,
+    "en": "Because…, from the fact that…",
+    "fr": "Du fait que…, comme…",
+    "game": true
+   },
+   {
+    "p": "～ことか／だろう",
+    "book": "mimi-n2",
+    "n": 63,
+    "en": "How (very)…!, so…!",
+    "fr": "Comme… !, combien… !",
+    "game": true
+   },
+   {
+    "p": "～ないことには",
+    "book": "mimi-n2",
+    "n": 64,
+    "en": "Unless…, without… (nothing can happen)",
+    "fr": "Tant qu’on n’a pas…, à moins de… (rien n’est possible)",
+    "game": true
+   },
+   {
+    "p": "～というものだ／というものでは（も）ない",
+    "book": "mimi-n2",
+    "n": 65,
+    "en": "That’s what… is / … isn’t necessarily so",
+    "fr": "C’est ça, … / ce n’est pas forcément…",
+    "game": true
+   },
+   {
+    "p": "～ものなら",
+    "book": "mimi-n2",
+    "n": 66,
+    "en": "If (one) could…; if you dare…",
+    "fr": "Si seulement on pouvait… ; si jamais tu oses…",
+    "game": true
+   },
+   {
+    "p": "～どころか",
+    "book": "mimi-n2",
+    "n": 67,
+    "en": "Far from…, on the contrary…",
+    "fr": "Loin de…, bien au contraire…",
+    "game": true
+   },
+   {
+    "p": "～どころではない",
+    "book": "mimi-n2",
+    "n": 68,
+    "en": "This is no time for…, (it’s) out of the question",
+    "fr": "Ce n’est pas le moment de…, pas question de…",
+    "game": true
+   },
+   {
+    "p": "～だけに",
+    "book": "mimi-n2",
+    "n": 69,
+    "en": "As might be expected from…, precisely because…",
+    "fr": "Justement parce que…, comme on pouvait s’y attendre de…",
+    "game": true
+   },
+   {
+    "p": "～だけあって／だけのことはある",
+    "book": "mimi-n2",
+    "n": 70,
+    "en": "As expected of…, no wonder…",
+    "fr": "Pas étonnant, vu que…, c’est bien digne de…",
+    "game": true
+   },
+   {
+    "p": "～上",
+    "book": "mimi-n2",
+    "n": 71,
+    "en": "From the point of view of…, in terms of…",
+    "fr": "Du point de vue de…, sur le plan de…",
+    "game": true
+   },
+   {
+    "p": "～上（で）",
+    "book": "mimi-n2",
+    "n": 72,
+    "en": "In…, on (paper, the internet…)",
+    "fr": "Dans…, sur (le papier, internet…)",
+    "game": true
+   },
+   {
+    "p": "～まい",
+    "book": "mimi-n2",
+    "n": 73,
+    "en": "Will not…, I won’t…; probably not…",
+    "fr": "Ne… pas (résolution) ; ne… sans doute pas",
+    "game": true
+   },
+   {
+    "p": "～ないではいられない／ずにはいられない",
+    "book": "mimi-n2",
+    "n": 74,
+    "en": "Can’t help (doing)…",
+    "fr": "Ne pas pouvoir s’empêcher de…",
+    "game": true
+   },
+   {
+    "p": "～に限らず",
+    "book": "mimi-n2",
+    "n": 76,
+    "en": "Not only…, not just…",
+    "fr": "Pas seulement…, non seulement…",
+    "game": true
+   },
+   {
+    "p": "～か～ないかのうちに",
+    "book": "mimi-n2",
+    "n": 77,
+    "en": "Hardly had… when…, the moment…",
+    "fr": "À peine… que…",
+    "game": true
+   },
+   {
+    "p": "～（か）と思ったら／思うと",
+    "book": "mimi-n2",
+    "n": 78,
+    "en": "No sooner… than…, just when I thought…",
+    "fr": "À peine… que…, alors que je pensais…",
+    "game": true
+   },
+   {
+    "p": "～に先立って／先立ち",
+    "book": "mimi-n2",
+    "n": 79,
+    "en": "Before…, prior to…",
+    "fr": "Avant…, préalablement à…",
+    "game": true
+   },
+   {
+    "p": "～にしたら／すれば／しても",
+    "book": "mimi-n2",
+    "n": 80,
+    "en": "For (someone), from (someone’s) point of view",
+    "fr": "Pour (quelqu’un), du point de vue de (quelqu’un)",
+    "game": true
+   },
+   {
+    "p": "～ずにすむ",
+    "book": "mimi-n2",
+    "n": 81,
+    "en": "To get away without (having to)…",
+    "fr": "Ne pas avoir besoin de…, s’en tirer sans…",
+    "game": true
+   },
+   {
+    "p": "～しだい",
+    "book": "mimi-n2",
+    "n": 84,
+    "en": "As soon as…",
+    "fr": "Dès que…",
+    "game": true
+   },
+   {
+    "p": "～しだいで／だ",
+    "book": "mimi-n2",
+    "n": 85,
+    "en": "Depending on…, it’s up to…",
+    "fr": "Selon…, ça dépend de…",
+    "game": true
+   },
+   {
+    "p": "～次第だ",
+    "book": "mimi-n2",
+    "n": 86,
+    "en": "That is how (it happened)…, hence…",
+    "fr": "C’est ainsi que…, voilà pourquoi…",
+    "game": true
+   },
+   {
+    "p": "～限り",
+    "book": "mimi-n2",
+    "n": 87,
+    "en": "As long as…, as far as…",
+    "fr": "Tant que…, autant que…",
+    "game": true
+   },
+   {
+    "p": "～に限って",
+    "book": "mimi-n2",
+    "n": 88,
+    "en": "Of all (times/people)…, just when…",
+    "fr": "Justement (ce jour-là, cette personne-là)…",
+    "game": true
+   },
+   {
+    "p": "～見えて",
+    "book": "mimi-n2",
+    "n": 89,
+    "en": "It seems (that)…, apparently… (judging from signs)",
+    "fr": "Il semble que…, apparemment… (à voir les signes)",
+    "game": true
+   },
+   {
+    "p": "～というと／いえば／いったら",
+    "book": "mimi-n2",
+    "n": 90,
+    "en": "Speaking of…, when it comes to…",
+    "fr": "En parlant de…, quand on dit…",
+    "game": true
+   },
+   {
+    "p": "～といっても",
+    "book": "mimi-n2",
+    "n": 91,
+    "en": "Although (I say)…, even so…",
+    "fr": "Même si on dit…, enfin, …",
+    "game": true
+   },
+   {
+    "p": "～か",
+    "book": "mimi-n2",
+    "n": 93,
+    "en": "Perhaps because…, whether because…",
+    "fr": "Peut-être parce que…",
+    "game": true
+   },
+   {
+    "p": "～にしろ／せよ／しても",
+    "book": "mimi-n2",
+    "n": 94,
+    "en": "Even if…, whether… or…",
+    "fr": "Même si…, que ce soit… ou…",
+    "game": true
+   },
+   {
+    "p": "（ただ）～のみ",
+    "book": "mimi-n2",
+    "n": 95,
+    "en": "Only…, nothing but…",
+    "fr": "Seulement…, rien que…",
+    "game": true
+   },
+   {
+    "p": "（ただ）～のみならず",
+    "book": "mimi-n2",
+    "n": 96,
+    "en": "Not only…, but also",
+    "fr": "Non seulement…, mais aussi",
+    "game": true
+   },
+   {
+    "p": "～にほかならない",
+    "book": "mimi-n2",
+    "n": 97,
+    "en": "Is nothing other than…, is precisely…",
+    "fr": "N’est autre que…, c’est précisément…",
+    "game": true
+   },
+   {
+    "p": "～ざるを得ない",
+    "book": "mimi-n2",
+    "n": 98,
+    "en": "Have no choice but to…",
+    "fr": "Ne pas avoir d’autre choix que de…",
+    "game": true
+   },
+   {
+    "p": "～ては…～ては…",
+    "book": "mimi-n2",
+    "n": 99,
+    "en": "Over and over: (do A) then (B), (A) then (B)…",
+    "fr": "Encore et encore : (faire A) puis (B), (A) puis (B)…",
+    "game": true
+   },
+   {
+    "p": "～矢先に／の",
+    "book": "mimi-n2",
+    "n": 100,
+    "en": "Just as (I was about to)…",
+    "fr": "Juste au moment où (j’allais)…",
+    "game": true
+   },
+   {
+    "p": "～にとどまらず",
+    "book": "mimi-n2",
+    "n": 101,
+    "en": "Not limited to…, going beyond…",
+    "fr": "Ne pas se limiter à…, aller au-delà de…",
+    "game": true
+   },
+   {
+    "p": "～（に）は…が／けど、～ことは…が／けど",
+    "book": "mimi-n2",
+    "n": 102,
+    "en": "I do… (but), it’s true that… (but)",
+    "fr": "Pour… (ça)…, mais ; c’est vrai que…, mais",
+    "game": true
+   },
+   {
+    "p": "～からして",
+    "book": "mimi-n2",
+    "n": 103,
+    "en": "Starting with…, to begin with…; judging from…",
+    "fr": "À commencer par…, déjà… ; à en juger par…",
+    "game": true
+   },
+   {
+    "p": "～というか…というか",
+    "book": "mimi-n2",
+    "n": 104,
+    "en": "Whether you call it… or…, … or rather…",
+    "fr": "Comment dire… ou plutôt…",
+    "game": true
+   },
+   {
+    "p": "～（よ）うにも～ない",
+    "book": "mimi-n2",
+    "n": 106,
+    "en": "Even if I want to…, I can’t",
+    "fr": "J’ai beau vouloir…, je ne peux pas",
+    "game": true
+   },
+   {
+    "p": "～を踏まえ（て）",
+    "book": "mimi-n2",
+    "n": 107,
+    "en": "Based on…, taking into account…",
+    "fr": "En se fondant sur…, en tenant compte de…",
+    "game": true
+   },
+   {
+    "p": "～は…にかかっている",
+    "book": "mimi-n2",
+    "n": 108,
+    "en": "… depends on…",
+    "fr": "… dépend de…",
+    "game": true
+   },
+   {
+    "p": "～（よ）うとする／している",
+    "book": "mimi-n2",
+    "n": 109,
+    "en": "To try to…; to be about to…",
+    "fr": "Essayer de… ; être sur le point de…",
+    "game": true
+   },
+   {
+    "p": "～（よ）うではないか",
+    "book": "mimi-n2",
+    "n": 110,
+    "en": "Let’s…! (a call to others)",
+    "fr": "Faisons… ! (appel aux autres)",
+    "game": true
+   }
+  ],
+  "N3": [
+   {
+    "p": "～ことにしている",
+    "book": "mimi-n3",
+    "n": 1,
+    "en": "To make a point of…, to have a rule of…",
+    "fr": "S’être fixé comme règle de…, avoir l’habitude de…",
+    "game": true
+   },
+   {
+    "p": "～ことになっている",
+    "book": "mimi-n3",
+    "n": 2,
+    "en": "It’s been decided that…, the rule is that…",
+    "fr": "Il est prévu que…, la règle veut que…",
+    "game": true
+   },
+   {
+    "p": "～ようになっている",
+    "book": "mimi-n3",
+    "n": 3,
+    "en": "It’s made so that…, it works in such a way that…",
+    "fr": "C’est conçu pour que…, ça fonctionne de sorte que…",
+    "game": true
+   },
+   {
+    "p": "～ような／ように",
+    "book": "mimi-n3",
+    "n": 4,
+    "en": "Like…, as…",
+    "fr": "Comme…, tel que…",
+    "game": true
+   },
+   {
+    "p": "～みたいだ",
+    "book": "mimi-n3",
+    "n": 5,
+    "en": "Seems like…, looks like…; like…",
+    "fr": "On dirait que…, il semble que… ; comme…",
+    "game": true
+   },
+   {
+    "p": "～つもりだ",
+    "book": "mimi-n3",
+    "n": 7,
+    "en": "To intend to…; to believe one has…",
+    "fr": "Avoir l’intention de… ; croire avoir…",
+    "game": true
+   },
+   {
+    "p": "～てくる",
+    "book": "mimi-n3",
+    "n": 8,
+    "en": "Has begun to…; has been… up to now; (go and) come back",
+    "fr": "Commencer à… ; …jusqu’à maintenant ; aller… et revenir",
+    "game": true
+   },
+   {
+    "p": "～てほしい／もらいたい",
+    "book": "mimi-n3",
+    "n": 9,
+    "en": "I want (someone) to…",
+    "fr": "J’aimerais que (quelqu’un)…",
+    "game": true
+   },
+   {
+    "p": "～ば／たら／と…たい／のに／よかった",
+    "book": "mimi-n3",
+    "n": 10,
+    "en": "If only…, I wish…, it would have been good if…",
+    "fr": "Si seulement…, j’aurais aimé…, ça aurait été bien si…",
+    "game": true
+   },
+   {
+    "p": "自動詞を使った表現",
+    "book": "mimi-n3",
+    "n": 11,
+    "en": "Using intransitive verbs (things happening by themselves)",
+    "fr": "Employer les verbes intransitifs (ce qui se fait tout seul)"
+   },
+   {
+    "p": "使役形を使った表現",
+    "book": "mimi-n3",
+    "n": 12,
+    "en": "Using the causative: make / let / have someone…",
+    "fr": "Employer le causatif : faire faire, laisser faire"
+   },
+   {
+    "p": "～み",
+    "book": "mimi-n3",
+    "n": 13,
+    "en": "-ness (a quality you feel)",
+    "fr": "Le suffixe み (une qualité qu’on ressent)",
+    "game": true
+   },
+   {
+    "p": "～のではないだろうか／ないかと思う",
+    "book": "mimi-n3",
+    "n": 14,
+    "en": "Isn’t it (perhaps)…? I think it may be…",
+    "fr": "Ne serait-ce pas… ? Je pense que c’est peut-être…",
+    "game": true
+   },
+   {
+    "p": "縮約形",
+    "book": "mimi-n3",
+    "n": 15,
+    "en": "Contracted forms of speech",
+    "fr": "Les formes contractées de l’oral"
+   },
+   {
+    "p": "～から～にかけて",
+    "book": "mimi-n3",
+    "n": 16,
+    "en": "From… through…, over (a span)",
+    "fr": "De… à…, sur toute la période / zone",
+    "game": true
+   },
+   {
+    "p": "～だらけ",
+    "book": "mimi-n3",
+    "n": 17,
+    "en": "Full of…, covered in… (bad)",
+    "fr": "Plein de…, couvert de… (négatif)",
+    "game": true
+   },
+   {
+    "p": "～せいだ／せいで／せいか",
+    "book": "mimi-n3",
+    "n": 19,
+    "en": "Because of… (blame); perhaps because of…",
+    "fr": "À cause de… (reproche) ; peut-être à cause de…",
+    "game": true
+   },
+   {
+    "p": "～とおり（に）／どおり（に）",
+    "book": "mimi-n3",
+    "n": 20,
+    "en": "As…, just like…, according to…",
+    "fr": "Comme…, exactement selon…",
+    "game": true
+   },
+   {
+    "p": "～について／つき",
+    "book": "mimi-n3",
+    "n": 21,
+    "en": "About…, concerning…",
+    "fr": "Au sujet de…, concernant…",
+    "game": true
+   },
+   {
+    "p": "～に比べ（て）",
+    "book": "mimi-n3",
+    "n": 23,
+    "en": "Compared with…",
+    "fr": "Par rapport à…, comparé à…",
+    "game": true
+   },
+   {
+    "p": "～に加え（て）",
+    "book": "mimi-n3",
+    "n": 24,
+    "en": "In addition to…, on top of…",
+    "fr": "En plus de…, s’ajoutant à…",
+    "game": true
+   },
+   {
+    "p": "Aは～に対し（て）",
+    "book": "mimi-n3",
+    "n": 25,
+    "en": "While A…, B on the other hand… (contrast)",
+    "fr": "Alors que A…, B en revanche… (contraste)",
+    "game": true
+   },
+   {
+    "p": "たとえ～ても",
+    "book": "mimi-n3",
+    "n": 27,
+    "en": "Even if…",
+    "fr": "Même si…",
+    "game": true
+   },
+   {
+    "p": "～って",
+    "book": "mimi-n3",
+    "n": 28,
+    "en": "(They say) that…; (it’s) called…; as for… (spoken)",
+    "fr": "(Il paraît) que… ; (ça) s’appelle… ; quant à… (oral)",
+    "game": true
+   },
+   {
+    "p": "～くらい",
+    "book": "mimi-n3",
+    "n": 29,
+    "en": "About…; so… that; at least…",
+    "fr": "Environ… ; tellement… que ; au moins…",
+    "game": true
+   },
+   {
+    "p": "～くらいなら",
+    "book": "mimi-n3",
+    "n": 30,
+    "en": "Rather than…, if it comes to… (I’d prefer)",
+    "fr": "Plutôt que de…, s’il faut… (je préfère)",
+    "game": true
+   },
+   {
+    "p": "～を中心に／として／にして",
+    "book": "mimi-n3",
+    "n": 32,
+    "en": "Centred on…, with… at the core",
+    "fr": "Centré sur…, avec… au cœur",
+    "game": true
+   },
+   {
+    "p": "～をはじめ",
+    "book": "mimi-n3",
+    "n": 33,
+    "en": "Starting with…, including…",
+    "fr": "À commencer par…, notamment…",
+    "game": true
+   },
+   {
+    "p": "～に対し（て）",
+    "book": "mimi-n3",
+    "n": 34,
+    "en": "Toward…, to…, against…",
+    "fr": "Envers…, à l’égard de…, contre…",
+    "game": true
+   },
+   {
+    "p": "～において",
+    "book": "mimi-n3",
+    "n": 35,
+    "en": "In…, at… (formal: place, time, field)",
+    "fr": "Dans…, à… (soutenu : lieu, époque, domaine)",
+    "game": true
+   },
+   {
+    "p": "～にわたって／わたり",
+    "book": "mimi-n3",
+    "n": 36,
+    "en": "Over (a long span), throughout…",
+    "fr": "Pendant (toute une durée), sur (toute une étendue)",
+    "game": true
+   },
+   {
+    "p": "～にとって",
+    "book": "mimi-n3",
+    "n": 37,
+    "en": "For…, to… (from someone’s standpoint)",
+    "fr": "Pour… (du point de vue de quelqu’un)",
+    "game": true
+   },
+   {
+    "p": "～による／より／よって／によっては",
+    "book": "mimi-n3",
+    "n": 38,
+    "en": "By…, due to…, depending on…; in some cases…",
+    "fr": "Par…, en raison de…, selon… ; dans certains cas…",
+    "game": true
+   },
+   {
+    "p": "～とは／というのは",
+    "book": "mimi-n3",
+    "n": 40,
+    "en": "What… means is…, (X) is… (definition)",
+    "fr": "Ce que veut dire…, c’est… (définition)",
+    "game": true
+   },
+   {
+    "p": "～たとたん（に）",
+    "book": "mimi-n3",
+    "n": 41,
+    "en": "The moment…, just as…",
+    "fr": "Au moment même où…, dès que…",
+    "game": true
+   },
+   {
+    "p": "～につれ（て）",
+    "book": "mimi-n3",
+    "n": 42,
+    "en": "As…, the more…",
+    "fr": "À mesure que…, plus…",
+    "game": true
+   },
+   {
+    "p": "～にしたがって／したがい",
+    "book": "mimi-n3",
+    "n": 43,
+    "en": "As…; in accordance with…",
+    "fr": "À mesure que… ; conformément à…",
+    "game": true
+   },
+   {
+    "p": "～最中",
+    "book": "mimi-n3",
+    "n": 44,
+    "en": "Right in the middle of…",
+    "fr": "En plein milieu de…, en pleine…",
+    "game": true
+   },
+   {
+    "p": "～てからでないと／なければ…ない",
+    "book": "mimi-n3",
+    "n": 45,
+    "en": "Not until…, only after…",
+    "fr": "Pas avant de…, seulement après…",
+    "game": true
+   },
+   {
+    "p": "～て以来",
+    "book": "mimi-n3",
+    "n": 46,
+    "en": "Ever since…",
+    "fr": "Depuis que…",
+    "game": true
+   },
+   {
+    "p": "～一方だ",
+    "book": "mimi-n3",
+    "n": 47,
+    "en": "Keeps (getting worse/more)…",
+    "fr": "Ne cesse de…, ne fait que…",
+    "game": true
+   },
+   {
+    "p": "～しかない／ほかない／よりない",
+    "book": "mimi-n3",
+    "n": 48,
+    "en": "Have no choice but to…, can only…",
+    "fr": "Ne pas avoir d’autre choix que de…",
+    "game": true
+   },
+   {
+    "p": "～はもちろん／もとより…も",
+    "book": "mimi-n3",
+    "n": 49,
+    "en": "Not to mention…, … of course, and also…",
+    "fr": "Sans parler de…, … bien sûr, et aussi…",
+    "game": true
+   },
+   {
+    "p": "～ついでに",
+    "book": "mimi-n3",
+    "n": 50,
+    "en": "While (I’m) at it…, on the way…",
+    "fr": "Au passage…, tant qu’à faire…",
+    "game": true
+   },
+   {
+    "p": "～ということだ",
+    "book": "mimi-n3",
+    "n": 51,
+    "en": "I hear that…; that means…",
+    "fr": "Il paraît que… ; ça veut dire que…",
+    "game": true
+   },
+   {
+    "p": "～ことはない",
+    "book": "mimi-n3",
+    "n": 52,
+    "en": "There’s no need to…",
+    "fr": "Pas besoin de…, inutile de…",
+    "game": true
+   },
+   {
+    "p": "～こと",
+    "book": "mimi-n3",
+    "n": 53,
+    "en": "(You) must… (written rules)",
+    "fr": "(Il faut)… (consignes écrites)",
+    "game": true
+   },
+   {
+    "p": "～ないことはない／もない",
+    "book": "mimi-n3",
+    "n": 54,
+    "en": "It’s not that… not, (it) is possible",
+    "fr": "Ce n’est pas impossible que…, on peut bien…",
+    "game": true
+   },
+   {
+    "p": "～もの／もん",
+    "book": "mimi-n3",
+    "n": 55,
+    "en": "…because (excuse, casual)",
+    "fr": "…parce que (excuse, familier)",
+    "game": true
+   },
+   {
+    "p": "～ものだから／もので",
+    "book": "mimi-n3",
+    "n": 56,
+    "en": "Because… (excuse, explanation)",
+    "fr": "C’est que…, comme… (excuse, justification)",
+    "game": true
+   },
+   {
+    "p": "～ものか／もんか",
+    "book": "mimi-n3",
+    "n": 57,
+    "en": "As if…!, no way (I will)…!",
+    "fr": "Pas question que… !, jamais je ne… !",
+    "game": true
+   },
+   {
+    "p": "～たところ",
+    "book": "mimi-n3",
+    "n": 58,
+    "en": "When I (did)…, (I found that)…",
+    "fr": "Quand j’ai (fait)…, (j’ai constaté que)…",
+    "game": true
+   },
+   {
+    "p": "～ところに／へ／を／で",
+    "book": "mimi-n3",
+    "n": 59,
+    "en": "Just when…, at the moment…",
+    "fr": "Juste au moment où…",
+    "game": true
+   },
+   {
+    "p": "～ところだった",
+    "book": "mimi-n3",
+    "n": 60,
+    "en": "Almost…, nearly…",
+    "fr": "Avoir failli…",
+    "game": true
+   },
+   {
+    "p": "～など／なんか／なんて",
+    "book": "mimi-n3",
+    "n": 64,
+    "en": "…or something; things like… (playing down)",
+    "fr": "…ou quelque chose comme ça ; des trucs comme… (minimiser)",
+    "game": true
+   },
+   {
+    "p": "～などと／なんて言う／思う",
+    "book": "mimi-n3",
+    "n": 65,
+    "en": "To say / think (something like)…",
+    "fr": "Dire / penser (quelque chose comme)…",
+    "game": true
+   },
+   {
+    "p": "～からには",
+    "book": "mimi-n3",
+    "n": 66,
+    "en": "Now that…, since… (you must)",
+    "fr": "Du moment que…, puisque… (il faut)",
+    "game": true
+   },
+   {
+    "p": "～きる",
+    "book": "mimi-n3",
+    "n": 67,
+    "en": "To (do) completely, to finish…",
+    "fr": "(Faire) entièrement, jusqu’au bout",
+    "game": true
+   },
+   {
+    "p": "～ぎみ",
+    "book": "mimi-n3",
+    "n": 68,
+    "en": "A bit…, a touch of…",
+    "fr": "Un peu…, légèrement…",
+    "game": true
+   },
+   {
+    "p": "～向き",
+    "book": "mimi-n3",
+    "n": 70,
+    "en": "Suited to…, good for…",
+    "fr": "Adapté à…, qui convient à…",
+    "game": true
+   },
+   {
+    "p": "～向け／～に向けて",
+    "book": "mimi-n3",
+    "n": 71,
+    "en": "Made for…, aimed at… / toward…",
+    "fr": "Destiné à…, conçu pour… / en vue de…",
+    "game": true
+   },
+   {
+    "p": "～を通じ（て）／通し（て）",
+    "book": "mimi-n3",
+    "n": 72,
+    "en": "Through…, via…; throughout…",
+    "fr": "Par l’intermédiaire de…, grâce à… ; tout au long de…",
+    "game": true
+   },
+   {
+    "p": "～にともなって／ともない",
+    "book": "mimi-n3",
+    "n": 75,
+    "en": "Along with…, as… (a change brings another)",
+    "fr": "Avec…, à mesure que… (un changement en entraîne un autre)",
+    "game": true
+   },
+   {
+    "p": "～に決まっている",
+    "book": "mimi-n3",
+    "n": 76,
+    "en": "It’s bound to…, of course it’s…",
+    "fr": "C’est forcément…, à coup sûr…",
+    "game": true
+   },
+   {
+    "p": "～っけ",
+    "book": "mimi-n3",
+    "n": 77,
+    "en": "…was it? …again? (trying to recall)",
+    "fr": "…déjà ? …c’était bien ça ? (chercher à se souvenir)",
+    "game": true
+   },
+   {
+    "p": "～ようがない",
+    "book": "mimi-n3",
+    "n": 79,
+    "en": "There’s no way to…",
+    "fr": "Il n’y a aucun moyen de…",
+    "game": true
+   },
+   {
+    "p": "～はずだ",
+    "book": "mimi-n3",
+    "n": 80,
+    "en": "Should be…, is supposed to…; no wonder…",
+    "fr": "Devrait…, est censé… ; pas étonnant que…",
+    "game": true
+   },
+   {
+    "p": "～わけだ",
+    "book": "mimi-n3",
+    "n": 81,
+    "en": "That’s why…, so that means…",
+    "fr": "Voilà pourquoi…, ça veut donc dire que…",
+    "game": true
+   },
+   {
+    "p": "～わけがない",
+    "book": "mimi-n3",
+    "n": 82,
+    "en": "There’s no way that…, it can’t be that…",
+    "fr": "Il est impossible que…, pas question que…",
+    "game": true
+   },
+   {
+    "p": "～わけではない",
+    "book": "mimi-n3",
+    "n": 83,
+    "en": "It’s not (necessarily) that…",
+    "fr": "Ce n’est pas (forcément) que…",
+    "game": true
+   },
+   {
+    "p": "～わけにはいかない",
+    "book": "mimi-n3",
+    "n": 84,
+    "en": "Can’t (very well)… (for moral or social reasons)",
+    "fr": "Ne pas pouvoir se permettre de… (pour des raisons morales ou sociales)",
+    "game": true
+   },
+   {
+    "p": "～ないわけにはいかない",
+    "book": "mimi-n3",
+    "n": 85,
+    "en": "Can’t not…, have to…",
+    "fr": "Ne pas pouvoir faire autrement que de…",
+    "game": true
+   },
+   {
+    "p": "～にかわって／かわり",
+    "book": "mimi-n3",
+    "n": 87,
+    "en": "In place of (someone), on behalf of…",
+    "fr": "À la place de (quelqu’un), au nom de…",
+    "game": true
+   },
+   {
+    "p": "～からといって",
+    "book": "mimi-n3",
+    "n": 91,
+    "en": "Just because… (doesn’t mean)",
+    "fr": "Ce n’est pas parce que… (que)",
+    "game": true
+   },
+   {
+    "p": "～に反し（て）",
+    "book": "mimi-n3",
+    "n": 92,
+    "en": "Contrary to…, against…",
+    "fr": "Contrairement à…, à l’encontre de…",
+    "game": true
+   },
+   {
+    "p": "～にもとづいて／もとづき",
+    "book": "mimi-n3",
+    "n": 93,
+    "en": "Based on…, according to…",
+    "fr": "En se fondant sur…, d’après…",
+    "game": true
+   },
+   {
+    "p": "～をもとに（して）",
+    "book": "mimi-n3",
+    "n": 94,
+    "en": "Using… as a basis, inspired by…",
+    "fr": "À partir de…, en s’inspirant de…",
+    "game": true
+   },
+   {
+    "p": "～反面／半面",
+    "book": "mimi-n3",
+    "n": 95,
+    "en": "On the other hand…, while…",
+    "fr": "En revanche…, d’un côté… de l’autre…",
+    "game": true
+   },
+   {
+    "p": "～れる／られる",
+    "book": "mimi-n3",
+    "n": 96,
+    "en": "Spontaneous feeling: (one) can’t help feeling…",
+    "fr": "Sentiment spontané : on ne peut s’empêcher de ressentir…",
+    "game": true
+   },
+   {
+    "p": "～てたまらない",
+    "book": "mimi-n3",
+    "n": 97,
+    "en": "Unbearably…, dying to…",
+    "fr": "Insupportablement…, mourir d’envie de…",
+    "game": true
+   },
+   {
+    "p": "～てならない",
+    "book": "mimi-n3",
+    "n": 98,
+    "en": "Can’t help feeling…, terribly…",
+    "fr": "Ne pas pouvoir s’empêcher de… (sentiment)",
+    "game": true
+   },
+   {
+    "p": "～とか",
+    "book": "mimi-n3",
+    "n": 99,
+    "en": "I heard that… (vague hearsay); … and … (examples)",
+    "fr": "Il paraît que… (ouï-dire vague) ; … ou… (exemples)",
+    "game": true
+   },
+   {
+    "p": "～だけ",
+    "book": "mimi-n3",
+    "n": 100,
+    "en": "As much as…, all that…",
+    "fr": "Autant que…, tout ce que…",
+    "game": true
+   },
+   {
+    "p": "～ばかりでなく",
+    "book": "mimi-n3",
+    "n": 101,
+    "en": "Not only…, but also…",
+    "fr": "Non seulement…, mais aussi…",
+    "game": true
+   },
+   {
+    "p": "～かけ／かける",
+    "book": "mimi-n3",
+    "n": 102,
+    "en": "Half-done, started but not finished",
+    "fr": "À moitié fait, commencé mais pas fini",
+    "game": true
+   },
+   {
+    "p": "～をこめて",
+    "book": "mimi-n3",
+    "n": 103,
+    "en": "With (feeling) put into it",
+    "fr": "En y mettant (un sentiment)",
+    "game": true
+   },
+   {
+    "p": "～わりに（は）",
+    "book": "mimi-n3",
+    "n": 104,
+    "en": "For…, considering…",
+    "fr": "Pour…, compte tenu de…",
+    "game": true
+   },
+   {
+    "p": "～くせに",
+    "book": "mimi-n3",
+    "n": 105,
+    "en": "Even though… (critical), despite…",
+    "fr": "Alors que… (reproche), pourtant…",
+    "game": true
+   },
+   {
+    "p": "～てみせる",
+    "book": "mimi-n3",
+    "n": 106,
+    "en": "To show (how to)…; I’ll (definitely) do it!",
+    "fr": "Montrer (comment faire)… ; je vais y arriver, tu verras !",
+    "game": true
+   },
+   {
+    "p": "～をきっかけに／にして／として",
+    "book": "mimi-n3",
+    "n": 107,
+    "en": "Triggered by…, with… as the start",
+    "fr": "À la suite de…, ce qui a déclenché…",
+    "game": true
+   },
+   {
+    "p": "～際に／際（に）は",
+    "book": "mimi-n3",
+    "n": 109,
+    "en": "When…, at the time of… (formal)",
+    "fr": "Lors de…, au moment de… (soutenu)",
+    "game": true
+   },
+   {
+    "p": "～おそれがある",
+    "book": "mimi-n3",
+    "n": 110,
+    "en": "There’s a risk that…, might… (bad)",
+    "fr": "Il y a un risque que…, risquer de… (négatif)",
+    "game": true
+   }
+  ],
+  "N4": [
+   {
+    "p": "N1といえば、N2だ",
+    "book": "chukyu",
+    "n": 1,
+    "en": "Speaking of N1, (it has to be) N2",
+    "fr": "Quand on parle de N1, (c’est forcément) N2",
+    "game": true
+   },
+   {
+    "p": "Nは～こと、～ことだ",
+    "book": "chukyu",
+    "n": 3,
+    "en": "The (good/bad) points of N are that… and that…",
+    "fr": "Les (atouts/défauts) de N, c’est que… et que…",
+    "game": true
+   },
+   {
+    "p": "Vマス始める・Vマス終わる",
+    "book": "chukyu",
+    "n": 4,
+    "en": "To start (doing) / to finish (doing)",
+    "fr": "Commencer à (faire) / finir de (faire)",
+    "game": true
+   },
+   {
+    "p": "～のでしょうか",
+    "book": "chukyu",
+    "n": 5,
+    "en": "I wonder…? (a soft, polite question)",
+    "fr": "Est-ce que… ? (question polie et douce)",
+    "game": true
+   },
+   {
+    "p": "「自動詞・他動詞」の整理",
+    "book": "chukyu",
+    "n": 6,
+    "en": "Recap: intransitive and transitive verbs",
+    "fr": "Récap : verbes intransitifs et transitifs"
+   },
+   {
+    "p": "V（よ）うとしても、Vナイない",
+    "book": "chukyu",
+    "n": 7,
+    "en": "Even if I try to…, I can’t",
+    "fr": "J’ai beau essayer de…, je n’y arrive pas",
+    "game": true
+   },
+   {
+    "p": "～のは～だ",
+    "book": "chukyu",
+    "n": 8,
+    "en": "What… is… (focus)",
+    "fr": "Ce qui…, c’est… (mise en relief)",
+    "game": true
+   },
+   {
+    "p": "「自動詞－ている・他動詞－てある／ておく」の整理",
+    "book": "chukyu",
+    "n": 9,
+    "en": "Recap: intransitive ている, transitive てある / ておく",
+    "fr": "Récap : intransitif ている, transitif てある / ておく"
+   },
+   {
+    "p": "V［普通形］ようなN",
+    "book": "chukyu",
+    "n": 10,
+    "en": "A N that (seems to)…, the kind of N that…",
+    "fr": "Un N qui (semble)…, le genre de N qui…"
+   },
+   {
+    "p": "Nばかり・Vテばかりいる",
+    "book": "chukyu",
+    "n": 11,
+    "en": "Nothing but N / doing nothing but…",
+    "fr": "Rien que N / ne faire que…",
+    "game": true
+   },
+   {
+    "p": "～（の）は～からだ",
+    "book": "chukyu",
+    "n": 14,
+    "en": "The reason (that)… is because…",
+    "fr": "Si…, c’est parce que…",
+    "game": true
+   },
+   {
+    "p": "Vテいく・Vテきた",
+    "book": "chukyu",
+    "n": 16,
+    "en": "(A change) will go on… / has been… until now",
+    "fr": "(Un changement) va continuer… / s’est fait… jusqu’ici",
+    "game": true
+   },
+   {
+    "p": "［表／グラフ］で見ると、～ことがわかる",
+    "book": "chukyu",
+    "n": 17,
+    "en": "Looking at the (table/graph), we can see that…",
+    "fr": "Si l’on regarde le (tableau/graphique), on voit que…"
+   },
+   {
+    "p": "N1のようなN2",
+    "book": "chukyu",
+    "n": 18,
+    "en": "N2 such as N1, N2 like N1 (example)",
+    "fr": "N2 tel que N1, N2 comme N1 (exemple)",
+    "game": true
+   },
+   {
+    "p": "XはYほど～ない",
+    "book": "chukyu",
+    "n": 19,
+    "en": "X is not as… as Y",
+    "fr": "X n’est pas aussi… que Y",
+    "game": true
+   },
+   {
+    "p": "「比較」の整理",
+    "book": "chukyu",
+    "n": 20,
+    "en": "Recap: comparisons",
+    "fr": "Récap : la comparaison"
+   },
+   {
+    "p": "A／Naさ",
+    "book": "chukyu",
+    "n": 21,
+    "en": "-ness: turning an adjective into a noun",
+    "fr": "Le suffixe さ : faire d’un adjectif un nom",
+    "game": true
+   },
+   {
+    "p": "連用中止",
+    "book": "chukyu",
+    "n": 22,
+    "en": "Linking clauses with the stem (written style)",
+    "fr": "Relier des propositions avec le radical (style écrit)"
+   },
+   {
+    "p": "～ものだ",
+    "book": "chukyu",
+    "n": 23,
+    "en": "That’s how… is (a general truth)",
+    "fr": "C’est ainsi que… (une vérité générale)",
+    "game": true
+   },
+   {
+    "p": "「もの・こと」の整理",
+    "book": "chukyu",
+    "n": 24,
+    "en": "Recap: もの and こと",
+    "fr": "Récap : もの et こと"
+   },
+   {
+    "p": "～ということだ",
+    "book": "chukyu",
+    "n": 25,
+    "en": "I hear that…, it is said that…; that means…",
+    "fr": "Il paraît que…, on dit que… ; ça veut dire que…",
+    "game": true
+   },
+   {
+    "p": "長い文の練習",
+    "book": "chukyu",
+    "n": 26,
+    "en": "Building long sentences",
+    "fr": "Construire des phrases longues"
+   },
+   {
+    "p": "Nによって［受身］",
+    "book": "chukyu",
+    "n": 27,
+    "en": "By N (the maker, in a passive sentence)",
+    "fr": "Par N (l’auteur, dans une phrase passive)"
+   },
+   {
+    "p": "～ため（に）",
+    "book": "chukyu",
+    "n": 28,
+    "en": "In order to…; because of…",
+    "fr": "Pour… (but) ; à cause de…",
+    "game": true
+   },
+   {
+    "p": "「～ため（に）」の整理［原因／理由・目的］",
+    "book": "chukyu",
+    "n": 29,
+    "en": "Recap: ため（に） for a cause or for a purpose",
+    "fr": "Récap : ため（に）, cause ou but"
+   },
+   {
+    "p": "～まま",
+    "book": "chukyu",
+    "n": 30,
+    "en": "As it is, left (as…), without changing",
+    "fr": "Tel quel, en laissant (comme…), sans changer",
+    "game": true
+   },
+   {
+    "p": "Vタものだ",
+    "book": "chukyu",
+    "n": 31,
+    "en": "I used to… (fond memory)",
+    "fr": "J’avais l’habitude de… (souvenir)",
+    "game": true
+   },
+   {
+    "p": "～として",
+    "book": "chukyu",
+    "n": 32,
+    "en": "As…, in the role of…",
+    "fr": "En tant que…, comme…",
+    "game": true
+   },
+   {
+    "p": "～といっても",
+    "book": "chukyu",
+    "n": 33,
+    "en": "Although (I say)…, it’s only…",
+    "fr": "Même si on dit…, ce n’est que…",
+    "game": true
+   },
+   {
+    "p": "V1ルよりV2ルほうが～",
+    "book": "chukyu",
+    "n": 34,
+    "en": "It’s better to (V2) than to (V1)",
+    "fr": "Mieux vaut (V2) que (V1)",
+    "game": true
+   },
+   {
+    "p": "「なら・と・ば・たら」の整理",
+    "book": "chukyu",
+    "n": 36,
+    "en": "Recap: the four “if” forms",
+    "fr": "Récap : les quatre « si »"
+   },
+   {
+    "p": "Vテ欲しい・Vナイないで欲しい",
+    "book": "chukyu",
+    "n": 37,
+    "en": "I want (someone) to… / I don’t want (someone) to…",
+    "fr": "J’aimerais que (quelqu’un)… / j’aimerais que… ne… pas",
+    "game": true
+   },
+   {
+    "p": "～わけではない",
+    "book": "chukyu",
+    "n": 39,
+    "en": "It’s not (necessarily) that…",
+    "fr": "Ce n’est pas (forcément) que…",
+    "game": true
+   },
+   {
+    "p": "Vル／Vナイないことがある",
+    "book": "chukyu",
+    "n": 40,
+    "en": "Sometimes (it happens that)… / sometimes… not",
+    "fr": "Il arrive que… / il arrive que… ne… pas",
+    "game": true
+   },
+   {
+    "p": "V1ルまで、V2",
+    "book": "chukyu",
+    "n": 41,
+    "en": "Until (V1 happens), (V2 goes on)",
+    "fr": "Jusqu’à ce que (V1), (V2 continue)",
+    "game": true
+   },
+   {
+    "p": "Nによって",
+    "book": "chukyu",
+    "n": 42,
+    "en": "Depending on N, it varies with N",
+    "fr": "Selon N, ça varie avec N",
+    "game": true
+   },
+   {
+    "p": "「Nとして・Nについて・Nによって」の整理",
+    "book": "chukyu",
+    "n": 43,
+    "en": "Recap: として, について and によって",
+    "fr": "Récap : として, について et によって"
+   },
+   {
+    "p": "～にともなって",
+    "book": "chukyu",
+    "n": 44,
+    "en": "Along with…, as… (changes)",
+    "fr": "Avec…, à mesure que…",
+    "game": true
+   },
+   {
+    "p": "接続詞［つまり・一方］",
+    "book": "chukyu",
+    "n": 45,
+    "en": "Connectives: つまり (in other words), 一方 (meanwhile)",
+    "fr": "Connecteurs : つまり (autrement dit), 一方 (d’un autre côté)"
+   },
+   {
+    "p": "Na／Nである",
+    "book": "chukyu",
+    "n": 46,
+    "en": "である: the written “is”",
+    "fr": "である : le « être » de l’écrit",
+    "game": true
+   },
+   {
+    "p": "「受身・使役・使役受身」の整理",
+    "book": "chukyu",
+    "n": 48,
+    "en": "Recap: passive, causative, causative passive",
+    "fr": "Récap : passif, causatif, passif causatif"
+   },
+   {
+    "p": "Vテ欲しいものだ",
+    "book": "chukyu",
+    "n": 49,
+    "en": "I really wish (someone) would…",
+    "fr": "Je souhaiterais vraiment que (quelqu’un)…",
+    "game": true
+   },
+   {
+    "p": "Vル／Nの代わりに",
+    "book": "chukyu",
+    "n": 51,
+    "en": "Instead of…, in place of…",
+    "fr": "Au lieu de…, à la place de…",
+    "game": true
+   },
+   {
+    "p": "Vテくる・Vテいく",
+    "book": "chukyu",
+    "n": 52,
+    "en": "Coming closer / going away (direction and time)",
+    "fr": "Venir vers / s’éloigner (direction et temps)",
+    "game": true
+   },
+   {
+    "p": "Vルべきだ",
+    "book": "chukyu",
+    "n": 53,
+    "en": "Should, ought to",
+    "fr": "Devoir, il faudrait",
+    "game": true
+   },
+   {
+    "p": "「敬語」の整理",
+    "book": "chukyu",
+    "n": 54,
+    "en": "Recap: keigo (polite language)",
+    "fr": "Récap : le keigo (langue polie)"
+   },
+   {
+    "p": "Vナイずに",
+    "book": "chukyu",
+    "n": 55,
+    "en": "Without (doing)",
+    "fr": "Sans (faire)",
+    "game": true
+   }
+  ]
+ }
+}
