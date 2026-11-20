@@ -20,7 +20,8 @@ const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
 /** The most packs opened at once (each 5 cards): an opening stays one you can follow. */
 /** The most packs opened at once. firestore.rules (luck/{uid}) takes an opening of up to as many: raise both together. */
-const MAX_OPEN = 50;
+/** Packs opened at once, at most (the owner's call): a huge opening stays light (src/gacha/PackOpening.tsx, HUGE_OPENING). */
+const MAX_OPEN = 1000;
 
 /** Days until a period's missions change: next Monday, or the 1st of next month. */
 function daysLeft(p: Period): number {
@@ -397,7 +398,7 @@ export default function Shop() {
                   max={canOpen}
                   value={n}
                   onChange={(e) => setCount(p, Number(e.target.value))}
-                  className="w-12 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
+                  className="w-14 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
                   aria-label="Packs to open"
                 />
                 <button type="button" disabled={n >= canOpen} onClick={() => setCount(p, n + 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One more pack">

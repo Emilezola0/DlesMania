@@ -72,6 +72,10 @@ export interface Card {
   clip?: string;
   /** Its clip (an MP4) has a sound of its own: heard when it plays behind a win, instead of the card's voice line. */
   clipSound?: boolean;
+  /** A cut-out picture that comes out of the card in front of it under the mouse, when its own picture isn't one (O-Chan). */
+  heroPop?: string;
+  /** Its clip, a short loop, also loops behind the pages when it's the background card, like a GIF (O-Chan's game captures). */
+  loopBehind?: boolean;
   /** Its picture has a transparent background: it can step out of the frame on hover. */
   cutout?: boolean;
   /** Its picture has no transparency at all (a rectangle: art, a screenshot): it fills its frame. */
@@ -207,7 +211,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
   forhonor: { name: 'Commander Ravier', title: 'Sworn to the Cross', line: 'A kite shield, a heavy blade and a vow he never broke: the Blackstone’s fallen knight still stands between you and everyone he guards.', voice: 'Ad profundis!', audio: 'https://www.myinstants.com/media/sounds/ad-profundis.mp3', image: `${import.meta.env?.BASE_URL ?? './'}art/forhonor/black-prior-mythic.jpg` },
   // A player's picks (Discord ticket "Phantom"): the name, the title and the line said; the line below to go with them.
-  forts: { name: 'Particle Accelerator', title: 'Canon X Portal', line: 'A cannon shell sent through a portal and back again, faster every pass, until the whole game can’t keep up.', voice: 'Infinite Loop', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
+  forts: { name: 'Particle Accelerator', title: 'Canon X Portal', line: 'A cannon shell sent through a portal and back again, faster every pass, until the whole game can’t keep up.', voice: 'Infinite Loop', image: 'https://static.wikia.nocookie.net/forts-rts/images/9/9d/Portal.png/revision/latest?cb=20220704224439' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
   // Acheron in her splash art, a line picked each time she speaks (her own recordings from the wiki).
@@ -450,7 +454,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     "awaken": {
       "title": "Valkyrie",
       "line": "Golden wings unfurled, she takes to the sky — and heals the whole battlefield at once.",
-      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/Mercy_Skin_Valkyrie.png/revision/latest/scale-to-width-down/500?cb=20160915183233"
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Mercy_Overwatch_001.jpg/revision/latest/scale-to-width-down/1000?cb=20141107201851"
     }
   },
   starwars: {
@@ -641,7 +645,7 @@ const JLPT_LINE = new Map([...(JLPT_CARDS.described as JlptRow[]), ...JLPT_ROSTE
  * and Inazuma in Japanese), from the wikis' voice files and myinstants. A card left out keeps its
  * own picture, and its line is read by the browser's voice.
  */
-const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'voiceFr' | 'audioFr' | 'focus' | 'clipSound'>>> = {
+const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'voiceFr' | 'audioFr' | 'focus' | 'clipSound' | 'heroPop' | 'loopBehind'>>> = {
   // ── First mythics ──
   'lol:mythic': { title: 'Prestige K/DA', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/f/fc/Ahri_PrestigeKDALoading.jpg/revision/latest?cb=20230110233703' },
   'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
@@ -665,6 +669,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // ── Omnis: their voices ──
   'lol:omni': { voice: 'A chase, then!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ef/Ahri_SpiritBlossom_R_1.ogg/revision/latest?cb=20200726232639' },
   // Mercy's Valkyrie line; in French in Sybille Tureau's voice (the Overwatch wiki's French Dubbing page).
+  // O-Chan (the owner's call): her game captures loop behind the pages too, and her dancing cut-out comes out of the card under the mouse, as Hebe's does.
+  'ufouria:omni': { heroPop: UFOURIA_ART('dance-o-chan.png'), loopBehind: true },
   'overwatch:omni': {
     voice: 'Heroes never die!',
     audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913',
@@ -817,8 +823,8 @@ const CLIPS: Record<string, string> = {
   'jlpt:mythic': 'https://media.tenor.com/6y_x59L0fNEAAAPo/pixel-art.mp4',
   'jlpt:mythic-2': 'https://media.tenor.com/LVV2rkspHvYAAAPo/oni-mask.mp4',
   'unreal:mythic-2': 'https://media.tenor.com/kxZgL7zPf0EAAAPo/hello-world.mp4',
-  // A player's pick (Discord ticket "Phantom"): 6:40–6:45 then 6:59–7:15 of m8aV8HyUELY, joined, with its sound.
-  'forts:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/forts/particle-accelerator.mp4`,
+  // The owner's pick: 2:39–2:46 then 3:21–3:28 of UZRjaPq8rL4, joined in that order, with its sound.
+  'forts:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/forts/particle-accelerator-2.mp4`,
   'hsr:mythic': 'https://media.tenor.com/v-XMz_8voHIAAAPo/kafka-honkai-star-rail.mp4',
   'hsr:mythic-2': 'https://media.tenor.com/kEOuplrdMIAAAAPo/acheron-honkai-star-rail.mp4',
   'hollowknight:mythic': 'https://media.tenor.com/bm0FsIEEUjsAAAPo/silksong-lace.mp4',
@@ -913,8 +919,8 @@ const CLIPS: Record<string, string> = {
   // (the owner's call: no voice line over them). Here, not in FIRST_CLIPS: an Omni always shows its awakened form now,
   // and that form only takes its clip from CLIPS.
   'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-sound-${n}.mp4`).join('|'),
-  // A player's pick (Discord ticket "Centurion"): 0:35–0:42 of 1IfVv8Xk11M, silent, its burnt-in subtitles cropped off.
-  'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/centurion-mythic.mp4`,
+  // A player's pick (Discord ticket "Centurion"): 0:35–0:42 of 1IfVv8Xk11M, its burnt-in subtitles cropped off; heard (the owner's call).
+  'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/centurion-mythic-sound.mp4`,
   // Genji's Omni (awakened, the form an Omni shows): the climax of Blizzard's "Dragons" short (4:57–5:22 of oJ09xdxzIJQ, made with scripts/card-clip.mjs), "Ryū ga waga
   // teki wo kurau!" / "Ryūjin no ken wo kurae!", the three dragons, Hanzo on his knees; heard with its own sound.
   'overwatch:omni-genji': `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/genji-dragons.mp4`,
@@ -985,7 +991,7 @@ const withClip = (c: Card): Card => {
 };
 
 /** The clips hosted with the site that have no sound track (GIFs, the game captures, the ones cut --mute). */
-const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/(black-prior-ad-profundis|centurion-mythic)|\/clips\/overwatch\/mercy-omni|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
+const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/overwatch\/mercy-omni|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
 /**
  * Whether a card's clip is heard (the owner's rule: a video that has sound always plays with it, behind a win too,
  * never under a voice line): every clip hosted with the site that has a sound track, and the ones marked `clipSound`.

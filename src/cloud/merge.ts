@@ -97,6 +97,7 @@ export const SYNCED = [
   'kanjiRecall',
   'reviewPaid',
   'companionSets',
+  'companionMode',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -440,5 +441,6 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     reviewPaid: mergeReviewPaid(local.reviewPaid, cloud.reviewPaid),
     // The companions' franchises: as last set.
     companionSets: latest.companionSets ?? local.companionSets,
+    companionMode: latest.companionMode ?? local.companionMode,
   };
 }

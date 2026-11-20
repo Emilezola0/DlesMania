@@ -129,10 +129,16 @@ const rollRarity = (odds: Record<Rarity, number>, rand: () => number): Rarity =>
 };
 
 /** One of these cards: every franchise among them has the same chance, however many cards it has, then every card of it. */
+/** A list's cards by franchise, worked out once per list (a pack's pools are drawn from thousands of times). */
+const bySetOf = new WeakMap<Card[], Card[][]>();
 function drawFairly(cards: Card[], rand: () => number): Card {
-  const sets = [...new Set(cards.map((c) => c.set))];
-  const set = sets[Math.floor(rand() * sets.length)];
-  const own = cards.filter((c) => c.set === set);
+  let groups = bySetOf.get(cards);
+  if (!groups) {
+    const m = new Map<string, Card[]>();
+    for (const c of cards) (m.get(c.set) ?? m.set(c.set, []).get(c.set)!).push(c);
+    bySetOf.set(cards, (groups = [...m.values()]));
+  }
+  const own = groups[Math.floor(rand() * groups.length)];
   return own[Math.floor(rand() * own.length)];
 }
 
@@ -163,28 +169,42 @@ const forcedDraw = (): string[] => {
   }
 };
 
+/** A pack's cards, sorted out once by rarity (a thousand packs at once drew from the whole collection every time). */
+const pools = new WeakMap<Pack, { all: Card[]; by: Record<Rarity, Card[]> }>();
+function poolOf(pack: Pack) {
+  let p = pools.get(pack);
+  if (!p) {
+    const all = COLLECTIBLE.filter(pack.pool);
+    const by = Object.fromEntries(RARITIES.map((r) => [r, all.filter((c) => c.rarity === r)])) as Record<Rarity, Card[]>;
+    pools.set(pack, (p = { all, by }));
+  }
+  return p;
+}
+
 export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false, force: string[] = [], omni = 1): Card[] {
-  const pool = COLLECTIBLE.filter(pack.pool);
+  const { all: pool, by } = poolOf(pack);
   const odds = oddsWith(boost, luck, LIVE_ODDS, omni);
   const taken = new Set<string>();
+  const takenRarity = new Set<Rarity>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
     // A rigged slot (dev only): that card, or a card of that rarity (from the pack, else from any set).
     const rigged = force[i] ?? '';
     const exact = rigged && COLLECTIBLE.find((c) => c.id === rigged);
-    if (exact) return (taken.add(exact.id), exact);
+    if (exact) return (taken.add(exact.id), takenRarity.add(exact.rarity), exact);
     if ((RARITIES as string[]).includes(rigged)) {
       const of = (list: Card[]) => list.filter((c) => c.rarity === rigged && !taken.has(c.id));
       const cands = of(pool).length ? of(pool) : of(COLLECTIBLE);
       if (cands.length) {
         const card = drawFairly(cands, rand);
         taken.add(card.id);
+        takenRarity.add(card.rarity);
         return card;
       }
     }
     const goldSlot = golden && i >= PACK_SIZE - GOLDEN.slots;
     let r = goldSlot ? rollGolden(i === PACK_SIZE - 1 ? GOLDEN.last : GOLDEN.others, rand) : rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
-    // Five different cards: one already in this pack isn't drawn again.
-    const of = (x: Rarity) => pool.filter((c) => c.rarity === x && !taken.has(c.id));
+    // Five different cards: one already in this pack isn't drawn again (the list copied only when one of that rarity was).
+    const of = (x: Rarity) => (takenRarity.has(x) ? by[x].filter((c) => !taken.has(c.id)) : by[x]);
     let cands = of(r);
     while (!cands.length && RARITIES.indexOf(r) > 0) {
       r = RARITIES[RARITIES.indexOf(r) - 1];
@@ -192,6 +212,7 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
     }
     const card = drawFairly(cands, rand);
     taken.add(card.id);
+    takenRarity.add(card.rarity);
     return card;
   }).sort((a, b) => RARITIES.indexOf(a.rarity) - RARITIES.indexOf(b.rarity));
 }
@@ -236,12 +257,12 @@ const forcedCosmic = (): CosmicKind | null => {
 /** Rolls a pack's cosmic event and swaps its card in place (the pack stays sorted, the rarest last). */
 export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.random, force: CosmicKind | null = forcedCosmic()): CosmicEvent | null {
   if (!cards.length) return null;
-  const pool = COLLECTIBLE.filter(pack.pool);
+  const { by } = poolOf(pack);
   const rank = (r: Rarity) => RARITIES.indexOf(r);
   const best = cards[cards.length - 1];
   const legend = [...cards].reverse().find((c) => c.rarity === 'legendary');
   const pick = (r: Rarity) => {
-    const cands = pool.filter((c) => c.rarity === r && !cards.some((x) => x.id === c.id));
+    const cands = by[r].filter((c) => !cards.some((x) => x.id === c.id));
     return cands.length ? drawFairly(cands, rand) : null;
   };
   let kind: CosmicKind | null = null;

@@ -256,6 +256,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const lost = useTimeLost(card, !!anomaly?.timeLost && !calm);
   const scrambledName = useScramble(lost ? shownName(lost.name, lost.set) : shownName(card.name, card.set), !!anomaly?.scramble && !calm);
   const name = anomaly?.mirror ? [...scrambledName].reverse().join('') : scrambledName;
+  // A long name gets smaller to be read whole ("Particle Accelerator"), down to a floor: 14 letters fit at full size.
+  const nameSize = `${Math.max(4.6, Math.min(7.5, (7.5 * 14) / Math.max(1, name.length))).toFixed(2)}cqw`;
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
   const heroOn = (hero || (hoverHero && hovered)) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -372,7 +374,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         {/* Name and rarity (and a mythic's title). */}
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
           <div className="flex items-center justify-between gap-[2cqw]">
-            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
+            <p style={{ fontSize: nameSize }} className={`truncate font-display font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
             {/* A Fake Rarity shows a Mythic's gem: it passes for one. */}
             <span className={`shrink-0 text-[5.5cqw] ${rank ? 'card-rank-gem' : ''}`} title={rank ? `${rank.name} (${RARITY_INFO[card.rarity].name})` : anomaly?.posesAsMythic ? undefined : RARITY_INFO[card.rarity].name}>
               {rank ? rank.gem : RARITY_INFO[look].gem}
@@ -594,7 +596,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       )}
       {/* Coming to life: light turning behind the card, and a cut-out picture stepping out of the frame. */}
       {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[look] }} />}
-      {heroOn && form.cutout && <img src={form.image} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}
+      {/* A cut-out picture comes out of the card: its own, or the one it has for that (O-Chan's dancing). */}
+      {heroOn && (form.cutout || card.heroPop) && <img src={form.cutout ? form.image : card.heroPop} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}
       {/* Up close, in 3D: the near halves of the rings, in front of the card, and embers at every depth. */}
       {omni && depth && (
         <>

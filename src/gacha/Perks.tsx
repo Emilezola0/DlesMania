@@ -53,7 +53,8 @@ function FullBackdrop({ card }: { card: Card }) {
   const form = useCardForm(card);
   const f = !form.awakened ? card.focus : undefined;
   const [failed, setFailed] = useState<string | null>(null);
-  const gif = form.clip && GIF_CLIP.test(form.clip) && loops(form.clip) && failed !== form.clip ? form.clip : null;
+  // A GIF, or a short loop marked as one (`loopBehind`: O-Chan's game captures).
+  const gif = form.clip && (GIF_CLIP.test(form.clip) || card.loopBehind) && loops(form.clip) && failed !== form.clip ? form.clip : null;
   if (gif) return <CardClip src={gif} poster={form.image} onFail={() => setFailed(gif)} className="absolute inset-0 size-full object-cover opacity-[0.22]" />;
   return (
     <img

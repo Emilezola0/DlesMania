@@ -5,7 +5,7 @@ import { NameLangSwitch } from '../components/NameLangSwitch';
 import { Spinner } from '../components/Spinner';
 import { mergeSaves, pickSave, type SaveData } from '../cloud/merge';
 import { CARD_BY_ID, SETS, RARITY_INFO } from '../gacha/cards';
-import { THEMES, unlockedThemes } from '../gacha/Theme';
+import { COMPANIONS_MIN, THEMES, companionCount, companionModeOf, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
 import { RotationSettings } from '../gacha/RotationSettings';
 import { AvatarFrame, useWornFrame } from '../casino/Frame';
@@ -243,14 +243,11 @@ function Profile() {
   const setCompanions = useProgress((s) => s.setCompanions);
   const owned = useProgress((s) => s.cards);
   const unlocked = unlockedThemes(owned);
-  // The companions' franchises (several at once): the ones with a card owned to talk.
+  // Where the companions come from: the theme's franchise (default), franchises picked one by one, or every one owned.
   const companionSets = useProgress((s) => s.companionSets ?? []);
-  const ownedSets = new Set(Object.keys(owned).filter((id) => owned[id]).map((id) => id.split(':')[0]));
-  const toggleCompanionSet = (id: string) =>
-    useProgress.setState((s) => {
-      const now = s.companionSets ?? [];
-      return { companionSets: now.includes(id) ? now.filter((x) => x !== id) : [...now, id] };
-    });
+  const companionMode = useProgress((s) => companionModeOf(s.companionMode, s.companionSets));
+  const addCompanionSet = (id: string) => useProgress.setState((s) => ({ companionSets: [...(s.companionSets ?? []).filter((x) => x !== id), id] }));
+  const removeCompanionSet = (id: string) => useProgress.setState((s) => ({ companionSets: (s.companionSets ?? []).filter((x) => x !== id) }));
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -342,27 +339,54 @@ function Profile() {
       </label>
       {companions && (
         <div className="space-y-2 rounded-md border border-rule p-3">
-          <p className="text-sm">
-            <span className="font-semibold">Companions from several franchises</span>{' '}
-            <span className="text-ink-soft">— pick any you own cards from: their characters come together and talk to each other. None picked: the theme’s franchise.</span>
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {SETS.filter((s) => ownedSets.has(s.id)).map((s) => {
-              const on = companionSets.includes(s.id);
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => toggleCompanionSet(s.id)}
-                  className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${on ? 'border-accent bg-accent/15' : 'border-rule-strong'}`}
-                >
-                  {on ? '✓ ' : ''}
-                  {s.franchise}
-                </button>
-              );
-            })}
-          </div>
+          <label className="block">
+            <span className="mb-1 block text-sm font-semibold">Where they come from</span>
+            <select
+              value={companionMode}
+              onChange={(e) => useProgress.setState({ companionMode: e.target.value as typeof companionMode })}
+              className="w-full rounded-md border border-rule-strong bg-card px-3 py-2 font-semibold"
+            >
+              <option value="theme">Use my theme's companions</option>
+              <option value="picked">Use the franchises I select</option>
+              <option value="owned">Use every franchise I own</option>
+            </select>
+          </label>
+          {companionMode === 'picked' && (
+            <>
+              {/* A franchise is picked from the list (locked without enough cards to talk), and shows as a label to remove. */}
+              <select
+                value=""
+                onChange={(e) => e.target.value && addCompanionSet(e.target.value)}
+                className="w-full rounded-md border border-rule-strong bg-card px-3 py-2"
+                aria-label="Add a franchise"
+              >
+                <option value="">Add a franchise…</option>
+                {SETS.map((s) => {
+                  const enough = companionCount(s.id, owned) >= COMPANIONS_MIN;
+                  const on = companionSets.includes(s.id);
+                  return (
+                    <option key={s.id} value={s.id} disabled={!enough || on}>
+                      {enough ? (on ? `✓ ${s.franchise}` : s.franchise) : `🔒 ${s.franchise} (${COMPANIONS_MIN} cards needed)`}
+                    </option>
+                  );
+                })}
+              </select>
+              {companionSets.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {companionSets.map((id) => (
+                    <span key={id} className="inline-flex items-center gap-1 rounded-full border border-accent bg-accent/15 py-0.5 pl-2.5 pr-1 text-xs font-semibold">
+                      {SETS.find((s) => s.id === id)?.franchise ?? id}
+                      <button type="button" onClick={() => removeCompanionSet(id)} aria-label={`Remove ${SETS.find((s) => s.id === id)?.franchise ?? id}`} className="grid size-5 place-items-center rounded-full hover:bg-accent/25">
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-ink-faint">None picked yet: your theme's companions come meanwhile.</p>
+              )}
+            </>
+          )}
         </div>
       )}
       <p className="text-xs text-ink-faint">

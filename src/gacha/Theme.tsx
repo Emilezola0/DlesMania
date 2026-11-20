@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { onCue, type Cue } from '../lib/sfx';
-import { useProgress } from '../store/progress';
+import { useProgress, type CompanionMode } from '../store/progress';
 import { CARDS, CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { pickExchange } from './Dialogue';
 import { CardAvatar } from './Perks';
@@ -128,6 +128,15 @@ const lineOf = (c: Card, kind: Cue) => {
  * little exchange, glad or dismayed according to how it went. Only cards that are owned come, so the
  * conversation grows with the collection; a Mythic or Omni icon joins in, and gets them talking far more often.
  */
+/** The companions' source as set (a save from before the choice existed: picked franchises if it has some, else the theme's). */
+export const companionModeOf = (mode: CompanionMode | undefined, picked: string[] | undefined): CompanionMode => mode ?? (picked?.length ? 'picked' : 'theme');
+
+/** A franchise's cards that can be companions (not places or techniques, not Mythics or Omnis), owned. */
+export const companionCount = (set: string, owned: Record<string, number>) =>
+  CARDS.filter((c) => c.set === set && owned[c.id] && !c.place && !c.technique && c.rarity !== 'mythic' && c.rarity !== 'omni').length;
+/** A franchise needs this many of them for its characters to talk among themselves. */
+export const COMPANIONS_MIN = 2;
+
 export function Companions() {
   const on = useProgress((s) => s.companions ?? true);
   const themeSet = useThemeSet();
@@ -138,7 +147,12 @@ export function Companions() {
   // The franchises picked in the Account (several, mixed together: a player's ask, Discord ticket "Personnalisation");
   // none picked: a top icon brings its franchise along, whichever theme is on, else the theme's.
   const picked = useProgress((s) => s.companionSets);
-  const sets = useMemo(() => (picked?.length ? picked : top ? [icon.set] : themeSet ? [themeSet] : []), [picked, top, icon, themeSet]);
+  const mode = useProgress((s) => companionModeOf(s.companionMode, s.companionSets));
+  const sets = useMemo(() => {
+    if (mode === 'owned') return [...new Set(Object.keys(cards).filter((id) => cards[id]).map((id) => id.split(':')[0]))];
+    if (mode === 'picked' && picked?.length) return picked;
+    return top ? [icon.set] : themeSet ? [themeSet] : [];
+  }, [mode, picked, cards, top, icon, themeSet]);
   const set = sets.length ? sets[0] : null;
   const cast = useMemo(
     () => CARDS.filter((c) => sets.includes(c.set) && cards[c.id] && c.id !== avatarId && !c.place && !c.technique && c.rarity !== 'mythic' && c.rarity !== 'omni'),

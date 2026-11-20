@@ -108,6 +108,8 @@ export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty =
 export type ThemeChoice = 'system' | 'light' | 'dark';
 /** Naming language for games that need one spelling. */
 export type NameLang = 'en' | 'fr';
+/** Where the companions come from: the theme's franchise, the franchises picked, or every franchise owned. */
+export type CompanionMode = 'theme' | 'picked' | 'owned';
 
 /** Storage key for one category's daily on one date, e.g. "anime:2026-10-18". */
 export const dayKey = (domain: Domain, date: string) => `${domain}:${date}`;
@@ -217,6 +219,11 @@ interface ProgressState {
    * missing: the theme's franchise, as before.
    */
   companionSets?: string[];
+  /**
+   * Where the companions come from (the owner's call): the theme's franchise (default), the franchises picked
+   * (`companionSets`), or every franchise the player owns cards from. Missing: picked if some are, else the theme's.
+   */
+  companionMode?: CompanionMode;
   setCompanions: (on: boolean) => void;
   setCardMotion: (on: boolean) => void;
   /** A Mythic's or Omni's own volumes, by card id, in percent (100: as it comes; up to 200): its voice line, and its video's sound behind a win. */

@@ -167,6 +167,8 @@ interface Star {
   clash?: boolean;
   /** A black hole is open and this star circles it (and maybe goes in). */
   orbit?: boolean;
+  /** A huge opening: an ordinary star past the show's budget, not drawn (its card is in the summary all the same). */
+  quiet?: boolean;
 }
 /**
  * A big opening (over five packs): lighter, or 250 cards' stars and faces lag. With a black hole, only the first
@@ -174,6 +176,20 @@ interface Star {
  * (no shines, no glitches: index.css .pack-summary-big) and only the ones on screen are drawn.
  */
 const BIG_OPENING = 25;
+/**
+ * A huge opening (up to 1000 packs: thousands of cards): every top card, wish and cosmic event keeps its star, but only
+ * the first STAR_BUDGET ordinary stars and ORBIT_BUDGET swallowed ones fly — or the show would last minutes. The
+ * summary draws its cards SUMMARY_CHUNK at a time, more as it scrolls down.
+ */
+const HUGE_OPENING = 250;
+/** How fast a big opening's show runs: 1 up to BIG_OPENING cards, then quicker the more there are (the owner's call), at most ×1/0.35. */
+const paceFor = (cards: number) => (cards <= BIG_OPENING ? 1 : Math.max(0.35, Math.sqrt(BIG_OPENING / cards)));
+const STAR_BUDGET = 150;
+const ORBIT_BUDGET = 12;
+const SUMMARY_CHUNK = 150;
+/** A huge opening's wishes and cosmic events: the first ones play their scene, the others land in the summary ("was Rare"). */
+const WISH_BUDGET = 6;
+const EVENT_BUDGET = 3;
 const ORBIT_FEW = 8;
 const STAR_GAP = 260;
 /** Many packs at once: the closest two stars come (ms), and over how many cards before the first top card they slow back down. */
@@ -196,18 +212,19 @@ const LAST_STAR_PAUSE = 1500;
  * A clashing star doesn't cross: it and a second star rush in from both sides, crash together in the
  * middle after CLASH_AT ms and burst (BOOM ms of sparks).
  */
-const CLASH_AT = 820;
-const BOOM = 850;
+const CLASH_AT = 520;
+const BOOM = 650;
 /** How long each cosmic event plays (ms), and when, in it, the card's new colour bursts out. */
 /**
  * A wish plays where its star is, among the others: the star crosses in WISH_MS, the golden comet catches it
  * WISH_BOOM ms in, where its head is then (WISH_HIT, in vw along its way: it goes from -30vw to 130vw, 24vw long).
  */
-const WISH_MS = 2200;
-const WISH_BOOM = 1000;
+const WISH_MS = 1600;
+const WISH_BOOM = 720;
 const WISH_HIT = -30 + (160 * WISH_BOOM) / WISH_MS + 24;
-const COSMIC_MS: Record<CosmicKind, number> = { wish: WISH_MS, collision: 4200, supernova: 5000, bigbang: 5800 };
-const COSMIC_BOOM: Record<CosmicKind, number> = { wish: WISH_BOOM, collision: 2900, supernova: 3300, bigbang: 3500 };
+// Two planets embracing (the first scene of every event) comes quicker than it did (4.2 s, its meeting at 2.9 s): the owner's call.
+const COSMIC_MS: Record<CosmicKind, number> = { wish: WISH_MS, collision: 3000, supernova: 5000, bigbang: 5800 };
+const COSMIC_BOOM: Record<CosmicKind, number> = { wish: WISH_BOOM, collision: 1900, supernova: 3300, bigbang: 3500 };
 const COSMIC_NAME: Record<CosmicKind, { icon: string; name: string }> = {
   wish: { icon: '🌠', name: 'A WISH COMES TRUE' },
   collision: { icon: '🪐', name: 'TWO PLANETS EMBRACE' },
@@ -282,7 +299,7 @@ function starsFor(cards: Card[], hole: Map<number, AnomalyId> | null, events: Ma
   const gapAt = (k: number, gap: number) => {
     if (cards.length <= 5) return gap;
     const fast = Math.max(STAR_GAP_MIN, (gap / 2.5) * Math.min(1, 25 / cards.length));
-    if (top(cards[k].rarity) || firstTop < 0) return top(cards[k].rarity) ? gap : fast;
+    if (top(cards[k].rarity) || firstTop < 0) return top(cards[k].rarity) ? gap * paceFor(cards.length) : fast;
     const toTop = firstTop - k;
     return toTop > 0 && toTop <= SLOW_DOWN ? fast + ((gap - fast) * (SLOW_DOWN + 1 - toTop)) / (SLOW_DOWN + 1) : fast;
   };
@@ -291,8 +308,16 @@ function starsFor(cards: Card[], hole: Map<number, AnomalyId> | null, events: Ma
   // A big drop (a Legendary or better's star, a wish, a star evolving) waits for the one before it to be over:
   // packed close together (many packs at once), they played on top of each other. Ordinary stars still crowd in.
   let bigClear = 0;
+  const huge = cards.length > HUGE_OPENING;
+  const pace = paceFor(cards.length);
+  let ordinary = 0;
+  let orbiting = 0;
+  let wishesShown = 0;
+  const quiet = (c: Card, at: number): Star => ({ to: c.rarity, from: c.rarity, delay: at, duration: 0, top: 0, tilt: 0, quiet: true });
   return cards.map((c, i) => {
     const ev = events.get(i);
+    // The events come last, the greatest at the very end: those are the ones that keep their scene.
+    if (ev && huge && i < cards.length - EVENT_BUDGET) return quiet(c, Math.max(at, clear));
     if (ev) {
       // A cosmic event: once the sky is empty, a breath, then its scene (the star first in the card's old colour).
       const delay = Math.max(at, clear) + LAST_STAR_PAUSE;
@@ -301,6 +326,7 @@ function starsFor(cards: Card[], hole: Map<number, AnomalyId> | null, events: Ma
       return star;
     }
     const wish = wishes.get(i);
+    if (wish && huge && wishesShown++ >= WISH_BUDGET) return quiet(c, at);
     if (wish) {
       // A wish: among the other stars, a little slower, caught by a golden comet on the way.
       const star: Star = { to: c.rarity, from: wish.from.rarity, delay: Math.max(at, bigClear), duration: WISH_MS, top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -6 - rand() * 10, event: 'wish' };
@@ -317,11 +343,14 @@ function starsFor(cards: Card[], hole: Map<number, AnomalyId> | null, events: Ma
     const rank = RARITIES.indexOf(c.rarity);
     const from = i === evolving ? RARITIES[rank >= 3 && rand() < COSMIC.deepFake ? rank - 2 : rank - 1] : c.rarity;
     const clash = from !== c.rarity;
+    // A huge opening: past the budget, an ordinary star (or a swallowed one) doesn't fly; the sky's timing stays as it was.
+    if (huge && i !== last && !clash && !top(c.rarity) && (orbit ? orbiting++ >= ORBIT_BUDGET : ordinary++ >= STAR_BUDGET))
+      return quiet(c, at);
     const big = !orbit && (top(c.rarity) || clash);
     if (big) at = Math.max(at, bigClear);
-    const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash, orbit };
+    const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : Math.round(flight(c.rarity) * (i === last ? 1 : pace)), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash, orbit };
     // Many cards (several packs at once): the stars come closer together; a top card's star leaves a little room.
-    at += gapAt(i, orbit ? ORBIT_GAP : STAR_GAP) + (top(c.rarity) && !orbit ? 250 : 0);
+    at += gapAt(i, orbit ? ORBIT_GAP : STAR_GAP) + (top(c.rarity) && !orbit ? 250 * pace : 0);
     clear = Math.max(clear, star.delay + star.duration);
     if (big) bigClear = star.delay + star.duration;
     return star;
@@ -359,7 +388,8 @@ function SkyPlanet({ tier, evolved, captureAt }: { tier: SkyTier; evolved: numbe
       <div
         key={`${front}${k}`}
         className={`sky-ring ${front ? 'sky-ring-front' : ''}`}
-        style={{ borderColor: p.prism ? undefined : p.ring, boxShadow: `0 0 ${2 + tier}vmin ${p.ring}`, ['--ring-scale' as string]: 1 + k * 0.22 }}
+        // The near half (cut along the middle) draws no glow: its far half's shows all round, and a cut glow showed straight edges.
+        style={{ borderColor: p.prism ? undefined : p.ring, boxShadow: front ? 'none' : `0 0 ${2 + tier}vmin ${p.ring}`, ['--ring-scale' as string]: 1 + k * 0.22 }}
       />
     );
   return (
@@ -1722,10 +1752,12 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
     // The black hole: it opens with a hum as the first star flies.
     if (cosmos.hole) laterIn(() => (sfx.blackHole(), rumble(stage.current, 1800, 0.3, 3)), 0);
     // A star it pulls in: a rush of air, and a jolt as it goes.
-    for (const k of cosmos.swallowed.keys()) laterIn(() => (sfx.swallow(), jolt(7, 400)), cosmos.stars[k].delay + cosmos.stars[k].duration - 300);
+    for (const k of cosmos.swallowed.keys()) if (!cosmos.stars[k].quiet) laterIn(() => (sfx.swallow(), jolt(7, 400)), cosmos.stars[k].delay + cosmos.stars[k].duration - 300);
     // The stars as they now fly (the swipe may have pushed the last one back).
     const ss = shifted(extraRef.current);
     ss.forEach((s, k) => {
+      // A star that doesn't fly (a huge opening's): no sound for it.
+      if (s.quiet) return;
       if (s.event) return cosmicCues(s);
       laterIn(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
       // An evolving star: the crash, a hard shake and the burst in its true colour.
@@ -1974,12 +2006,14 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
       if (st === 3) (sfx.shimmer(18), jolt(6, 400), buzz([20, 30, 20]));
       if (st === 4) (sfx.shimmer(24), jolt(12, 700), buzz([40, 30, 60]), rumble(stage.current, 1200, 0.4, 8));
     };
+    // A big opening: the build-up runs quicker (many top cards to turn).
+    const pace = paceFor(deck.length);
     for (let st = 1 as Step; st <= build; st++) {
-      const at = STEP_AT[st];
+      const at = STEP_AT[st] * pace;
       const now = st;
       later(() => enter(now), at);
     }
-    let end = TURN_AT[build];
+    let end = TURN_AT[build] * pace;
     if (plan.near) {
       // The next step bursts into life… flickers… and cracks.
       const next = (build + 1) as Step;
@@ -1988,8 +2022,8 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
       end += FLICKER_MS + CRACK_MS;
     }
     if (build >= 2 || (plan.near && build === 1)) {
-      later(() => sfx.suspense((end - STEP_AT[2]) / 1000), STEP_AT[2]);
-      heartbeat(STEP_AT[2], end);
+      later(() => sfx.suspense((end - STEP_AT[2] * pace) / 1000), STEP_AT[2] * pace);
+      heartbeat(STEP_AT[2] * pace, end);
     }
     later(go, end);
   };
@@ -2039,7 +2073,9 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
     // A top card charging: its turn now, without the wait.
     if (phase === 'reveal' && charging && landing.current) return landing.current();
     const from = phase === 'reveal' ? (flipped ? i + 1 : i) : 0;
-    const next = deck.findIndex((_, k) => k >= from && plans[k].step >= 2);
+    // A huge opening (scores of Legendaries): the skip stops on Mythics and Omnis only, the Legendaries wait in the summary.
+    const stopAt = deck.length > HUGE_OPENING ? 3 : 2;
+    const next = deck.findIndex((_, k) => k >= from && plans[k].step >= stopAt);
     setCharging(false);
     setStep(0);
     if (next < 0) {
@@ -2070,6 +2106,20 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+  /** The summary's cards drawn so far: a huge opening's come SUMMARY_CHUNK at a time, as the end comes into view. */
+  const [drawn, setDrawn] = useState(SUMMARY_CHUNK);
+  const more = useRef<HTMLDivElement>(null);
+  /** Gone straight to the end (the Bottom button): the cards not drawn yet wait for a tap, not for the scroll. */
+  const [toEnd, setToEnd] = useState(false);
+  const moreLeft = useRef(false);
+  moreLeft.current = drawn < deck.length && !toEnd;
+  useEffect(() => {
+    const el = more.current;
+    if (phase !== 'summary' || !el || !stage.current || toEnd) return;
+    const seen = new IntersectionObserver((e) => e.some((x) => x.isIntersecting) && setDrawn((d) => d + SUMMARY_CHUNK), { root: stage.current, rootMargin: '2400px 0px' });
+    seen.observe(el);
+    return () => seen.disconnect();
+  }, [phase, drawn, deck.length, toEnd]);
   /** Stops the summary's own scrolling (the Bottom button takes over). */
   const stopAutoScroll = useRef<() => void>(() => undefined);
   // The summary scrolls down by itself, quicker the more packs were opened, once its cards are dealt; a wheel, a
@@ -2086,7 +2136,9 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
       last = now;
       const end = el.scrollHeight - el.clientHeight;
       el.scrollTop = Math.min(at, end);
-      if (at < end) raf = requestAnimationFrame(step);
+      // Cards still to be drawn (a huge opening): it goes on as they come.
+      at = Math.min(at, end + 400);
+      if (at < end || moreLeft.current) raf = requestAnimationFrame(step);
     };
     const start = window.setTimeout(() => (raf = requestAnimationFrame(step)), SUMMARY_DEAL + 500);
     const stop = () => (window.clearTimeout(start), cancelAnimationFrame(raf));
@@ -2189,7 +2241,12 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
       {phase === 'summary' && (
         <button
           type="button"
-          onClick={() => (stopAutoScroll.current(), stage.current?.scrollTo({ top: stage.current.scrollHeight, behavior: 'smooth' }))}
+          onClick={() => {
+            stopAutoScroll.current();
+            // A huge opening: straight to the end, the cards not drawn yet left for a tap (drawing thousands at once froze the page).
+            setToEnd(true);
+            requestAnimationFrame(() => stage.current?.scrollTo({ top: stage.current.scrollHeight, behavior: 'smooth' }));
+          }}
           className="fixed bottom-4 right-4 z-50 rounded-full border border-white/40 bg-black/70 px-4 py-2 font-display text-sm font-bold tracking-wider text-white backdrop-blur hover:border-white"
           aria-label="Scroll to the end of the summary"
         >
@@ -2315,7 +2372,7 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
           {cosmos.hole && !flownFrom && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
           {stars.map((star, k) => {
             // Skipped into the show: the stars already gone aren't drawn, the others come that much sooner.
-            if (flownFrom && star.delay + star.duration <= flownFrom) return null;
+            if (star.quiet || (flownFrom && star.delay + star.duration <= flownFrom)) return null;
             const s = flownFrom ? { ...star, delay: star.delay - flownFrom } : star;
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
             // A black hole: every star but the last circles it (and some go in).
@@ -2456,18 +2513,27 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
           <PackStats deck={deck} fresh={fresh} golden={golden} packs={times} />
           {allChoice}
           <div className={`grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4 ${deck.length > BIG_OPENING ? 'pack-summary-big' : ''}`}>
-            {deck.map((c, k) => (
-              <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k, deck.length)}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
+            {deck.slice(0, drawn).map((c, k) => (
+              <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k % SUMMARY_CHUNK, Math.min(deck.length, SUMMARY_CHUNK))}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
                 <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still calm={deck.length > BIG_OPENING} anomaly={kept[k] === true ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] === true ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
                 {cosmicAt.has(k) && <p className="text-center text-[10px] font-bold tracking-widest text-white/70" title={COSMIC_DONE[cosmicAt.get(k)!.kind]}>{COSMIC_NAME[cosmicAt.get(k)!.kind].icon} was {RARITY_INFO[cosmicAt.get(k)!.from.rarity].name}</p>}
-                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(k, deck.length) + 250}ms` }}>+1 SPARE</p>}
+                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(k % SUMMARY_CHUNK, Math.min(deck.length, SUMMARY_CHUNK)) + 250}ms` }}>+1 SPARE</p>}
               </div>
             ))}
           </div>
+          {/* A huge opening: the next cards drawn as the end comes into view. */}
+          {drawn < deck.length && !toEnd && <div ref={more} className="h-px" aria-hidden />}
+          {drawn < deck.length && toEnd && (
+            <div className="text-center">
+              <button type="button" onClick={() => (setToEnd(false), setDrawn((d) => d + SUMMARY_CHUNK))} className="rounded-md border border-white/40 px-4 py-2 font-display text-sm font-bold tracking-wider text-white hover:border-white">
+                Show the other {deck.length - drawn} cards
+              </button>
+            </div>
+          )}
           {/* Again at the end: fifty packs' worth of cards scroll the first one far away. */}
           {allChoice}
           <div className="flex flex-wrap justify-center gap-3">
