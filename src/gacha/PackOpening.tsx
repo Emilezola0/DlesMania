@@ -187,6 +187,8 @@ const paceFor = (cards: number) => (cards <= BIG_OPENING ? 1 : Math.max(0.35, Ma
 const STAR_BUDGET = 150;
 const ORBIT_BUDGET = 12;
 const SUMMARY_CHUNK = 150;
+/** Over this many packs at once, the summary shows only the Legendary cards or better (the owner's call); the stats count them all. */
+const SUMMARY_TOP_ONLY = 100;
 /** A huge opening's wishes and cosmic events: the first ones play their scene, the others land in the summary ("was Rare"). */
 const WISH_BUDGET = 6;
 const EVENT_BUDGET = 3;
@@ -2108,18 +2110,20 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
   });
   /** The summary's cards drawn so far: a huge opening's come SUMMARY_CHUNK at a time, as the end comes into view. */
   const [drawn, setDrawn] = useState(SUMMARY_CHUNK);
+  /** The summary's cards, each with its place in the deck: over SUMMARY_TOP_ONLY packs, the Legendaries or better only. */
+  const listed = useMemo(() => deck.map((c, k) => ({ c, k })).filter(({ c }) => times <= SUMMARY_TOP_ONLY || top(c.rarity)), [deck, times]);
   const more = useRef<HTMLDivElement>(null);
   /** Gone straight to the end (the Bottom button): the cards not drawn yet wait for a tap, not for the scroll. */
   const [toEnd, setToEnd] = useState(false);
   const moreLeft = useRef(false);
-  moreLeft.current = drawn < deck.length && !toEnd;
+  moreLeft.current = drawn < listed.length && !toEnd;
   useEffect(() => {
     const el = more.current;
     if (phase !== 'summary' || !el || !stage.current || toEnd) return;
     const seen = new IntersectionObserver((e) => e.some((x) => x.isIntersecting) && setDrawn((d) => d + SUMMARY_CHUNK), { root: stage.current, rootMargin: '2400px 0px' });
     seen.observe(el);
     return () => seen.disconnect();
-  }, [phase, drawn, deck.length, toEnd]);
+  }, [phase, drawn, listed.length, toEnd]);
   /** Stops the summary's own scrolling (the Bottom button takes over). */
   const stopAutoScroll = useRef<() => void>(() => undefined);
   // The summary scrolls down by itself, quicker the more packs were opened, once its cards are dealt; a wheel, a
@@ -2512,25 +2516,30 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
           <PackStats deck={deck} fresh={fresh} golden={golden} packs={times} />
           {allChoice}
+          {listed.length < deck.length && (
+            <p className="text-center text-sm font-semibold text-white/70">
+              {times} packs: only the Legendary cards or better are shown ({listed.length} of {deck.length}). Every card is in your album.
+            </p>
+          )}
           <div className={`grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4 ${deck.length > BIG_OPENING ? 'pack-summary-big' : ''}`}>
-            {deck.slice(0, drawn).map((c, k) => (
-              <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k % SUMMARY_CHUNK, Math.min(deck.length, SUMMARY_CHUNK))}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
+            {listed.slice(0, drawn).map(({ c, k }, n) => (
+              <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(n % SUMMARY_CHUNK, Math.min(listed.length, SUMMARY_CHUNK))}ms`, ['--deal-rot' as string]: `${((n % 5) - 2) * 6}deg` }}>
                 <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still calm={deck.length > BIG_OPENING} anomaly={kept[k] === true ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] === true ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
                 {cosmicAt.has(k) && <p className="text-center text-[10px] font-bold tracking-widest text-white/70" title={COSMIC_DONE[cosmicAt.get(k)!.kind]}>{COSMIC_NAME[cosmicAt.get(k)!.kind].icon} was {RARITY_INFO[cosmicAt.get(k)!.from.rarity].name}</p>}
-                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(k % SUMMARY_CHUNK, Math.min(deck.length, SUMMARY_CHUNK)) + 250}ms` }}>+1 SPARE</p>}
+                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(n % SUMMARY_CHUNK, Math.min(listed.length, SUMMARY_CHUNK)) + 250}ms` }}>+1 SPARE</p>}
               </div>
             ))}
           </div>
           {/* A huge opening: the next cards drawn as the end comes into view. */}
-          {drawn < deck.length && !toEnd && <div ref={more} className="h-px" aria-hidden />}
-          {drawn < deck.length && toEnd && (
+          {drawn < listed.length && !toEnd && <div ref={more} className="h-px" aria-hidden />}
+          {drawn < listed.length && toEnd && (
             <div className="text-center">
               <button type="button" onClick={() => (setToEnd(false), setDrawn((d) => d + SUMMARY_CHUNK))} className="rounded-md border border-white/40 px-4 py-2 font-display text-sm font-bold tracking-wider text-white hover:border-white">
-                Show the other {deck.length - drawn} cards
+                Show the other {listed.length - drawn} cards
               </button>
             </div>
           )}
