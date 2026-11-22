@@ -11,6 +11,7 @@ import type { GameProps, GameType, Work } from '../types';
 import { GAME_META } from './meta';
 import { PixelCanvas, withThumbs } from './PixelCanvas';
 import { tr } from '../lib/i18n';
+import { mulberry32 } from '../lib/rng';
 
 const LABEL_FR: Record<string, string> = {
   Clues: 'Indices', Tracklist: 'Liste des pistes', 'Zoomed-in detail': 'Détail zoomé', 'Voice clip unavailable — emoji clue instead': 'Extrait vocal indisponible — indice en emojis à la place',
@@ -47,6 +48,16 @@ export function textClueShown(type: GameType, w: Work, broken: Set<string>): boo
     return !clip && !coverZoom;
   }
   return false;
+}
+
+/**
+ * Where a zoomed picture starts, moved a little from its usual point by the round's seed (up to 12 % each way, kept off
+ * the edges), so a work that comes back doesn't open on the very same crop.
+ */
+export function nudge([x, y]: [number, number], seed: number): [number, number] {
+  const r = mulberry32((seed ^ 0x27d4eb2f) >>> 0);
+  const move = (v: number) => Math.round(Math.min(85, Math.max(15, v + (r() * 2 - 1) * 12)));
+  return [move(x), move(y)];
 }
 
 /** Needle Drop's spot in the song (0–1), from the round's seed: anywhere from 10 % to 85 % of the way in. */
@@ -117,7 +128,7 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
         return (
           <div className="space-y-3">
             <Label>Zoomed-in detail</Label>
-            <ZoomImage src={w.cover.image} alt={w.name} step={wrong} revealed={done} focus={[50, 42]} onError={() => onBroken('cover')} />
+            <ZoomImage src={w.cover.image} alt={w.name} step={wrong} revealed={done} focus={nudge([50, 42], seed)} onError={() => onBroken('cover')} />
           </div>
         );
       }
@@ -220,7 +231,7 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
         return (
           <div className="space-y-3">
             <Label>Where is this?</Label>
-            <ZoomImage src={w.location.image} alt={w.location.name} step={wrong} revealed={done} focus={w.location.focus} onError={() => onBroken('location')} />
+            <ZoomImage src={w.location.image} alt={w.location.name} step={wrong} revealed={done} focus={nudge(w.location.focus ?? [50, 50], seed)} onError={() => onBroken('location')} />
           </div>
         );
       }
@@ -243,7 +254,7 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
   const [broken, setBroken] = useState<Set<string>>(new Set());
   const pool = useMemo(() => candidates('classic', target.domain), [target.domain]);
   const textShown = textClueShown(spec.type, target, broken);
-  const hints = useMemo(() => hintsFor(spec.type, target, { textClueShown: textShown }), [spec.type, target, textShown]);
+  const hints = useMemo(() => hintsFor(spec.type, target, { textClueShown: textShown, seed: spec.seed }), [spec.type, target, textShown, spec.seed]);
   const wrong = record.guesses.filter((g) => g !== target.id);
   const done = record.status !== 'playing';
   const revealed = done ? hints.length : Math.min(wrong.length, hints.length);
