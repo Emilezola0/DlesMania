@@ -18,7 +18,8 @@ import { DleCoin } from '../components/DleCoin';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
 import { RulesButton } from '../components/RulesModal';
 import { GroupHost, GroupJoin } from '../components/GroupCode';
-import { useT } from '../lib/i18n';
+import { tr, useT } from '../lib/i18n';
+import { isBossRound, stageOf } from '../lib/difficulty';
 import { DailyCards, SpecialistCard } from './DailyCards';
 
 // The home page's cards (here in /daily too), in their own light file: the home page needn't load this page.
@@ -175,6 +176,15 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
   );
 }
 
+/** A round's place on the day's curve (src/lib/difficulty.ts), as shown above it. */
+const STAGE_LABEL = {
+  easy: () => tr('Easy', 'Facile'),
+  medium: () => tr('Medium', 'Moyen'),
+  hard: () => tr('Hard', 'Difficile'),
+  boss: () => tr('⚔ Boss', '⚔ Boss'),
+};
+const STAGE_TONE = { easy: 'bg-hit/15 text-hit', medium: 'bg-near/20 text-ink', hard: 'bg-miss/15 text-miss', boss: 'bg-ink text-paper' };
+
 function specsValid(specs: RoundSpec[]): boolean {
   try {
     return specs.length === 10 && specs.every((s) => {
@@ -216,6 +226,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
   const sum = summarizeDay(rounds);
   const spec = index >= 0 ? specs[index] : undefined;
   const record = spec ? rounds[index] ?? EMPTY_RECORD : undefined;
+  const stage = spec ? stageOf(date, index) : null;
   const nextOpen = specs.findIndex((_, i) => i !== index && isOpen(i));
 
   const onChange = (r: RoundRecord) => {
@@ -288,7 +299,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
               }`}
             >
               <Glyph seed={s.type} size={22} />
-              <span className="font-display text-[10px] font-semibold text-ink-soft">{ROMAN[i]}</span>
+              <span className="font-display text-[10px] font-semibold text-ink-soft">{isBossRound(date, i) ? `⚔ ${ROMAN[i]}` : ROMAN[i]}</span>
             </button>
           );
         })}
@@ -303,11 +314,17 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
       {spec && record ? (
         <section key={`${key}-${index}`} className="mx-auto max-w-3xl space-y-6">
           <div>
-            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">{t(`Round ${index + 1} of 10`, `Manche ${index + 1} sur 10`)}</p>
+            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">
+              {t(`Round ${index + 1} of 10`, `Manche ${index + 1} sur 10`)}
+              {stage && <span className={`ml-2 rounded-sm px-1.5 py-0.5 ${STAGE_TONE[stage]}`}>{STAGE_LABEL[stage]()}</span>}
+            </p>
             <h2 className="flex items-center gap-2 text-3xl font-bold">
               <Glyph seed={spec.type} size={28} className={info.tone} /> {GAME_META[spec.type].name}
             </h2>
             <p className="font-serif text-lg italic text-ink-soft">{GAME_META[spec.type].tagline}</p>
+            {stage === 'boss' && (
+              <p className="mt-1 text-sm font-semibold text-ink">{t('The day’s hardest round: double coins and a sure rare seed if you win it.', 'La manche la plus dure du jour : pièces doublées et graine rare assurée si tu la gagnes.')}</p>
+            )}
           </div>
 
           <GameHost spec={spec} record={record} onChange={onChange} />

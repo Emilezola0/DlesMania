@@ -4,6 +4,7 @@ import { GAME_TYPES } from '../games/meta';
 import type { Domain, GameType, RoundSpec, Work } from '../types';
 import { EPOCH, addDays, dayNumber } from './date';
 import { hashString, mulberry32, pick, shuffle } from './rng';
+import { byDifficulty, DIFFICULTY_FROM } from './difficulty';
 
 export { ROUNDS_PER_DAY } from './date';
 import { ROUNDS_PER_DAY } from './date';
@@ -201,7 +202,9 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   while (types.length < ROUNDS_PER_DAY) types.push('classic');
   if (dateKey >= ONE_ANSWER_FROM) {
     const varied = VARIED.includes(domain) && dateKey >= VARIETY_FROM ? recentTypesBefore(dateKey, domain) : undefined;
-    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined, varied);
+    const drawn = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined, varied);
+    // From DIFFICULTY_FROM, easy to hard, the hardest last (the Boss round).
+    const specs = dateKey >= DIFFICULTY_FROM ? byDifficulty(drawn) : drawn;
     dailyCache.set(key, specs);
     return specs;
   }

@@ -1,3 +1,4 @@
+import { isBossRound } from '../lib/difficulty';
 import type { AnomalyId } from '../gacha/anomalies';
 import { create } from 'zustand';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, isElement, type ElementId, type Engraving } from '../gacha/grades';
@@ -1459,6 +1460,7 @@ export const useProgress = create<ProgressState>()(
           // Coins for the round, and a bonus once all ten are played: today's, by its score (and more once all
           // four of today's are done); a past day's (the Archive), a small one.
           const won = record.status === 'won';
+          const boss = isBossRound(date, index);
           const complete = summarizeDay(day).finished >= ROUNDS_PER_DAY && summarizeDay(s.days[key]).finished < ROUNDS_PER_DAY;
           let bonus = 0;
           if (complete && date === todayKey()) {
@@ -1471,10 +1473,13 @@ export const useProgress = create<ProgressState>()(
           if (date === todayKey()) {
             const log = seedLogNow(s.seedLog);
             const sotd = complete && !log.sotd;
-            const ids = [...roundSeeds(s.specs[key]?.[index]?.type ?? '', won, record.score), ...(sotd ? [seedOfTheDay().id] : [])];
+            // The Boss round (src/lib/difficulty.ts) won: its rare seed for sure.
+            const ids = [...roundSeeds(s.specs[key]?.[index]?.type ?? '', won, record.score, boss ? () => 0 : Math.random), ...(sotd ? [seedOfTheDay().id] : [])];
             seeded = { ...withSeeds(s, ids), ...(sotd ? { seedLog: { ...log, sotd: true } } : {}) };
           }
-          return { ...update, ...seeded, ...earn(s, roundCoins(won, record.score) + bonus, { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
+          // The Boss round won: its coins twice over.
+          const coins = roundCoins(won, record.score) * (boss && won ? 2 : 1);
+          return { ...update, ...seeded, ...earn(s, coins + bonus, { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
         }),
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
