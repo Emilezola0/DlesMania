@@ -138,14 +138,19 @@ export const MUSIC_MIX_FROM = '2026-11-23';
 const LISTENING: GameType[] = ['intro', 'needle', 'blindtest'];
 
 /**
- * From this day on, a film that comes back in Cinema's dailies comes back in another mini-game: not one of the
+ * From this day on, a work that comes back in the Cinema, Anime and Video Games dailies comes back in another mini-game: not one of the
  * mini-games it was found in its last RECENT_TYPES times, when there's a choice (the owner's call). Days before it keep
  * their rounds.
  */
-export const CINEMA_VARIETY_FROM = '2026-11-23';
+export const VARIETY_FROM = '2026-11-23';
+/** The categories the rule above holds for (Music spreads its songs by source instead: MUSIC_MIX_FROM). */
+const VARIED: Domain[] = ['cinema', 'anime', 'games'];
 const RECENT_TYPES = 3;
-/** …but never by bringing back a film found fewer days ago than this (the usual recency would have waited). */
-const VARIETY_MIN_GAP = 6;
+/**
+ * …but only among the works found at most this many days after the round's least recently found one, so a work never
+ * comes back much sooner than the usual recency would have brought it.
+ */
+const VARIETY_SLACK = 5;
 
 /** The mini-games each work was last found in (a Timeline counts for the four it shows), most recent last. */
 function recentTypesBefore(dateKey: string, domain: Domain): Map<string, GameType[]> {
@@ -195,7 +200,7 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   }
   while (types.length < ROUNDS_PER_DAY) types.push('classic');
   if (dateKey >= ONE_ANSWER_FROM) {
-    const varied = domain === 'cinema' && dateKey >= CINEMA_VARIETY_FROM ? recentTypesBefore(dateKey, domain) : undefined;
+    const varied = VARIED.includes(domain) && dateKey >= VARIETY_FROM ? recentTypesBefore(dateKey, domain) : undefined;
     const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined, varied);
     dailyCache.set(key, specs);
     return specs;
@@ -261,7 +266,7 @@ function buildOneAnswerEach(
    * source rested for fewer than SOURCE_REST days, when there's a choice.
    */
   restBySource?: Map<string, number>,
-  /** Cinema from CINEMA_VARIETY_FROM, the mini-games each film was last found in: it comes back in another one, when there's a choice. */
+  /** Cinema, Anime and Video Games from VARIETY_FROM, the mini-games each work was last found in: it comes back in another one, when there's a choice. */
   recentTypes?: Map<string, GameType[]>,
 ): RoundSpec[] {
   const oneBySource = !!restBySource;
@@ -284,7 +289,8 @@ function buildOneAnswerEach(
   const order = types.map((t, i) => [t, i] as const);
   const showsSeveral = (t: GameType) => t === 'timeline' || t === 'connections';
   for (const [type, i] of [...order.filter(([t]) => showsSeveral(t)), ...order.filter(([t]) => !showsSeveral(t))]) {
-    const newType = (w: Work) => fresh(w) && !recentTypes!.get(w.id)?.includes(type) && today - (lastUsed.get(w.id) ?? -Infinity) >= VARIETY_MIN_GAP;
+    const oldest = recentTypes ? Math.min(...candidates(type, domain).filter(fresh).map((w) => lastUsed.get(w.id) ?? -1)) : 0;
+    const newType = (w: Work) => fresh(w) && !recentTypes!.get(w.id)?.includes(type) && (lastUsed.get(w.id) ?? -1) <= oldest + VARIETY_SLACK;
     const spec =
       (recentTypes ? buildRound(type, domain, rand, used, lastUsed, newType, dateKey) : null) ??
       (oneBySource ? buildRound(type, domain, rand, used, lastUsed, fresh, dateKey) : null) ??
