@@ -3,6 +3,7 @@ import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import type { GameProps, GameType, RoundRecord } from '../types';
 import ClassicGame from './ClassicGame';
+import BlindTestGame from './BlindTestGame';
 import ClueGame from './ClueGame';
 import ConnectionsGame from './ConnectionsGame';
 import TilesGame from './TilesGame';
@@ -20,10 +21,13 @@ const COMPONENTS: Record<GameType, ComponentType<GameProps>> = {
   tiles: TilesGame,
   timeline: TimelineGame,
   connections: ConnectionsGame,
+  intro: ClueGame,
+  needle: ClueGame,
+  blindtest: BlindTestGame,
 };
 
 /** Games that play their own sounds for intermediate guesses (e.g. "one away", a solved group). */
-const OWN_FEEDBACK = new Set<GameType>(['connections']);
+const OWN_FEEDBACK = new Set<GameType>(['connections', 'blindtest']);
 
 interface FxProps {
   record: RoundRecord;

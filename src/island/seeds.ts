@@ -72,6 +72,8 @@ export function seedOfTheDay(day = todayKey()): Seed {
 
 /** What a finished daily round drops: its game's common seed, and maybe its rare one (by the score). */
 export function roundSeeds(game: string, won: boolean, score: number, rand = Math.random): string[] {
+  // Music's listening rounds grow the Melody family, like the Soundtrack.
+  if (game === 'intro' || game === 'needle' || game === 'blindtest') game = 'audio';
   if (!FAMILY_BY_ID.has(game)) return [];
   const out = [seedOf(game, 'common').id];
   if (won && rand() < Math.max(0, score) / SEED.rareDivisor) out.push(seedOf(game, 'rare').id);

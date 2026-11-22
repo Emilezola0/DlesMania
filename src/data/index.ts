@@ -86,6 +86,10 @@ const HAS_CONTENT: Partial<Record<GameType, (w: Work) => boolean>> = {
   item: (w) => !!w.item?.image,
   location: (w) => !!w.location?.image,
   tiles: (w) => !!w.cover?.image,
+  // Music's listening rounds: only songs with a clip (no fallback, the round is the song itself).
+  intro: (w) => w.domain === 'music' && !!w.audio?.youtubeId,
+  needle: (w) => w.domain === 'music' && !!w.audio?.youtubeId,
+  blindtest: (w) => w.domain === 'music' && !!w.audio?.youtubeId,
 };
 
 export function candidates(type: GameType, domain?: Domain): Work[] {

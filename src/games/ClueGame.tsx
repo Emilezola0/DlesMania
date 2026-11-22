@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { AudioClip, SNIPPETS, VOICE_SNIPPETS } from '../components/AudioClip';
+import { AudioClip, INTRO_SNIPPETS, SNIPPETS, VOICE_SNIPPETS } from '../components/AudioClip';
 import { ObscuredImage } from '../components/ObscuredImage';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
@@ -41,13 +41,16 @@ export function textClueShown(type: GameType, w: Work, broken: Set<string>): boo
   if (type === 'item') return !w.item?.image || broken.has('item');
   if (type === 'location') return !w.location?.image || broken.has('location');
   if (type === 'visual') return broken.has('visual');
-  if (type === 'audio') {
+  if (type === 'audio' || type === 'intro' || type === 'needle') {
     const clip = !!w.audio?.youtubeId && !broken.has('clip');
     const coverZoom = !!w.cover?.image && !broken.has('cover');
     return !clip && !coverZoom;
   }
   return false;
 }
+
+/** Needle Drop's spot in the song (0–1), from the round's seed: anywhere from 10 % to 85 % of the way in. */
+export const needleAt = (seed: number) => 0.1 + ((seed >>> 0) % 1000) / 1000 * 0.75;
 
 /** The main clue for each single-answer mini-game. */
 function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
@@ -91,10 +94,22 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
         <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-ink sm:text-3xl">“{w.quote!.text}”</blockquote>
       );
 
-    case 'audio': {
+    case 'audio':
+    case 'intro':
+    case 'needle': {
       if (w.audio?.youtubeId && !broken.has('clip')) {
+        // Quick Intro: from 0 s, in short steps. Needle Drop: a spot set by the round's seed, 10–85 % of the way in.
+        const lengths = type === 'intro' ? INTRO_SNIPPETS : SNIPPETS;
         return (
-          <AudioClip videoId={w.audio.youtubeId} start={w.audio.start} step={Math.min(wrong, SNIPPETS.length - 1)} revealed={done} onUnavailable={() => onBroken('clip')} />
+          <AudioClip
+            videoId={w.audio.youtubeId}
+            start={type === 'intro' ? 0 : type === 'needle' ? undefined : w.audio.start}
+            at={type === 'needle' ? needleAt(seed) : undefined}
+            step={Math.min(wrong, lengths.length - 1)}
+            lengths={lengths}
+            revealed={done}
+            onUnavailable={() => onBroken('clip')}
+          />
         );
       }
       // No playable clip: a zoomed-in detail of the cover instead, then plain text as a last resort.

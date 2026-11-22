@@ -11,7 +11,13 @@ export type GameType =
   | 'item'
   | 'location'
   | 'tiles'
-  | 'connections';
+  | 'connections'
+  /** Music only: the song's first notes, from 0.5 s. */
+  | 'intro'
+  /** Music only: a passage from anywhere in the song, a different spot each round. */
+  | 'needle'
+  /** Music only: five songs, one try each. */
+  | 'blindtest';
 
 /** An image that can be blurred/pixelated. `image` is resolved from `wiki` by scripts/enrich-media.mjs. */
 export interface MediaRef {

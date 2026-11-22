@@ -6,13 +6,17 @@ import { useProgress } from '../store/progress';
 
 /** Snippet length (seconds) unlocked by each wrong guess, Heardle-style. */
 export const SNIPPETS = [1, 2, 4, 7, 11, 16];
+/** Quick Intro: from the very first notes, in shorter steps. */
+export const INTRO_SNIPPETS = [0.5, 1, 2, 3, 5, 8];
 /** Voice lines need a little longer to be heard at all. */
 export const VOICE_SNIPPETS = [2, 3, 5, 8, 12, 16];
 
 interface Props {
   videoId: string;
-  /** Second the snippet starts at. When omitted it's picked from the middle of the clip. */
+  /** Second the snippet starts at. When omitted it's picked from the middle of the clip (or by `at`). */
   start?: number;
+  /** Without `start`: where the snippet starts, as a share of the clip (0–1), room left for the longest snippet. */
+  at?: number;
   /** Index into `lengths`: grows with each wrong guess. */
   step: number;
   /** Snippet lengths in seconds, one per step (default SNIPPETS). */
@@ -28,6 +32,8 @@ interface Props {
    * still buffering. A round against the clock stops its timer meanwhile.
    */
   onLoading?: (loading: boolean) => void;
+  /** The line under the player, instead of the usual one (a round that plays its clip differently). */
+  note?: string;
 }
 
 /** Intros are often silent or ambient, so default to ~40% in, leaving room for the longest snippet. */
@@ -36,7 +42,13 @@ function autoStart(duration: number): number {
   return Math.floor(Math.min(duration * 0.4, duration - SNIPPETS[SNIPPETS.length - 1] - 5));
 }
 
-export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS, full = false, onLoading }: Props) {
+/** The second `at` (0–1) of the way through the clip, leaving room for the longest snippet. */
+function startAt(duration: number, at: number, longest: number): number {
+  if (!duration || duration < 30) return 0;
+  return Math.max(0, Math.floor(Math.min(duration * at, duration - longest - 3)));
+}
+
+export function AudioClip({ videoId, start, at, step, revealed, onUnavailable, lengths = SNIPPETS, full = false, onLoading, note }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
@@ -93,7 +105,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
               if (!p) return;
               p.setVolume(useProgress.getState().clipVolume);
               setDuration(p.getDuration());
-              setClipStart(start ?? autoStart(p.getDuration()));
+              setClipStart(start ?? (at !== undefined ? startAt(p.getDuration(), at, lengths[lengths.length - 1]) : autoStart(p.getDuration())));
               setReady(true);
             },
             onError: () => onUnavailable(),
@@ -212,7 +224,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
             lengths.map((s) => <span key={s} className="absolute inset-y-0 w-px bg-paper" style={{ left: `${(s / max) * 100}%` }} />)}
         </div>
         <p className="text-xs text-ink-faint">
-          {full ? 'Plays the whole clip — listen as often as you like.' : 'Each wrong guess unlocks a longer snippet.'} The video is revealed at the end.
+          {note ?? `${full ? 'Plays the whole clip — listen as often as you like.' : 'Each wrong guess unlocks a longer snippet.'} The video is revealed at the end.`}
         </p>
       </div>
     </div>

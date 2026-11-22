@@ -7,7 +7,7 @@ import type { GameType, Work } from '../types';
 export function hintsFor(type: GameType, w: Work, opts: { textClueShown?: boolean } = {}): string[] {
   const hints: string[] = [];
   if (!opts.textClueShown) {
-    if (type === 'audio' && w.audio) hints.push(w.audio.clue);
+    if ((type === 'audio' || type === 'intro' || type === 'needle') && w.audio) hints.push(w.audio.clue);
     if (type === 'item' && w.item) hints.push(w.item.description);
     if (type === 'location' && w.location) hints.push(w.location.description);
   }

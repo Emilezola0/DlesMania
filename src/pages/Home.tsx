@@ -84,7 +84,7 @@ export default function Home() {
       </section>
 
       <section className="space-y-5">
-        <ChapterHeading numeral="II" title={t('The ten mini-games', 'Les dix mini-jeux')} link={{ to: '/play', label: t('Free play →', 'Jeu libre →') }} />
+        <ChapterHeading numeral="II" title={t('The mini-games', 'Les mini-jeux')} link={{ to: '/play', label: t('Free play →', 'Jeu libre →') }} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {GAME_TYPES.map((type, i) => (
             <Link key={type} to={`/play?type=${type}`} className="page group rounded-md p-4 transition hover:-translate-y-0.5">

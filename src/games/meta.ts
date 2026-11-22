@@ -22,6 +22,9 @@ export const GAME_META: Record<GameType, GameMeta> = {
   item: withFrench({ type: 'item', name: 'Guess from the Image', icon: '🗡️', tagline: 'Name the work this picture comes from', maxAttempts: 6 }, { name: "Devine d'après l'image", tagline: "Nomme l'œuvre d'où vient cette image" }),
   location: withFrench({ type: 'location', name: 'Location', icon: '🗺️', tagline: 'Name the work from one of its places', maxAttempts: 6 }, { name: 'Lieu', tagline: "Nomme l'œuvre d'après l'un de ses lieux" }),
   tiles: withFrench({ type: 'tiles', name: 'Cover Puzzle', icon: '🔳', tagline: 'Name the work behind a scrambled, disguised cover', maxAttempts: 6 }, { name: 'Puzzle de jaquette', tagline: "Nomme l'œuvre derrière une jaquette mélangée et déguisée" }),
+  intro: withFrench({ type: 'intro', name: 'Quick Intro', icon: '⚡', tagline: 'Name the song from its very first notes', maxAttempts: 6 }, { name: 'Intro éclair', tagline: 'Nomme la chanson dès ses premières notes' }),
+  needle: withFrench({ type: 'needle', name: 'Needle Drop', icon: '💿', tagline: 'The needle lands anywhere in the song: name it', maxAttempts: 6 }, { name: 'Saut d’aiguille', tagline: 'L’aiguille tombe n’importe où dans la chanson : nomme-la' }),
+  blindtest: withFrench({ type: 'blindtest', name: 'Blind Test', icon: '🎤', tagline: 'Five songs, one try each', maxAttempts: 5 }, { name: 'Blind test', tagline: 'Cinq chansons, un essai chacune' }),
   connections: withFrench({ type: 'connections', name: 'Connections', icon: '🔗', tagline: 'Sort the tiles into hidden groups', maxAttempts: settings.connections.maxMistakes }, { name: 'Connexions', tagline: 'Range les tuiles en groupes cachés' }),
 };
 

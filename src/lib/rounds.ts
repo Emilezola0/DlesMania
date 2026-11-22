@@ -1,8 +1,8 @@
-import { candidates, connectionsPuzzles, connectionThemes, DOMAINS } from '../data';
+import { candidates, connectionsPuzzles, connectionThemes, DOMAINS, getWork } from '../data';
 import { THEME_PREFIX, themesFor } from './connections';
 import { GAME_TYPES } from '../games/meta';
 import type { Domain, GameType, RoundSpec, Work } from '../types';
-import { EPOCH, addDays } from './date';
+import { EPOCH, addDays, dayNumber } from './date';
 import { hashString, mulberry32, pick, shuffle } from './rng';
 
 export { ROUNDS_PER_DAY } from './date';
@@ -29,13 +29,28 @@ function weightedPick(pool: Work[], type: GameType, rand: () => number): Work {
 }
 
 /** Four works from different years, the least recently used first when `lastUsed` is given. */
-function timelineWorks(domain: Domain | undefined, rand: () => number, lastUsed?: Map<string, number>, only?: (w: Work) => boolean): string[] {
+function timelineWorks(domain: Domain | undefined, rand: () => number, lastUsed?: Map<string, number>, only?: (w: Work) => boolean, oneBySource = false): string[] {
   const chosen: Work[] = [];
   const order = shuffle(candidates('timeline', domain).filter((w) => !only || only(w)), rand);
   if (lastUsed) order.sort((x, y) => (lastUsed.get(x.id) ?? -1) - (lastUsed.get(y.id) ?? -1));
   for (const w of order) {
-    if (chosen.every((c) => c.year !== w.year)) chosen.push(w);
+    if (chosen.every((c) => c.year !== w.year && (!oneBySource || !w.studio || c.studio !== w.studio))) chosen.push(w);
     if (chosen.length === 4) break;
+  }
+  return chosen.map((w) => w.id);
+}
+
+/** How many songs a Blind Test plays. */
+export const BLIND_TEST_SONGS = 5;
+
+/** A Blind Test's songs: the least recently used first, each from a different game or anime. */
+function blindTestWorks(domain: Domain | undefined, rand: () => number, avoid: Set<string>, lastUsed?: Map<string, number>, only?: (w: Work) => boolean): string[] {
+  const order = shuffle(candidates('blindtest', domain).filter((w) => !avoid.has(w.id) && (!only || only(w))), rand);
+  if (lastUsed) order.sort((x, y) => (lastUsed.get(x.id) ?? -1) - (lastUsed.get(y.id) ?? -1));
+  const chosen: Work[] = [];
+  for (const w of order) {
+    if (chosen.every((c) => !w.studio || c.studio !== w.studio)) chosen.push(w);
+    if (chosen.length === BLIND_TEST_SONGS) break;
   }
   return chosen.map((w) => w.id);
 }
@@ -85,8 +100,13 @@ export function buildRound(
     const p = pick(leastRecent(puzzlesFor(domain).filter((x) => !x.from || !dateKey || x.from <= dateKey), (x) => x.id, lastUsed), rand);
     return { type, domain: p.domain, seed, puzzleId: p.id };
   }
+  if (type === 'blindtest') {
+    const ids = blindTestWorks(domain, rand, avoid, lastUsed, only);
+    return ids.length === BLIND_TEST_SONGS ? { type, domain: 'music', seed, workIds: ids } : null;
+  }
   if (type === 'timeline') {
-    const ids = timelineWorks(domain, rand, lastUsed, only);
+    // Music from MUSIC_MIX_FROM: four songs from four different games or anime.
+    const ids = timelineWorks(domain, rand, lastUsed, only, domain === 'music' && !!dateKey && dateKey >= MUSIC_MIX_FROM);
     return ids.length === 4 ? { type, domain: domain ?? 'mixed', seed, workIds: ids } : null;
   }
   const all = candidates(type, domain).filter((w) => !only || only(w));
@@ -108,6 +128,28 @@ export function buildRound(
 export const MUSIC_GAMES_ANIME_FROM = '2026-11-12';
 const gameOrAnimeSong = (w: Work) => /^(video game|anime|console)/i.test(w.format ?? '');
 
+/**
+ * From this day on, Music's two free places (it has eight mini-games for ten rounds) go to its listening rounds
+ * instead of two more Classics, and its songs are spread by source: a game or an anime waits as long as possible
+ * before coming back, and gives one song a day at most (the owner's call). Days before it keep their rounds.
+ */
+export const MUSIC_MIX_FROM = '2026-11-23';
+/** Music's listening rounds, drawn only into Music's dailies from MUSIC_MIX_FROM (and in Free Play). */
+const LISTENING: GameType[] = ['intro', 'needle', 'blindtest'];
+
+/** Music from MUSIC_MIX_FROM: a game or an anime whose song came up fewer days ago than this sits out, when there's a choice. */
+const SOURCE_REST = 5;
+
+/** When each source (a song's game or anime) last gave a song: source → day number since EPOCH. */
+function sourceDays(lastUsed: Map<string, number>, domain: Domain): Map<string, number> {
+  const days = new Map<string, number>();
+  for (const w of candidates('classic', domain)) {
+    const day = lastUsed.get(w.id);
+    if (w.studio && day !== undefined) days.set(w.studio, Math.max(day, days.get(w.studio) ?? -1));
+  }
+  return days;
+}
+
 export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   const key = `${domain}:${dateKey}`;
   const cached = dailyCache.get(key);
@@ -118,14 +160,22 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   const lastUsed = usageBefore(dateKey, domain);
   // Every mini-game this category has content for, ten of them a day (voice lines only exist for
   // anime and games, so those categories rotate one game out each day).
-  const types = shuffle(GAME_TYPES.filter((t) => isAvailable(t, domain)), rand).slice(0, ROUNDS_PER_DAY);
-  while (types.length < ROUNDS_PER_DAY) types.push('classic');
+  let types = shuffle(GAME_TYPES.filter((t) => !LISTENING.includes(t) && isAvailable(t, domain)), rand).slice(0, ROUNDS_PER_DAY);
   const musicOnly = domain === 'music' && dateKey >= MUSIC_GAMES_ANIME_FROM ? gameOrAnimeSong : undefined;
   // Works added later (`from`) stay out of the days before they came, so those days keep their rounds.
   const live = (w: Work) => !w.from || w.from <= dateKey;
   const only = (w: Work) => live(w) && (!musicOnly || musicOnly(w));
+  const mix = domain === 'music' && dateKey >= MUSIC_MIX_FROM;
+  if (mix) {
+    // Music's free places (the rounds no game or anime song has content for, like Item and Location, which used
+    // to fall back to Classic) go to two of its three listening rounds (rotating), mixed in among the others.
+    types = types.filter((t) => t === 'connections' || t === 'timeline' || candidates(t, domain).some(only));
+    types.push(...shuffle(LISTENING, rand).slice(0, ROUNDS_PER_DAY - types.length));
+    types = shuffle(types, rand);
+  }
+  while (types.length < ROUNDS_PER_DAY) types.push('classic');
   if (dateKey >= ONE_ANSWER_FROM) {
-    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only);
+    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined);
     dailyCache.set(key, specs);
     return specs;
   }
@@ -185,8 +235,17 @@ function buildOneAnswerEach(
   lastUsed: Map<string, number>,
   live: (w: Work) => boolean,
   only: (w: Work) => boolean,
+  /**
+   * Music from MUSIC_MIX_FROM, when each source last gave a song: one song per game or anime a day, and none from a
+   * source rested for fewer than SOURCE_REST days, when there's a choice.
+   */
+  restBySource?: Map<string, number>,
 ): RoundSpec[] {
+  const oneBySource = !!restBySource;
+  const today = dayNumber(dateKey) - 1;
+  const rested = (source: string) => today - (restBySource?.get(source) ?? -Infinity) > SOURCE_REST;
   const used = new Set<string>();
+  const sources = new Set<string>();
   // A song's source (its `studio`: the game or anime it comes from) against the answers of the other categories.
   let fromOtherAnswer = (_w: Work) => false;
   if (domain === 'music') {
@@ -197,14 +256,19 @@ function buildOneAnswerEach(
     fromOtherAnswer = (w) => !!w.studio && others.some((n) => sameSeries(norm(w.studio), n));
   }
   const free = (w: Work) => only(w) && !used.has(w.id) && !fromOtherAnswer(w);
+  const fresh = (w: Work) => free(w) && !(w.studio && (sources.has(w.studio) || !rested(w.studio)));
   const specs: RoundSpec[] = new Array(types.length);
   const order = types.map((t, i) => [t, i] as const);
   const showsSeveral = (t: GameType) => t === 'timeline' || t === 'connections';
   for (const [type, i] of [...order.filter(([t]) => showsSeveral(t)), ...order.filter(([t]) => !showsSeveral(t))]) {
     const spec =
-      buildRound(type, domain, rand, used, lastUsed, free, dateKey) ?? buildRound('classic', domain, rand, used, lastUsed, free) ?? buildRound('classic', domain, rand, used, lastUsed, live)!;
+      (oneBySource ? buildRound(type, domain, rand, used, lastUsed, fresh, dateKey) : null) ??
+      buildRound(type, domain, rand, used, lastUsed, free, dateKey) ??
+      buildRound('classic', domain, rand, used, lastUsed, free) ??
+      buildRound('classic', domain, rand, used, lastUsed, live)!;
     if (spec.targetId) used.add(spec.targetId);
     for (const id of worksShownBy(spec, domain)) used.add(id);
+    if (oneBySource) for (const id of [spec.targetId, ...(spec.workIds ?? [])]) if (id) sources.add(getWork(id).studio);
     specs[i] = spec;
   }
   return specs;
