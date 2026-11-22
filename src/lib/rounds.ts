@@ -137,6 +137,26 @@ export const MUSIC_MIX_FROM = '2026-11-23';
 /** Music's listening rounds, drawn only into Music's dailies from MUSIC_MIX_FROM (and in Free Play). */
 const LISTENING: GameType[] = ['intro', 'needle', 'blindtest'];
 
+/**
+ * From this day on, a film that comes back in Cinema's dailies comes back in another mini-game: not one of the
+ * mini-games it was found in its last RECENT_TYPES times, when there's a choice (the owner's call). Days before it keep
+ * their rounds.
+ */
+export const CINEMA_VARIETY_FROM = '2026-11-23';
+const RECENT_TYPES = 3;
+/** …but never by bringing back a film found fewer days ago than this (the usual recency would have waited). */
+const VARIETY_MIN_GAP = 6;
+
+/** The mini-games each work was last found in (a Timeline counts for the four it shows), most recent last. */
+function recentTypesBefore(dateKey: string, domain: Domain): Map<string, GameType[]> {
+  const recent = new Map<string, GameType[]>();
+  const add = (id: string, type: GameType) => recent.set(id, [...(recent.get(id) ?? []), type].slice(-RECENT_TYPES));
+  for (let day = EPOCH; day < dateKey; day = addDays(day, 1)) {
+    for (const s of buildDaily(day, domain)) for (const id of [s.targetId, ...(s.workIds ?? [])]) if (id) add(id, s.type);
+  }
+  return recent;
+}
+
 /** Music from MUSIC_MIX_FROM: a game or an anime whose song came up fewer days ago than this sits out, when there's a choice. */
 const SOURCE_REST = 5;
 
@@ -175,7 +195,8 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   }
   while (types.length < ROUNDS_PER_DAY) types.push('classic');
   if (dateKey >= ONE_ANSWER_FROM) {
-    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined);
+    const varied = domain === 'cinema' && dateKey >= CINEMA_VARIETY_FROM ? recentTypesBefore(dateKey, domain) : undefined;
+    const specs = buildOneAnswerEach(dateKey, domain, types, rand, lastUsed, live, only, mix ? sourceDays(lastUsed, domain) : undefined, varied);
     dailyCache.set(key, specs);
     return specs;
   }
@@ -240,6 +261,8 @@ function buildOneAnswerEach(
    * source rested for fewer than SOURCE_REST days, when there's a choice.
    */
   restBySource?: Map<string, number>,
+  /** Cinema from CINEMA_VARIETY_FROM, the mini-games each film was last found in: it comes back in another one, when there's a choice. */
+  recentTypes?: Map<string, GameType[]>,
 ): RoundSpec[] {
   const oneBySource = !!restBySource;
   const today = dayNumber(dateKey) - 1;
@@ -261,7 +284,9 @@ function buildOneAnswerEach(
   const order = types.map((t, i) => [t, i] as const);
   const showsSeveral = (t: GameType) => t === 'timeline' || t === 'connections';
   for (const [type, i] of [...order.filter(([t]) => showsSeveral(t)), ...order.filter(([t]) => !showsSeveral(t))]) {
+    const newType = (w: Work) => fresh(w) && !recentTypes!.get(w.id)?.includes(type) && today - (lastUsed.get(w.id) ?? -Infinity) >= VARIETY_MIN_GAP;
     const spec =
+      (recentTypes ? buildRound(type, domain, rand, used, lastUsed, newType, dateKey) : null) ??
       (oneBySource ? buildRound(type, domain, rand, used, lastUsed, fresh, dateKey) : null) ??
       buildRound(type, domain, rand, used, lastUsed, free, dateKey) ??
       buildRound('classic', domain, rand, used, lastUsed, free) ??
