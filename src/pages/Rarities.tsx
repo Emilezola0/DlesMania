@@ -35,6 +35,33 @@ const EXAMPLE: Record<Rarity, string> = {
 };
 const byId = (id: string) => COLLECTIBLE.find((c) => c.id === id) ?? GENESIS_CARDS.find((c) => c.id === id);
 const example = (r: Rarity): Card => byId(EXAMPLE[r]) ?? COLLECTIBLE.find((c) => c.rarity === r)!;
+/**
+ * Genesis's example keeps the secret: a card of its own, its look but no face nor name (who each franchise's Genesis
+ * is, the player finds out by forging it). A player who forged one sees theirs instead.
+ */
+const GENESIS_MYSTERY: Card = {
+  id: 'genesis:mystery',
+  name: '???',
+  image: `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset=".5" stop-color="#e879f9"/><stop offset="1" stop-color="#f6c453"/></linearGradient></defs><text x="50" y="72" font-size="64" text-anchor="middle" fill="url(#g)" font-family="serif">✺</text></svg>')}`,
+  set: '',
+  franchise: '???',
+  domain: 'games',
+  rarity: 'genesis',
+  description: '',
+  no: 0,
+};
+/** The player's own forged Genesis, or the mystery. */
+function useGenesisExample(): Card {
+  const owned = useProgress((s) => GENESIS_CARDS.find((c) => (s.cards[c.id] ?? 0) > 0)?.id);
+  // Its words in the language of the moment (the page re-renders when it changes).
+  return (
+    GENESIS_CARDS.find((c) => c.id === owned) ?? {
+      ...GENESIS_MYSTERY,
+      title: tr('Forged, never pulled', 'Forgée, jamais tirée'),
+      description: tr('One per franchise, a favourite of its fans. Who? Forge it to find out.', 'Une par franchise, un favori de ses fans. Qui ? Forge-la pour le découvrir.'),
+    }
+  );
+}
 const RANK_EXAMPLE: Record<RankId, () => Card> = {
   apex: () => byId('overwatch:omni') ?? example('omni'),
   relic: () => byId('naruto:naruto-uzumaki') ?? example('legendary'),
@@ -138,6 +165,7 @@ function Facts({ items }: { items: [string, React.ReactNode][] }) {
 
 function RarityList() {
   const t = useT();
+  const genesisExample = useGenesisExample();
   return (
     <div className="space-y-4">
       <p className="text-sm text-ink-soft">
@@ -146,7 +174,7 @@ function RarityList() {
           'La rareté d’une carte ne change jamais. Chaque carte d’un paquet est tirée selon ces chances ; battre le boss d’une franchise favorise le paquet de cette franchise, et la jauge de chance les monte encore un peu après un moment sans grosse carte.',
         )}
       </p>
-      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={example('genesis')} grade={1} rank={null} anomaly={null} tilt={false} />}>
+      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={genesisExample} grade={1} rank={null} anomaly={null} tilt={false} />}>
         <Title gem={RARITY_INFO.genesis.gem} name={RARITY_INFO.genesis.name} color="#2dd4bf" tag={t('Forged only', 'Forgée seulement')} />
         <p>{t(...RARITY_TEXT.genesis)}</p>
         <Link to="/rarities?tab=genesis" className="inline-block text-sm font-semibold text-accent hover:underline">
@@ -257,9 +285,10 @@ function GradeList() {
 /** Genesis: what it is, the ritual's steps, and every set's ritual. */
 function GenesisTab() {
   const t = useT();
+  const genesisExample = useGenesisExample();
   return (
     <div className="space-y-4">
-      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={example('genesis')} grade={1} rank={null} anomaly={null} tilt={false} hoverHero />}>
+      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={genesisExample} grade={1} rank={null} anomaly={null} tilt={false} hoverHero />}>
         <Title gem={RARITY_INFO.genesis.gem} name={RARITY_INFO.genesis.name} color="#2dd4bf" tag={t('Above Omni', 'Au-dessus d’Omni')} />
         <p>{t(...RARITY_TEXT.genesis)}</p>
         <Facts
