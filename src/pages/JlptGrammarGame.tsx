@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { hiddenKana, lastItems, lastRight, maskPattern, type GapLevel } from '../arcade/toTheLast';
 import { grammarMeaning } from '../arcade/jlptGrammar';
+import { streakSeconds } from '../arcade/jlpt';
 import { GrammarNote } from '../components/JlptGrammarNote';
 import { celebrateBig, shake } from '../lib/fx';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, REVIEW_DAY_COINS, useProgress } from '../store/progress';
 
-/** Seconds per formula: 30 at first, half a second less each right answer, down to 15. */
-const secondsFor = (streak: number) => Math.max(15, 30 - streak * 0.5);
+/** Seconds per formula: 30 at first, then 5 at 50 right answers, 4 at 100, 3 at 200 and after (streakSeconds). */
+const secondsFor = (streak: number) => streakSeconds(30, streak);
 
 /**
  * A level's grammar (/jlpt/n5-grammar): one of its grammar points with about half its kana hidden

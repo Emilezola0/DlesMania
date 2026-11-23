@@ -36,6 +36,25 @@ export interface JlptLevel {
 
 export const JLPT_SOURCE = data.source;
 
+/**
+ * A JLPT level's endless game's clock, by its streak (the owner's call): from the game's own start down to 5 seconds
+ * at 50 right answers, 4 at 100, 3 at 200, never less than 3 — straight lines between.
+ */
+export function streakSeconds(start: number, streak: number): number {
+  const steps: [number, number][] = [
+    [0, start],
+    [50, 5],
+    [100, 4],
+    [200, 3],
+  ];
+  for (let i = 1; i < steps.length; i++) {
+    const [x0, y0] = steps[i - 1];
+    const [x1, y1] = steps[i];
+    if (streak <= x1) return Math.max(3, y0 + ((y1 - y0) * (Math.max(0, streak) - x0)) / (x1 - x0));
+  }
+  return 3;
+}
+
 /** N5 (easiest) to N1, each with its vocabulary and kanji decks and its grammar list. */
 export const JLPT_LEVELS: JlptLevel[] = data.levels.map((l) => ({
   level: l.level,

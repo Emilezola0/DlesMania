@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, RECALL, recallAnswers, recallCoins, recallComplete, recallMatch, reviewDeck, type RecallKind, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, RECALL, recallAnswers, recallCoins, recallComplete, recallMatch, reviewDeck, type RecallKind, shortMeaning, streakSeconds, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { KANA_KINDS, LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
@@ -23,8 +23,8 @@ import { GrammarNote } from '../components/JlptGrammarNote';
 const REVEAL_MS = 900;
 /** Entries not drawn again within this many questions (fewer in a short review list). */
 const MEMORY = 40;
-/** Seconds per question: 12 at first, a fifth of a second less each right answer, down to 4. */
-const secondsFor = (streak: number) => Math.max(4, 12 - streak * 0.2);
+/** Seconds per question: 12 at first, then 5 at 50 right answers, 4 at 100, 3 at 200 and after (streakSeconds). */
+const secondsFor = (streak: number) => streakSeconds(12, streak);
 /** Review: answers picked from four, or typed out (remembered on this device). */
 const TYPING_KEY = 'omnidle-jlpt-review-typing';
 const readTyping = () => {
