@@ -1642,6 +1642,8 @@ const GENESIS: Record<string, { name: string; title: string; line: string; voice
   starwars: { name: 'Luke Skywalker', title: 'A New Hope', line: 'A farm boy watching two suns set, a stranger’s lightsaber, one shot down a trench: the saga began with him, and he brought his father back to the light.', voice: 'I am a Jedi, like my father before me.' },
   minecraft: { name: 'Ender Dragon', title: 'The End, and the Beginning', line: 'Slay it and the poem begins, the credits roll, and one egg is left on the bedrock: every world ends here, and any world can start again from it.', voice: 'Roooar…' },
   smash: { name: 'Master Hand', title: 'The Hand That Made the World', line: 'A child’s desk, a pile of toys and one white glove: it brought them all to life to fight, and every stage since was built by its hand.', voice: '*snap*' },
+  overwatch: { name: 'D.Va', title: 'Hero of Busan', line: 'A world-champion gamer turned MEKA pilot, guarding Busan from the omnic that rose out of the sea: she streams every fight, and never logs off before she wins.', voice: 'Nerf this!' },
+  destiny: { name: 'Saint-14', title: 'The Greatest Titan', line: 'He walked into the Infinite Forest to save the City and never came back, until a Guardian went back in time and brought him home, helmet and all.', voice: 'For the Last City.' },
   lol: { name: 'Lux', title: 'The First Light', line: 'A Crownguard with a secret: the magic Demacia fears was born in her, and she turns it into a light that pierces any dark.', voice: "Let's light it up!" },
 };
 
