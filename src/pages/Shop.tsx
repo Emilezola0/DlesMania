@@ -8,6 +8,7 @@ import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RE
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
+import { BulkOpening } from '../gacha/BulkOpening';
 import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, GOLDEN, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampGolden, clampPity, goldenNext, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
@@ -18,10 +19,13 @@ import { tr, useT } from '../lib/i18n';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
-/** The most packs opened at once (each 5 cards): an opening stays one you can follow. */
-/** The most packs opened at once. firestore.rules (luck/{uid}) takes an opening of up to as many: raise both together. */
-/** Packs opened at once, at most (the owner's call): a huge opening stays light (src/gacha/PackOpening.tsx, HUGE_OPENING). */
+/**
+ * Packs opened at once (the owner's call): Max goes up to MAX_OPEN, with its show (src/gacha/PackOpening.tsx,
+ * HUGE_OPENING); typed by hand in the field (or + after it), up to TYPED_OPEN, the haul without a show
+ * (src/gacha/BulkOpening.tsx). firestore.rules (luck/{uid}) takes an opening of up to TYPED_OPEN: raise both together.
+ */
 const MAX_OPEN = 1000;
+const TYPED_OPEN = 100_000;
 
 /** Days until a period's missions change: next Monday, or the 1st of next month. */
 function daysLeft(p: Period): number {
@@ -349,7 +353,7 @@ export default function Shop() {
 
   /** Packs picked to open at once, by pack. */
   const [counts, setCounts] = useState<Record<string, number>>({});
-  const setCount = (p: Pack, n: number) => setCounts((c) => ({ ...c, [p.id]: Math.max(1, Math.min(MAX_OPEN, Math.floor(n) || 1)) }));
+  const setCount = (p: Pack, n: number) => setCounts((c) => ({ ...c, [p.id]: Math.max(1, Math.min(TYPED_OPEN, Math.floor(n) || 1)) }));
 
   const general = PACKS.filter((p) => !p.boss);
   const franchise = PACKS.filter((p) => p.boss);
@@ -360,9 +364,10 @@ export default function Shop() {
     const locked = !!p.boss && !best;
     const afford = coins >= p.cost;
     const set = p.boss ? SETS.find((s) => s.id === p.boss) : undefined;
-    // How many the coins allow (up to MAX_OPEN), and how many are picked (kept in the page).
-    const canOpen = Math.max(1, Math.min(MAX_OPEN, Math.floor(coins / p.cost)));
-    const n = Math.min(counts[p.id] ?? 1, canOpen);
+    // How many the coins allow (Max: up to MAX_OPEN; typed: up to TYPED_OPEN), and how many are picked (kept in the page).
+    const canType = Math.max(1, Math.min(TYPED_OPEN, Math.floor(coins / p.cost)));
+    const canOpen = Math.min(MAX_OPEN, canType);
+    const n = Math.min(counts[p.id] ?? 1, canType);
     return (
       <div key={p.id} className={`page flex flex-col gap-2 rounded-md p-3 ${locked ? 'opacity-70' : ''}`}>
         <div className={locked ? 'grayscale' : ''}>
@@ -386,7 +391,7 @@ export default function Shop() {
                 🎁 Open free ({freePacks})
               </button>
             )}
-            {/* How many to open at once: as many as the coins allow, up to MAX_OPEN. */}
+            {/* How many to open at once: as many as the coins allow, up to MAX_OPEN with Max, TYPED_OPEN typed. */}
             {canOpen > 1 && (
               <div className="flex items-center justify-center gap-1" aria-label={`How many ${p.name} to open`}>
                 <button type="button" disabled={n <= 1} onClick={() => setCount(p, n - 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One fewer pack">
@@ -395,22 +400,22 @@ export default function Shop() {
                 <input
                   type="number"
                   min={1}
-                  max={canOpen}
+                  max={canType}
                   value={n}
                   onChange={(e) => setCount(p, Number(e.target.value))}
-                  className="w-14 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
+                  className="w-20 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
                   aria-label="Packs to open"
                 />
-                <button type="button" disabled={n >= canOpen} onClick={() => setCount(p, n + 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One more pack">
+                <button type="button" disabled={n >= canType} onClick={() => setCount(p, n + 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One more pack">
                   +
                 </button>
-                <button type="button" disabled={n >= canOpen} onClick={() => setCount(p, canOpen)} className="rounded-md border border-rule-strong px-1.5 py-1 text-xs font-semibold hover:border-ink disabled:opacity-40">
+                <button type="button" disabled={n === canOpen} onClick={() => setCount(p, canOpen)} className="rounded-md border border-rule-strong px-1.5 py-1 text-xs font-semibold hover:border-ink disabled:opacity-40">
                   Max
                 </button>
               </div>
             )}
             <button type="button" disabled={!afford} onClick={() => (n > 1 ? buyMany(p, n) : buy(p))} className="btn-accent rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
-              Open{n > 1 ? ` ×${n}` : ''} · <Coins n={p.cost * n} />
+              Open{n > 1 ? ` ×${n.toLocaleString()}` : ''} · <Coins n={p.cost * n} />
             </button>
           </div>
         )}
@@ -558,7 +563,20 @@ export default function Shop() {
         <p className="pt-1 text-xs">Every rarity's odds, per card and per pack: see Drop rates above.</p>
       </section>
 
-      {opening && (
+      {/* Over MAX_OPEN packs (typed by hand): the haul straight away, no show. */}
+      {opening && opening.times > MAX_OPEN && (
+        <BulkOpening
+          key={opening.key}
+          pack={opening.pack}
+          cards={opening.cards}
+          fresh={opening.fresh}
+          times={opening.times}
+          canAgain={coins >= opening.pack.cost * opening.times}
+          onAgain={() => buyMany(opening.pack, opening.times)}
+          onClose={() => setOpening(null)}
+        />
+      )}
+      {opening && opening.times <= MAX_OPEN && (
         <PackOpening
           key={opening.key}
           pack={opening.pack}

@@ -203,14 +203,25 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
     }
     const goldSlot = golden && i >= PACK_SIZE - GOLDEN.slots;
     let r = goldSlot ? rollGolden(i === PACK_SIZE - 1 ? GOLDEN.last : GOLDEN.others, rand) : rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
-    // Five different cards: one already in this pack isn't drawn again (the list copied only when one of that rarity was).
-    const of = (x: Rarity) => (takenRarity.has(x) ? by[x].filter((c) => !taken.has(c.id)) : by[x]);
-    let cands = of(r);
-    while (!cands.length && RARITIES.indexOf(r) > 0) {
+    // Five different cards: one already in this pack isn't drawn again. Drawn again a few times when it was (copying
+    // the whole list of that rarity each time made a 100,000-pack opening take half a minute); the list without the
+    // pack's cards only when that fails (a rarity of a handful of cards).
+    const again = (x: Rarity): Card | null => {
+      if (!by[x].length) return null;
+      if (!takenRarity.has(x)) return drawFairly(by[x], rand);
+      for (let k = 0; k < 8; k++) {
+        const c = drawFairly(by[x], rand);
+        if (!taken.has(c.id)) return c;
+      }
+      const left = by[x].filter((c) => !taken.has(c.id));
+      return left.length ? drawFairly(left, rand) : null;
+    };
+    let card = again(r);
+    while (!card && RARITIES.indexOf(r) > 0) {
       r = RARITIES[RARITIES.indexOf(r) - 1];
-      cands = of(r);
+      card = again(r);
     }
-    const card = drawFairly(cands, rand);
+    if (!card) card = drawFairly(by[r], rand);
     taken.add(card.id);
     takenRarity.add(card.rarity);
     return card;
@@ -356,16 +367,18 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
   const events: CosmicEvent[] = [];
   const goldenAt: number[] = [];
   const forced = forcedDraw();
+  // Read once (not once a pack: a 100,000-pack opening).
+  const [cosmicAll, cosmicForced, goldAll] = [cosmicOnAll(), forcedCosmic(), forcedGolden()];
   const top: TopCount = { legendary: 0, mythic: 0, omni: 0 };
   const expected: TopCount = { legendary: 0, mythic: 0, omni: 0 };
   for (let i = 0; i < count; i++) {
-    const gold = goldenNext(golden) || forcedGolden();
+    const gold = goldenNext(golden) || goldAll;
     if (gold) goldenAt.push(i);
     golden = gold ? 0 : clampGolden(golden + 1);
     const e = expectedTop(boost, pityLuck(pity), gold, omniLuck(omniPity));
     const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced, omniLuck(omniPity));
     // A forced event (dev only): the first pack of the purchase, or every one when asked; the others roll as usual.
-    const event = cosmicFor(pack, cards, Math.random, i === 0 || cosmicOnAll() ? forcedCosmic() : null);
+    const event = cosmicFor(pack, cards, Math.random, i === 0 || cosmicAll ? cosmicForced : null);
     if (event) events.push(event);
     packs.push(cards);
     const t = topOf(cards);
