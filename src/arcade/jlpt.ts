@@ -1,4 +1,5 @@
 import data from '../data/jlpt.json';
+import extra from '../data/jlpt-extra.json';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32, shuffle } from '../lib/rng';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
@@ -76,9 +77,22 @@ const senses = (meaning: string) =>
 
 const VOCAB = JLPT_LEVELS.flatMap((l) => l.decks.find((d) => d.kind === 'vocab')!.entries);
 
+/**
+ * Words beyond Coto's list, added at the owner's request (src/data/jlpt-extra.json, checked against JMdict): animals
+ * and colours, in their theme decks (and the JLPT boss's Blitz and Name Chain). Written as usual (a katakana word read
+ * as written); its other spellings (a rare kanji: 麒麟) aren't shown here.
+ */
+export const EXTRA_LEVEL = 'Extra';
+const KATAKANA = /^[ァ-ヶー]+$/;
+const EXTRA = (extra.words as string[][]).map(([written, reading, en, , topic], i) => {
+  const text = written.split('/')[0];
+  return { topic, entry: { id: `${EXTRA_LEVEL}:vocab:${i}`, text, reading: KATAKANA.test(text) ? text : reading, meaning: en, level: EXTRA_LEVEL } as JlptEntry };
+});
+
 export const JLPT_THEMES: JlptDeck[] = THEMES.map((t) => {
   const words = new Set(t.words.split(/,\s*/));
-  return { id: `theme-${t.id}`, level: 'All', kind: 'theme' as const, label: t.label, icon: t.icon, entries: VOCAB.filter((e) => senses(e.meaning).some((s) => words.has(s))) };
+  const more = EXTRA.filter((x) => x.topic === t.id).map((x) => x.entry);
+  return { id: `theme-${t.id}`, level: 'All', kind: 'theme' as const, label: t.label, icon: t.icon, entries: [...VOCAB.filter((e) => senses(e.meaning).some((s) => words.has(s))), ...more] };
 });
 
 /**

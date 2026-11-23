@@ -1,13 +1,15 @@
 // The JLPT boss: Oni-Sensei, keeper of the kanji. Its cards are kanji drawn by the app ("kanji:山", see
 // src/lib/kanji.ts), named by their meaning; their readings, in romaji and in kana, are accepted too.
-// Every Japanese word, kanji and reading comes from src/data/jlpt.json (Coto Academy's list) — no other
-// source. Radar: everyday kanji against Chinese characters Japanese doesn't use. Final Blow: N5 and N4 kanji to name by their meaning.
+// Every Japanese word, kanji and reading comes from src/data/jlpt.json (Coto Academy's list), and the animals and
+// colours the owner asked for beyond it (src/data/jlpt-extra.json) — no other source. Radar: everyday kanji against Chinese characters Japanese doesn't use. Final Blow: N5 and N4 kanji to name by their meaning.
 // Blitz and Name Chain: the list's words by topic. Signature (Hard): N3 kanji. Re-run after changing the list.
 // node scripts/data/jlpt-boss.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const BOSSES = new URL('../../src/data/bosses.json', import.meta.url);
 const JLPT = JSON.parse(readFileSync(new URL('../../src/data/jlpt.json', import.meta.url), 'utf8'));
+// Animals and colours beyond the list, added at the owner's request (23 November 2026), checked against JMdict.
+const EXTRA = JSON.parse(readFileSync(new URL('../../src/data/jlpt-extra.json', import.meta.url), 'utf8')).words;
 
 // ── Kana to romaji (Hepburn, long vowels written out: とうきょう → toukyou). ──
 const BASE = {
@@ -114,8 +116,8 @@ const TOPICS = {
 };
 const senses = (m) => m.split(/[;,]/).slice(0, 3).map((s) => s.replace(/\(.*?\)/g, '').trim().toLowerCase().replace(/^(a|an|the) /, ''));
 const spelled = new Set();
-const words = (topic, levels = ['N5', 'N4', 'N3']) => {
-  const keys = new Set(TOPICS[topic].split(/,\s*/));
+const words = (topic_, levels = ['N5', 'N4', 'N3']) => {
+  const keys = new Set(TOPICS[topic_].split(/,\s*/));
   const out = [];
   for (const level of levels) {
     for (const [text, reading, meaning] of JLPT.levels.find((l) => l.level === level).vocab) {
@@ -127,6 +129,17 @@ const words = (topic, levels = ['N5', 'N4', 'N3']) => {
       forms.forEach((f) => spelled.add(key(f)));
       out.push(forms.join('|'));
     }
+  }
+  // Then the owner's extra animals and colours: romaji (a long ー written out too: guree), kana, every spelling.
+  const topic = { Animal: 'animals', Colour: 'colours' }[topic_];
+  for (const [written, reading, , , t] of topic ? EXTRA : []) {
+    if (t !== topic) continue;
+    const long = reading.replace(/(.)ー/g, (_, c) => c + ({ a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お' }[romaji(c).slice(-1)] ?? ''));
+    const forms = [...new Set([romaji(long), romaji(reading), reading, ...written.split('/')])].filter(Boolean);
+    const key = (w) => w.toLowerCase().replace(/[^a-z0-9ぁ-ヿ㐀-鿿]/g, '');
+    if (forms.some((f) => spelled.has(key(f)))) continue;
+    forms.forEach((f) => spelled.add(key(f)));
+    out.push(forms.join('|'));
   }
   return out;
 };
