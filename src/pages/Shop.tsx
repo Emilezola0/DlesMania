@@ -539,7 +539,7 @@ export default function Shop() {
           </li>
           <li>
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an
-            endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
+            endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. The Japanese levels' games (Vocabulary, Kanji, Write the kanji, Grammar, Fill the Gap) pay 1 × 1.1^x for x right answers, as much as the run reaches, never halved. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play. A whole Name Them All list or a whole To the
             Last level cleared: +{CLEAR_PER_ANSWER} a name on top, more for a long list with little time a name, the first time each day per list; again the same day, only a token (not with answers banned).
           </li>

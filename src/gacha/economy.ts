@@ -126,6 +126,14 @@ export const HOT_GAMES = [
  * they pay like the others, but sit out the Hot Game and don't count for the missions or the quests — learning
  * isn't farming. A new learning game adds its keys here.
  */
+/**
+ * The JLPT levels' endless games (Vocabulary, Kanji, Write the kanji, Grammar at each difficulty, Fill the Gap): the
+ * owner's call, each right answer multiplies the pay by 1.1 — 1 × 1.1^x DleCoins for x right answers — with no ceiling,
+ * per run or per day (the daily cap doesn't halve it, nor does it count towards that cap). The new-best bonus stays.
+ */
+export const isStreakKey = (key: string) => /^jlpt:n[1-5]-(vocab|kanji|kanji-write|vocab-write|grammar(-easy|-hard)?|fill)$/.test(key);
+/** What such a run pays (kept a safe whole number however long the run). */
+export const streakCoins = (right: number) => Math.min(Number.MAX_SAFE_INTEGER, Math.round(1.1 ** Math.max(0, Math.floor(right))));
 export const isLearnKey = (key: string) => /^jlpt[:-]/.test(key) || key === 'wordle:ja';
 
 /** A player's place in the day's order: how many times the bonus has moved, and the games played of the current one. */

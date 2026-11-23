@@ -52,6 +52,8 @@ import {
   type Economy,
   type MissionKind,
   isLearnKey,
+  isStreakKey,
+  streakCoins,
   questAt,
   questReward,
   questsNow,
@@ -569,14 +571,15 @@ function stamp(pulledAt: Record<string, number> | undefined, ids: string[]): Rec
 function earn(
   s: Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>,
   amount: number,
-  opts: { arcade?: string; count?: Partial<Record<QuestCounter, number>>; boss?: string } = {},
+  opts: { arcade?: string; count?: Partial<Record<QuestCounter, number>>; boss?: string; uncapped?: boolean } = {},
 ): Partial<Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>> {
   const e = econToday(s.econ);
   const now = realNow();
   if (opts.arcade && now - (e.lastPaid?.[opts.arcade] ?? 0) < ARCADE_SPACING_MS) return {};
   const left = ARCADE_CAP - e.arcade;
-  // Past the daily amount, half: what remains of it in full, the rest at half.
-  const paid = opts.arcade ? (left >= amount ? amount : Math.max(1, Math.max(0, left) + Math.round((amount - Math.max(0, left)) * ARCADE_AFTER_CAP))) : amount;
+  // Past the daily amount, half: what remains of it in full, the rest at half (not for an uncapped game: in full).
+  const capped = opts.arcade && !opts.uncapped;
+  const paid = capped ? (left >= amount ? amount : Math.max(1, Math.max(0, left) + Math.round((amount - Math.max(0, left)) * ARCADE_AFTER_CAP))) : amount;
   const counters = { ...e.counters };
   for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as QuestCounter] = (counters[k as QuestCounter] ?? 0) + (n ?? 0);
   return {
@@ -584,7 +587,7 @@ function earn(
     ...(opts.count ? { missionBooks: countLong(s.missionBooks, opts.count as Partial<Record<LongKind, number>>) } : {}),
     econ: {
       ...e,
-      arcade: e.arcade + (opts.arcade ? paid : 0),
+      arcade: e.arcade + (capped ? paid : 0),
       bosses: opts.boss ? [...e.bosses, opts.boss] : e.bosses,
       lastPaid: opts.arcade ? { ...e.lastPaid, [opts.arcade]: now } : e.lastPaid,
       counters,
@@ -1534,9 +1537,11 @@ export const useProgress = create<ProgressState>()(
           // A best kept mid-run: nothing paid, nothing counted (the run's end will).
           if ('save' in result) return { bests };
           const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
-          const hot = payHot(s.hotGame, todayKey(), key, arcadeCoins(result) + bonus);
+          // A JLPT level's endless game: 1 × 1.1^x for x right answers, uncapped (isStreakKey).
+          const streak = isStreakKey(key);
+          const hot = payHot(s.hotGame, todayKey(), key, (streak ? streakCoins(score) : arcadeCoins(result)) + bonus);
           // The games to learn with pay, but don't count for the missions or the quests.
-          const paid = earn(s, hot.amount, { arcade: key, ...(isLearnKey(key) || !countsAsPlayed(result) ? {} : { count: { arcade: 1 } }) });
+          const paid = earn(s, hot.amount, { arcade: key, ...(streak ? { uncapped: true } : {}), ...(isLearnKey(key) || !countsAsPlayed(result) ? {} : { count: { arcade: 1 } }) });
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}), ...(countsAsPlayed(result) ? cappedSeeds(s, isLearnKey(key) ? 'jlpt' : 'arcade') : {}) };
         }),
