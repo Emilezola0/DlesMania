@@ -428,23 +428,27 @@ function Haul({ got, again, onClose }: { got: Got[]; again?: () => void; onClose
           )}
         </p>
         <p className="mt-1 text-xs text-white/50">Tap a frame to wear it.</p>
-        <div className="mt-4 flex flex-wrap justify-center gap-2">
-          {again && (
-            <button
-              type="button"
-              onClick={() => {
-                onClose();
-                again();
-              }}
-              className="rounded-md bg-white px-5 py-2 font-display font-bold text-[#1b1530]"
-            >
-              Again
-            </button>
-          )}
-          <button type="button" onClick={onClose} className="rounded-md border-2 border-white/60 px-5 py-2 font-display font-bold">
-            Close
-          </button>
-        </div>
+        {/* Room for the buttons below, which stay put. */}
+        <div className="h-20" aria-hidden />
+      </div>
+      {/* Again and Close: always in the same place at the bottom of the screen, however many frames came out (to pull
+          again and again without looking for them); Again greyed out when the coins aren't there, never gone. */}
+      <div className="fixed inset-x-0 bottom-0 z-10 flex justify-center gap-2 bg-gradient-to-t from-[#07060c] via-[#07060c]/90 to-transparent px-4 pb-5 pt-8">
+        <button
+          type="button"
+          disabled={!again}
+          onClick={() => {
+            if (!again) return;
+            onClose();
+            again();
+          }}
+          className="w-32 rounded-md bg-white px-5 py-2 font-display font-bold text-[#1b1530] disabled:opacity-40"
+        >
+          Again
+        </button>
+        <button type="button" onClick={onClose} className="w-32 rounded-md border-2 border-white/60 bg-[#07060c] px-5 py-2 font-display font-bold">
+          Close
+        </button>
       </div>
     </div>,
     document.body,

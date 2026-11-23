@@ -128,10 +128,13 @@ export const HOT_GAMES = [
  */
 /**
  * The JLPT levels' endless games (Vocabulary, Kanji, Write the kanji, Grammar at each difficulty, Fill the Gap): the
- * owner's call, each right answer multiplies the pay by 1.1 — 1 × 1.1^x DleCoins for x right answers — with no ceiling,
- * per run or per day (the daily cap doesn't halve it, nor does it count towards that cap). The new-best bonus stays.
+ * owner's call, each right answer multiplies the pay by 1.1 — 1 × 1.1^x DleCoins for x right answers — with no ceiling
+ * per run, and STREAK_DAILY_CAP a day for all of them together (the arcade's daily cap doesn't halve it, nor does it
+ * count towards that cap). The new-best bonus stays, within the day's 50,000.
  */
 export const isStreakKey = (key: string) => /^jlpt:n[1-5]-(vocab|kanji|kanji-write|vocab-write|grammar(-easy|-hard)?|fill)$/.test(key);
+/** The most those games pay in a day, all of them together (the owner's call): past it, nothing more that day. */
+export const STREAK_DAILY_CAP = 50_000;
 /** What such a run pays (kept a safe whole number however long the run). */
 export const streakCoins = (right: number) => Math.min(Number.MAX_SAFE_INTEGER, Math.round(1.1 ** Math.max(0, Math.floor(right))));
 export const isLearnKey = (key: string) => /^jlpt[:-]/.test(key) || key === 'wordle:ja';
@@ -291,6 +294,8 @@ export interface Economy {
   arcade: number;
   /** Coins from Expeditions so far today. */
   expedition?: number;
+  /** Coins from the JLPT levels' endless games so far today (isStreakKey: STREAK_DAILY_CAP a day in all). */
+  streak?: number;
   /** Roulette spins so far today. */
   spins?: number;
   /** The Casino's slot spins and pachinko balls so far today. */

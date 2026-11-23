@@ -3,13 +3,14 @@
 // (src/casino/clawMachine.ts for the rules, src/casino/plushies.ts for the plushies).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Coins } from '../components/DleCoin';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT } from '../gacha/cards';
 import { todayKey } from '../lib/date';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
-import { boxFor, capsuleCard, CHUTE, CLAW, grab, prizeLook, restock, type ClawItem, type GrabOutcome } from './clawMachine';
+import { boxFor, capsuleCard, CHUTE, CLAW, grab, prizeLook, rerollBox, restock, type ClawItem, type GrabOutcome } from './clawMachine';
 import { PLUSH_BY_ID, PLUSH_RARITY, PLUSHIES, plushLevel, plushToNext, type Plush } from './plushies';
 
 /** The box seen from the front, a little from above (all in cqw: the box is 100 wide, 75 high). */
@@ -152,6 +153,8 @@ export function Claw() {
   const chips = useProgress((s) => s.chips ?? 0);
   const clawDay = useProgress((s) => s.clawDay);
   const buyClaw = useProgress((s) => s.buyClaw);
+  const rerollClaw = useProgress((s) => s.rerollClaw);
+  const coins = useProgress((s) => s.coins);
   const startClaw = useProgress((s) => s.startClaw);
   const endClaw = useProgress((s) => s.endClaw);
   const today = todayKey();
@@ -410,6 +413,20 @@ export function Claw() {
               className="rounded-md border border-coral/60 bg-coral/30 px-2.5 py-1 text-xs font-bold text-white tabular-nums disabled:opacity-40"
             >
               {CLAW.bundle.tries} tries · {CLAW.bundle.cost} 🎟️
+            </button>
+            {/* A whole new box of prizes, for DleCoins. */}
+            <button
+              type="button"
+              onClick={() => {
+                if (!rerollClaw(rerollBox(useProgress.getState().cosmetics ?? []))) return sfx.wrong();
+                sfx.shimmer(2);
+                setResult(null);
+              }}
+              disabled={phase !== 'idle' || coins < CLAW.rerollCost}
+              title="Every prize in the box drawn again"
+              className="rounded-md border border-amber-300/60 bg-amber-300/15 px-2.5 py-1 text-xs font-bold text-white tabular-nums disabled:opacity-40"
+            >
+              🔄 New prizes · <Coins n={CLAW.rerollCost} />
             </button>
           </div>
         </div>

@@ -54,6 +54,7 @@ import {
   isLearnKey,
   isStreakKey,
   streakCoins,
+  STREAK_DAILY_CAP,
   questAt,
   questReward,
   questsNow,
@@ -344,6 +345,8 @@ interface ProgressState {
   setShownPlush: (id: string | null) => void;
   /** The day's claw box, set the first time the machine is opened that day (the tries start again). */
   clawDay: (day: string, box: ClawItem[]) => void;
+  /** A whole new box in the claw (`box`, drawn by rerollBox) for CLAW.rerollCost DleCoins: false without the coins. */
+  rerollClaw: (box: ClawItem[]) => boolean;
   /** Tries for the claw, in casino tokens: one, or the bundle. False if it can't (too few tokens, past the day's tries). */
   buyClaw: (bundle: boolean) => boolean;
   /** A try starts: one paid try used. False if there's none. */
@@ -888,6 +891,13 @@ export const useProgress = create<ProgressState>()(
         const c = get().claw;
         if (c?.day === day) return;
         set({ claw: { credits: 0, meter: 0, plush: {}, wins: 0, ...c, day, tries: 0, box } });
+      },
+      rerollClaw: (box) => {
+        const s = get();
+        const cost = CLAW_T.rerollCost;
+        if (!s.claw || s.coins < cost) return false;
+        set({ coins: s.coins - cost, claw: { ...s.claw, box }, ...paidIn(s, cost) });
+        return true;
       },
       buyClaw: (bundle) => {
         const s = get();
@@ -1537,11 +1547,14 @@ export const useProgress = create<ProgressState>()(
           // A best kept mid-run: nothing paid, nothing counted (the run's end will).
           if ('save' in result) return { bests };
           const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
-          // A JLPT level's endless game: 1 × 1.1^x for x right answers, uncapped (isStreakKey).
+          // A JLPT level's endless game: 1 × 1.1^x for x right answers, up to STREAK_DAILY_CAP a day for all of them (isStreakKey).
           const streak = isStreakKey(key);
-          const hot = payHot(s.hotGame, todayKey(), key, (streak ? streakCoins(score) : arcadeCoins(result)) + bonus);
+          const streakLeft = Math.max(0, STREAK_DAILY_CAP - (econToday(s.econ).streak ?? 0));
+          const hot = payHot(s.hotGame, todayKey(), key, streak ? Math.min(streakLeft, streakCoins(score) + bonus) : arcadeCoins(result) + bonus);
           // The games to learn with pay, but don't count for the missions or the quests.
           const paid = earn(s, hot.amount, { arcade: key, ...(streak ? { uncapped: true } : {}), ...(isLearnKey(key) || !countsAsPlayed(result) ? {} : { count: { arcade: 1 } }) });
+          // What it paid goes towards the day's 50,000.
+          if (streak && paid.econ) paid.econ = { ...paid.econ, streak: (paid.econ.streak ?? 0) + hot.amount };
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}), ...(countsAsPlayed(result) ? cappedSeeds(s, isLearnKey(key) ? 'jlpt' : 'arcade') : {}) };
         }),

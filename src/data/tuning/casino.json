@@ -56,6 +56,7 @@
     "meter": 6,
     "boxSize": 9,
     "restockBelow": 5,
+    "rerollCost": 15000,
     "reach": 0.13,
     "slip": 0.45,
     "plushOdds": { "common": 61.2, "rare": 27, "epic": 9, "golden": 2, "celestial": 0.6, "transcendent": 0.2 },

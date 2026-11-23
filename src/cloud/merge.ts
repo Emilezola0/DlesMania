@@ -228,6 +228,7 @@ function mergeEcon(a: Economy | undefined, b: Economy | undefined): Economy | un
     date: a.date,
     arcade: Math.max(a.arcade, b.arcade),
     expedition: Math.max(a.expedition ?? 0, b.expedition ?? 0),
+    streak: Math.max(a.streak ?? 0, b.streak ?? 0),
     spins: Math.max(a.spins ?? 0, b.spins ?? 0),
     slots: Math.max(a.slots ?? 0, b.slots ?? 0),
     balls: Math.max(a.balls ?? 0, b.balls ?? 0),

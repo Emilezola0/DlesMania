@@ -3,7 +3,7 @@ import { codeExpired, codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period, clampOmniPity, OMNI_PITY } from '../gacha/economy';
+import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period, clampOmniPity, OMNI_PITY, STREAK_DAILY_CAP } from '../gacha/economy';
 import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -544,7 +544,7 @@ export default function Shop() {
           </li>
           <li>
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an
-            endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. The Japanese levels' games (Vocabulary, Kanji, Write the kanji, Grammar, Fill the Gap) pay 1 × 1.1^x for x right answers, as much as the run reaches, never halved. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
+            endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. The Japanese levels' games (Vocabulary, Kanji, Write the kanji, Grammar, Fill the Gap) pay 1 × 1.1^x for x right answers, never halved, up to {STREAK_DAILY_CAP.toLocaleString()} a day for all of them ({Math.min(econ.streak ?? 0, STREAK_DAILY_CAP).toLocaleString()} today). +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play. A whole Name Them All list or a whole To the
             Last level cleared: +{CLEAR_PER_ANSWER} a name on top, more for a long list with little time a name, the first time each day per list; again the same day, only a token (not with answers banned).
           </li>

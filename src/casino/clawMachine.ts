@@ -20,6 +20,8 @@ export const CLAW = T.claw as unknown as {
   meter: number;
   boxSize: number;
   restockBelow: number;
+  /** A whole new box of prizes, in DleCoins (the owner's call). */
+  rerollCost: number;
   reach: number;
   slip: number;
   plushOdds: Record<PlushRarity, number>;
@@ -39,8 +41,9 @@ export interface ClawItem {
 
 /** The chute: the box's left side; the claw carries what it holds there. */
 export const CHUTE = { x: 0.1, z: 0.8, edge: 0.2 };
-/** Where prizes lie: right of the chute, away from the glass. */
-const AREA = { x0: 0.28, x1: 0.92, z0: 0.12, z1: 0.9 };
+/** Where prizes lie: right of the chute, away from the glass (not too near the front either: the claw hardly
+ *  catches what lies right against it). */
+const AREA = { x0: 0.28, x1: 0.92, z0: 0.12, z1: 0.75 };
 
 export interface PrizeLook {
   name: string;
@@ -138,6 +141,13 @@ export function boxFor(day: string, cosmetics: string[]): ClawItem[] {
 export function restock(box: ClawItem[], cosmetics: string[], rand = Math.random): ClawItem[] {
   if (box.length >= CLAW.restockBelow) return box;
   const out = [...box];
+  while (out.length < CLAW.boxSize) out.push({ uid: uid(rand), prize: randomPrize(rand, cosmetics), ...spot(rand, out) });
+  return out;
+}
+
+/** A whole new box (bought, CLAW.rerollCost DleCoins): every prize drawn again, anywhere in the box. */
+export function rerollBox(cosmetics: string[], rand = Math.random): ClawItem[] {
+  const out: ClawItem[] = [];
   while (out.length < CLAW.boxSize) out.push({ uid: uid(rand), prize: randomPrize(rand, cosmetics), ...spot(rand, out) });
   return out;
 }
