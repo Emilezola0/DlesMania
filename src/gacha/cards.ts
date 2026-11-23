@@ -32,8 +32,10 @@ const UFOURIA_ART = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/u
 const UFOURIA_SOUND = (name: string) => `${import.meta.env?.BASE_URL ?? './'}audio/ufouria/${name}.mp3`;
 const UFOURIA_CLIP = (names: string[]) => names.map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/ufouria/${n}.mp4`).join('|');
 
-export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
-export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
+export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni' | 'genesis';
+export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni', 'genesis'];
+/** The rarities a pack can give: all but Genesis, which is only ever forged (src/gacha/genesis.ts). */
+export const PACK_RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
 
 /** Names, gems and order: src/data/tuning/rarities.json (edited from the dev-only #/admin page). */
 export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: number }> = RARITY_TUNING.info;
@@ -1626,7 +1628,34 @@ export const CARDS: Card[] = (() => {
   return CARD_BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...animeOnly(c), ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
-export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));
+/**
+ * Genesis, above Omni: one card per franchise, never in a pack, only ever forged (the ritual: src/gacha/genesis.ts).
+ * Each goes to a fan favourite who has no Mythic or Omni in the set (the official polls: One Piece's World Top 100,
+ * Dragon Ball The One, the most played champions…), the one who best stands for where the franchise began. They're
+ * kept apart from CARDS (no pack, shop, trade or set completion ever counts them) but known by CARD_BY_ID, like any
+ * card the player owns. Their pictures are the set's own card's, for now. (Lines written for these cards; titles and
+ * catchphrases from the franchises.)
+ */
+const GENESIS: Record<string, { name: string; title: string; line: string; voice: string; image?: string }> = {
+  onepiece: { name: 'Gol D. Roger', title: 'Dawn of the Great Pirate Era', line: 'One last laugh on the scaffold at Loguetown, and the whole world set sail: every pirate on the sea since is chasing the words of a dead man.', voice: 'My treasure? If you want it, you can have it!' },
+  dbz: { name: 'Gohan', title: 'Beast', line: 'The boy who kept his power behind his books let it all out at once: a strength older than any Saiyan form, woken for the people he loves.', voice: 'Special Beam Cannon!', image: 'https://static.wikia.nocookie.net/dragonball/images/d/d8/Gohan_Beast_SDBH.jpg/revision/latest/scale-to-width-down/500?cb=20220704041952' },
+  starwars: { name: 'Luke Skywalker', title: 'A New Hope', line: 'A farm boy watching two suns set, a stranger’s lightsaber, one shot down a trench: the saga began with him, and he brought his father back to the light.', voice: 'I am a Jedi, like my father before me.' },
+  minecraft: { name: 'Ender Dragon', title: 'The End, and the Beginning', line: 'Slay it and the poem begins, the credits roll, and one egg is left on the bedrock: every world ends here, and any world can start again from it.', voice: 'Roooar…' },
+  smash: { name: 'Master Hand', title: 'The Hand That Made the World', line: 'A child’s desk, a pile of toys and one white glove: it brought them all to life to fight, and every stage since was built by its hand.', voice: '*snap*' },
+  lol: { name: 'Lux', title: 'The First Light', line: 'A Crownguard with a secret: the magic Demacia fears was born in her, and she turns it into a light that pierces any dark.', voice: "Let's light it up!" },
+};
+
+/** The Genesis cards, `<set>:genesis`, numbered after their whole set. */
+export const GENESIS_CARDS: Card[] = CARD_BOSSES.flatMap((b) => {
+  const g = GENESIS[b.id];
+  const face = g && CARDS.find((c) => c.set === b.id && c.name === g.name && c.rarity !== 'mythic' && c.rarity !== 'omni');
+  const image = g?.image ?? face?.image;
+  if (!g || !image) return [];
+  return [{ id: `${b.id}:genesis`, name: g.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'genesis' as Rarity, title: g.title, voice: g.voice, description: g.line, no: CARDS.filter((c) => c.set === b.id).length + 1 }];
+});
+export const genesisOf = (set: string) => GENESIS_CARDS.find((c) => c.set === set);
+
+export const CARD_BY_ID = new Map([...CARDS, ...GENESIS_CARDS].map((c) => [c.id, c]));
 
 /** The cards still given out, the ones a complete set or album needs: all but the vaulted (src/gacha/upgrades.ts). */
 export const COLLECTIBLE: Card[] = CARDS.filter((c) => !VAULTED.has(c.id));

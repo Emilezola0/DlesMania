@@ -467,6 +467,10 @@
         "omni": {
           "type": "integer",
           "minimum": 0
+        },
+        "genesis": {
+          "type": "integer",
+          "minimum": 0
         }
       },
       "required": [
@@ -475,7 +479,8 @@
         "epic",
         "legendary",
         "mythic",
-        "omni"
+        "omni",
+        "genesis"
       ],
       "additionalProperties": false,
       "title": "Spare copy value",

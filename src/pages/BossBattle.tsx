@@ -284,7 +284,7 @@ function BossBattle({ boss }: { boss: Boss }) {
     const timeMs = performance.now() - startedAt.current;
     const score = battleScore({ roundsWon, hearts: heartsLeft, ...t, timeMs, bonus }, d);
     const best = score > record.bestScore;
-    const pay = recordBoss(bossKey(boss.id, difficulty), { won, score, time: timeMs });
+    const pay = recordBoss(bossKey(boss.id, difficulty), { won, score, time: timeMs, flawless: won && heartsLeft >= d.hearts });
     setResult({ score, timeMs, best, pay });
     window.setTimeout(() => {
       setStage(won ? 'won' : 'lost');

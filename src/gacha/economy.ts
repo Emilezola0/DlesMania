@@ -255,7 +255,7 @@ export const EXPEDITION_CAP = T.expedition.dailyCap;
 export const EXPEDITION_AFTER_CAP = T.expedition.afterCap;
 
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
-export const DUPLICATE_VALUE: Record<'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni', number> = T.duplicateValue;
+export const DUPLICATE_VALUE: Record<'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni' | 'genesis', number> = T.duplicateValue;
 
 export type MissionKind = 'rounds' | 'category' | 'special' | 'boss' | 'arcade' | 'whos';
 

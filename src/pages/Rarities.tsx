@@ -4,7 +4,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CardFace } from '../gacha/CardView';
-import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from '../gacha/cards';
+import { COLLECTIBLE, GENESIS_CARDS, PACK_RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from '../gacha/cards';
+import { GENESIS_DAWNS, GENESIS_REWARD, GENESIS_SHARDS } from '../gacha/genesis';
+import { GenesisRituals } from '../gacha/GenesisRitual';
 import { ODDS, PACK_SIZE } from '../gacha/packs';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { ELEMENT_IDS, ELEMENTS, GRADE_COST, GRADES, HELL_GRADE, MAX_GRADE, type ElementId } from '../gacha/grades';
@@ -17,6 +19,7 @@ const TABS = [
   withFrench({ id: 'rarities' as const, name: 'Rarities', icon: '◆', blurb: 'Common to Omni' }, { name: 'Raretés', blurb: 'De Commune à Omni' }),
   withFrench({ id: 'grades' as const, name: 'Grades', icon: 'Ⅷ', blurb: 'Copies merged' }, { name: 'Grades', blurb: 'Exemplaires fusionnés' }),
   withFrench({ id: 'special' as const, name: 'Special', icon: '⚱', blurb: 'Apex, Relic, Eclipse, Bond' }, { name: 'Spéciales', blurb: 'Apex, Relique, Éclipse, Lien' }),
+  withFrench({ id: 'genesis' as const, name: 'Genesis', icon: '✺', blurb: 'Above Omni, forged' }, { name: 'Genèse', blurb: 'Au-dessus d’Omni, forgée' }),
 ];
 type Tab = (typeof TABS)[number]['id'];
 
@@ -28,8 +31,9 @@ const EXAMPLE: Record<Rarity, string> = {
   legendary: 'onepiece:roronoa-zoro',
   mythic: 'onepiece:mythic',
   omni: 'naruto:omni',
+  genesis: 'onepiece:genesis',
 };
-const byId = (id: string) => COLLECTIBLE.find((c) => c.id === id);
+const byId = (id: string) => COLLECTIBLE.find((c) => c.id === id) ?? GENESIS_CARDS.find((c) => c.id === id);
 const example = (r: Rarity): Card => byId(EXAMPLE[r]) ?? COLLECTIBLE.find((c) => c.rarity === r)!;
 const RANK_EXAMPLE: Record<RankId, () => Card> = {
   apex: () => byId('overwatch:omni') ?? example('omni'),
@@ -45,6 +49,7 @@ const RARITY_TEXT: Record<Rarity, [string, string]> = {
   legendary: ['A gold frame and a gold name: the favourites of each franchise.', 'Un cadre doré et un nom doré : les favoris de chaque franchise.'],
   mythic: ['A rainbow frame turning, a title, a voice line, often a clip. A few per franchise.', 'Un cadre arc-en-ciel qui tourne, un titre, une réplique, souvent un clip. Quelques-unes par franchise.'],
   omni: ['The franchise’s one legend: rings of fire, a crown, and an awakened form once its guardian is beaten on Hard.', 'La légende unique de la franchise : des anneaux de feu, une couronne, et une forme éveillée une fois son gardien battu en Difficile.'],
+  genesis: ['Where the franchise began: the one light card of the game, a dawn sky and a pearl frame, the lines it was drawn with traced over it again and again. Never in a pack: forged.', 'Là où la franchise a commencé : la seule carte claire du jeu, un ciel d’aube et un cadre nacré, les traits qui l’ont dessinée retracés encore et encore. Jamais dans un paquet : forgée.'],
 };
 
 const pct = (n: number) => (n >= 1 ? `${+n.toFixed(1)}%` : n >= 0.01 ? `${+n.toFixed(3)}%` : `${+n.toFixed(4)}%`);
@@ -69,7 +74,7 @@ export default function Rarities() {
         <h1 className="text-5xl font-bold">{t('Rarities', 'Raretés')}</h1>
         <p className="text-ink-soft">{t('What makes a card rare, how it grows, and the special looks only a few cards ever wear.', 'Ce qui rend une carte rare, comment elle grandit, et les looks spéciaux que seules quelques cartes portent.')}</p>
       </div>
-      <nav className="page grid grid-cols-3 gap-1 rounded-md p-1" aria-label={t('Guide', 'Guide')}>
+      <nav className="page grid grid-cols-4 gap-1 rounded-md p-1" aria-label={t('Guide', 'Guide')}>
         {TABS.map((x) => (
           <button
             key={x.id}
@@ -91,6 +96,7 @@ export default function Rarities() {
         {tab === 'rarities' && <RarityList />}
         {tab === 'grades' && <GradeList />}
         {tab === 'special' && <SpecialList />}
+        {tab === 'genesis' && <GenesisTab />}
       </div>
     </div>
   );
@@ -140,8 +146,15 @@ function RarityList() {
           'La rareté d’une carte ne change jamais. Chaque carte d’un paquet est tirée selon ces chances ; battre le boss d’une franchise favorise le paquet de cette franchise, et la jauge de chance les monte encore un peu après un moment sans grosse carte.',
         )}
       </p>
-      {[...RARITIES].reverse().map((r, i) => (
-        <Entry key={r} i={i} color={RARITY_LIGHT[r]} card={<CardFace card={example(r)} grade={1} rank={null} anomaly={null} tilt={false} animate={r === 'mythic' || r === 'omni'} />}>
+      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={example('genesis')} grade={1} rank={null} anomaly={null} tilt={false} />}>
+        <Title gem={RARITY_INFO.genesis.gem} name={RARITY_INFO.genesis.name} color="#2dd4bf" tag={t('Forged only', 'Forgée seulement')} />
+        <p>{t(...RARITY_TEXT.genesis)}</p>
+        <Link to="/rarities?tab=genesis" className="inline-block text-sm font-semibold text-accent hover:underline">
+          ✺ {t('The ritual →', 'Le rituel →')}
+        </Link>
+      </Entry>
+      {[...PACK_RARITIES].reverse().map((r, i) => (
+        <Entry key={r} i={i + 1} color={RARITY_LIGHT[r]} card={<CardFace card={example(r)} grade={1} rank={null} anomaly={null} tilt={false} animate={r === 'mythic' || r === 'omni'} />}>
           <Title gem={RARITY_INFO[r].gem} name={RARITY_INFO[r].name} color={RARITY_LIGHT[r]} tag={t(`${pct(ODDS[r])} a card`, `${pct(ODDS[r])} par carte`)} />
           <p>{t(...RARITY_TEXT[r])}</p>
           <Facts
@@ -237,6 +250,29 @@ function GradeList() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/** Genesis: what it is, the ritual's steps, and every set's ritual. */
+function GenesisTab() {
+  const t = useT();
+  return (
+    <div className="space-y-4">
+      <Entry i={0} color={RARITY_LIGHT.genesis} card={<CardFace card={example('genesis')} grade={1} rank={null} anomaly={null} tilt={false} hoverHero />}>
+        <Title gem={RARITY_INFO.genesis.gem} name={RARITY_INFO.genesis.name} color="#2dd4bf" tag={t('Above Omni', 'Au-dessus d’Omni')} />
+        <p>{t(...RARITY_TEXT.genesis)}</p>
+        <Facts
+          items={[
+            [t('Cards', 'Cartes'), t('One per franchise, a favourite of its fans', 'Une par franchise, un favori de ses fans')],
+            [t('In a pack', 'Dans un paquet'), t('Never', 'Jamais')],
+            [t('Takes', 'Demande'), t(`The whole set, its guardian beaten on Hard, a spare Omni and ${GENESIS_SHARDS} star shards, ${GENESIS_DAWNS} dailies completed, then its boss beaten on Hell without losing a heart`, `Toute la série, son gardien battu en Difficile, un Omni en double et ${GENESIS_SHARDS} éclats d’étoile, ${GENESIS_DAWNS} défis du jour terminés, puis son boss battu en Enfer sans perdre un cœur`)],
+            [t('Pays', 'Rapporte'), `${GENESIS_REWARD.toLocaleString(tr('en', 'fr'))} DleCoins`],
+            [t('Under the mouse', 'Sous la souris'), t('A dawn opens where you point', 'Une aube s’ouvre là où tu pointes')],
+          ]}
+        />
+      </Entry>
+      <GenesisRituals />
     </div>
   );
 }

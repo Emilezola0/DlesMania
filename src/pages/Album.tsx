@@ -5,7 +5,7 @@ import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardLifts, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
-import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
+import { CARD_BY_ID, CARDS, COLLECTIBLE, GENESIS_CARDS, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { SellSpares } from '../gacha/SellSpares';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
@@ -35,7 +35,11 @@ const SHOWS: { id: Show; label: string; title?: string }[] = [
 ];
 
 /** How many cards of each rarity exist. */
-const RARITY_TOTAL = COLLECTIBLE.reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
+const RARITY_TOTAL = [...COLLECTIBLE, ...GENESIS_CARDS].reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
+/** The grid's cards: every card, then the Genesis cards (forged only, never in a set's count: shown as outlines until then). */
+const ALBUM_CARDS = [...CARDS, ...GENESIS_CARDS];
+/** Omni and Genesis take no grades (an Omni's one rank is Apex; a Genesis is as high as a card goes). */
+const gradeless = (r: Rarity) => r === 'omni' || r === 'genesis';
 
 /** A choice kept on this device between visits (the Album's filters). */
 function useKept<T>(key: string, initial: T, valid: (v: unknown) => boolean): [T, (v: T | ((old: T) => T)) => void] {
@@ -193,7 +197,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             <div className={`inspect-sway-y relative [transform-style:preserve-3d] ${dragging ? '[animation-play-state:paused]' : ''}`}>
             {/* The card's thickness: its edge, layer by layer, between the two faces. */}
             {[1, 2, 3, 4, 5].map((z) => (
-              <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
+              <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'genesis' ? '#e9e4f5' : card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
             {/* Firefox's Omni rings, beside the card in its 3D space: under it, then over it (see OmniRingsAround). Not
                 inside the face's own layer: Firefox doesn't draw 3D layers inside a hidden-backface one. */}
@@ -232,7 +236,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           <CardVolume card={card} />
           <p className="text-sm opacity-80">
             {rank ? `${RANKS[rank].name} (${RARITY_INFO[card.rarity].name})` : RARITY_INFO[card.rarity].name}
-            {card.rarity === 'omni' && grade <= 1 ? '' : ` · ${gradeName(grade, element)}`} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
+            {gradeless(card.rarity) && grade <= 1 ? '' : ` · ${gradeName(grade, element)}`} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
           <p className="mt-1 text-xs opacity-60">{tr('Drag to turn it · tap to spin it · Esc to close', 'Fais-la glisser pour la tourner · touche pour la faire pivoter · Échap pour fermer')}</p>
@@ -333,6 +337,8 @@ function SpecialRanks({ card, onRank }: { card: Card; onRank: () => void }) {
   );
 
   const out: ReactNode[] = [];
+  // Genesis: as high as a card goes, no special rarity on top.
+  if (card.rarity === 'genesis') return null;
   // Bond: linked to the friend the Bond pack was opened with (nothing to do: it came that way).
   if (bondLink) out.push(chip('bond', tr(`Bond with ${bondLink.with}`, `Lien avec ${bondLink.with}`)));
   // Apex: an Omni's one rank.
@@ -415,7 +421,7 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {/* Five copies into one a grade higher: the card and four spares. Not an Omni: its one rank is Apex (above). */}
-      {card.rarity === 'omni' ? null : grade < MAX_GRADE ? (
+      {gradeless(card.rarity) ? null : grade < MAX_GRADE ? (
         <button
           type="button"
           onClick={() => (nextIsElement ? setChoosing((c) => !c) : up())}
@@ -560,11 +566,13 @@ export default function Album() {
     const bySet: Record<string, number> = {};
     const byRarity = {} as Record<Rarity, number>;
     let unique = 0;
-    for (const c of COLLECTIBLE) {
+    for (const c of [...COLLECTIBLE, ...GENESIS_CARDS]) {
       if (!owned[c.id]) continue;
+      byRarity[c.rarity] = (byRarity[c.rarity] ?? 0) + 1;
+      // A Genesis card is above its set: it never counts towards completing it.
+      if (c.rarity === 'genesis') continue;
       unique++;
       bySet[c.set] = (bySet[c.set] ?? 0) + 1;
-      byRarity[c.rarity] = (byRarity[c.rarity] ?? 0) + 1;
     }
     return { unique, bySet, byRarity };
   }, [owned]);
@@ -593,7 +601,7 @@ export default function Album() {
           return true;
       }
     };
-    const xs = CARDS.filter((c) => {
+    const xs = ALBUM_CARDS.filter((c) => {
       if ((set !== 'all' && c.set !== set) || !rarities.includes(c.rarity) || !shown(c)) return false;
       // A vaulted card is no longer given out: only its owners see it.
       if (isVaulted(c.id) && !owned[c.id]) return false;
@@ -634,7 +642,7 @@ export default function Album() {
         onPointerDown={(e) => (lastPointer.current = e.pointerType)}
         onClick={() => {
           // On a phone, a mythic's or omni's first tap brings it to life; the next opens it.
-          const top = c.rarity === 'mythic' || c.rarity === 'omni';
+          const top = c.rarity === 'mythic' || c.rarity === 'omni' || c.rarity === 'genesis';
           if (top && lastPointer.current === 'touch' && armed !== c.id) return (sfx.select(), setArmed(c.id));
           sfx.select();
           setArmed(null);
@@ -696,6 +704,9 @@ export default function Album() {
             )}
           >
             <span className="text-[#8b5cf6]">✧</span> {shards}/{ECLIPSE_SHARDS} {t('star shards', 'éclats d’étoile')}
+          </Link>
+          <Link to="/rarities?tab=genesis" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title={t('Genesis, above Omni: one card per franchise, forged by a ritual', 'Genèse, au-dessus d’Omni : une carte par franchise, forgée par un rituel')}>
+            <span className="text-[#2dd4bf]">✺</span> {t('Genesis', 'Genèse')}
           </Link>
           <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
             {t('⇄ Trades', '⇄ Échanges')}

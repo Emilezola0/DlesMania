@@ -34,6 +34,12 @@
         "omni": {
           "type": "number",
           "minimum": 0
+        },
+        "genesis": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0,
+          "description": "Always 0: Genesis is never in a pack, only forged"
         }
       },
       "required": [
@@ -42,7 +48,8 @@
         "epic",
         "legendary",
         "mythic",
-        "omni"
+        "omni",
+        "genesis"
       ],
       "additionalProperties": false,
       "title": "Base odds (%)",

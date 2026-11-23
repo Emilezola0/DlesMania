@@ -29,6 +29,11 @@
       "name": "Omni",
       "gem": "✪",
       "rank": 5
+    },
+    "genesis": {
+      "name": "Genesis",
+      "gem": "✺",
+      "rank": 6
     }
   },
   "light": {
@@ -37,6 +42,7 @@
     "epic": "#c084fc",
     "legendary": "#fbbf24",
     "mythic": "#f0abfc",
-    "omni": "#ff3b4e"
+    "omni": "#ff3b4e",
+    "genesis": "#7ef0e0"
   }
 }

@@ -43,6 +43,13 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
     tint: 'radial-gradient(circle at 50% 30%,#fde68a55,#0b0820 70%)',
     text: '#fffbeb',
   },
+  // Genesis's look is all classes (card-genesis-*): a dawn nebula, the card drawing itself. This is the fallback.
+  genesis: {
+    frame: 'conic-gradient(#fdfaf3,#7ef0e0,#f5a3ff,#ffe9a8,#fdfaf3)',
+    glow: '0 0 0 2px rgba(253,250,243,.9), 0 14px 60px rgba(126,240,224,.5), 0 0 40px rgba(245,163,255,.4)',
+    tint: 'radial-gradient(circle at 50% 30%,#fdfaf3,#cfe9ff 45%,#f5d7ff 80%)',
+    text: '#1d1630',
+  },
 };
 
 /**
@@ -79,6 +86,44 @@ function useFill(focus: Card['focus'] | undefined) {
   const extra = focus ? focus.zoom / cover : 1;
   const style: CSSProperties = { objectPosition: `${x}% ${y}%`, ...(extra > 1.02 ? { transform: `scale(${extra})`, transformOrigin: `${x}% ${y}%` } : {}) };
   return { style, onLoad };
+}
+
+/** A Genesis's three lights: the sea at dawn, the first pink, the gold of the sun. */
+const GENESIS_HUES = ['#2dd4bf', '#e879f9', '#f6c453'];
+
+/**
+ * A Genesis's lines: the construction drawing its world was laid out with (a frame, circles in golden proportion, a
+ * spiral, a horizon), traced and fading again, over and over (.card-genesis-lines in index.css). Drawn in a 100×140
+ * box, the card's own shape.
+ */
+export function GenesisLines() {
+  return (
+    <svg className="card-genesis-lines pointer-events-none absolute inset-0 size-full" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden>
+      <rect x="6" y="6" width="88" height="128" rx="6" pathLength={1} />
+      <circle cx="50" cy="62" r="34" pathLength={1} />
+      <circle cx="50" cy="62" r="21" pathLength={1} />
+      <circle cx="50" cy="62" r="13" pathLength={1} />
+      <path d="M50 62 m0 -2 a2 2 0 0 1 2 2 a4 4 0 0 1 -4 4 a7 7 0 0 1 -7 -7 a11 11 0 0 1 11 -11 a18 18 0 0 1 18 18 a29 29 0 0 1 -29 29" pathLength={1} />
+      <path d="M6 96 H94 M50 6 V134 M16 28 L84 96 M84 28 L16 96" pathLength={1} />
+    </svg>
+  );
+}
+
+/** Up close, behind a Genesis: a compass drawing, rings and a star of lines, turning slowly. */
+function GenesisCompass() {
+  return (
+    <div className="card-genesis-compass pointer-events-none absolute -inset-[16%] -z-10" aria-hidden>
+      <svg viewBox="0 0 200 200" className="size-full">
+        <circle cx="100" cy="100" r="96" />
+        <circle cx="100" cy="100" r="80" strokeDasharray="2 4" />
+        <circle cx="100" cy="100" r="61.8" />
+        {Array.from({ length: 12 }, (_, i) => (
+          <line key={i} x1="100" y1="4" x2="100" y2="20" transform={`rotate(${i * 30} 100 100)`} />
+        ))}
+        <path d="M100 4 L118 100 L100 196 L82 100 Z M4 100 L100 82 L196 100 L100 118 Z" />
+      </svg>
+    </div>
+  );
 }
 
 /** The embers floating around an Omni up close: where, and how far off the card (px). */
@@ -260,7 +305,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const nameSize = `${Math.max(4.6, Math.min(7.5, (7.5 * 14) / Math.max(1, name.length))).toFixed(2)}cqw`;
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
-  const heroOn = (hero || (hoverHero && hovered)) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const heroOn = (hero || (hoverHero && hovered)) && (look === 'mythic' || look === 'omni' || look === 'genesis') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
@@ -297,7 +342,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
     // An omni tilts further: more depth to it.
-    const k = !tilt ? 0 : look === 'omni' ? 1.7 : 1;
+    const k = !tilt ? 0 : look === 'omni' || look === 'genesis' ? 1.7 : 1;
     setT({ x: (0.5 - py) * 16 * k, y: (px - 0.5) * 18 * k, mx: px * 100, my: py * 100 });
   };
   const mx = foil?.x ?? t.mx;
@@ -314,8 +359,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   })();
   const mythic = look === 'mythic';
   const omni = look === 'omni';
+  // Genesis, above Omni: the one light card — a dawn sky, a pearl frame, and the card drawing itself.
+  const genesis = look === 'genesis';
   // Mythics and omnis share the prism; omnis add a cosmos, a crown, and a second form.
   const prism = mythic || omni;
+  /** Up close (or forged), a Genesis card is born again: its lines drawn, then its colours laid in. */
+  const born = genesis && (!!depth || !!animate) && !calm;
   const form = useCardForm(card);
   const fill = useFill(form.awakened ? undefined : card.focus);
   const motion = useProgress((s) => s.cardMotion ?? true);
@@ -342,9 +391,9 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         if (rank) setOver(true);
       }}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false), setOver(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 || rank ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''} ${rank ? `card-rank card-rank-${rank.id}` : ''} ${hot ? 'card-rank-hot' : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : genesis ? `card-genesis-frame ${born ? 'card-genesis-born' : ''}` : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 || rank ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''} ${rank ? `card-rank card-rank-${rank.id}` : ''} ${hot ? 'card-rank-hot' : ''}`}
       style={{
-        background: singularity ? '#05030a' : prism ? undefined : st.frame,
+        background: singularity ? '#05030a' : prism || genesis ? undefined : st.frame,
         boxShadow: st.glow,
         transform: tilt && tilted ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${hop}` : hop ? hop.trim() : undefined,
         zIndex: heroOn ? 20 : undefined,
@@ -357,11 +406,13 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       {/* Up close, an omni's rings of fire: their far halves first, behind the card (see the near halves below). */}
       {omni && depth && <OmniRings half="back" />}
       {/* A mythic's or omni's frame: its rainbow turning (a layer turned whole, so the card isn't redrawn each frame). */}
-      {prism && !singularity && (
+      {(prism || genesis) && !singularity && (
         <div className="card-frame-turn pointer-events-none absolute inset-0 overflow-hidden rounded-[7%]" aria-hidden>
-          <i className={omni ? 'card-frame-turn-omni' : 'card-frame-turn-mythic'} />
+          <i className={genesis ? 'card-frame-turn-genesis' : omni ? 'card-frame-turn-omni' : 'card-frame-turn-mythic'} />
         </div>
       )}
+      {/* Up close, a Genesis's compass drawing behind it: the circles its world was laid out with, turning. */}
+      {genesis && depth && <GenesisCompass />}
       {/* A special rarity's frame over the card's own: Apex's crimson and gold turning, Relic's carved stone, Eclipse's corona. */}
       {fxOn('frame') && (
         <div className={`card-rank-frame ${live ? '' : 'card-rank-still'} pointer-events-none absolute inset-0 overflow-hidden rounded-[7%]`} aria-hidden>
@@ -370,11 +421,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       )}
       {/* An omni's glow, pulsing (under everything, as the card's own shadow was). */}
       {omni && <div className="card-omni-pulse pointer-events-none absolute inset-0 -z-20 rounded-[7%]" aria-hidden />}
-      <div className={`relative flex size-full flex-col overflow-hidden rounded-[5%] ${omni ? 'card-omni-sky' : mythic ? 'card-mythic-sky' : 'bg-[#0f0d16]'}`} style={{ color: st.text }}>
+      {genesis && <div className="card-genesis-pulse pointer-events-none absolute inset-0 -z-20 rounded-[7%]" aria-hidden />}
+      <div className={`relative flex size-full flex-col overflow-hidden rounded-[5%] ${omni ? 'card-omni-sky' : mythic ? 'card-mythic-sky' : genesis ? 'card-genesis-sky' : 'bg-[#0f0d16]'}`} style={{ color: st.text }}>
         {/* Name and rarity (and a mythic's title). */}
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
           <div className="flex items-center justify-between gap-[2cqw]">
-            <p style={{ fontSize: nameSize }} className={`truncate font-display font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
+            <p style={{ fontSize: nameSize }} className={`truncate font-display font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : genesis ? 'card-genesis-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
             {/* A Fake Rarity shows a Mythic's gem: it passes for one. */}
             <span className={`shrink-0 text-[5.5cqw] ${rank ? 'card-rank-gem' : ''}`} title={rank ? `${rank.name} (${RARITY_INFO[card.rarity].name})` : anomaly?.posesAsMythic ? undefined : RARITY_INFO[card.rarity].name}>
               {rank ? rank.gem : RARITY_INFO[look].gem}
@@ -383,9 +435,9 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
-        <div className={`card-picture relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
+        <div className={`card-picture relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: genesis ? 'radial-gradient(circle at 50% 38%, #ffffff, rgba(126,240,224,.35) 45%, rgba(245,163,255,.28) 78%)' : omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           {/* A mythic's or omni's background moves: light turning behind the picture. */}
-          {prism && <div className={`card-backdrop ${omni ? 'card-backdrop-omni' : 'card-backdrop-mythic'} ${motion || animate || heroOn ? '' : 'card-backdrop-still'}`} />}
+          {(prism || genesis) && <div className={`card-backdrop ${genesis ? 'card-backdrop-genesis' : omni ? 'card-backdrop-omni' : 'card-backdrop-mythic'} ${motion || animate || heroOn ? '' : 'card-backdrop-still'}`} />}
           {lost ? (
             <img key={`lost-${lost.id}`} src={lost.image} alt="" draggable={false} className="card-timelost-shift relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
           ) : !motion && !animate && /\.gif/i.test(form.image) ? (
@@ -398,7 +450,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
             draggable={false}
             loading="lazy"
             // An opaque picture (a rectangle) fills the frame; a cut-out one shows whole, on the rarity's tint.
-            className={`relative size-full ${form.opaque ? 'object-cover' : `object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''}`} ${singularity ? (depth ? 'card-singularity-warp' : 'card-singularity-picture') : ''}`}
+            className={`relative size-full ${form.opaque ? 'object-cover' : `object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${(prism || genesis) && !form.cutout ? 'card-feather' : ''}`} ${born ? 'card-genesis-paint' : ''} ${singularity ? (depth ? 'card-singularity-warp' : 'card-singularity-picture') : ''}`}
             onLoad={form.opaque ? fill.onLoad : undefined}
             // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
             style={form.opaque ? fill.style : card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
@@ -419,7 +471,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </div>
         <div className="relative z-10 flex items-center justify-between px-[4cqw] pt-[2.5cqw] text-[4.6cqw] font-semibold opacity-80">
           <span className="truncate">{card.franchise}</span>
-          <span className="shrink-0 tabular-nums">{omni ? '✪' : mythic ? '✦' : `${card.no}/${setSize(card.set)}`}</span>
+          <span className="shrink-0 tabular-nums">{genesis ? '✺' : omni ? '✪' : mythic ? '✦' : `${card.no}/${setSize(card.set)}`}</span>
         </div>
         <p className="relative z-10 line-clamp-3 px-[4cqw] pt-[1.5cqw] text-[4.6cqw] leading-snug opacity-90">{form.description}</p>
 
@@ -430,6 +482,22 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           <>
             <div className="card-gold-foil pointer-events-none absolute inset-0" />
             <div className="card-glints pointer-events-none absolute inset-0" />
+          </>
+        )}
+        {genesis && (
+          <>
+            <div className="card-genesis-foil pointer-events-none absolute inset-0" />
+            {/* The lines it was drawn with, traced again and again over it (once, slowly, when it's born). */}
+            {(live || born) && <GenesisLines />}
+            {/* Seeds of light rising through it, and a dawn opening under the pointer. */}
+            {live && (
+              <div className="card-genesis-motes pointer-events-none absolute inset-0" aria-hidden>
+                {RISING.map((m, i) => (
+                  <i key={m.x} style={{ left: `${m.x}%`, animationDelay: `${m.delay}s`, ['--hue' as string]: GENESIS_HUES[i % 3] }} />
+                ))}
+              </div>
+            )}
+            <div className="card-genesis-bloom pointer-events-none absolute inset-0" />
           </>
         )}
         {prism && (
@@ -632,8 +700,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
 export function CardBack({ rarity }: { rarity?: Rarity }) {
   return (
     <div
-      className={`relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] bg-[#1b1530] [container-type:inline-size] ${rarity === 'omni' ? 'card-omni-back border-transparent' : rarity === 'mythic' ? 'card-mythic-back border-transparent' : 'border-[#a78bfa]'}`}
-      style={{ boxShadow: rarity ? RARITY_STYLE[rarity].glow : undefined, backgroundImage: rarity === 'mythic' || rarity === 'omni' ? undefined : 'repeating-linear-gradient(45deg, rgba(167,139,250,.12) 0 6px, transparent 6px 12px)' }}
+      className={`relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] bg-[#1b1530] [container-type:inline-size] ${rarity === 'genesis' ? 'card-genesis-back border-transparent' : rarity === 'omni' ? 'card-omni-back border-transparent' : rarity === 'mythic' ? 'card-mythic-back border-transparent' : 'border-[#a78bfa]'}`}
+      style={{ boxShadow: rarity ? RARITY_STYLE[rarity].glow : undefined, backgroundImage: rarity === 'mythic' || rarity === 'omni' || rarity === 'genesis' ? undefined : 'repeating-linear-gradient(45deg, rgba(167,139,250,.12) 0 6px, transparent 6px 12px)' }}
     >
       <span className="font-display text-[22cqw] font-bold text-[#c4b5fd]">✦</span>
       <span className="absolute bottom-[6cqw] font-display text-[7cqw] font-bold tracking-[0.3em] text-[#c4b5fd]">OMNIDLE</span>
@@ -645,6 +713,20 @@ export function CardBack({ rarity }: { rarity?: Rarity }) {
 export function CardMissing({ card }: { card: Card }) {
   const mythic = card.rarity === 'mythic' || card.rarity === 'omni';
   const omni = card.rarity === 'omni';
+  // A Genesis not forged yet: a blank page, its lines faintly waiting.
+  if (card.rarity === 'genesis')
+    return (
+      <div className="card-genesis-missing relative grid aspect-[5/7] w-full place-items-center overflow-hidden rounded-[7%] text-center [container-type:inline-size]">
+        <GenesisLines />
+        <div className="relative">
+          <p className="font-display text-[16cqw] font-bold">✺</p>
+          <p className="text-[6cqw] font-semibold">
+            {card.franchise} · {RARITY_INFO.genesis.name}
+          </p>
+          <p className="text-[5cqw] opacity-80">{tr('Forged, never pulled', 'Forgée, jamais tirée')}</p>
+        </div>
+      </div>
+    );
   return (
     <div className={`grid aspect-[5/7] w-full place-items-center rounded-[7%] border-2 border-dashed text-center text-ink-faint [container-type:inline-size] ${mythic ? 'border-[#f0abfc]/60 bg-[#f0abfc]/5' : 'border-rule-strong bg-tile/50'}`}>
       <div>

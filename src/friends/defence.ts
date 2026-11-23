@@ -6,7 +6,7 @@
 // Characters fight; a technique hits the card it meets as it arrives; a place, once out, lifts every card after it.
 // An Altered card's anomaly gives it a twist. Each day an arena rule changes something for everyone.
 
-export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
+export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni' | 'genesis';
 export type Element = 'water' | 'air' | 'fire' | 'earth' | 'light' | 'darkness';
 export type Kind = 'fighter' | 'technique' | 'place';
 export type Anomaly = 'corrupted' | 'fake' | 'inverted' | 'mirror' | 'timelost' | 'void';
@@ -15,8 +15,8 @@ export const DEFENCE = {
   /** Cards in a team, and the points they may cost together. */
   size: 5,
   budget: 18,
-  cost: { common: 1, rare: 2, epic: 3, legendary: 5, mythic: 6, omni: 7 } as Record<Rarity, number>,
-  power: { common: 10, rare: 13, epic: 16, legendary: 20, mythic: 23, omni: 26 } as Record<Rarity, number>,
+  cost: { common: 1, rare: 2, epic: 3, legendary: 5, mythic: 6, omni: 7, genesis: 8 } as Record<Rarity, number>,
+  power: { common: 10, rare: 13, epic: 16, legendary: 20, mythic: 23, omni: 26, genesis: 30 } as Record<Rarity, number>,
   /** Power for every two grades above the first (grades go to 8: +3 at most). */
   perGrade: 1,
   /** The defence fights at home: each of its cards gets this. */

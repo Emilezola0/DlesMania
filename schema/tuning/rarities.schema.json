@@ -136,6 +136,28 @@
             "rank"
           ],
           "additionalProperties": false
+        },
+        "genesis": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -144,7 +166,8 @@
         "epic",
         "legendary",
         "mythic",
-        "omni"
+        "omni",
+        "genesis"
       ],
       "additionalProperties": false,
       "title": "Names & gems"
@@ -181,6 +204,11 @@
           "type": "string",
           "pattern": "^#[0-9a-fA-F]{6}$",
           "x-widget": "color"
+        },
+        "genesis": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
         }
       },
       "required": [
@@ -189,7 +217,8 @@
         "epic",
         "legendary",
         "mythic",
-        "omni"
+        "omni",
+        "genesis"
       ],
       "additionalProperties": false,
       "title": "Light",

@@ -5,6 +5,8 @@ import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, g
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
+// Genesis's numbers only: the ritual itself (src/gacha/genesis.ts) reads the card catalogue, which the store doesn't.
+import GENESIS_T from '../data/tuning/genesis.json';
 import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
 import { fgAt, newIsland, upgradeIsland, type Bag, type Change, type Island } from '../island/island';
@@ -88,6 +90,8 @@ export interface BossRecord {
   wins: number;
   bestScore: number;
   bestTime: number | null;
+  /** The last day it was beaten without losing a heart (Genesis's trial, on Hell: src/gacha/genesis.ts). */
+  flawlessAt?: string;
 }
 
 export const EMPTY_BOSS_RECORD: BossRecord = { plays: 0, wins: 0, bestScore: 0, bestTime: null };
@@ -254,6 +258,15 @@ interface ProgressState {
   /** A Mythic or Omni eclipsed (never a lower rarity): `shards` true pays ECLIPSE_SHARDS star shards (else the black hole's gift). */
   eclipseCard: (id: string, rarity: string, shards: boolean) => boolean;
   addStarShards: (n: number) => void;
+  /** Genesis rituals (src/gacha/genesis.ts), by set id: the day of the offering, the day the card was forged. */
+  genesis?: Record<string, { begun: string; forged?: string; by?: string }>;
+  /**
+   * A set's Genesis offering (`ready`: the ritual says it can be made, canOffer): a spare of the Omni `omniId` and the
+   * star shards. False if it can't.
+   */
+  beginGenesis: (set: string, omniId: string, ready: boolean) => boolean;
+  /** A set's Genesis card `cardId` forged (`ready`: the trial passed, canForge): the card and its DleCoins. False if it can't. */
+  forgeGenesis: (set: string, cardId: string, ready: boolean, by?: string) => boolean;
   /** Cards from a Bond pack, linked to the friend it was opened with (src/cloud/bonds.ts), by card id. */
   bondCards?: Record<string, BondLink>;
   /** The Bond packs already taken into this save (their seeds), so a pack is never added twice. */
@@ -479,7 +492,8 @@ interface ProgressState {
   removeJlptGrammarReview: (key: string) => void;
   reviewJlptGrammar: (key: string, right: boolean) => void;
   /** Records a fight and pays it; returns what it paid, line by line (the end screen lists them). */
-  recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => BossPay;
+  /** `flawless`: won without losing a heart (kept for Genesis's trial). */
+  recordBoss: (key: string, result: { won: boolean; score: number; time: number; flawless?: boolean }) => BossPay;
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
   recordWhosThat: (key: string, score: number, result: ArcadeResult) => void;
@@ -1142,6 +1156,28 @@ export const useProgress = create<ProgressState>()(
         set({ cardRanks: { ...s.cardRanks, [id]: { kind: 'eclipse', date: todayKey() } }, ...(shards ? { starShards: (s.starShards ?? 0) - ECLIPSE_SHARDS } : {}) });
         return true;
       },
+      beginGenesis: (set_, omniId, ready) => {
+        const s = get();
+        if (!ready || s.genesis?.[set_] || !omniId.startsWith(`${set_}:`) || (s.cards[omniId] ?? 0) < 2 || (s.starShards ?? 0) < GENESIS_T.shards) return false;
+        set({
+          cards: { ...s.cards, [omniId]: s.cards[omniId] - 1 },
+          starShards: (s.starShards ?? 0) - GENESIS_T.shards,
+          genesis: { ...s.genesis, [set_]: { begun: todayKey() } },
+        });
+        return true;
+      },
+      forgeGenesis: (set_, cardId, ready, by) => {
+        const s = get();
+        const rite = s.genesis?.[set_];
+        if (!ready || !rite || rite.forged || cardId !== `${set_}:genesis` || s.cards[cardId]) return false;
+        set({
+          cards: { ...s.cards, [cardId]: 1 },
+          pulledAt: { ...s.pulledAt, [cardId]: Date.now() },
+          genesis: { ...s.genesis, [set_]: { ...rite, forged: todayKey(), ...(by ? { by } : {}) } },
+          ...earn(s, GENESIS_T.reward),
+        });
+        return true;
+      },
       claimBondPack: (seed, cardIds, bond) => {
         const s = get();
         if (s.bondClaimed?.includes(seed)) return false;
@@ -1536,7 +1572,7 @@ export const useProgress = create<ProgressState>()(
           const won = record.status === 'won';
           return { ...update, ...earn(s, roundCoins(won, record.score), { count: { special: won ? 1 : 0 } }) };
         }),
-      recordBoss: (key, { won, score, time }) => {
+      recordBoss: (key, { won, score, time, flawless }) => {
         let pay: BossPay = { total: 0, lines: [] };
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
@@ -1580,6 +1616,7 @@ export const useProgress = create<ProgressState>()(
                 wins: r.wins + (won ? 1 : 0),
                 bestScore: Math.max(r.bestScore, score),
                 bestTime: won ? Math.min(r.bestTime ?? Infinity, time) : r.bestTime,
+                ...(won && flawless ? { flawlessAt: todayKey() } : r.flawlessAt ? { flawlessAt: r.flawlessAt } : {}),
               },
             },
           };

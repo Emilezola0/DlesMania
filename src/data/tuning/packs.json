@@ -6,7 +6,8 @@
     "epic": 8,
     "legendary": 0.5,
     "mythic": 0.05,
-    "omni": 0.006
+    "omni": 0.006,
+    "genesis": 0
   },
   "topCap": {
     "legendary": 3,

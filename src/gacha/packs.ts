@@ -101,7 +101,7 @@ export function oddsWith(boost: number, luck = 1, t: OddsTuning = LIVE_ODDS, omn
   const mythic = Math.min(t.topCap.mythic!, t.odds.mythic * quarter * topLuck);
   // `omni`: the Omni luck of a player who hasn't had one for a while (see omniLuck), on the Omni odds alone.
   const omniOdds = Math.min(t.topCap.omni!, t.odds.omni * quarter * topLuck * omni);
-  return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omniOdds), rare, epic, legendary, mythic, omni: omniOdds };
+  return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omniOdds), rare, epic, legendary, mythic, omni: omniOdds, genesis: 0 };
 }
 
 
@@ -117,7 +117,7 @@ export function lastCardOdds(odds: Record<Rarity, number>, base: Record<Rarity, 
   const omni = odds.omni * lift;
   const rest = 100 - legendary - mythic - omni;
   const lower = odds.rare + odds.epic;
-  return { common: 0, rare: (rest * odds.rare) / lower, epic: (rest * odds.epic) / lower, legendary, mythic, omni };
+  return { common: 0, rare: (rest * odds.rare) / lower, epic: (rest * odds.epic) / lower, legendary, mythic, omni, genesis: 0 };
 }
 
 /** The rarity of a card: the hardest to get is tried first (Omni, then Mythic, and so on), Common last. */

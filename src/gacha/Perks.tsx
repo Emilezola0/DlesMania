@@ -10,7 +10,7 @@ import { useBackdropCue, useMomentOn } from './Reactions';
 /** Rare or better: a common card isn't one to show off. */
 export const canBeBackdrop = (c: Card) => c.rarity !== 'common';
 
-const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legendary: 0.22, mythic: 0.24, omni: 0.3 };
+const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legendary: 0.22, mythic: 0.24, omni: 0.3, genesis: 0.34 };
 
 /** A clip that can loop in a corner of the page: an MP4 (not a YouTube or TikTok moment), motion allowed. */
 const loops = (clip?: string): clip is string => !!clip && !/^(youtube|tiktok):/.test(clip) && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;

@@ -60,6 +60,7 @@ export const SYNCED = [
   'elements',
   'cardRanks',
   'starShards',
+  'genesis',
   'bondCards',
   'bondClaimed',
   'missionBooks',
@@ -192,6 +193,15 @@ const minBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) =
   return out;
 };
 
+function mergeGenesis(a: SaveData['genesis'] = {}, b: SaveData['genesis'] = {}): SaveData['genesis'] {
+  const out = { ...a };
+  for (const [k, r] of Object.entries(b)) {
+    const m = out[k];
+    out[k] = !m ? r : { ...m, ...r, begun: m.begun < r.begun ? m.begun : r.begun, ...(m.forged || r.forged ? { forged: [m.forged, r.forged].filter(Boolean).sort()[0] } : {}) };
+  }
+  return out;
+}
+
 function mergeBosses(a: SaveData['bosses'] = {}, b: SaveData['bosses'] = {}): SaveData['bosses'] {
   const out = { ...a };
   for (const [k, r] of Object.entries(b)) {
@@ -201,7 +211,8 @@ function mergeBosses(a: SaveData['bosses'] = {}, b: SaveData['bosses'] = {}): Sa
       continue;
     }
     const times = [m.bestTime, r.bestTime].filter((t): t is number => typeof t === 'number');
-    out[k] = { plays: Math.max(m.plays, r.plays), wins: Math.max(m.wins, r.wins), bestScore: Math.max(m.bestScore, r.bestScore), bestTime: times.length ? Math.min(...times) : null };
+    const flawlessAt = [m.flawlessAt, r.flawlessAt].filter(Boolean).sort().at(-1);
+    out[k] = { plays: Math.max(m.plays, r.plays), wins: Math.max(m.wins, r.wins), bestScore: Math.max(m.bestScore, r.bestScore), bestTime: times.length ? Math.min(...times) : null, ...(flawlessAt ? { flawlessAt } : {}) };
   }
   return out;
 }
@@ -343,6 +354,8 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     // Special rarities (src/gacha/ranks.ts): earned on either side stays earned, the higher one per card.
     cardRanks: firstLink ? (cloud.cardRanks ?? {}) : mergeRanks(local.cardRanks, cloud.cardRanks),
     starShards: latest.starShards ?? 0,
+    // Genesis rituals: begun on either side stays begun (the earlier day), forged on either side stays forged.
+    genesis: mergeGenesis(local.genesis, cloud.genesis),
     // Bond packs taken on either side stay taken; a card linked on either side stays linked (the first link).
     bondCards: { ...(local.bondCards ?? {}), ...(cloud.bondCards ?? {}) },
     bondClaimed: [...new Set([...(cloud.bondClaimed ?? []), ...(local.bondClaimed ?? [])])].slice(-200),

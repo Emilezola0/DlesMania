@@ -355,6 +355,17 @@ export const sfx = {
       play([{ freq: f, at: 0.03 + i * 0.05 + Math.random() * 0.04, dur: 0.35 + Math.random() * 0.3, type: 'sine', gain: 0.025 }]);
     }
   },
+  /** A Genesis born: after the silence, a chord of pure tones rising one by one, the highest last and longest. */
+  genesis: () =>
+    play(
+      [261.63, 392, 523.25, 659.25, 783.99, 1046.5].map((freq, i) => ({
+        freq,
+        at: i * 0.32,
+        dur: 3.4 - i * 0.3,
+        type: 'sine' as const,
+        gain: i === 5 ? 0.035 : 0.05,
+      })),
+    ),
   /** A small pop: a card turned. */
   pop: () => play([{ freq: 520, dur: 0.07, type: 'triangle', gain: 0.08, slide: 880 }]),
   victory: () =>

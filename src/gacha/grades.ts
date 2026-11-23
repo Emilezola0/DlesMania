@@ -46,10 +46,10 @@ export function gradeRewards(rarity: Rarity, from: number, to: number): number {
 
 /**
  * Whether a card can go up a grade now: below the top, with enough spares and, from Singularity on, its boss beaten
- * on Hell. Never an Omni: its one rank is Apex (src/gacha/ranks.ts); grades it took before stay.
+ * on Hell. Never an Omni (its one rank is Apex, src/gacha/ranks.ts; grades it took before stay) nor a Genesis.
  */
 export const canGradeUp = (count: number, grade: number, hellBeaten: boolean, rarity?: Rarity) =>
-  rarity !== 'omni' && grade < MAX_GRADE && count - 1 >= GRADE_COST && (grade + 1 < HELL_GRADE || hellBeaten);
+rarity !== 'omni' && rarity !== 'genesis' && grade < MAX_GRADE && count - 1 >= GRADE_COST && (grade + 1 < HELL_GRADE || hellBeaten);
 
 /** The grade where the player picks an element, and what changing it later costs. */
 export const ELEMENT_GRADE = T.elementGrade;

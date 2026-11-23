@@ -87,7 +87,8 @@
     "epic": 15,
     "legendary": 50,
     "mythic": 150,
-    "omni": 500
+    "omni": 500,
+    "genesis": 2000
   },
   "missions": {
     "rounds": {

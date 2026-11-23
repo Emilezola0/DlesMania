@@ -450,7 +450,7 @@ function skyMomentFor(rand: () => number = Math.random): SkyMoment | null {
  * surprise). In a franchise or kind-of-work pack, its icon twinkles among them.
  * For testing, in dev only: localStorage "omnidle-force-flyby" = "1".
  */
-const FLYBY_CHANCE: Record<Rarity, number> = { common: 0.15, rare: 0.15, epic: 0.3, legendary: 0.5, mythic: 0.8, omni: 0.8 };
+const FLYBY_CHANCE: Record<Rarity, number> = { common: 0.15, rare: 0.15, epic: 0.3, legendary: 0.5, mythic: 0.8, omni: 0.8, genesis: 1 };
 const FLYBY_MAX = 3;
 const FLYBY_BEST = 0.35;
 interface Flyer {

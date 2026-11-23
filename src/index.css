@@ -1407,6 +1407,156 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .card-omni-awake .card-backdrop-omni { animation-duration: 3.5s; }
 .card-backdrop-still { animation: none; }
+
+/* ── Genesis cards (above Omni, src/gacha/genesis.ts): creation, not fire. The one light card of the game: a dawn sky
+   of pearl, sea-green, first pink and gold, a pearl frame turning slowly, the lines its world was drawn with traced
+   over it again and again, seeds of light rising. Up close it is born again: its lines first, then its colours. ── */
+.card-genesis-frame { background: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .card-genesis-frame { box-shadow: none !important; }
+}
+.card-frame-turn > .card-frame-turn-genesis {
+  background: conic-gradient(#fdfaf3, #7ef0e0, #fdfaf3, #f5a3ff, #fdfaf3, #ffe9a8, #fdfaf3);
+  animation-duration: 9s;
+}
+/* Its glow breathes, slow and white: a dawn, not a fire. */
+.card-genesis-pulse::before,
+.card-genesis-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.card-genesis-pulse::before {
+  box-shadow: 0 0 0 2px rgba(253, 250, 243, 0.95), 0 14px 50px rgba(126, 240, 224, 0.45), 0 0 34px rgba(245, 163, 255, 0.35);
+  animation: card-fade-out-in 5s ease-in-out infinite;
+}
+.card-genesis-pulse::after {
+  box-shadow: 0 0 0 3px #ffffff, 0 20px 90px rgba(255, 233, 168, 0.75), 0 0 70px rgba(126, 240, 224, 0.6);
+  opacity: 0;
+  animation: card-fade-in-out 5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-genesis-pulse { display: none; }
+}
+.card-genesis-sky {
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(126, 240, 224, 0.55), transparent 50%),
+    radial-gradient(ellipse at 85% 30%, rgba(245, 163, 255, 0.45), transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 233, 168, 0.7), transparent 55%),
+    #fdfaf3;
+  background-size: 200% 200%, 200% 200%, 100% 100%;
+  animation: card-nebula 16s ease-in-out infinite;
+}
+.card-genesis-name {
+  background: linear-gradient(90deg, #1d1630, #0f766e, #a21caf, #b45309, #1d1630);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: card-name-shimmer 4s linear infinite;
+}
+/* Behind its picture: soft rays of first light, turning. */
+.card-backdrop-genesis {
+  background: repeating-conic-gradient(rgba(255, 255, 255, 0.95) 0 6deg, rgba(126, 240, 224, 0.35) 6deg 20deg, rgba(255, 233, 168, 0.5) 20deg 26deg, rgba(245, 163, 255, 0.3) 26deg 40deg);
+  animation-duration: 30s;
+  opacity: 0.55;
+}
+/* Its foil: mother-of-pearl, following the light. */
+.card-genesis-foil {
+  background: linear-gradient(115deg, transparent 15%, rgba(126, 240, 224, 0.4) 35%, rgba(255, 255, 255, 0.6) 47%, rgba(245, 163, 255, 0.4) 58%, rgba(255, 233, 168, 0.4) 68%, transparent 85%);
+  background-size: 320% 320%;
+  background-position: var(--mx) var(--my);
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+}
+/* Under the pointer, a dawn opens: white at its heart, a ring of the three colours round it. */
+.card-genesis-bloom {
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.55), transparent 16%),
+    radial-gradient(circle at var(--mx) var(--my), transparent 17%, rgba(126, 240, 224, 0.28) 20%, rgba(245, 163, 255, 0.22) 24%, transparent 30%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card-genesis-frame:hover .card-genesis-bloom,
+.card-genesis-born .card-genesis-bloom { opacity: 1; }
+/* The lines it was drawn with: traced, held, faded, traced again. Each line its own length (pathLength 1). */
+@keyframes card-genesis-trace {
+  0% { stroke-dashoffset: 1; opacity: 0.9; }
+  45% { stroke-dashoffset: 0; opacity: 0.9; }
+  75% { stroke-dashoffset: 0; opacity: 0.9; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.card-genesis-lines {
+  z-index: 5;
+  fill: none;
+  stroke: rgba(29, 22, 48, 0.32);
+  stroke-width: 0.35;
+  mix-blend-mode: multiply;
+}
+.card-genesis-lines > * {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: card-genesis-trace 9s ease-in-out infinite;
+}
+.card-genesis-lines > :nth-child(2) { animation-delay: 0.6s; }
+.card-genesis-lines > :nth-child(3) { animation-delay: 1.1s; }
+.card-genesis-lines > :nth-child(4) { animation-delay: 1.5s; }
+.card-genesis-lines > :nth-child(5) { animation-delay: 2s; stroke: rgba(180, 83, 9, 0.45); }
+.card-genesis-lines > :nth-child(6) { animation-delay: 2.6s; }
+@media (prefers-reduced-motion: reduce) {
+  .card-genesis-lines > * { animation: none; stroke-dashoffset: 0; opacity: 0.5; }
+}
+/* Seeds of light rising through it, each in one of the three colours. */
+@keyframes card-genesis-rise {
+  0% { transform: translateY(0) scale(0.4); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120cqw) scale(1); opacity: 0; }
+}
+.card-genesis-motes { z-index: 6; overflow: hidden; }
+.card-genesis-motes i {
+  position: absolute;
+  bottom: -4%;
+  width: 2.2cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0 30%, var(--hue) 60%, transparent 72%);
+  box-shadow: 0 0 2cqw var(--hue);
+  animation: card-genesis-rise 5.5s ease-in infinite;
+}
+/* Up close, behind it: the compass its world was laid out with, turning slowly. */
+@keyframes card-genesis-compass { to { transform: rotate(360deg); } }
+.card-genesis-compass {
+  fill: none;
+  stroke: rgba(255, 244, 214, 0.55);
+  stroke-width: 0.5;
+  filter: drop-shadow(0 0 4px rgba(126, 240, 224, 0.7));
+  animation: card-genesis-compass 60s linear infinite;
+}
+/* Born (up close, or the moment it's forged): the lines are drawn first, then the colours are laid in from the middle. */
+@keyframes card-genesis-paint {
+  0% { filter: grayscale(1) contrast(2.6) brightness(1.6); clip-path: circle(0% at 50% 45%); opacity: 0.2; }
+  35% { filter: grayscale(1) contrast(2.6) brightness(1.6); clip-path: circle(80% at 50% 45%); opacity: 0.75; }
+  100% { filter: none; clip-path: circle(100% at 50% 45%); opacity: 1; }
+}
+.card-genesis-born .card-genesis-paint { animation: card-genesis-paint 2.8s ease-out both; }
+.card-genesis-born .card-genesis-lines > * { animation: card-genesis-trace 9s ease-in-out infinite; }
+.card-genesis-born .card-genesis-lines > :first-child { animation-delay: 0s; }
+/* Its back: pearl, its colours turning round the edge. */
+.card-genesis-back {
+  background:
+    linear-gradient(#fdfaf3, #fdfaf3) padding-box,
+    conic-gradient(from var(--spin), #7ef0e0, #fdfaf3, #f5a3ff, #ffe9a8, #7ef0e0) border-box;
+  animation: card-spin 6s linear infinite;
+}
+/* Not forged yet: a blank page, its lines faintly waiting. */
+.card-genesis-missing {
+  color: #6b5b8a;
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 233, 168, 0.35), transparent 60%), linear-gradient(#fdfaf3, #f3eefc);
+  border: 2px dashed rgba(126, 240, 224, 0.8);
+}
+.card-genesis-missing .card-genesis-lines { stroke: rgba(107, 91, 138, 0.35); }
 /* YouTube's frame, zoomed on its left side: its corners and bottom bar stay out of sight, and so does the pause mark it flashes in its middle each time the moment restarts. */
 .card-clip-yt { position: absolute; inset: 0; transition: opacity 0.25s; pointer-events: none; }
 .card-clip-yt iframe { position: absolute; left: 50%; top: 50%; width: 300%; height: auto; aspect-ratio: 16 / 9; transform: translate(-50%, -50%); }
@@ -5211,4 +5361,71 @@ html.pack-open body::before, html.pack-open body::after, html.pack-open .omni-au
 [class*='name-style-'], [class*='title-style-'], .boutique-ascended-badge,
 .omni-aura [data-site-header]::after, .omni-aura [data-logo] {
   will-change: transform;
+}
+
+/* ── A Genesis being born (src/gacha/GenesisRitual.tsx): the page fades to white in silence, the card is drawn, then named. ── */
+@keyframes genesis-birth-white {
+  from { background-color: rgba(253, 250, 243, 0); backdrop-filter: blur(0); }
+  to { background-color: rgba(253, 250, 243, 1); backdrop-filter: blur(6px); }
+}
+.genesis-birth { animation: genesis-birth-white 1.3s ease-in both; cursor: default; }
+@keyframes genesis-birth-rays-in { from { opacity: 0; transform: scale(0.6) rotate(0deg); } to { opacity: 1; transform: scale(1) rotate(25deg); } }
+.genesis-birth-rays {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.95), transparent 35%),
+    repeating-conic-gradient(from 0deg at 50% 45%, rgba(126, 240, 224, 0.18) 0 4deg, transparent 4deg 15deg, rgba(245, 163, 255, 0.15) 15deg 19deg, transparent 19deg 30deg, rgba(255, 233, 168, 0.2) 30deg 34deg, transparent 34deg 45deg);
+  animation: genesis-birth-rays-in 4s 1.2s ease-out both;
+}
+@keyframes genesis-birth-card { from { opacity: 0; transform: translateY(12px) scale(0.92); } to { opacity: 1; transform: none; } }
+.genesis-birth-card { animation: genesis-birth-card 1.2s ease-out both; }
+@keyframes genesis-birth-name { from { opacity: 0; letter-spacing: 0.4em; } to { opacity: 1; } }
+.genesis-birth-name { animation: genesis-birth-name 1.4s ease-out both; }
+.genesis-forge-button {
+  color: #1d1630;
+  background: linear-gradient(#fdfaf3, #fdfaf3) padding-box, conic-gradient(from var(--spin), #7ef0e0, #fdfaf3, #f5a3ff, #ffe9a8, #7ef0e0) border-box;
+  border: 2px solid transparent;
+  animation: card-spin 5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .genesis-birth, .genesis-birth-rays, .genesis-birth-card, .genesis-birth-name, .genesis-forge-button { animation: none; }
+  .genesis-birth { background: #fdfaf3; }
+}
+
+/* ── The Genesis aura (src/gacha/OmniAura.tsx): the whole site while a Genesis card is on show — a dawn drifting
+   behind the pages, a pearl line under the header, seeds of light rising from the pointer. ── */
+.genesis-aura body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(126, 240, 224, 0.07), rgba(253, 250, 243, 0.06), rgba(245, 163, 255, 0.06), rgba(255, 233, 168, 0.08));
+}
+.omni-aurora-a.genesis-aurora { background: radial-gradient(ellipse 60% 40% at 30% 20%, rgba(126, 240, 224, 0.16), transparent 70%); animation-duration: 30s; }
+.omni-aurora-b.genesis-aurora { background: radial-gradient(ellipse 60% 40% at 70% 80%, rgba(245, 163, 255, 0.13), transparent 70%); animation-duration: 30s; }
+.genesis-aura [data-site-header]::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7ef0e0, #ffffff, #f5a3ff, #ffe9a8, #7ef0e0);
+  background-size: 200% 100%;
+  animation: card-name-shimmer 6s linear infinite;
+  box-shadow: 0 0 12px rgba(126, 240, 224, 0.7);
+  will-change: transform;
+}
+.genesis-aura [data-logo] {
+  background: linear-gradient(90deg, #2dd4bf, #e879f9, #f6c453, #e879f9, #2dd4bf);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: card-name-shimmer 5s linear infinite;
+  will-change: transform;
+}
+.genesis-aura .btn-accent { box-shadow: 0 0 0 2px rgba(126, 240, 224, 0.85), 0 0 18px rgba(245, 163, 255, 0.45); }
+.genesis-aura .page { box-shadow: 0 0 0 1px rgba(126, 240, 224, 0.3), 0 0 22px rgba(255, 233, 168, 0.14); }
+.genesis-seed { animation-duration: 1.4s; animation-timing-function: ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .genesis-aura [data-site-header]::after, .genesis-aura [data-logo] { animation: none; }
 }

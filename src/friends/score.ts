@@ -12,6 +12,7 @@ export const RARITY_POINTS: Record<Rarity, number> = {
   legendary: 20,
   mythic: 50,
   omni: 120,
+  genesis: 400,
 };
 /** Each grade above the first adds this share of the card's worth (grade VII: ×4). */
 export const GRADE_BONUS = 0.5;
