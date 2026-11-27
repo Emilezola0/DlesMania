@@ -13,7 +13,7 @@ const BEYOND: [string, string][] = [
   ['Casino', 'Casino'],
 ];
 
-type StartViewTransition = (update: () => Promise<void>) => { finished: Promise<void> };
+type StartViewTransition = (update: () => Promise<void>) => { finished: Promise<void>; ready: Promise<void>; updateCallbackDone: Promise<void> };
 
 /** Until the new page has drawn (past its spinner, if its code was still on its way), at most a little over a second. */
 async function pageSettled() {
@@ -82,6 +82,10 @@ function useDrawerLink(to: string, kind: 'open' | 'close') {
       portal = addPortal(kind);
       await pageSettled();
     });
+    // A second tap while it plays skips it (the page still changes), and a page slow to come stops waiting for it: not
+    // errors, so not reported as such.
+    done.ready.catch(() => {});
+    done.updateCallbackDone.catch(() => {});
     void done.finished.finally(() => {
       portal.forEach((p) => p.remove());
       delete html.dataset.drawer;
