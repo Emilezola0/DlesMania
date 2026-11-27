@@ -1,7 +1,7 @@
 // The Specialist universes, light: their names, blurbs, rounds and banners, without the data their rounds are made
 // of (src/specialist/rounds.ts brings that in). The home page and the Daily's Specialist card need only these.
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote' | 'skin';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote' | 'skin' | 'technique';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -70,7 +70,8 @@ export const UNIVERSES = [
     label: 'Dragon Ball',
     ready: true,
     blurb: 'The Saiyans, the Z Fighters, the villains and the gods: Classic by race, gender and where they first appear, from the first series to Daima, their anime art up close and behind windows, and their signature techniques.',
-    types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
+    // Technique (whose is it?) in place of a Clue round: the same kind of line, the boss's techniques and many more.
+    types: ['classic', 'picture', 'windows', 'technique'] as SpType[],
   },
   {
     id: 'forts',

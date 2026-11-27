@@ -49,6 +49,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   execution: { name: 'Execution', icon: '🗡️', tagline: 'Whose execution is this?', maxAttempts: 6 },
   exotic: { name: 'Exotic', icon: '✦', tagline: 'Which Exotic weapon is this?', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
+  technique: { name: 'Technique', icon: '💥', tagline: 'Name the fighter behind the move', maxAttempts: 6 },
   mob: { name: 'Mobs', icon: '🤖', tagline: 'Which ARC machine is this?', maxAttempts: 6 },
   gear: { name: 'Weapons & Gear', icon: '🔫', tagline: 'Name the weapon or the equipment', maxAttempts: 6 },
   place: { name: 'Locations', icon: '🗺️', tagline: 'Where is this?', maxAttempts: 6 },
@@ -250,6 +251,10 @@ const SP_FR: Record<SpType, [string, string]> = {
   "clue": [
     "Indice",
     "Nomme-les à partir d’un indice"
+  ],
+  "technique": [
+    "Technique",
+    "Trouve le combattant derrière l’attaque"
   ],
   "mob": [
     "Machines",

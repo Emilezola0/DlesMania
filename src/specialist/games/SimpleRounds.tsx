@@ -9,6 +9,7 @@ import type { SpRound } from '../rounds';
 import { SIMPLE, simpleCharacter, type SimpleCharacter, type SimpleUniverse } from '../simple';
 import { ClassicGrid, close, overlap, same, type Column } from './ClassicRound';
 import { SpGuessRound } from './SpGuessRound';
+import { useT } from '../../lib/i18n';
 
 interface Props {
   round: SpRound;
@@ -63,6 +64,30 @@ export const clueRoundFor = (u: SimpleUniverse['id'], question: string) =>
         noPictures
         clue={() => (
           <blockquote className="page mx-auto max-w-xl rounded-md px-6 py-8 text-center font-serif text-2xl italic leading-snug">“{clue.text}”</blockquote>
+        )}
+      />
+    );
+  };
+
+/** Technique: a character's own technique (Dragon Ball) — whose is it? */
+export const techniqueRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleTechniqueRound({ round, record, onChange }: Props) {
+    const technique = SIMPLE[u].techniques![Number(round.targetId)];
+    const c = simpleCharacter(u, technique.answer)!;
+    const t = useT();
+    return (
+      <SpGuessRound
+        type="technique"
+        question={t('Whose technique is this?', 'À qui appartient cette technique ?')}
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image || undefined, detail: detail(c) }}
+        noPictures
+        clue={() => (
+          <blockquote className="page mx-auto max-w-xl rounded-md px-6 py-8 text-center font-display text-2xl font-bold tracking-wide sm:text-3xl">{technique.text}</blockquote>
         )}
       />
     );

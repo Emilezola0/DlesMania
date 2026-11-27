@@ -949,5 +949,171 @@
    "gender": "Male",
    "debut": "Film"
   }
+ ],
+ "techniques": [
+  {
+   "text": "Kaio-ken",
+   "answer": "Goku"
+  },
+  {
+   "text": "Dragon Fist",
+   "answer": "Goku"
+  },
+  {
+   "text": "Final Explosion",
+   "answer": "Vegeta"
+  },
+  {
+   "text": "Final Shine Attack",
+   "answer": "Vegeta"
+  },
+  {
+   "text": "Light Grenade",
+   "answer": "Piccolo"
+  },
+  {
+   "text": "Neo Tri-Beam",
+   "answer": "Tien Shinhan"
+  },
+  {
+   "text": "Multi-Form",
+   "answer": "Tien Shinhan"
+  },
+  {
+   "text": "Spirit Ball",
+   "answer": "Yamcha"
+  },
+  {
+   "text": "Death Beam",
+   "answer": "Frieza"
+  },
+  {
+   "text": "Death Saucer",
+   "answer": "Frieza"
+  },
+  {
+   "text": "Finish Buster",
+   "answer": "Future Trunks"
+  },
+  {
+   "text": "Shining Sword Attack",
+   "answer": "Future Trunks"
+  },
+  {
+   "text": "Galactic Donut",
+   "answer": "Gotenks"
+  },
+  {
+   "text": "Soul Punisher",
+   "answer": "Gogeta"
+  },
+  {
+   "text": "Big Bang Kamehameha",
+   "answer": "Gogeta"
+  },
+  {
+   "text": "Spirit Sword",
+   "answer": "Vegito"
+  },
+  {
+   "text": "Final Kamehameha",
+   "answer": "Vegito"
+  },
+  {
+   "text": "Time-Skip",
+   "answer": "Hit"
+  },
+  {
+   "text": "Hell's Flash",
+   "answer": "Android 16"
+  },
+  {
+   "text": "Double Sunday",
+   "answer": "Raditz"
+  },
+  {
+   "text": "Bomber DX",
+   "answer": "Nappa"
+  },
+  {
+   "text": "Riot Javelin",
+   "answer": "Bardock"
+  },
+  {
+   "text": "Final Spirit Cannon",
+   "answer": "Bardock"
+  },
+  {
+   "text": "Dynamite Kick",
+   "answer": "Mr. Satan"
+  },
+  {
+   "text": "Present Bomb",
+   "answer": "Mr. Satan"
+  },
+  {
+   "text": "Thunder Shock Surprise",
+   "answer": "Master Roshi"
+  },
+  {
+   "text": "Stone Spit",
+   "answer": "Dabura"
+  },
+  {
+   "text": "Human Extinction Attack",
+   "answer": "Super Buu"
+  },
+  {
+   "text": "Dimension Sword",
+   "answer": "Janemba"
+  },
+  {
+   "text": "Gigantic Meteor",
+   "answer": "Broly"
+  },
+  {
+   "text": "Super Maximum Light Speed Mode",
+   "answer": "Dyspo"
+  },
+  {
+   "text": "Time Freeze",
+   "answer": "Guldo"
+  },
+  {
+   "text": "Recoome Eraser Gun",
+   "answer": "Recoome"
+  },
+  {
+   "text": "Crusher Ball",
+   "answer": "Jeice"
+  },
+  {
+   "text": "Temporal Do-Over",
+   "answer": "Whis"
+  },
+  {
+   "text": "Galactic Buster",
+   "answer": "Bojack"
+  },
+  {
+   "text": "S.S. Deadly Bomber",
+   "answer": "Android 13"
+  },
+  {
+   "text": "Dead Zone",
+   "answer": "Garlic Jr."
+  },
+  {
+   "text": "Minus Energy Power Ball",
+   "answer": "Omega Shenron"
+  },
+  {
+   "text": "Revenge Death Ball",
+   "answer": "Baby"
+  },
+  {
+   "text": "Thunder Flash Attack",
+   "answer": "Pikkon"
+  }
  ]
 }

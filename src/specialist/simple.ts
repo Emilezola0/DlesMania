@@ -43,6 +43,8 @@ export interface SimpleUniverse {
   ults?: { answer: string; ultimate: string; cost: number }[];
   /** Ufouria: the heroes cheering, cut out (the official art), for the Dance round: who is dancing in the shadow? */
   dances?: { answer: string; image: string }[];
+  /** Techniques and the character each one belongs to (Dragon Ball): a Technique round. */
+  techniques?: { text: string; answer: string }[];
   /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
   items?: SimpleCharacter[];
 }
@@ -606,14 +608,22 @@ function dbz(): SimpleUniverse {
   const characters = cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } }));
   // A technique's answer may be spelt otherwise than the card ("Tien" for Tien Shinhan): matched by any of its names.
   const named = (a: { name: string; aliases: string[] }) => characters.find((c) => [a.name, ...a.aliases].some((n) => n === c.name || c.aliases.includes(n)));
+  const signature = (b.signature?.clues ?? []).flatMap((c) => {
+    const who = c.text ? named(c.answer) : undefined;
+    return who ? [{ text: c.text!, answer: who.id }] : [];
+  });
+  // The Technique round: the boss's techniques, then the rest written by hand in dbz.json (each one character's own).
+  const more = DBZ.techniques.flatMap((t) => {
+    const who = named({ name: t.answer, aliases: [] });
+    return who && !signature.some((s) => s.text === t.text) ? [{ text: t.text, answer: who.id }] : [];
+  });
   return {
     id: 'dbz',
     columns: ['Race', 'Gender', 'First appears in', 'Rarity'],
     characters,
-    clues: (b.signature?.clues ?? []).flatMap((c) => {
-      const who = c.text ? named(c.answer) : undefined;
-      return who ? [{ text: c.text!, answer: who.id }] : [];
-    }),
+    // The boss's techniques as clues too: a day opened before the Technique round came keeps its Clue round.
+    clues: signature,
+    techniques: [...signature, ...more],
   };
 }
 
@@ -675,6 +685,8 @@ export function simplePools(u: SimpleUniverse['id']) {
     ...(x.voices?.length ? { voice: x.voices.flatMap((v, i) => (ids.has(v.answer) ? [String(i)] : [])) } : {}),
     // A clue round's id is its clue's index (two clues can name the same character).
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
+    // A technique round's id is its technique's index (a character has several).
+    ...(x.techniques?.length ? { technique: x.techniques.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])) } : {}),
     // Classic: everyone whose every trait is known (Ufouria's things and unlisted enemies stay out).
     ...(x.columns.length ? { classic: x.characters.filter((c) => x.columns.every((k) => c.traits[k] && c.traits[k] !== 'Unknown')).map((c) => c.id) } : {}),
     ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
