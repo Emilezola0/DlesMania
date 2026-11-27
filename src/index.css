@@ -5454,42 +5454,48 @@ html.pack-open .more-drawer { visibility: hidden; }
    the drawer (zooming, twisting, blurring, colours turning), a ring of light opens out of it (.drawer-portal) and the
    rest of the site comes through it, from a haze. Closing: the same backwards, into the left edge. */
 html[data-drawer]::view-transition-group(root) { animation-duration: 0.95s; }
+/* Behind both pages, never a bare edge: the deep of the other dimension. */
+html[data-drawer]::view-transition { background: #0d0b14; }
 html[data-drawer]::view-transition-old(root),
 html[data-drawer]::view-transition-new(root) { mix-blend-mode: normal; transform-origin: var(--drawer-x, 100%) var(--drawer-y, 50%); }
 html[data-drawer='open']::view-transition-old(root) { z-index: 1; animation: dimension-drawn-in 0.95s cubic-bezier(0.55, 0, 0.75, 0.2) both; }
-/* (The new side opens in step with the ring: the same timing, its edge just inside the ring's, 0.88 of 23vmax x 4.5.) */
+/* (The new side opens in step with the ring: the same timing, out to --drawer-r, the distance to the screen's farthest
+   corner, set with the ring's size in MoreDrawer.tsx: the whole screen, whatever its shape.) */
 html[data-drawer='open']::view-transition-new(root) { z-index: 2; animation: dimension-come-through 0.95s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
 html[data-drawer='close']::view-transition-group(root) { animation-duration: 0.8s; }
 html[data-drawer='close']::view-transition-old(root) { z-index: 2; animation: dimension-close 0.8s cubic-bezier(0.6, 0, 0.8, 0.4) both; }
 html[data-drawer='close']::view-transition-new(root) { z-index: 1; animation: dimension-out-of-haze 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes dimension-drawn-in {
-  to { transform: scale(2.4) rotate(8deg); filter: blur(14px) hue-rotate(140deg) saturate(2) brightness(1.5); opacity: 0; }
+  to { transform: scale(2.4); filter: blur(14px) hue-rotate(140deg) saturate(2) brightness(1.5); opacity: 0; }
 }
 @keyframes dimension-come-through {
   0% { clip-path: circle(0 at var(--drawer-x) var(--drawer-y)); filter: blur(8px) hue-rotate(-120deg) saturate(2.2) brightness(1.8); }
   55% { filter: blur(1px) hue-rotate(-30deg) saturate(1.4) brightness(1.15); }
-  100% { clip-path: circle(91vmax at var(--drawer-x) var(--drawer-y)); filter: none; }
+  100% { clip-path: circle(var(--drawer-r, 150vmax) at var(--drawer-x) var(--drawer-y)); filter: none; }
 }
 @keyframes dimension-close {
-  0% { clip-path: circle(91vmax at var(--drawer-x) var(--drawer-y)); filter: none; }
+  0% { clip-path: circle(var(--drawer-r, 150vmax) at var(--drawer-x) var(--drawer-y)); filter: none; }
   100% { clip-path: circle(0 at var(--drawer-x) var(--drawer-y)); filter: blur(8px) hue-rotate(120deg) saturate(2.2) brightness(1.8); }
 }
 @keyframes dimension-out-of-haze {
-  from { transform: scale(1.6) rotate(-6deg); filter: blur(14px) hue-rotate(-140deg) saturate(2) brightness(1.5); opacity: 0; }
+  from { transform: scale(1.6); filter: blur(14px) hue-rotate(-140deg) saturate(2) brightness(1.5); opacity: 0; }
 }
 
 /* The portal's light: a ring of the site's iridescent colours around a white glow, over both pages while they change
    (its own transition layer), opening out of the drawer and fading. Only ever seen through the transition. */
-.drawer-portal { position: fixed; inset: 0; z-index: 90; pointer-events: none; view-transition-name: drawer-portal; }
-.drawer-portal-ring, .drawer-portal-glow {
-  position: absolute;
-  left: var(--drawer-x, 100%);
-  top: var(--drawer-y, 50%);
-  width: 46vmax;
-  height: 46vmax;
-  margin: -23vmax 0 0 -23vmax;
-  border-radius: 50%;
+/* Its layer is the ring's own box, centred on the drawer (so nothing of it lies outside what is captured), --portal-d
+   wide: 4.5 times that, its band (0.88 of the radius) reaches the farthest corner. */
+.drawer-portal {
+  position: fixed;
+  left: calc(var(--drawer-x, 100%) - var(--portal-d, 46vmax) / 2);
+  top: calc(var(--drawer-y, 50%) - var(--portal-d, 46vmax) / 2);
+  width: var(--portal-d, 46vmax);
+  height: var(--portal-d, 46vmax);
+  z-index: 90;
+  pointer-events: none;
+  view-transition-name: drawer-portal;
 }
+.drawer-portal-ring, .drawer-portal-glow { position: absolute; inset: 0; border-radius: 50%; }
 .drawer-portal-ring {
   background: conic-gradient(from 30deg, #7ef0e0, #a78bfa, #f5a3ff, #ffe9a8, #7ef0e0, #60a5fa, #7ef0e0);
   -webkit-mask: radial-gradient(closest-side, transparent 80%, #000 84%, #000 92%, transparent 97%);
@@ -5499,7 +5505,6 @@ html[data-drawer='close']::view-transition-new(root) { z-index: 1; animation: di
 .drawer-portal-glow { background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(245, 163, 255, 0.45) 45%, rgba(126, 240, 224, 0.15) 70%, transparent); }
 ::view-transition-group(drawer-portal) { z-index: 3; animation: none; }
 ::view-transition-new(drawer-portal) {
-  transform-origin: var(--drawer-x, 100%) var(--drawer-y, 50%);
   animation: dimension-portal 0.95s cubic-bezier(0.2, 0.6, 0.3, 1) both;
 }
 /* Closing, the ring closes in step with the full side's edge (the same timing as dimension-close). */

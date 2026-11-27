@@ -57,8 +57,17 @@ function useDrawerLink(to: string, kind: 'open' | 'close') {
     const html = document.documentElement;
     // The portal's centre: the strip that peeks out (on the right edge to open, the left one to close).
     const edge = e.currentTarget.getBoundingClientRect();
-    html.style.setProperty('--drawer-x', `${kind === 'open' ? window.innerWidth - 8 : 8}px`);
-    html.style.setProperty('--drawer-y', `${Math.round(edge.top + edge.height / 2)}px`);
+    const w = document.documentElement.clientWidth;
+    const h = window.innerHeight;
+    const x = kind === 'open' ? w - 8 : 8;
+    const y = Math.round(edge.top + edge.height / 2);
+    // How far the portal must open to fill the whole screen: to its farthest corner (and a little past it). The ring's
+    // box is sized so that, at its last scale (4.5), its band (0.88 of its radius) is that far out.
+    const reach = Math.ceil(Math.hypot(Math.max(x, w - x), Math.max(y, h - y))) + 32;
+    html.style.setProperty('--drawer-x', `${x}px`);
+    html.style.setProperty('--drawer-y', `${y}px`);
+    html.style.setProperty('--drawer-r', `${reach}px`);
+    html.style.setProperty('--portal-d', `${Math.ceil((2 * reach) / (4.5 * 0.88))}px`);
     html.dataset.drawer = kind;
     let portal: HTMLElement | null = null;
     const done = start.call(document, async () => {
