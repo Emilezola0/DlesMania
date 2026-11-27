@@ -90,13 +90,13 @@ function useDrawerLink(to: string, kind: 'open' | 'close') {
 }
 
 const EDGE =
-  'group fixed z-30 flex h-28 w-56 items-stretch border-rule-strong bg-card text-ink-soft shadow-[0_6px_24px_-12px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none';
+  'group fixed z-30 flex h-36 w-56 sm:h-44 items-stretch border-rule-strong bg-card text-ink-soft shadow-[0_6px_24px_-12px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none';
 
 /** The strip that peeks out: a grip and the drawer's name, read bottom to top. */
 function Grip({ label, side }: { label: string; side: 'left' | 'right' }) {
   return (
-    <span className={`flex w-4 shrink-0 flex-col items-center justify-center gap-1.5 border-rule sm:w-[1.375rem] ${side === 'right' ? 'border-r' : 'order-last border-l'}`} aria-hidden>
-      <span className="h-5 w-[3px] rounded-full bg-ink-faint/60 transition group-hover:bg-accent" />
+    <span className={`flex w-4 shrink-0 flex-col items-center justify-center gap-2.5 border-rule sm:w-[1.375rem] ${side === 'right' ? 'border-r' : 'order-last border-l'}`} aria-hidden>
+      <span className="h-8 w-[3px] rounded-full bg-ink-faint/60 transition group-hover:bg-accent" />
       <span className="rotate-180 font-display text-[8px] font-bold uppercase leading-none tracking-[0.18em] text-ink-faint [writing-mode:vertical-rl] group-hover:text-ink sm:text-[9px]">
         {label}
       </span>
