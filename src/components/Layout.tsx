@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, dayKey, summarizeDay, useProgress, type ThemeChoice } from '../store/progress';
 import { isDailySide, useUi } from '../store/ui';
-import { MoreDrawer } from './MoreDrawer';
+import { CloseDrawer, MoreDrawer } from './MoreDrawer';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
 import { useCloud } from '../cloud/state';
@@ -261,7 +261,7 @@ function useIdle(): boolean {
 /** While a page's code arrives: a quiet spinner where the page will be. */
 function PageLoading() {
   return (
-    <div className="grid min-h-[40vh] place-items-center">
+    <div data-page-loading className="grid min-h-[40vh] place-items-center">
       <Spinner />
     </div>
   );
@@ -590,7 +590,7 @@ export function Layout() {
           <Outlet />
         </Suspense>
       </main>
-      {dailySide && <MoreDrawer />}
+      {dailySide ? <MoreDrawer /> : <CloseDrawer />}
       {/* Phones: the menu along the bottom, within reach of a thumb (the full side's). */}
       {!dailySide && (
       <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur pointer-coarse:bg-paper pointer-coarse:backdrop-blur-none sm:hidden" aria-label={t('Main menu', 'Menu principal')}>

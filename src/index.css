@@ -5442,3 +5442,23 @@ html.pack-open body::before, html.pack-open body::after, html.pack-open .omni-au
 /* Out of the way while the phone's keyboard is up, like the bottom menu. */
 @media (pointer: coarse) { body:has(input:not([type="checkbox"]):focus, textarea:focus) .more-drawer { display: none; } }
 html.pack-open .more-drawer { visibility: hidden; }
+/* Its other edge, on the full side's left (src/components/MoreDrawer.tsx, CloseDrawer): it peeks out the same way. */
+.more-drawer-left { animation-name: more-drawer-peek-left; }
+@keyframes more-drawer-peek-left {
+  0%, 100% { margin-left: 0; }
+  35%, 55% { margin-left: 0.75rem; }
+}
+
+/* The drawer opening and closing (a view transition of the whole page, html[data-drawer] while it plays): opening,
+   the full side slides in from the right over the dailies, which sink back a little; closing, it slides back out to
+   the right, the dailies coming forward under it. */
+html[data-drawer]::view-transition-old(root),
+html[data-drawer]::view-transition-new(root) { mix-blend-mode: normal; }
+html[data-drawer='open']::view-transition-old(root) { animation: drawer-sink 0.55s ease both; }
+html[data-drawer='open']::view-transition-new(root) { animation: drawer-slide-in 0.55s cubic-bezier(0.22, 0.8, 0.24, 1) both; filter: drop-shadow(-18px 0 28px rgba(0, 0, 0, 0.45)); }
+html[data-drawer='close']::view-transition-old(root) { z-index: 2; animation: drawer-slide-out 0.48s cubic-bezier(0.55, 0, 0.7, 0.4) both; filter: drop-shadow(-18px 0 28px rgba(0, 0, 0, 0.45)); }
+html[data-drawer='close']::view-transition-new(root) { z-index: 1; animation: drawer-rise 0.48s ease both; }
+@keyframes drawer-slide-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes drawer-slide-out { from { transform: none; } to { transform: translateX(100%); } }
+@keyframes drawer-sink { to { transform: scale(0.96); opacity: 0.55; } }
+@keyframes drawer-rise { from { transform: scale(0.96); opacity: 0.55; } }

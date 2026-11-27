@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import type { MouseEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { sfx } from '../lib/sfx';
 import { useT } from '../lib/i18n';
 import { GlyphSeal } from './Glyph';
@@ -12,28 +13,75 @@ const BEYOND: [string, string][] = [
   ['Casino', 'Casino'],
 ];
 
+type StartViewTransition = (update: () => Promise<void>) => { finished: Promise<void> };
+
+/** Until the new page has drawn (past its spinner, if its code was still on its way), at most a little over a second. */
+async function pageSettled() {
+  // (A frame, or a moment where frames are paused: a tab in the background.)
+  const frame = () => new Promise<void>((r) => { requestAnimationFrame(() => r()); setTimeout(r, 50); });
+  await frame();
+  await frame();
+  const until = performance.now() + 1200;
+  while (document.querySelector('[data-page-loading]') && performance.now() < until) await new Promise((r) => setTimeout(r, 40));
+}
+
+/**
+ * The drawer opening (the full side slides in from the right, over the dailies) or closing (it slides back out to the
+ * right, the dailies under it): a view transition of the whole page, its two snapshots animated in index.css
+ * (html[data-drawer]). Where there's none (or motion is reduced) the link simply goes there.
+ */
+function useDrawerLink(to: string, kind: 'open' | 'close') {
+  const navigate = useNavigate();
+  return (e: MouseEvent<HTMLAnchorElement>) => {
+    sfx.click();
+    // A new tab or window: the browser's own.
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const start = (document as Document & { startViewTransition?: StartViewTransition }).startViewTransition;
+    if (!start || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    const html = document.documentElement;
+    html.dataset.drawer = kind;
+    const done = start.call(document, async () => {
+      navigate(to);
+      window.scrollTo(0, 0);
+      await pageSettled();
+    });
+    void done.finished.finally(() => delete html.dataset.drawer);
+  };
+}
+
+const EDGE =
+  'group fixed z-30 flex h-28 w-56 items-stretch border-rule-strong bg-card text-ink-soft shadow-[0_6px_24px_-12px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none';
+
+/** The strip that peeks out: a grip and the drawer's name, read bottom to top. */
+function Grip({ label, side }: { label: string; side: 'left' | 'right' }) {
+  return (
+    <span className={`flex w-4 shrink-0 flex-col items-center justify-center gap-1.5 border-rule sm:w-[1.375rem] ${side === 'right' ? 'border-r' : 'order-last border-l'}`} aria-hidden>
+      <span className="h-5 w-[3px] rounded-full bg-ink-faint/60 transition group-hover:bg-accent" />
+      <span className="rotate-180 font-display text-[8px] font-bold uppercase leading-none tracking-[0.18em] text-ink-faint [writing-mode:vertical-rl] group-hover:text-ink sm:text-[9px]">
+        {label}
+      </span>
+    </span>
+  );
+}
+
 /**
  * On the daily side, a drawer left slightly open on the right edge: a strip of it peeks out (inside the page's margin,
- * clear of the games' controls) and, pointed at or focused, it slides further out. Tapping it goes to everything else
- * (the games hub, with the full header back).
+ * clear of the games' controls) and, pointed at or focused, it slides further out. Tapping it opens the drawer: the
+ * rest of the site (the games hub, with the full header back) slides in from the right.
  */
 export function MoreDrawer() {
   const t = useT();
+  const open = useDrawerLink('/games', 'open');
   return (
     <Link
       to="/games"
-      onClick={() => sfx.click()}
+      onClick={open}
       aria-label={t('Everything else: games, boss, album, casino, account', 'Tout le reste : jeux, boss, album, casino, compte')}
       title={t('Everything else', 'Tout le reste')}
-      className="more-drawer group fixed right-0 z-30 flex h-28 w-56 translate-x-[calc(100%-1rem)] items-stretch rounded-l-lg border border-r-0 border-rule-strong bg-card text-ink-soft shadow-[-6px_6px_24px_-12px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-out hover:translate-x-0 focus-visible:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transition-none sm:translate-x-[calc(100%-1.375rem)] sm:hover:translate-x-0 sm:focus-visible:translate-x-0"
+      className={`more-drawer ${EDGE} right-0 translate-x-[calc(100%-1rem)] rounded-l-lg border border-r-0 hover:translate-x-0 focus-visible:translate-x-0 sm:translate-x-[calc(100%-1.375rem)] sm:hover:translate-x-0 sm:focus-visible:translate-x-0`}
     >
-      {/* The edge that peeks out: a grip and the drawer's name, read bottom to top. */}
-      <span className="flex w-4 shrink-0 flex-col items-center justify-center gap-1.5 border-r border-rule sm:w-[1.375rem]" aria-hidden>
-        <span className="more-drawer-grip h-5 w-[3px] rounded-full bg-ink-faint/60 transition group-hover:bg-accent" />
-        <span className="font-display text-[8px] font-bold uppercase leading-none tracking-[0.18em] text-ink-faint [writing-mode:vertical-rl] rotate-180 group-hover:text-ink sm:text-[9px]">
-          {t('More', 'Plus')}
-        </span>
-      </span>
+      <Grip side="right" label={t('More', 'Plus')} />
       <span className="flex min-w-0 flex-1 flex-col justify-center gap-1 px-3" aria-hidden>
         <span className="flex items-center gap-2 whitespace-nowrap font-display text-sm font-bold text-ink">
           <GlyphSeal seed="omnidle" size={18} />
@@ -41,6 +89,33 @@ export function MoreDrawer() {
         </span>
         <span className="text-[11px] leading-snug text-ink-faint">{BEYOND.map(([en, fr]) => t(en, fr)).join(' · ')}</span>
       </span>
+    </Link>
+  );
+}
+
+/**
+ * On the full side, the drawer's other edge, peeking out on the left: tapping it closes the drawer (the full side slides
+ * back out to the right) and goes back to the dailies.
+ */
+export function CloseDrawer() {
+  const t = useT();
+  const close = useDrawerLink('/', 'close');
+  return (
+    <Link
+      to="/"
+      onClick={close}
+      aria-label={t('Close: back to the dailies', 'Refermer : retour aux défis du jour')}
+      title={t('Back to the dailies', 'Retour aux défis du jour')}
+      className={`more-drawer more-drawer-left ${EDGE} left-0 -translate-x-[calc(100%-1rem)] rounded-r-lg border border-l-0 hover:translate-x-0 focus-visible:translate-x-0 sm:-translate-x-[calc(100%-1.375rem)] sm:hover:translate-x-0 sm:focus-visible:translate-x-0`}
+    >
+      <span className="flex min-w-0 flex-1 flex-col justify-center gap-1 px-3" aria-hidden>
+        <span className="flex items-center gap-2 whitespace-nowrap font-display text-sm font-bold text-ink">
+          <span className="transition group-hover:-translate-x-0.5">←</span> {t('The dailies', 'Défis du jour')}
+          <GlyphSeal seed="omnidle" size={18} className="ml-auto" />
+        </span>
+        <span className="text-[11px] leading-snug text-ink-faint">{t('Close the drawer: only the day’s riddles.', 'Refermer le tiroir : rien que les énigmes du jour.')}</span>
+      </span>
+      <Grip side="left" label={t('Daily', 'Défis')} />
     </Link>
   );
 }
