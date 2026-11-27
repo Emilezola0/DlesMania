@@ -208,6 +208,8 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
   const key = dayKey(domain, date);
   const saved = useProgress((s) => s.specs[key]);
   const saveSpecs = useProgress((s) => s.saveSpecs);
+  // What the boss round pays (coins, a seed): only told to a player who knows the rest of the site.
+  const fullSide = useUi((s) => s.fullSide);
   // Reuse the rounds this day was first played with; fall back if they reference removed data.
   const specs = useMemo(() => (saved && specsValid(saved) ? saved : buildDaily(date, domain)), [saved, date, domain]);
   useEffect(() => {
@@ -328,7 +330,9 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
             </h2>
             <p className="font-serif text-lg italic text-ink-soft">{GAME_META[spec.type].tagline}</p>
             {stage === 'boss' && (
-              <p className="mt-1 text-sm font-semibold text-ink">{t('The day’s hardest round: double coins and a sure rare seed if you win it.', 'La manche la plus dure du jour : pièces doublées et graine rare assurée si tu la gagnes.')}</p>
+              <p className="mt-1 text-sm font-semibold text-ink">{fullSide
+                  ? t('The day’s hardest round: double coins and a sure rare seed if you win it.', 'La manche la plus dure du jour : pièces doublées et graine rare assurée si tu la gagnes.')
+                  : t('The day’s hardest round.', 'La manche la plus dure du jour.')}</p>
             )}
           </div>
 
