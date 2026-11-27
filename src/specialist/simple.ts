@@ -11,6 +11,7 @@ import CLASSIC_TRAITS from '../data/specialist/classic-traits.json';
 import MHA from '../data/specialist/mha.json';
 import HXH from '../data/specialist/hxh.json';
 import SHREK from '../data/specialist/shrek.json';
+import DBZ from '../data/specialist/dbz.json';
 
 export interface SimpleCharacter {
   id: string;
@@ -23,7 +24,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight' | 'mha' | 'bg3' | 'hxh' | 'shrek';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight' | 'mha' | 'bg3' | 'hxh' | 'shrek' | 'dbz';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -593,6 +594,29 @@ function shrek(): SimpleUniverse {
   };
 }
 
+// ── Dragon Ball: the Saiyans, Z Fighters, villains, gods and everyone else of the boss's Radar and Final Blow and its
+// cards, by race, gender and where they first appear (the original series, Z, GT, Super, Daima, a film or a game: written
+// by hand, src/data/specialist/dbz.json), and their card's rarity; the cards' anime art; the boss's signature techniques.
+// Left out: whoever's race or first appearance isn't sure (Goku Black, Gine, Tarble, Puar, Glorio, Anilaza). ──
+function dbz(): SimpleUniverse {
+  const b = boss('dbz');
+  const aliases = new Map([...b.radar.members, ...b.finale].map((c) => [c.label, c.aliases ?? []]));
+  const traits = new Map(DBZ.characters.map((c) => [c.name, { Race: c.race, Gender: c.gender, 'First appears in': c.debut }]));
+  const cards = CARDS.filter((c) => c.set === 'dbz' && c.rarity !== 'mythic' && c.rarity !== 'omni' && traits.has(c.name));
+  const characters = cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } }));
+  // A technique's answer may be spelt otherwise than the card ("Tien" for Tien Shinhan): matched by any of its names.
+  const named = (a: { name: string; aliases: string[] }) => characters.find((c) => [a.name, ...a.aliases].some((n) => n === c.name || c.aliases.includes(n)));
+  return {
+    id: 'dbz',
+    columns: ['Race', 'Gender', 'First appears in', 'Rarity'],
+    characters,
+    clues: (b.signature?.clues ?? []).flatMap((c) => {
+      const who = c.text ? named(c.answer) : undefined;
+      return who ? [{ text: c.text!, answer: who.id }] : [];
+    }),
+  };
+}
+
 // ── Baldur's Gate 3: the companions, villains and allies with drawn art, by race (bg3.wiki's infoboxes), what they are
 // to the party, gender and their card's rarity; Larian's painted portraits and concept art; the boss's clues. The Dark
 // Urge (the player's own race and class), the Emperor and the creatures stay out of Classic. ──
@@ -635,7 +659,7 @@ function bg3(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight(), mha: mha(), bg3: bg3(), hxh: hxh(), shrek: shrek() };
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight(), mha: mha(), bg3: bg3(), hxh: hxh(), shrek: shrek(), dbz: dbz() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 

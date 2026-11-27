@@ -103,6 +103,9 @@ const UNIVERSE_FR: Partial<Record<UniverseId, { blurb: string; label?: string }>
   "hxh": {
     "blurb": "Les Hunters, la Brigade fantôme, les Zoldik et les Fourmis-Chimères : Classique par groupe, type de Nen, genre, statut et chapitre de première apparition, leurs images de l’anime en gros plan et derrière des fenêtres, et des indices."
   },
+  "dbz": {
+    "blurb": "Les Saiyens, les guerriers Z, les méchants et les dieux : Classique par race, genre et lieu de première apparition, de la première série à Daima, leurs images de l’anime en gros plan et derrière des fenêtres, et leurs techniques signatures."
+  },
   "shrek": {
     "blurb": "Les ogres, les créatures de contes et les têtes couronnées de Fort Fort Lointain, et les visages du Chat Potté : Classique par espèce, genre, statut et année de leur premier film, les rendus des films en gros plan et derrière des fenêtres, et des indices."
   },
@@ -319,6 +322,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   mha: simplePools('mha'),
   bg3: simplePools('bg3'),
   hxh: simplePools('hxh'),
+  dbz: simplePools('dbz'),
   shrek: simplePools('shrek'),
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),

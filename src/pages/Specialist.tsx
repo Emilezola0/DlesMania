@@ -53,6 +53,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   mha: { classic: classicRoundFor('mha', 'character'), picture: pictureRoundFor('mha'), windows: windowsRoundFor('mha'), clue: clueRoundFor('mha', 'Who is this?') },
   bg3: { classic: classicRoundFor('bg3', 'character'), picture: pictureRoundFor('bg3'), windows: windowsRoundFor('bg3'), clue: clueRoundFor('bg3', 'Who is this?') },
   hxh: { classic: classicRoundFor('hxh', 'character'), picture: pictureRoundFor('hxh'), windows: windowsRoundFor('hxh'), clue: clueRoundFor('hxh', 'Who is this?') },
+  dbz: { classic: classicRoundFor('dbz', 'character'), picture: pictureRoundFor('dbz'), windows: windowsRoundFor('dbz'), clue: clueRoundFor('dbz', 'Whose signature technique is this?') },
   shrek: { classic: classicRoundFor('shrek', 'character'), picture: pictureRoundFor('shrek'), windows: windowsRoundFor('shrek'), clue: clueRoundFor('shrek', 'Who is this?') },
   arcraiders: { classic: ArcClassicRound, mob: ArcMobRound, gear: ArcGearRound, place: ArcPlaceRound, furniture: ArcFurnitureRound, material: ArcMaterialRound, recipe: ArcRecipeRound, sound: ArcSoundRound },
   hsr: { classic: HsrClassicRound, splash: HsrSplashRound, windows: HsrWindowsRound, lightcone: HsrConeRound, voice: HsrVoiceRound },
@@ -78,6 +79,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   mha: `${SIMPLE.mha.characters.length} heroes, students and villains · ${SIMPLE.mha.clues.length} clues — My Hero Academia Wiki`,
   bg3: `${SIMPLE.bg3.characters.length} companions, villains and allies · ${SIMPLE.bg3.clues.length} clues — bg3.wiki`,
   hxh: `${SIMPLE.hxh.characters.length} Hunters, Spiders, Zoldycks and Chimera Ants · ${SIMPLE.hxh.clues.length} clues — Hunterpedia`,
+  dbz: `${SIMPLE.dbz.characters.length} Saiyans, Z Fighters, villains and gods · ${SIMPLE.dbz.clues.length} signature techniques — Dragon Ball Wiki`,
   shrek: `${SIMPLE.shrek.characters.length} ogres, fairy-tale creatures and royals · ${SIMPLE.shrek.clues.length} clues — Shrek Wiki`,
   arcraiders: `${ARC_MACHINES.length} ARC machines · ${ARC_GEAR.length} weapons and gear · ${ARC_PLACES.length} places · ${ARC_FURNITURE.length} containers · ${ARC_MATERIALS.length} materials · ${ARC_RECIPES.length} recipes · ${ARC_SOUNDS.length} sounds — ARC Raiders Wiki`,
   hsr: `${HSR_CHARACTERS.length} characters, up to version ${HSR_CHARACTERS.reduce((v, c) => (versionValue(c.version) > versionValue(v) ? c.version : v), '1.0')} · ${HSR_CONES.length} Light Cones · ${HSR_VOICES.length} voice lines — Honkai: Star Rail Wiki data from ${HSR_GENERATED}`,
@@ -117,11 +119,11 @@ export function SpecialistHub() {
           )}
         </p>
       </div>
-      {/* The owner's three most important, in gold, on their own above the rest. */}
+      {/* The owner's four most important, in gold, on their own above the rest. */}
       {[UNIVERSES.filter((u) => isFeatured(u.id)), UNIVERSES.filter((u) => !isFeatured(u.id))].map((group, g) => (
       <section key={g} className="space-y-3">
       {g === 1 && <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{t('More universes', 'Autres univers')}</p>}
-      <ul className="grid gap-4 sm:grid-cols-3">
+      <ul className={`grid gap-4 ${g === 0 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-3'}`}>
         {group.map((u) => {
           const today = Object.values(special[`${u.id}:${todayKey()}`] ?? {}).filter((r) => r.status !== 'playing').length;
           const streak = specialStreak(special, u.id, u.types.length);

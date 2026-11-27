@@ -7,7 +7,7 @@ export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wa
 export const UNIVERSES = [
   {
     id: 'onepiece',
-    // One of the three that matter most (the owner's call): shown in gold.
+    // One of the four that matter most (the owner's call): shown in gold.
     featured: true,
     label: 'One Piece',
     ready: true,
@@ -16,7 +16,7 @@ export const UNIVERSES = [
   },
   {
     id: 'lol',
-    // One of the three that matter most (the owner's call): shown in gold.
+    // One of the four that matter most (the owner's call): shown in gold.
     featured: true,
     label: 'League of Legends',
     ready: true,
@@ -56,12 +56,21 @@ export const UNIVERSES = [
   },
   {
     id: 'overwatch',
-    // One of the three that matter most (the owner's call): shown in gold.
+    // One of the four that matter most (the owner's call): shown in gold.
     featured: true,
     label: 'Overwatch',
     ready: true,
     blurb: "Classic by role, sub-role, nationality, health and age, voice lines from the wiki's recordings, ultimates and their charge cost, pictures and windows — every hero.",
     types: ['voice', 'clue', 'picture', 'windows', 'ultcost', 'classic'] as SpType[],
+  },
+  {
+    id: 'dbz',
+    // One of the four that matter most (the owner's call, added 27 November 2026): shown in gold.
+    featured: true,
+    label: 'Dragon Ball',
+    ready: true,
+    blurb: 'The Saiyans, the Z Fighters, the villains and the gods: Classic by race, gender and where they first appear, from the first series to Daima, their anime art up close and behind windows, and their signature techniques.',
+    types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
   },
   {
     id: 'forts',
@@ -181,6 +190,8 @@ export const UNIVERSE_BANNER: Record<UniverseId, string | null> = {
   wow: wikiBanner('wowpedia/images/3/38/Jeremy_Sun_wow_wallpaper.jpg'),
   forhonor: localBanner('forhonor'),
   overwatch: localBanner('overwatch'),
+  // Toriyama's art of the cast for Dragon Ball Super (Dragon Ball Wiki).
+  dbz: wikiBanner('dragonball/images/b/b9/Dragon_Ball_Super_representation.png'),
   forts: localBanner('forts'),
   ufouria: localBanner('ufouria'),
   hollowknight: localBanner('hollowknight'),
@@ -197,5 +208,5 @@ export const UNIVERSE_BANNER: Record<UniverseId, string | null> = {
   jlpt: localBanner('jlpt'),
   unreal: null,
 };
-/** The universes shown in gold (the owner's three most important). */
+/** The universes shown in gold (the owner's four most important). */
 export const isFeatured = (id: string) => UNIVERSES.some((u) => u.id === id && 'featured' in u && u.featured);

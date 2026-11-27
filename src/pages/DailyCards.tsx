@@ -12,7 +12,7 @@ import { useUi } from '../store/ui';
 import { MAX_DAILY_SCORE } from '../lib/scoring';
 import { useT } from '../lib/i18n';
 import { computeStreak, dayKey, specialStreak, summarizeDay, useProgress } from '../store/progress';
-import { UNIVERSES, isFeatured } from '../specialist/universes';
+import { UNIVERSES, UNIVERSE_BANNER, isFeatured } from '../specialist/universes';
 
 /** Time left before the next dailies (midnight), ticking. */
 function NextDaily() {
@@ -129,8 +129,8 @@ export function DailyCards() {
 }
 
 /**
- * The Specialist under the four categories: its own daily in each universe, the owner's three most important (League
- * of Legends, One Piece, Overwatch) in gold with today's progress, and the way to every universe. On the home page too.
+ * The Specialist under the four categories: its own daily in each universe, the owner's four most important (League
+ * of Legends, One Piece, Overwatch, Dragon Ball) in gold, each on its banner (blurred, as on the Specialist page) with today's progress, and the way to every universe. On the home page too.
  */
 export function SpecialistCard() {
   const special = useProgress((s) => s.special);
@@ -149,13 +149,19 @@ export function SpecialistCard() {
           {t('Every universe →', 'Tous les univers →')}
         </Link>
       </div>
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {featured.map((u) => {
           const done = Object.values(special[`${u.id}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length;
           const streak = specialStreak(special, u.id, u.types.length);
+          const banner = UNIVERSE_BANNER[u.id];
           return (
-            <Link key={u.id} to={`/specialist/${u.id}`} className="golden-ready flex flex-col gap-1 rounded-md bg-gradient-to-br from-[#fde68a]/15 to-transparent p-4 transition hover:-translate-y-0.5">
-              <span className="golden-text font-display text-lg font-bold">★ {u.label}</span>
+            <Link key={u.id} to={`/specialist/${u.id}`} className="golden-ready group relative isolate flex min-h-24 flex-col justify-between gap-1 overflow-hidden rounded-md bg-gradient-to-br from-[#fde68a]/15 to-transparent p-4 transition hover:-translate-y-0.5">
+              {/* The universe's banner, blurred behind it (as on the Specialist page), a little clearer when pointed at. */}
+              <span aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+                {banner && <img src={banner} alt="" loading="lazy" draggable={false} className="size-full scale-110 object-cover opacity-60 blur-[3px] transition duration-500 group-hover:opacity-75 group-hover:blur-[2px]" />}
+                <span className="absolute inset-0 bg-gradient-to-br from-card/85 via-card/60 to-card/35" />
+              </span>
+              <span className="golden-text font-display text-lg font-bold leading-tight">★ {u.label}</span>
               <span className="flex items-center justify-between text-xs text-ink-faint">
                 {done >= u.types.length ? t('Today: done', 'Aujourd’hui : fait') : done ? t(`Today: ${done}/${u.types.length}`, `Aujourd’hui : ${done}/${u.types.length}`) : t('Today: not started', 'Aujourd’hui : pas commencé')}
                 {streak > 0 && (

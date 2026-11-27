@@ -1,0 +1,953 @@
+{
+ "source": "Written by hand from the series (race, gender, where they first appear), checked against the Dragon Ball Wiki (dragonball.fandom.com)",
+ "characters": [
+  {
+   "name": "Goku",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Vegeta",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Gohan",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Piccolo",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Krillin",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Cell",
+   "race": "Bio-Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Majin Buu",
+   "race": "Majin",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Trunks",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Bulma",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Android 18",
+   "race": "Android",
+   "gender": "Female",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Goten",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Master Roshi",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Shenron",
+   "race": "Dragon",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Yamcha",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Chi-Chi",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Videl",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Tien Shinhan",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Frieza",
+   "race": "Frieza Race",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Bardock",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Raditz",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Nappa",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Dabura",
+   "race": "Demon",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Zarbon",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Dodoria",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Mr. Satan",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "King Kai",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Broly",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Babidi",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Cooler",
+   "race": "Frieza Race",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Janemba",
+   "race": "Demon",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Beerus",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Whis",
+   "race": "Angel",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Supreme Kai",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Yajirobe",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Future Trunks",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Gotenks",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Gogeta",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Vegito",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Android 17",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Jiren",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Zamasu",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Hit",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Kefla",
+   "race": "Saiyan",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Android 16",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Kid Buu",
+   "race": "Majin",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Super Buu",
+   "race": "Majin",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Captain Ginyu",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "King Cold",
+   "race": "Frieza Race",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Pan",
+   "race": "Part-Saiyan",
+   "gender": "Female",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Cell Jr.",
+   "race": "Bio-Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Android 21",
+   "race": "Android",
+   "gender": "Female",
+   "debut": "Video game"
+  },
+  {
+   "name": "Toppo",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Champa",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Vados",
+   "race": "Angel",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Zeno",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Grand Priest",
+   "race": "Angel",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Caulifla",
+   "race": "Saiyan",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Kale",
+   "race": "Saiyan",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Cabba",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "King Vegeta",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Moro",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Granolah",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Gamma 1",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Gamma 2",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Dende",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Mr. Popo",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Kami",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Uub",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Turles",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Lord Slug",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Jeice",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Burter",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Recoome",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Guldo",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Android 19",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Dr. Gero",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Paragus",
+   "race": "Saiyan",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Garlic Jr.",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Bojack",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Hirudegarn",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Cheelai",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Film"
+  },
+  {
+   "name": "Lemo",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Dr. Hedo",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Magenta",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Korin",
+   "race": "Animal",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Chiaotzu",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Launch",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Oolong",
+   "race": "Animal",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Ox-King",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Mercenary Tao",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Pilaf",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Mai",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Shu",
+   "race": "Animal",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Nail",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Guru",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Bulla",
+   "race": "Part-Saiyan",
+   "gender": "Female",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Marron",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Baby",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball GT"
+  },
+  {
+   "name": "Pikkon",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Kibito",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Old Kai",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Fortuneteller Baba",
+   "race": "Human",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Spopovich",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Yamu",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Frost",
+   "race": "Frieza Race",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Belmod",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Marcarita",
+   "race": "Angel",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Dyspo",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Gas",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Elec",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Merus",
+   "race": "Angel",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "General Blue",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Commander Red",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Grandpa Gohan",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Gomah",
+   "race": "Majin",
+   "gender": "Male",
+   "debut": "Daima"
+  },
+  {
+   "name": "Degesu",
+   "race": "Majin",
+   "gender": "Male",
+   "debut": "Daima"
+  },
+  {
+   "name": "Panzy",
+   "race": "Majin",
+   "gender": "Female",
+   "debut": "Daima"
+  },
+  {
+   "name": "Kibito Kai",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Goku Jr.",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball GT"
+  },
+  {
+   "name": "Vegeta Jr.",
+   "race": "Part-Saiyan",
+   "gender": "Male",
+   "debut": "Dragon Ball GT"
+  },
+  {
+   "name": "Super 17",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Dragon Ball GT"
+  },
+  {
+   "name": "Omega Shenron",
+   "race": "Dragon",
+   "gender": "Male",
+   "debut": "Dragon Ball GT"
+  },
+  {
+   "name": "Porunga",
+   "race": "Dragon",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Nam",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Bora",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Upa",
+   "race": "Human",
+   "gender": "Male",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Arale Norimaki",
+   "race": "Android",
+   "gender": "Female",
+   "debut": "Dragon Ball"
+  },
+  {
+   "name": "Sorbet",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Tagoma",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Shisami",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Cus",
+   "race": "Angel",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Mojito",
+   "race": "Angel",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Liquiir",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Ribrianne",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Kakunsa",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Cocotte",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Zirloin",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Saonel",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Pirina",
+   "race": "Namekian",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Heles",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Iwan",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Quitela",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Sidra",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Rumsshi",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Geene",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Gowasu",
+   "race": "Kai",
+   "gender": "Male",
+   "debut": "Dragon Ball Super"
+  },
+  {
+   "name": "Tapion",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Android 13",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Android 14",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Android 15",
+   "race": "Android",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Salza",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Neiz",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Kiwi",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Appule",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Dragon Ball Z"
+  },
+  {
+   "name": "Zangya",
+   "race": "Other",
+   "gender": "Female",
+   "debut": "Film"
+  },
+  {
+   "name": "Bido",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Bujin",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  },
+  {
+   "name": "Kogu",
+   "race": "Other",
+   "gender": "Male",
+   "debut": "Film"
+  }
+ ]
+}
