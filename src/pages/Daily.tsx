@@ -21,10 +21,10 @@ import { GroupHost, GroupJoin } from '../components/GroupCode';
 import { tr, useT } from '../lib/i18n';
 import { isBossRound, stageOf } from '../lib/difficulty';
 import { useUi } from '../store/ui';
-import { DailyCards, SpecialistCard } from './DailyCards';
+import { DailyCards, DailyHub, SpecialistCard } from './DailyCards';
 
-// The home page's cards (here in /daily too), in their own light file: the home page needn't load this page.
-export { DailyCards, SpecialistCard };
+// The daily hub (the home page and /daily) and its cards, in their own light file: the home page needn't load this page.
+export { DailyCards, DailyHub, SpecialistCard };
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
@@ -40,28 +40,6 @@ function Countdown() {
     <span className="font-mono">
       {pad(Math.floor(s / 3600))}:{pad(Math.floor((s % 3600) / 60))}:{pad(s % 60)}
     </span>
-  );
-}
-
-/** /daily */
-export function DailyHub() {
-  const today = todayKey();
-  const t = useT();
-  // The Specialist lives with the other games: here only for a player who knows the rest (past the drawer).
-  const fullSide = useUi((s) => s.fullSide);
-  return (
-    <div className="space-y-8">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
-          <h1 className="text-5xl font-bold">{t('Daily', 'Défi du jour')} №{dayNumber(today)}</h1>
-          <p className="font-serif text-lg italic text-ink-soft">{t('Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.', 'Quatre défis indépendants, dix mini-jeux chacun. Les mêmes énigmes pour tout le monde, remises à zéro à minuit.')}</p>
-        </div>
-        <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} />
-      </div>
-      <DailyCards />
-      {fullSide && <SpecialistCard />}
-    </div>
   );
 }
 
