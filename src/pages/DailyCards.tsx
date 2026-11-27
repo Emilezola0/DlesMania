@@ -1,11 +1,12 @@
 // The day's dailies (DailyHub: the title, the four categories' cards with today's progress, the Specialist's card): the
-// home page and /daily. Kept
-// apart from the Daily page (src/pages/Daily.tsx) so the home page doesn't load every game and every Specialist round.
+// home page and /daily. Kept apart from the Daily page (src/pages/Daily.tsx) so the home page doesn't load every game and
+// every Specialist round.
+import { useEffect, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { DOMAINS } from '../data/domains';
 import { FlameIcon } from '../components/Layout';
-import { GlyphSeal } from '../components/Glyph';
-import { dayNumber, formatLong, todayKey } from '../lib/date';
+import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
+import { formatLong, msUntilTomorrow, todayKey } from '../lib/date';
 import { RulesButton } from '../components/RulesModal';
 import { useUi } from '../store/ui';
 import { MAX_DAILY_SCORE } from '../lib/scoring';
@@ -13,22 +14,55 @@ import { useT } from '../lib/i18n';
 import { computeStreak, dayKey, specialStreak, summarizeDay, useProgress } from '../store/progress';
 import { UNIVERSES, isFeatured } from '../specialist/universes';
 
+/** Time left before the next dailies (midnight), ticking. */
+function NextDaily() {
+  const [ms, setMs] = useState(msUntilTomorrow);
+  useEffect(() => {
+    const tick = window.setInterval(() => setMs(msUntilTomorrow()), 1000);
+    return () => window.clearInterval(tick);
+  }, []);
+  const s = Math.floor(ms / 1000);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return <span className="font-mono tabular-nums">{pad(Math.floor(s / 3600))}:{pad(Math.floor((s % 3600) / 60))}:{pad(s % 60)}</span>;
+}
+
 /** The day's dailies: the home page, and /daily. */
 export function DailyHub() {
   const today = todayKey();
   const t = useT();
+  const days = useProgress((s) => s.days);
+  const done = DOMAINS.filter((d) => summarizeDay(days[dayKey(d.id, today)]).complete).length;
   // The Specialist lives with the other games: here only for a player who knows the rest (past the drawer).
   const fullSide = useUi((s) => s.fullSide);
+  const chip = 'inline-flex items-center gap-1.5 rounded-full border border-rule-strong bg-card/70 px-3 py-1 text-xs font-semibold text-ink-soft';
   return (
-    <div className="space-y-8">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
-          <h1 className="text-5xl font-bold">{t('Daily', 'Défi du jour')} №{dayNumber(today)}</h1>
-          <p className="font-serif text-lg italic text-ink-soft">{t('Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.', 'Quatre défis indépendants, dix mini-jeux chacun. Les mêmes énigmes pour tout le monde, remises à zéro à minuit.')}</p>
+    <div className="space-y-10">
+      {/* Centred, without the day's number (the owner's call): the date says which day it is. */}
+      <header className="flex flex-col items-center gap-4 pt-2 text-center">
+        <div className="flex items-center gap-3" aria-hidden>
+          {DOMAINS.map((d) => (
+            <Glyph key={d.id} seed={d.id} size={20} className={d.tone} />
+          ))}
         </div>
-        <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} />
-      </div>
+        <div className="space-y-2">
+          <p className="font-display text-xs tracking-[0.3em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
+          <h1 className="daily-title text-5xl font-bold leading-none sm:text-6xl">{t('Daily', 'Défi du jour')}</h1>
+        </div>
+        <Ornament className="w-full max-w-xs" />
+        <p className="mx-auto max-w-xl font-serif text-lg italic leading-relaxed text-ink-soft">
+          {t('Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.', 'Quatre défis indépendants, dix mini-jeux chacun. Les mêmes énigmes pour tout le monde, remises à zéro à minuit.')}
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className={`${chip} ${done === DOMAINS.length ? 'border-hit/60 text-hit' : ''}`}>
+            {done === DOMAINS.length ? '✓ ' : ''}
+            {t(`${done}/${DOMAINS.length} done today`, `${done}/${DOMAINS.length} faits aujourd’hui`)}
+          </span>
+          <span className={chip}>
+            {t('Next in', 'Prochain dans')} <NextDaily />
+          </span>
+          <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} className="rounded-full bg-card/70 py-1" />
+        </div>
+      </header>
       <DailyCards />
       {fullSide && <SpecialistCard />}
     </div>
@@ -43,14 +77,20 @@ export function DailyCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {DOMAINS.map((d) => {
-        const sum = summarizeDay(days[dayKey(d.id, today)]);
+        const rounds = days[dayKey(d.id, today)];
+        const sum = summarizeDay(rounds);
         const streak = computeStreak(days, d.id).current;
+        // The category's own colour (its glyph's): the glow behind the seal, the light round the card when pointed at.
+        const tone = { '--tone': `var(--color-${d.fill.replace('bg-', '')})` } as CSSProperties;
+        const action = sum.complete ? t('See results', 'Voir les résultats') : sum.finished ? t('Continue', 'Continuer') : t('Play', 'Jouer');
         return (
           <Link
             key={d.id}
             to={`/daily/${d.id}`}
-            className="page group rounded-md p-6 transition hover:-translate-y-1"
+            style={tone}
+            className={`daily-card page group isolate rounded-md p-6 transition duration-300 hover:-translate-y-1 ${sum.complete ? 'daily-card-done' : ''}`}
           >
+            <span className="daily-card-wash pointer-events-none absolute inset-0 -z-10 rounded-md" aria-hidden />
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-4">
                 <GlyphSeal seed={d.id} size={52} tone={d.tone} className="transition-transform duration-500 group-hover:rotate-45" />
@@ -71,11 +111,16 @@ export function DailyCards() {
                 )}
               </div>
             </div>
+            {/* The ten rounds: won in the category's colour, lost in red, still to play left grey. */}
             <div className="mt-5 flex gap-1">
-              {Array.from({ length: 10 }, (_, i) => (
-                <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i < sum.finished ? d.fill : 'bg-tile-strong'}`} />
-              ))}
+              {Array.from({ length: 10 }, (_, i) => {
+                const status = rounds?.[i]?.status;
+                return <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${status === 'won' ? d.fill : status === 'lost' ? 'bg-miss/60' : 'bg-tile-strong'}`} />;
+              })}
             </div>
+            <p className="mt-3 flex items-center justify-end gap-1 font-display text-[11px] font-bold uppercase tracking-[0.2em] text-[color:var(--tone)] opacity-75 transition group-hover:opacity-100">
+              {action} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </p>
           </Link>
         );
       })}
