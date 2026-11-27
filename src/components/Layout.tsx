@@ -436,7 +436,8 @@ function useHeaderHidden(): boolean {
 function DailyBar({ streak, sound, toggleSound }: { streak: number; sound: boolean; toggleSound: () => void }) {
   const t = useT();
   return (
-    <div className="ml-auto flex items-center gap-1.5 min-[420px]:gap-2.5">
+    <>
+    <div className="flex items-center gap-1.5 justify-self-start min-[420px]:gap-2.5">
       <span
         title={t('Days in a row with at least one category completed', "Jours d'affilée avec au moins une catégorie terminée")}
         aria-label={t(`Streak: ${streak} days`, `Série : ${streak} jours`)}
@@ -454,9 +455,25 @@ function DailyBar({ streak, sound, toggleSound }: { streak: number; sound: boole
       >
         <CalendarIcon className="size-[22px]" />
       </NavLink>
+    </div>
+    <Logo word="hidden min-[480px]:inline" />
+    <div className="flex items-center gap-1.5 justify-self-end min-[420px]:gap-2.5">
       <SoundMenu sound={sound} toggleSound={toggleSound} />
       <NameLangSwitch />
     </div>
+    </>
+  );
+}
+
+/** The seal and OMNIDLE, home. `word`: where the word shows (the seal alone where the bar has no room for it). */
+function Logo({ word }: { word: string }) {
+  return (
+    <NavLink to="/" className="group flex items-center gap-2.5">
+      <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
+      <span data-logo className={`font-display text-lg font-bold tracking-[0.18em] ${word}`}>
+        OMNIDLE
+      </span>
+    </NavLink>
   );
 }
 
@@ -506,15 +523,14 @@ export function Layout() {
       {/* On touch screens (phones, tablets) the bars are nearly opaque instead of blurred: the blur under them is redone at
           every frame of a scroll, which slows a phone down for a difference hardly seen. */}
       <header data-site-header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform pointer-coarse:bg-paper/95 pointer-coarse:backdrop-blur-none duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
-        <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4">
-          <NavLink to="/" className="group flex items-center gap-2.5">
-            <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
-            <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline sm:hidden lg:inline">OMNIDLE</span>
-          </NavLink>
+        {/* The daily side: the logo in the middle, the streak and the archive on its left, the sound and the language
+            on its right. The full side: the logo on the left, the menus after it. */}
+        <div className={`mx-auto max-w-5xl px-3 py-2.5 min-[420px]:px-4 ${dailySide ? 'grid grid-cols-[1fr_auto_1fr] items-center gap-2' : 'flex items-center gap-1 min-[420px]:gap-2'}`}>
           {dailySide ? (
             <DailyBar streak={current} sound={sound} toggleSound={toggleSound} />
           ) : (
             <>
+          <Logo word="hidden min-[560px]:inline sm:hidden lg:inline" />
           <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex sm:gap-0 lg:gap-1">
             {NAV.map((n) => (
               <NavLink
