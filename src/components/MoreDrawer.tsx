@@ -29,21 +29,27 @@ async function pageSettled() {
  * The portal's light (its ring and its glow), put in the page for the new side's snapshot only: its own
  * view-transition-name lifts it above the two pages, where index.css opens it out from the drawer and fades it.
  */
-function addPortal(): HTMLElement {
+function addPortal(kind: 'open' | 'close'): HTMLElement[] {
   const portal = document.createElement('div');
   portal.className = 'drawer-portal';
   portal.setAttribute('aria-hidden', 'true');
   portal.innerHTML = '<span class="drawer-portal-glow"></span><span class="drawer-portal-ring"></span>';
   document.body.append(portal);
-  return portal;
+  if (kind === 'open') return [portal];
+  // Closing: the burst of light as it snaps shut.
+  const flash = document.createElement('div');
+  flash.className = 'drawer-flash';
+  flash.setAttribute('aria-hidden', 'true');
+  document.body.append(flash);
+  return [portal, flash];
 }
 
 /**
  * Through the drawer as into another dimension, a view transition of the whole page animated in index.css
  * (html[data-drawer]), centred on the drawer's edge (--drawer-x/y). Opening: the dailies are drawn into the drawer,
  * twisting and blurring, a ring of light opens out of it and the rest of the site comes through it. Closing: the full
- * side is drawn back into the left edge, and the dailies come out of the haze. Where there's no view transition (or
- * motion is reduced) the link simply goes there.
+ * side is swallowed by the left edge, whirling, the ring tightening with it, and the portal snaps shut in a flash that lights
+ * up the dailies behind. Where there's no view transition (or motion is reduced) the link simply goes there.
  */
 function useDrawerLink(to: string, kind: 'open' | 'close') {
   const navigate = useNavigate();
@@ -69,15 +75,15 @@ function useDrawerLink(to: string, kind: 'open' | 'close') {
     html.style.setProperty('--drawer-r', `${reach}px`);
     html.style.setProperty('--portal-d', `${Math.ceil((2 * reach) / (4.5 * 0.88))}px`);
     html.dataset.drawer = kind;
-    let portal: HTMLElement | null = null;
+    let portal: HTMLElement[] = [];
     const done = start.call(document, async () => {
       navigate(to);
       window.scrollTo(0, 0);
-      portal = addPortal();
+      portal = addPortal(kind);
       await pageSettled();
     });
     void done.finished.finally(() => {
-      portal?.remove();
+      portal.forEach((p) => p.remove());
       delete html.dataset.drawer;
     });
   };
