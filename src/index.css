@@ -5429,3 +5429,16 @@ html.pack-open body::before, html.pack-open body::after, html.pack-open .omni-au
 @media (prefers-reduced-motion: reduce) {
   .genesis-aura [data-site-header]::after, .genesis-aura [data-logo] { animation: none; }
 }
+
+/* ── The drawer on the daily side's right edge (src/components/MoreDrawer.tsx): low enough for a thumb, above the
+   phone's home bar; it peeks out a little further once, a moment after the page opens, to show it is a drawer. ── */
+.more-drawer { bottom: calc(18vh + env(safe-area-inset-bottom)); animation: more-drawer-peek 1.6s ease-in-out 1.2s 1 both; }
+.more-drawer:hover, .more-drawer:focus-visible { animation: none; }
+@keyframes more-drawer-peek {
+  0%, 100% { margin-right: 0; }
+  35%, 55% { margin-right: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .more-drawer { animation: none; } }
+/* Out of the way while the phone's keyboard is up, like the bottom menu. */
+@media (pointer: coarse) { body:has(input:not([type="checkbox"]):focus, textarea:focus) .more-drawer { display: none; } }
+html.pack-open .more-drawer { visibility: hidden; }

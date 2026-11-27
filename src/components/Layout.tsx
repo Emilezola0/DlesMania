@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, dayKey, summarizeDay, useProgress, type ThemeChoice } from '../store/progress';
-import { useUi } from '../store/ui';
+import { isDailySide, useUi } from '../store/ui';
+import { MoreDrawer } from './MoreDrawer';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
 import { useCloud } from '../cloud/state';
@@ -428,6 +429,37 @@ function useHeaderHidden(): boolean {
   return hidden;
 }
 
+/**
+ * The daily side's header, all it keeps: the streak, the archive, the sound and the language (the logo, before it, goes
+ * home). Nothing that leads to the rest of the site: that is the drawer's job.
+ */
+function DailyBar({ streak, sound, toggleSound }: { streak: number; sound: boolean; toggleSound: () => void }) {
+  const t = useT();
+  return (
+    <div className="ml-auto flex items-center gap-1.5 min-[420px]:gap-2.5">
+      <span
+        title={t('Days in a row with at least one category completed', "Jours d'affilée avec au moins une catégorie terminée")}
+        aria-label={t(`Streak: ${streak} days`, `Série : ${streak} jours`)}
+        className={`flex items-center gap-1 rounded-full border px-2.5 py-1 text-sm font-bold tabular-nums ${
+          streak > 0 ? 'border-coral/60 bg-coral/10 text-coral' : 'border-rule-strong text-ink-faint'
+        }`}
+      >
+        <FlameIcon /> {streak}
+      </span>
+      <NavLink
+        to="/archive"
+        title={t('Archive', 'Archives')}
+        aria-label={t('Archive', 'Archives')}
+        className={({ isActive }) => `grid size-8 place-items-center rounded-md transition hover:bg-tile hover:text-ink ${isActive ? 'bg-tile text-ink' : 'text-ink-soft'}`}
+      >
+        <CalendarIcon className="size-[22px]" />
+      </NavLink>
+      <SoundMenu sound={sound} toggleSound={toggleSound} />
+      <NameLangSwitch />
+    </div>
+  );
+}
+
 export function Layout() {
   useNextKey();
   useImageRetry();
@@ -453,9 +485,19 @@ export function Layout() {
   const idle = useIdle();
   const fr = useFr();
   const t = useT();
+  // The daily side (home, dailies, archive) shows only the dailies, with the language, the sound, the streak and the
+  // archive; a drawer on the right edge leads to everything else, where today's full header and menus are.
+  const dailySide = isDailySide(pathname);
+  const fullSide = useUi((s) => s.fullSide);
+  const markFullSide = useUi((s) => s.markFullSide);
+  // Cards owned means packs opened: a player who already knows the rest (from before the drawer, too).
+  const hasCards = useProgress((s) => Object.keys(s.cards).length > 0);
+  useEffect(() => {
+    if (!dailySide || hasCards) markFullSide();
+  }, [dailySide, hasCards, markFullSide]);
 
   return (
-    <div className="flex min-h-screen flex-col overflow-x-clip max-sm:pb-14">
+    <div className={`flex min-h-screen flex-col overflow-x-clip ${dailySide ? '' : 'max-sm:pb-14'}`}>
       {(equipped || momentOn) && (
         <Suspense fallback={null}>
           <CardLayers />
@@ -469,6 +511,10 @@ export function Layout() {
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
             <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline sm:hidden lg:inline">OMNIDLE</span>
           </NavLink>
+          {dailySide ? (
+            <DailyBar streak={current} sound={sound} toggleSound={toggleSound} />
+          ) : (
+            <>
           <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex sm:gap-0 lg:gap-1">
             {NAV.map((n) => (
               <NavLink
@@ -534,6 +580,8 @@ export function Layout() {
               <ProfileTag className="hidden max-w-[5.5rem] min-[380px]:max-sm:flex xl:flex xl:max-w-[8.5rem]" />
             </Suspense>
           )}
+            </>
+          )}
         </div>
       </header>
 
@@ -542,7 +590,9 @@ export function Layout() {
           <Outlet />
         </Suspense>
       </main>
-      {/* Phones: the menu along the bottom, within reach of a thumb. */}
+      {dailySide && <MoreDrawer />}
+      {/* Phones: the menu along the bottom, within reach of a thumb (the full side's). */}
+      {!dailySide && (
       <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur pointer-coarse:bg-paper pointer-coarse:backdrop-blur-none sm:hidden" aria-label={t('Main menu', 'Menu principal')}>
         {NAV.map((n) => (
           <NavLink
@@ -558,9 +608,11 @@ export function Layout() {
           </NavLink>
         ))}
       </nav>
+      )}
       <RulesModal />
       <UpdateBanner />
-      {idle && (
+      {/* News from the rest (cards, coins, seeds): not for a player who only plays the dailies. */}
+      {idle && (!dailySide || fullSide) && (
         <Suspense fallback={null}>
           <GradeBackPay />
           <RetiredCards />

@@ -8,12 +8,15 @@ import { isDomain } from '../lib/rounds';
 import { BIRTHDAY_COINS, REWARD_DATES, REWARD_WINDOW_DAYS, rewardsOn } from '../lib/rewards';
 import { useCloud } from '../cloud/state';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
+import { useUi } from '../store/ui';
 
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export default function Archive() {
   const days = useProgress((s) => s.days);
   const myBirthday = useCloud((c) => c.birthday);
+  // The days that pay DleCoins: only shown to a player who knows the rest of the site (the archive is on the daily side).
+  const fullSide = useUi((s) => s.fullSide);
   const [params, setParams] = useSearchParams();
   const param = params.get('domain') ?? undefined;
   const domain = isDomain(param) ? param : 'games';
@@ -100,9 +103,9 @@ export default function Archive() {
             // The days that bring DleCoins to signed-in players: a holiday (its own symbol; Omnidle's birthday keeps its cake), and the player's birthday.
             const gift = rewardsOn(key, myBirthday);
             const marks = [
-              birthday && { icon: '🎂', label: key === LAUNCH ? 'Omnidle went online this day' : `Omnidle's birthday${gift.date ? `: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` : ''}` },
-              gift.date && gift.date.id !== 'omnidle' && { icon: gift.date.emoji, label: `${gift.date.name.en}: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` },
-              gift.birthday && { icon: '🎈', label: `Your birthday: ${BIRTHDAY_COINS.toLocaleString()} DleCoins` },
+              birthday && { icon: '🎂', label: key === LAUNCH ? 'Omnidle went online this day' : `Omnidle's birthday${fullSide && gift.date ? `: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` : ''}` },
+              fullSide && gift.date && gift.date.id !== 'omnidle' && { icon: gift.date.emoji, label: `${gift.date.name.en}: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` },
+              fullSide && gift.birthday && { icon: '🎈', label: `Your birthday: ${BIRTHDAY_COINS.toLocaleString()} DleCoins` },
             ].filter((m): m is { icon: string; label: string } => !!m);
             const special = marks.length > 0;
             const cake = special ? (
@@ -143,10 +146,12 @@ export default function Archive() {
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-tile-strong" /> Not started</span>
           <span className="flex items-center gap-1.5">🎂 Omnidle&apos;s birthday</span>
         </div>
+        {fullSide && (
         <p className="mt-2 text-center text-xs text-ink-faint">
           Signed in, come by on these days for DleCoins: {REWARD_DATES.filter((d) => d.id !== 'omnidle').map((d) => `${d.emoji} ${d.name.en}`).join(', ')}, 🎂 Omnidle&apos;s birthday
           {' '}({REWARD_DATES[0].coins.toLocaleString()} each, open {REWARD_WINDOW_DAYS} days){myBirthday ? `, and 🎈 your birthday (${BIRTHDAY_COINS.toLocaleString()})` : ''} — plus a gift every day you come by.
         </p>
+        )}
       </div>
     </div>
   );

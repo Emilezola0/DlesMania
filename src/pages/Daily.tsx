@@ -20,6 +20,7 @@ import { RulesButton } from '../components/RulesModal';
 import { GroupHost, GroupJoin } from '../components/GroupCode';
 import { tr, useT } from '../lib/i18n';
 import { isBossRound, stageOf } from '../lib/difficulty';
+import { useUi } from '../store/ui';
 import { DailyCards, SpecialistCard } from './DailyCards';
 
 // The home page's cards (here in /daily too), in their own light file: the home page needn't load this page.
@@ -46,6 +47,8 @@ function Countdown() {
 export function DailyHub() {
   const today = todayKey();
   const t = useT();
+  // The Specialist lives with the other games: here only for a player who knows the rest (past the drawer).
+  const fullSide = useUi((s) => s.fullSide);
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -57,7 +60,7 @@ export function DailyHub() {
         <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} />
       </div>
       <DailyCards />
-      <SpecialistCard />
+      {fullSide && <SpecialistCard />}
     </div>
   );
 }
@@ -110,6 +113,8 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
   const [copied, setCopied] = useState(false);
   const t = useT();
   const text = shareText(domain, date, specs, rounds, streak);
+  // The DleCoins it paid: only for a player who knows the rest of the site (a daily-only player never meets the money).
+  const fullSide = useUi((s) => s.fullSide);
   const others = DOMAINS.filter((d) => d.id !== domain && !summarizeDay(days[dayKey(d.id, date)]).complete);
 
   const share = async () => {
@@ -136,7 +141,7 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
           </span>
         )}
       </p>
-      <DailyReward date={date} score={sum.score} days={days} />
+      {fullSide && <DailyReward date={date} score={sum.score} days={days} />}
       <Ornament />
       <div className="grid grid-cols-5 gap-2">
         {specs.map((s, i) => {

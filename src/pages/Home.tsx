@@ -8,7 +8,7 @@ import type { Work } from '../types';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { dayNumber, formatLong, todayKey } from '../lib/date';
 import { computeStreak, summarizeDay, useProgress } from '../store/progress';
-import { DailyCards, SpecialistCard } from './DailyCards';
+import { DailyCards } from './DailyCards';
 import { useT } from '../lib/i18n';
 
 export default function Home() {
@@ -43,18 +43,13 @@ export default function Home() {
               'Quatre royaumes — jeux vidéo, anime, cinéma et musique. Dix épreuves chacun, chaque jour. Déchiffre-les à partir d’attributs, de citations, de bandes-son, d’images effacées et d’étranges petits symboles.',
             )}
           </p>
+          {/* The daily side: only the dailies here (Free Play, the bosses and the rest are past the drawer on the right). */}
           <div className="mt-2 flex flex-wrap justify-center gap-3">
             <Link to="/daily" className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-widest">
               {t('BEGIN TODAY', 'COMMENCER')}
             </Link>
-            <Link to="/play" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
-              {t('FREE PLAY', 'JEU LIBRE')}
-            </Link>
-            <Link to="/boss" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
-              {t('BOSS BATTLE', 'COMBAT DE BOSS')}
-            </Link>
-            <Link to="/games" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
-              {t('MORE GAMES', 'PLUS DE JEUX')}
+            <Link to="/archive" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
+              {t('PAST DAYS', 'JOURS PASSÉS')}
             </Link>
           </div>
           <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} />
@@ -80,21 +75,21 @@ export default function Home() {
       <section className="space-y-5">
         <ChapterHeading numeral="I" title={t('Today’s trials', 'Les épreuves du jour')} link={{ to: '/archive', label: t('Archive →', 'Archives →') }} />
         <DailyCards />
-        <SpecialistCard />
       </section>
 
+      {/* The kinds of rounds a daily is made of, to know them (playing them freely is Free Play, on the full side). */}
       <section className="space-y-5">
-        <ChapterHeading numeral="II" title={t('The mini-games', 'Les mini-jeux')} link={{ to: '/play', label: t('Free play →', 'Jeu libre →') }} />
+        <ChapterHeading numeral="II" title={t('The mini-games', 'Les mini-jeux')} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {GAME_TYPES.map((type, i) => (
-            <Link key={type} to={`/play?type=${type}`} className="page group rounded-md p-4 transition hover:-translate-y-0.5">
+            <div key={type} className="page group rounded-md p-4">
               <div className="flex items-start justify-between">
                 <GlyphSeal seed={type} size={38} className="transition-transform duration-500 group-hover:rotate-45" />
                 <span className="font-display text-[10px] text-ink-faint">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <p className="mt-3 font-serif text-lg font-bold leading-tight">{GAME_META[type].name}</p>
               <p className="text-xs leading-snug text-ink-faint">{GAME_META[type].tagline}</p>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -104,14 +99,16 @@ export default function Home() {
   );
 }
 
-function ChapterHeading({ numeral, title, link }: { numeral: string; title: string; link: { to: string; label: string } }) {
+function ChapterHeading({ numeral, title, link }: { numeral: string; title: string; link?: { to: string; label: string } }) {
   return (
     <div className="flex items-end gap-4 border-b border-rule pb-2">
       <span className="font-display text-sm text-ink-faint">{numeral}.</span>
       <h2 className="text-3xl font-bold">{title}</h2>
-      <Link to={link.to} className="ml-auto pb-1 font-display text-xs tracking-wider text-ink-soft hover:text-ink">
-        {link.label}
-      </Link>
+      {link && (
+        <Link to={link.to} className="ml-auto pb-1 font-display text-xs tracking-wider text-ink-soft hover:text-ink">
+          {link.label}
+        </Link>
+      )}
     </div>
   );
 }
